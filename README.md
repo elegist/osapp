@@ -19,7 +19,8 @@ Textual content should be presented in a visually appealing way. Since this is a
 All documents that have nothing to do with the actual code of the application are located in the "documentation" folder in the root directory.
 
 # Npm packages list
-The following is a list of all additionally required packages with the corresponding installation command (open the terminal in the "main" folder and execute the corresponding commands).
+The following is a list of all additionally required packages with the corresponding installation command (open the terminal in the "main" folder and execute the corresponding commands).\
+**Note**: *All packages are automatically installed via ``npm install`` from a terminal inside the 'main' folder of the project after cloning the repository.*
 
 ## [React Navigation](https://reactnative.dev/docs/navigation)
 The default react native navigation implementation\

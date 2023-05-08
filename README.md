@@ -22,13 +22,13 @@ All documents that have nothing to do with the actual code of the application ar
 The following is a list of all additionally required packages with the corresponding installation command (open the terminal in the "main" folder and execute the corresponding commands).
 
 ## [React Navigation](https://reactnative.dev/docs/navigation)
-The default react native navigation implementation
+The default react native navigation implementation\
 ``npm install @react-navigation/native @react-navigation/native-stack``
 
 ## [Animations](https://reactnative.dev/docs/animations)
-This is used for GUI animations (for example a smooth transition between screens).
+This is used for GUI animations (for example a smooth transition between screens).\
 ``npm install react-native-reanimated react-native-gesture-handler react-native-svg``
 
 ## [Better image support](https://github.com/DylanVann/react-native-fast-image)
-Improves performance of native image loading and adds support for animated .gif's
+Improves performance of native image loading and adds support for animated .gif's\
 ``npm install react-native-fast-image``

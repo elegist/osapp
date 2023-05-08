@@ -1,35 +1,40 @@
 # OSApp - Medieninformatik
-Hier entsteht die einzigartige Lernapp für MIB40 - Digitales Lehren und Lernen.\
+This is where the unique OSA - App for MIB40 - Digital Teaching and Learning is created.
 
 # Table of Contents
 1. [Info](#info)
 2. [Projektmitglieder](#projektmitglieder)
 3. [Npm packages list](#npm-packages-list)
 
-## Info
-Die Anwendung soll studieninteressierten Personen ein OSA (Online self assessment) für den Studiengang
-Medieninformatik zur Verfügung stellen. Ziel unserer Anwendung ist es, Nutzer:innen einen Einblick in die
-Welt der Medieninformatik mit ihren unterschiedlichen Themen zu bieten. Dabei soll keine klare
-Empfehlung für oder gegen den Studiengang resultieren, sondern ein Feedback, welches bei einer
-eigenverantwortlichen Entscheidung helfen kann. Die Zielgruppe sind Studieninteressierte ohne, oder mit
-nur wenigen Vorkenntnissen, daher sollten das Erlebnis und die vermittelten Informationen im Vordergrund
-stehen. Das Design der Anwendung soll passend zur Medieninformatik modern und einladend gestaltet
-sein, textuelle Inhalte sollen optisch ansprechend präsentiert werden. Da es sich um eine mobile App
-handelt und kein webbasiertes OSA, soll sich auch die Nutzererfahrung deutlich von der einer Website
-unterscheiden.
+# Info
+The application is intended to provide prospective students with an OSA (online self-assessment) for the study program
+media informatics. The aim of our application is to provide users with an insight into the world of media
+world of media informatics with its different topics. This should not result in a clear
+recommendation for or against the course of studies, but a feedback, which can help with a
+decision on one's own responsibility. The target group are prospective students with little or no previous knowledge.
+or with little previous knowledge, so the experience and the information provided should be in the foreground.
+should be in the foreground. The design of the application should be modern and inviting, in line with media informatics.
+textual content should be presented in a visually appealing way. Since this is a mobile app
+and not a web-based OSA, the user experience should also be clearly different from that of a website.
+different.
 
-## Projektmitglieder
+# Projektmitglieder, -planung und -dokumentation
 * Robin Patzak
 * Armin Prinz
 
-## Npm packages list
-Liste aller zusätzlich benötigten Packages mit Installationsbefehl (Terminal im Ordner "main" öffnen).
+All documents that have nothing to do with the actual code of the application are located in the "documentation" folder in the root directory.
 
-### [React Navigation](https://reactnative.dev/docs/navigation)
+# Npm packages list
+The following is a list of all additionally required packages with the corresponding installation command (open the terminal in the "main" folder and execute the corresponding commands).
+
+## [React Navigation](https://reactnative.dev/docs/navigation)
+The default react native navigation implementation
 ``npm install @react-navigation/native @react-navigation/native-stack``
 
-### Animations
+## [Animations](https://reactnative.dev/docs/animations)
+This is used for GUI animations (for example a smooth transition between screens).
 ``npm install react-native-reanimated react-native-gesture-handler react-native-svg``
 
-### Animated images
+## [Better image support](https://github.com/DylanVann/react-native-fast-image)
+Improves performance of native image loading and adds support for animated .gif's
 ``npm install react-native-fast-image``

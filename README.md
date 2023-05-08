@@ -8,15 +8,9 @@ This is where the unique OSA - App for MIB40 - Digital Teaching and Learning is 
 
 # Info
 The application is intended to provide prospective students with an OSA (online self-assessment) for the study program
-media informatics. The aim of our application is to provide users with an insight into the world of media
-world of media informatics with its different topics. This should not result in a clear
-recommendation for or against the course of studies, but a feedback, which can help with a
-decision on one's own responsibility. The target group are prospective students with little or no previous knowledge.
-or with little previous knowledge, so the experience and the information provided should be in the foreground.
-should be in the foreground. The design of the application should be modern and inviting, in line with media informatics.
-textual content should be presented in a visually appealing way. Since this is a mobile app
-and not a web-based OSA, the user experience should also be clearly different from that of a website.
-different.
+media informatics. The aim of our application is to provide users with an insight into the world of media of media informatics with its various topics. This should not result in a clear recommendation for or against the course of studies, but a feedback, which can help with a
+decision on one's own responsibility. The target group are prospective students with little or no previous knowledge, so the experience and the information provided should be in the foreground. The design of the application should be modern and inviting, in line with media informatics.
+Textual content should be presented in a visually appealing way. Since this is a mobile app and not a web-based OSA, the user experience should also be clearly different from that of a website.
 
 # Projektmitglieder, -planung und -dokumentation
 * Robin Patzak

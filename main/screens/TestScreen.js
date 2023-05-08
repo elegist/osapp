@@ -10,7 +10,7 @@ export default function TestScreen({navigation, route}) {
         <View style={styles.imageWrapper}>
         <FastImage
         source={gif}
-        style={{ width: '80%', height: undefined, aspectRatio: 1.5, borderWidth: 1, borderColor: 'black' }}
+        style={{ width: '80%', height: undefined, aspectRatio: 1.5, borderWidth: 1, borderColor: 'black', borderRadius: 8 }}
         resizeMode={FastImage.resizeMode.contain}
       />
         </View>
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
       },
       imageWrapper: {
+        borderRadius: 8,
         backgroundColor: '#fff',
         shadowColor: '#000',
         shadowOffset: {

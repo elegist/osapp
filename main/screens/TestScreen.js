@@ -2,11 +2,12 @@ import React, { useRef } from 'react';
 import FastImage from 'react-native-fast-image';
 import { StyleSheet, Text, View, Animated } from 'react-native'
 import gif from '../assets/bestesgif.gif'
+import globalStyles from '../styles/GlobalStyleSheet';
 
 export default function TestScreen({navigation, route}) {
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.flexContainer}>
         <View style={styles.imageWrapper}>
         <FastImage
         source={gif}
@@ -19,12 +20,6 @@ export default function TestScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
-      },
       imageWrapper: {
         borderRadius: 8,
         backgroundColor: '#fff',

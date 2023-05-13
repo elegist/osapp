@@ -31,32 +31,6 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-/* function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-} */
-
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
@@ -65,8 +39,8 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Test" component={TestScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Test" component={TestScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   </NavigationContainer>
   );

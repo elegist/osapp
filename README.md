@@ -33,3 +33,7 @@ This is used for GUI animations (for example a smooth transition between screens
 ## [Better image support](https://github.com/DylanVann/react-native-fast-image)
 Improves performance of native image loading and adds support for animated .gif's\
 ``npm install react-native-fast-image``
+
+## [Vector icons](https://github.com/oblador/react-native-vector-icons)
+Implements vector icons
+``npm install react-native-vector-icons``

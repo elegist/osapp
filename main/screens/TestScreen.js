@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, Animated } from 'react-native'
 import gif from '../assets/bestesgif.gif'
 import globalStyles from '../styles/GlobalStyleSheet';
 
+import TaskManager from '../container/task_manager/TaskManager';
+
 export default function TestScreen({navigation, route}) {
+  const TASKS = new TaskManager({testInteger: 200}) //initializing TaskManager with a prop.
 
   return (
     <View style={globalStyles.flexContainer}>
@@ -14,6 +17,8 @@ export default function TestScreen({navigation, route}) {
         style={{ width: '80%', height: undefined, aspectRatio: 1.5, borderWidth: 1, borderColor: 'black', borderRadius: 8 }}
         resizeMode={FastImage.resizeMode.contain}
       />
+      <Text>{ TASKS.testInteger /* calling the prop on TaskManager */}</Text>
+      <Text>{ TASKS.retreiveTaskList("Programmieren") /* calling some function on TaskManager */}</Text>
         </View>
     </View>
   );

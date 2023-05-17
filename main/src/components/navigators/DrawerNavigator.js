@@ -21,6 +21,8 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
         drawerPosition: 'right',
+        drawerActiveBackgroundColor: '#8CBA45',
+        drawerActiveTintColor: 'white',
       }}>
       <Drawer.Screen
         name="home"

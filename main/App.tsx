@@ -4,7 +4,7 @@
  *
  * @format
  */
-
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import type {PropsWithChildren} from 'react';
 
@@ -24,8 +24,11 @@ import {
 } from 'react-native';
 
 // Screens
-import HomeScreen from './screens/HomeScreen';
-import TestScreen from './screens/TestScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import TestScreen from './src/screens/TestScreen';
+
+//components
+import DrawerNavigator from './src/components/navigators/DrawerNavigator';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -35,14 +38,22 @@ const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  
+
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Test" component={TestScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  </NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="drawerNavigator"
+          component={DrawerNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="testStack"
+          component={TestScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

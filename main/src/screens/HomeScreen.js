@@ -11,11 +11,12 @@ export default function HomeScreen({navigation}) {
 
   const handlePress = () => {
     setIsPressed(true);
-    navigation.navigate('Test');
+    navigation.navigate('testStack');
     setIsPressed(false);
   };
   const toggleBurgerMenu = () => {
     setIsOpen(!isOpen);
+    navigation.toggleDrawer();
   };
 
   const thmSvg =
@@ -26,15 +27,9 @@ export default function HomeScreen({navigation}) {
       <View style={styles.topMenuBar}>
         {/* THM logo as svg to be placed here */}
         <SvgXml xml={thmSvg} height="60%" width="30%" />
-        {!isOpen ? (
-          <TouchableOpacity onPress={toggleBurgerMenu}>
-            <Icon name="bars" size={36} color="black" />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={toggleBurgerMenu}>
-            <Icon name="times" size={36} color="black" />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity onPress={toggleBurgerMenu}>
+          <Icon name="bars" size={36} color="black" />
+        </TouchableOpacity>
       </View>
       <View style={styles.mainContainer}>
         <FastImage

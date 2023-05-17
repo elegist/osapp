@@ -8,6 +8,8 @@ import {
 } from '@react-navigation/drawer';
 import CustomDrawer from '../CustomDrawer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import HomeScreen from '../../screens/HomeScreen';
+import TestScreen from '../../screens/TestScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +18,10 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
       initialRouteName="home"
-      screenOptions={{headerShown: false, drawerPosition: 'right'}}>
+      screenOptions={{
+        headerShown: false,
+        drawerPosition: 'right',
+      }}>
       <Drawer.Screen
         name="home"
         component={HomeScreen}

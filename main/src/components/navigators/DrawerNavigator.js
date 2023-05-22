@@ -1,11 +1,4 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Linking} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
 import CustomDrawer from '../CustomDrawer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from '../../screens/HomeScreen';

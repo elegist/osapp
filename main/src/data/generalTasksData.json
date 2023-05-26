@@ -1,0 +1,30 @@
+{
+  "topic": "Allgemein",
+  "tasks": {
+    "reading": [
+      {
+        "title": "Reading Task 1",
+        "text": "This is the first reading task of the app"
+      },
+      {
+        "title": "Reading Task 2",
+        "text": "For testing purposes, this is the second text, that should follow the first one directly"
+      }
+    ],
+    "quiz": [
+      {
+        "title": "Quiz #1",
+        "text": "This if the first quiz task",
+        "question": "What is the first question of the app?",
+        "choices": ["this", "that", "all of it"],
+        "correctChoice": 0
+      }
+    ],
+    "interactive": [
+      {
+        "title": "Interactive #1",
+        "text": "This will be the first interactive task. This text holds some instructions"
+      }
+    ]
+  }
+}

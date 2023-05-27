@@ -17,8 +17,8 @@ export default class TaskManager extends Component {
   static managerInstance = null;
   // fields
   #userProgress = 0; // user's overall topic
-  _topics = null; // collection of all topics
-  #topicsProgress = 0; // overall topic's progress starting at 0 until _topics.length
+  #topics = null; // collection of all topics
+  #topicsProgress = 0; // overall topic's progress starting at 0 until #topics.length
   #userProgressInTopic = 0; // users progress in current topic
   #tasksMap = null; // collection of all tasks mapped to their corresponding topic
   #currentTaskList = null // collection of all tasks that are currently active in the osa
@@ -44,7 +44,7 @@ export default class TaskManager extends Component {
    * All data should be stored in database and retreived from here
    */
   #initTaskManager = () => {
-    this._topics = [
+    this.#topics = [
       'Allgemein',
       'Informatik',
       'Audiovisuelle Medien',
@@ -62,8 +62,7 @@ export default class TaskManager extends Component {
     const map = new Map();
     for (let i = 0; i < tasksArray.length; i++) {
       const element = tasksArray[i];
-      //console.log(this._topics[i], element)
-      map.set(this._topics[i], element);
+      map.set(this.#topics[i], element);
     }
 
     this.#tasksMap = map;
@@ -117,14 +116,14 @@ export default class TaskManager extends Component {
 
   /**
    * Takes in topic and returns all it's related tasks as an array.
-   * @param {Number} index Index of the desired topic in array _topics
+   * @param {Number} index Index of the desired topic in array #topics
    * @returns {Array} Collection of tasks
    */
-  #retreiveTaskList = index => this.#tasksMap.get(this._topics[index])
+  #retreiveTaskList = index => this.#tasksMap.get(this.#topics[index])
 
   // TODO: When else branch is reached, all topics are done.- it shouldn't just set progress to 0; instead the summary screen will be shown
   #increaseTopicProgress = () =>
-    this.#topicsProgress < this._topics.length - 1 ? this.#topicsProgress++ : this.#topicsProgress = 0
+    this.#topicsProgress < this.#topics.length - 1 ? this.#topicsProgress++ : this.#topicsProgress = 0
 
   #decreaseTopicProgress = () =>
     this.#topicsProgress > 0 ? this.#topicsProgress-- : this.#topicsProgress = 0

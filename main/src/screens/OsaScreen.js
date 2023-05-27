@@ -9,19 +9,19 @@ import TaskManager from '../container/TaskManager';
 export default function OsaScreen({ navigation, route }) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
-  const [topic, setTopic] = useState(0);
   const [task, setTask] = useState(null);
 
   useEffect(() => {
-    setTask(TASK_MANAGER.getTask(TASK_MANAGER._topics[topic], progress));
-  }, [progress, topic]);
+    setTask(TASK_MANAGER.getTask(progress));
+    console.log("Screen calls, progress: ", progress)
+  }, [progress]);
 
   const nextTask = () => {
     setProgress(progress + 1);
   };
 
   const previousTask = () => {
-    setProgress(progress - 1);
+    progress > 0 ? setProgress(progress - 1) : 0;
   };
 
   return (

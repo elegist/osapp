@@ -16,8 +16,12 @@ export default class TaskManager extends Component {
   // singleton instance
   static managerInstance = null;
   // fields
-  _topics = null;
-  #tasksMap = null;
+  #userProgress = 0; // user's overall topic
+  _topics = null; // collection of all topics
+  #topicsProgress = 0; // overall topic's progress starting at 0 until _topics.length
+  #userProgressInTopic = 0; // users progress in current topic
+  #tasksMap = null; // collection of all tasks mapped to their corresponding topic
+  #currentTaskList = null // collection of all tasks that are currently active in the osa
 
   constructor(props) {
     super(props);
@@ -113,16 +117,57 @@ export default class TaskManager extends Component {
 
   /**
    * Takes in topic and returns all it's related tasks as an array.
-   * @param {String} topic Topic of the desired task
+   * @param {Number} index Index of the desired topic in array _topics
    * @returns {Array} Collection of tasks
    */
-  #retreiveTaskList = (topic) => this.#tasksMap.get(topic)
-  
+  #retreiveTaskList = index => this.#tasksMap.get(this._topics[index])
+
+  // TODO: When else branch is reached, all topics are done.- it shouldn't just set progress to 0; instead the summary screen will be shown
+  #increaseTopicProgress = () =>
+    this.#topicsProgress < this._topics.length - 1 ? this.#topicsProgress++ : this.#topicsProgress = 0
+
+  #decreaseTopicProgress = () =>
+    this.#topicsProgress > 0 ? this.#topicsProgress-- : this.#topicsProgress = 0
+
   /**
-   * Retreive one single task from a defined tasklist
-   * @param {String} topic String defining the topic
-   * @param {Number} progress User's progress in this topic
+   * Decides which task is next (or previous in case user navigates back) and returns it as an AssessmentTask object
+   * @param {Number} progress User's progress on the screen (not equivalent to the actual user's progress!)
    * @returns {Object} Task object (ReadingTask / QuizTask / InteractiveTask ... )
    */
-  getTask = (topic, progress) => this.#retreiveTaskList(topic)[progress]
+  getTask = progress => {
+    if (progress == 0) {
+      // first task, reset all
+      this.#userProgressInTopic = 0;
+      this.#userProgress = 0;
+      this.#topicsProgress = 0;
+      this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
+      return this.#currentTaskList[0];
+    }
+    if (progress >= this.#userProgress) {
+      // load next task
+      if (this.#userProgressInTopic < this.#currentTaskList.length - 1) {
+        // increase user's progress on current topic and proceed with task
+        this.#userProgressInTopic++;
+        this.#userProgress++;
+      } else {
+        // reset user's progress, move to next topic and retreive new task list
+        this.#userProgressInTopic = 0;
+        this.#increaseTopicProgress();
+      }
+    } else {
+      // load previous task
+      if (this.#userProgressInTopic > 0) {
+        this.#userProgressInTopic--;
+      } else { // load last topic
+        this.#decreaseTopicProgress();
+        this.#userProgressInTopic = this.#currentTaskList.length - 1;
+      }
+    }
+    this.#userProgress = progress;
+
+    this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
+    console.log(this.#userProgressInTopic, this.#topicsProgress);
+    return this.#currentTaskList[this.#userProgressInTopic];
+  };
+  // TODO: navigating back currently decreases user's progress. Maybe this isn't the best solution when we want to display something like a progress bar
 }

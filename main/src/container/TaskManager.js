@@ -112,14 +112,14 @@ export default class TaskManager extends Component {
   }
 
   /**
-   * Takes in topic and user's progress and returns one specific task.
+   * Takes in topic and returns all it's related tasks as an array.
    * @param {String} topic Topic of the desired task
-   * @returns {Array} Returns the desired task as an array
+   * @returns {Array} Collection of tasks
    */
   #retreiveTaskList = (topic) => this.#tasksMap.get(topic)
   
   /**
-   *
+   * Retreive one single task from a defined tasklist
    * @param {String} topic String defining the topic
    * @param {Number} progress User's progress in this topic
    * @returns {Object} Task object (ReadingTask / QuizTask / InteractiveTask ... )

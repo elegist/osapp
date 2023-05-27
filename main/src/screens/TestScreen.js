@@ -5,24 +5,21 @@ import gif from '../assets/bestesgif.gif';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 
-import dummyData from '../data/dummyData.json';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 export default function TestScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance(); //initializing TaskManager
   const [progress, setProgress] = useState(0);
-  const [task, setTask] = useState(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[0], progress));
+  const [topic, setTopic] = useState(0);
+  const [task, setTask] = useState(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[topic], progress));
 
   const nextTask = () => {
     setProgress(progress + 1);
-    setTask(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[0], progress));
+    setTask(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[topic], progress));
     console.log(progress);
   }
 
   const previousTask = () => {
     setProgress(progress - 1);
-    setTask(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[0], progress));
+    setTask(TASK_MANAGER.retreiveTask(TASK_MANAGER._topics[topic], progress));
     console.log(progress);
   }
 

@@ -1,30 +1,30 @@
 {
   "topic": "Allgemein",
-  "tasks": {
-    "reading": [
-      {
-        "title": "Reading Task 1",
-        "text": "This is the first reading task of the app"
-      },
-      {
-        "title": "Reading Task 2",
-        "text": "For testing purposes, this is the second text, that should follow the first one directly"
-      }
-    ],
-    "quiz": [
-      {
-        "title": "Quiz #1",
-        "text": "This if the first quiz task",
-        "question": "What is the first question of the app?",
-        "choices": ["this", "that", "all of it"],
-        "correctChoice": 0
-      }
-    ],
-    "interactive": [
-      {
-        "title": "Interactive #1",
-        "text": "This will be the first interactive task. This text holds some instructions"
-      }
-    ]
-  }
+  "tasks": [
+    {
+      "id": 0,
+      "type": "reading",
+      "title": "Willkommen!",
+      "text": "Herzlich Willkommen zur OSApp der Medieninformatik! In dieser App wirst du herausfinden, ob ein Studium der Medieninformatik an der THM etwas für dich sein kann oder nicht. Wir hoffen, du wirst viel Spaß an den folgenden Aufgaben haben. Zunächst, lass uns dich aber ein wenig durch die THM führen und dich mit den verschiedenen wichtigen Räumlichkeiten vertraut machen."
+    },
+    {
+      "id": 1,
+      "type": "quiz",
+      "question": "In welchem Gebäude befinden sich die größten Vorlesungssäle?",
+      "choices": ["A-Gebäude", "B-Gebäude", "C-Gebäude"],
+      "correctChoice": ["A-Gebäude"]
+    },
+    {
+      "id": 2,
+      "type": "reading",
+      "title": "Die Mensa",
+      "text": "Nachdem du jetzt schon weißt, wo sich die größten Vorlesungssäle befinden, lass uns dir jetzt eines der wichtigsten Gebäude zeigen: Die Mensa natürlich! Hier kannst du dir zur Mittagszeit immer etwas warmes zu essen für einen geringen Preis kaufen und dich mit deinen Komillitonen austauschen. Außerhalb der Essenszeiten ist dies auch ein super Ort um sich mit dem Laptop an einen Tisch zu setzen und ein wenig Studiumsinhalte nachzubereiten und zu lernen."
+    },
+    {
+      "id": 3,
+      "type": "interactive",
+      "title": "Test Interactive",
+      "text": "Dieser Text wird eine Erklärung dafür enthalten, was genau du in dieser Interaktiven Task machen musst ..."
+    }
+  ]
 }

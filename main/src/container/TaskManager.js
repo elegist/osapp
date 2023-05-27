@@ -4,6 +4,9 @@ import QuizTask from './osa_tasks/QuizTask';
 import InteractiveTask from './osa_tasks/InteractiveTask';
 
 import generalTasksData from '../data/generalTasksData.json';
+import csTasksData from '../data/csTasksData.json';
+import avTasksData from '../data/avTasksData.json';
+import gdTasksData from '../data/gdTasksData.json';
 
 /**
  * TaskManager
@@ -91,39 +94,141 @@ export default class TaskManager extends Component {
 
     let generalTasks = [];
 
-    generalTasksData.tasks.reading.forEach(task => {
-      const newTask = new ReadingTask({
-        topic: generalTasksData.topic,
-        title: task.title,
-        text: task.text,
-      });
+    generalTasksData.tasks.forEach(task => {
+      let newTask;
+      switch (task.type) {
+        case 'reading':
+          newTask = new ReadingTask({
+            topic: generalTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        case 'quiz':
+          newTask = new QuizTask({
+            topic: generalTasksData.topic,
+            question: task.question,
+            choices: task.choices,
+            correctChoice: task.correctChoice,
+          });
+          break;
+        case 'interactive':
+          newTask = new InteractiveTask({
+            topic: generalTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        default:
+          break;
+      }
+
       generalTasks.push(newTask);
     });
 
-    generalTasksData.tasks.quiz.forEach(task => {
-      const newTask = new QuizTask({
-        topic: generalTasksData.topic,
-        title: task.title,
-        text: task.text,
-        question: task.question,
-        choices: task.choices,
-        correctChoice: task.correctChoice,
-      });
+    let csTasks = [];
 
-      generalTasks.push(newTask);
+    csTasksData.tasks.forEach(task => {
+      let newTask;
+      switch (task.type) {
+        case 'reading':
+          newTask = new ReadingTask({
+            topic: csTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        case 'quiz':
+          newTask = new QuizTask({
+            topic: csTasksData.topic,
+            question: task.question,
+            choices: task.choices,
+            correctChoice: task.correctChoice,
+          });
+          break;
+        case 'interactive':
+          newTask = new InteractiveTask({
+            topic: csTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        default:
+          break;
+      }
+
+      csTasks.push(newTask);
     });
 
-    generalTasksData.tasks.interactive.forEach(task => {
-      const newTask = new InteractiveTask({
-        topic: generalTasksData.topic,
-        title: task.title,
-        text: task.text,
-      });
+    let avTasks = [];
 
-      generalTasks.push(newTask);
+    avTasksData.tasks.forEach(task => {
+      let newTask;
+      switch (task.type) {
+        case 'reading':
+          newTask = new ReadingTask({
+            topic: avTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        case 'quiz':
+          newTask = new QuizTask({
+            topic: avTasksData.topic,
+            question: task.question,
+            choices: task.choices,
+            correctChoice: task.correctChoice,
+          });
+          break;
+        case 'interactive':
+          newTask = new InteractiveTask({
+            topic: avTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        default:
+          break;
+      }
+
+      avTasks.push(newTask);
     });
 
-    let tasksArray = [generalTasks];
+    let gdTasks = [];
+
+    gdTasksData.tasks.forEach(task => {
+      let newTask;
+      switch (task.type) {
+        case 'reading':
+          newTask = new ReadingTask({
+            topic: gdTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        case 'quiz':
+          newTask = new QuizTask({
+            topic: gdTasksData.topic,
+            question: task.question,
+            choices: task.choices,
+            correctChoice: task.correctChoice,
+          });
+          break;
+        case 'interactive':
+          newTask = new InteractiveTask({
+            topic: gdTasksData.topic,
+            title: task.title,
+            text: task.text,
+          });
+          break;
+        default:
+          break;
+      }
+
+      gdTasks.push(newTask);
+    });
+
+    let tasksArray = [generalTasks, csTasks, avTasks, gdTasks];
 
     // generates a map containing all tasks assigned to their topics.
     const map = new Map();

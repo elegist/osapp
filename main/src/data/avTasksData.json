@@ -1,0 +1,30 @@
+{
+  "topic": "Audiovisuelle Medien",
+  "tasks": [
+    {
+      "id": 0,
+      "type": "reading",
+      "title": "Musik, Videos und Bilder",
+      "text": "Im Fach Audiovisuelle Medien wirst du alles nötlige Wissen erlangen um eigene Musik und Videos zu produzieren. Auch mit im Programm ist die Durchführung von Livestreams viel weiteres. Lass uns dir einmal einen Vorgeschmack darauf geben, was in diesem Fachbereich kommen wird"
+    },
+    {
+      "id": 1,
+      "type": "quiz",
+      "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam erat.",
+      "choices": ["A", "B", "C", "D"],
+      "correctChoice": ["A", "C"]
+    },
+    {
+      "id": 2,
+      "type": "reading",
+      "title": "Lorem ipsum dolor sit amet",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur. Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+    },
+    {
+      "id": 3,
+      "type": "interactive",
+      "title": "Aliquam malesuada suscipit egestas. Suspendisse.",
+      "text": "Nullam tristique rutrum diam at scelerisque. Nam ac lobortis metus, malesuada blandit magna. Mauris et."
+    }
+  ]
+}

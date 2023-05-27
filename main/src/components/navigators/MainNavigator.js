@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DrawerNavigator from './DrawerNavigator'
-import TestScreen from '../../screens/TestScreen'
+import OsaScreen from '../../screens/OsaScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -19,7 +19,7 @@ export class MainNavigator extends Component {
             />
             <Stack.Screen
               name="testStack"
-              component={TestScreen}
+              component={OsaScreen}
               options={{headerShown: false}}
             />
           </Stack.Navigator>

@@ -2,7 +2,7 @@ import React from 'react';
 import CustomDrawer from '../CustomDrawer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from '../../screens/HomeScreen';
-import TestScreen from '../../screens/TestScreen';
+import OsaScreen from '../../screens/OsaScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,7 +26,7 @@ const DrawerNavigator = () => {
       />
       <Drawer.Screen
         name="testDrawer"
-        component={TestScreen}
+        component={OsaScreen}
         options={{title: 'Testscreen'}}
       />
     </Drawer.Navigator>

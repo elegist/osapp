@@ -3,7 +3,8 @@ import {Text, View} from 'react-native';
 import AssessmentTask from './AssessmentTask';
 
 /**
- * Class QuizTask
+ * Class QuizTask - 
+ * represents a task which contains something like a multiple choice or single choice quiz
  */
 class QuizTask extends AssessmentTask {
   _question = null

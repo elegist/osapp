@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import AssessmentTask from './AssessmentTask';
 
 /**
- * Class ReadingTask
+ * Class SummaryTask
  */
 class SummaryTask extends AssessmentTask {
 
@@ -12,6 +12,5 @@ class SummaryTask extends AssessmentTask {
   }
   
 }
-
 
 export default SummaryTask;

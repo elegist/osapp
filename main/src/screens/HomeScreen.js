@@ -5,6 +5,9 @@ import globalStyles from '../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * HomeScreen - the landing page or main screen of the application
+ */
 export default function HomeScreen({navigation}) {
   const [isPressed, setIsPressed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

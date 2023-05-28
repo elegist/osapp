@@ -3,7 +3,8 @@ import {Text, View} from 'react-native';
 import AssessmentTask from './AssessmentTask';
 
 /**
- * Class ReadingTask
+ * Class ReadingTask - 
+ * represents a task which only contains text to read
  */
 class ReadingTask extends AssessmentTask {
   _text = null

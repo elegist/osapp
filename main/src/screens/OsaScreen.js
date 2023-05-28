@@ -9,6 +9,9 @@ import QuizTask from '../container/osa_tasks/QuizTask';
 import InteractiveTask from '../container/osa_tasks/InteractiveTask';
 import SummaryTask from '../container/osa_tasks/SummaryTask';
 
+/**
+ * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
+ */
 export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);

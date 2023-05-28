@@ -2,6 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import globalStyles from '../styles/GlobalStyleSheet';
 
+/**
+ * SummaryScreen - presents an overall summary of the finished OSA for the user to review
+ */
 export default function SummaryScreen({ navigation, route }) {
 
   return (

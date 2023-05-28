@@ -1,8 +1,8 @@
+import { Component } from 'react'
+
 /**
  * AssessmentTask class - this is the parent class of all task subclasses
  */
-import { Component } from 'react'
-
 class AssessmentTask extends Component {
   _id = null
   _title = null

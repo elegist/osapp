@@ -10,8 +10,11 @@ import gdTasksData from '../data/gdTasksData.json';
 import SummaryTask from './osa_tasks/SummaryTask';
 
 /**
- * TaskManager
- * Manages the assessment process, task and topic lists and so on.
+ * TaskManager (singleton) - 
+ * manages the assessment process, iterating through task and topic lists and so on.
+ * @function getInstance() - retreive an instance of this class
+ * @function resetTaskManager() - resets this singleton to its default state
+ * @function getTask(progress) - retreive one specific task
  */
 export default class TaskManager extends Component {
   // singleton instance
@@ -40,6 +43,9 @@ export default class TaskManager extends Component {
     return this.managerInstance;
   }
 
+  /**
+   * Reset this instance to its default state
+   */
   resetTaskManager() {
     this.#userProgress = 0; // user's overall topic
     this.#topics = null; // collection of all topics

@@ -7,6 +7,7 @@ import generalTasksData from '../data/generalTasksData.json';
 import csTasksData from '../data/csTasksData.json';
 import avTasksData from '../data/avTasksData.json';
 import gdTasksData from '../data/gdTasksData.json';
+import SummaryTask from './osa_tasks/SummaryTask';
 
 /**
  * TaskManager
@@ -49,6 +50,7 @@ export default class TaskManager extends Component {
       'Informatik',
       'Audiovisuelle Medien',
       'Graphische Datenverarbeitung',
+      'Summary'
     ];
 
     let tasksArray = [
@@ -56,6 +58,7 @@ export default class TaskManager extends Component {
       this.#generateTasks(csTasksData),
       this.#generateTasks(avTasksData),
       this.#generateTasks(gdTasksData),
+      [new SummaryTask({id: 0, title: "Summary", topic: "Summary"})]
     ];
 
     // generates a map containing all tasks assigned to their topics.
@@ -85,6 +88,7 @@ export default class TaskManager extends Component {
       switch (task.type) {
         case READING:
           newTask = new ReadingTask({
+            id: taskData.id,
             topic: taskData.topic,
             title: task.title,
             text: task.text,
@@ -92,6 +96,7 @@ export default class TaskManager extends Component {
           break;
         case QUIZ:
           newTask = new QuizTask({
+            id: taskData.id,
             topic: taskData.topic,
             question: task.question,
             choices: task.choices,
@@ -100,6 +105,7 @@ export default class TaskManager extends Component {
           break;
         case INTERACTIVE:
           newTask = new InteractiveTask({
+            id: taskData.id,
             topic: taskData.topic,
             title: task.title,
             text: task.text,
@@ -162,10 +168,11 @@ export default class TaskManager extends Component {
         this.#userProgressInTopic = this.#currentTaskList.length - 1;
       }
     }
+    // update user progress (ensures correct comparison on next call)
     this.#userProgress = progress;
 
+    // retreive new / updated task list
     this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
-    console.log(this.#userProgressInTopic, this.#topicsProgress);
     return this.#currentTaskList[this.#userProgressInTopic];
   };
   // TODO: navigating back currently decreases user's progress. Maybe this isn't the best solution when we want to display something like a progress bar

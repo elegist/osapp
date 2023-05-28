@@ -4,16 +4,18 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import gif from '../assets/bestesgif.gif';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
+import ReadingTask from '../container/osa_tasks/ReadingTask';
+import QuizTask from '../container/osa_tasks/QuizTask';
+import InteractiveTask from '../container/osa_tasks/InteractiveTask';
+import SummaryTask from '../container/osa_tasks/SummaryTask';
 
-
-export default function OsaScreen({ navigation, route }) {
+export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
 
   useEffect(() => {
     setTask(TASK_MANAGER.getTask(progress));
-    console.log("Screen calls, progress: ", progress)
   }, [progress]);
 
   const nextTask = () => {
@@ -24,32 +26,33 @@ export default function OsaScreen({ navigation, route }) {
     progress > 0 ? setProgress(progress - 1) : 0;
   };
 
+  useEffect(() => {
+    if (task instanceof SummaryTask) {
+      navigation.navigate('summaryScreen');
+    }
+  }, [task]);
+
+  const renderTask = () => {
+    if (!task) return null;
+    if (task instanceof ReadingTask) {
+      return <ReadingTask task={task} />;
+    } else if (task instanceof QuizTask) {
+      return <QuizTask task={task} />;
+    } else if (task instanceof InteractiveTask) {
+      return <InteractiveTask task={task} />;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <View style={globalStyles.flexContainer}>
-      <View style={styles.imageWrapper}>
-        {task && (
-          <>
-            <Text>Topic: {task._topic}</Text>
-            <FastImage
-              source={gif}
-              style={{
-                width: '80%',
-                height: undefined,
-                aspectRatio: 1.5,
-                borderWidth: 1,
-                borderColor: 'black',
-                borderRadius: 8,
-              }}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-            <Text>Title: {task._title}</Text>
-            <Text>Message: {task.string}</Text>
-          </>
-        )}
-      </View>
+      <View style={styles.imageWrapper}>{task && renderTask()}</View>
 
       <View style={styles.buttonWrapper}>
-        <TouchableOpacity style={[globalStyles.bigButton]} onPress={previousTask}>
+        <TouchableOpacity
+          style={[globalStyles.bigButton]}
+          onPress={previousTask}>
           <Text style={[globalStyles.bigButtonText]}>Zurück</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[globalStyles.bigButton]} onPress={nextTask}>
@@ -59,7 +62,6 @@ export default function OsaScreen({ navigation, route }) {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   imageWrapper: {

@@ -3,6 +3,7 @@ import DrawerNavigator from './DrawerNavigator'
 import OsaScreen from '../../screens/OsaScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SummaryScreen from '../../screens/SummaryScreen';
 
 export class MainNavigator extends Component {
 
@@ -18,9 +19,14 @@ export class MainNavigator extends Component {
               options={{headerShown: false}}
             />
             <Stack.Screen
-              name="testStack"
+              name="osaScreen"
               component={OsaScreen}
               options={{headerShown: false}}
+            />
+            <Stack.Screen 
+              name="summaryScreen"
+              component={SummaryScreen}
+              options={{ headerShown: false }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -11,7 +11,7 @@ export default function HomeScreen({navigation}) {
 
   const handlePress = () => {
     setIsPressed(true);
-    navigation.navigate('testStack');
+    navigation.navigate('osaScreen');
     setIsPressed(false);
   };
   const toggleBurgerMenu = () => {

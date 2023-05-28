@@ -40,6 +40,17 @@ export default class TaskManager extends Component {
     return this.managerInstance;
   }
 
+  resetTaskManager() {
+    this.#userProgress = 0; // user's overall topic
+    this.#topics = null; // collection of all topics
+    this.#topicsProgress = 0; // overall topic's progress starting at 0 until #topics.length
+    this.#userProgressInTopic = 0; // users progress in current topic
+    this.#tasksMap = null; // collection of all tasks mapped to their corresponding topic
+    this.#currentTaskList = null // collection of all tasks that are currently active in the osa
+
+    this.#initTaskManager()
+  }
+
   /**
    * Populates TaskManager with initial data.
    * All data should be stored in database and retreived from here

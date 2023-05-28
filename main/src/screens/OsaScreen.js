@@ -14,24 +14,17 @@ export default function OsaScreen({navigation, route}) {
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
 
+  // iterating through tasks logic
   useEffect(() => {
     setTask(TASK_MANAGER.getTask(progress));
   }, [progress]);
-
   const nextTask = () => {
     setProgress(progress + 1);
   };
-
   const previousTask = () => {
     progress > 0 ? setProgress(progress - 1) : 0;
   };
-
-  useEffect(() => {
-    if (task instanceof SummaryTask) {
-      navigation.navigate('summaryScreen');
-    }
-  }, [task]);
-
+  // rendering tasks logic
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
@@ -44,6 +37,21 @@ export default function OsaScreen({navigation, route}) {
       return null;
     }
   };
+
+  // navigate to summary screen (replace instead of navigate to change back button behaviour)
+  useEffect(() => {
+    if (task instanceof SummaryTask) {
+      navigation.replace('summaryScreen');
+    }
+  }, [task]);
+
+  // resetting task manager when leaving this screen
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
+      TASK_MANAGER.resetTaskManager();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <View style={globalStyles.flexContainer}>

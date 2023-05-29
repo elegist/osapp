@@ -1,6 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import gif from '../assets/bestesgif.gif';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
@@ -10,6 +16,7 @@ import InteractiveTask from '../container/osa_tasks/InteractiveTask';
 import SummaryTask from '../container/osa_tasks/SummaryTask';
 import ReadingScreen from './osa_tasks_screens/ReadingScreen';
 import QuizScreen from './osa_tasks_screens/QuizScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 /**
  * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
@@ -63,8 +70,19 @@ export default function OsaScreen({navigation, route}) {
     return unsubscribe;
   }, [navigation]);
 
+  const handlePressHome = () => {
+    navigation.navigate('home');
+  }
+
   return (
-    <View style={globalStyles.flexContainer}>
+    <ImageBackground
+      source={require('../assets/Background.png')}
+      style={globalStyles.mainBackground}>
+      <View style={globalStyles.topBar}>
+        <TouchableOpacity onPress={handlePressHome}>
+          <Icon name="home" size={36} color="black" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.osaScreenWrapper}>{task && renderTask()}</View>
 
       <View style={styles.buttonWrapper}>
@@ -81,12 +99,15 @@ export default function OsaScreen({navigation, route}) {
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   osaScreenWrapper: {
+    minHeight: '75%',
+    width: '90%',
+    alignSelf: 'center',
     borderRadius: 8,
     backgroundColor: '#fff',
     shadowColor: '#000',
@@ -101,6 +122,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttonWrapper: {
+    alignSelf: 'center',
+    maxHeight: '10%',
     marginVertical: 16,
     display: 'flex',
     flexDirection: 'row',

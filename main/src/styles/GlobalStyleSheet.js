@@ -19,6 +19,22 @@ export default StyleSheet.create({
     fontWeight: 'medium',
     color: '#1C2327',
   },
+  mainBackground: {
+    flex: 0,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  topBar: {
+    maxHeight: '10%',
+    flex: 1,
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'space-between',
+    paddingTop: 2,
+    paddingHorizontal: 32,
+  },
   bigButton: {
     backgroundColor: '#8CBA45',
     borderRadius: 10,

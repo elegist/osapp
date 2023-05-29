@@ -61,12 +61,12 @@ export default StyleSheet.create({
   },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 16,
+    fontSize: 20,
     color: 'white',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 12,
+    fontSize: 16,
     color: 'white',
   },
   textChoiceButton: {

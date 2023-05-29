@@ -90,12 +90,12 @@ export default function OsaScreen({navigation, route}) {
           <TouchableOpacity
             style={[globalStyles.bigButton]}
             onPress={previousTask}>
-            <Text style={[globalStyles.textBigButton]}>Zurück</Text>
+            <Text style={[globalStyles.textSmallButton]}>Zurück</Text>
           </TouchableOpacity>
         )}
         {showNextButton && (
           <TouchableOpacity style={[globalStyles.bigButton]} onPress={nextTask}>
-            <Text style={[globalStyles.textBigButton]}>Weiter</Text>
+            <Text style={[globalStyles.textSmallButton]}>Weiter</Text>
           </TouchableOpacity>
         )}
       </View>

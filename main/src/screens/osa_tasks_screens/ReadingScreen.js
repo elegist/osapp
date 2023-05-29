@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {Component} from 'react';
+import globalStyles from '../../styles/GlobalStyleSheet';
 
 const MAX_TEXT_LENGTH = 100;
 
@@ -100,8 +101,8 @@ export class ReadingScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
         <Animated.View>
-          <Text>Title: {this.props.title}</Text>
-          <Animated.Text style={[styles.normalText, fadeStyle]}>
+          <Text style={globalStyles.textHeading}>Title: {this.props.title}</Text>
+          <Animated.Text style={[globalStyles.textParagraph, fadeStyle]}>
             {this.textArray[currentIndex]}
           </Animated.Text>
           {/* Additional UI elements related to ReadingTask */}
@@ -112,9 +113,3 @@ export class ReadingScreen extends Component {
 }
 
 export default ReadingScreen;
-
-const styles = StyleSheet.create({
-  normalText: {
-    fontSize: 40,
-  },
-});

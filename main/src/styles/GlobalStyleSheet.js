@@ -12,12 +12,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'black',
-    borderWidth: 1
-  },
-  defaultText: {
-    fontSize: 16,
-    fontWeight: 'medium',
-    color: '#1C2327',
+    borderWidth: 1,
   },
   mainBackground: {
     flex: 0,
@@ -51,9 +46,31 @@ export default StyleSheet.create({
   bigButtonPressed: {
     backgroundColor: '#FFFFFF',
   },
-  bigButtonText: {
+  // Typography
+  textHeading: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: 40,
+  },
+  textHeadingSecondary: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: 20,
+  },
+  textParagraph: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: 14,
+  },
+  textBigButton: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: 16,
     color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
-  }
+  },
+  textSmallButton: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: 12,
+    color: 'white',
+  },
+  textChoiceButton: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: 14,
+  },
 });

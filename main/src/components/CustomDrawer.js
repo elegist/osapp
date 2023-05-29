@@ -6,13 +6,14 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import globalStyles from '../styles/GlobalStyleSheet';
 
 const CustomDrawer = props => {
   return (
     <DrawerContentScrollView>
       <View>
         <DrawerItemList {...props} />
-        <DrawerItem label={'Homepage der THM'} onPress={() => Linking.openURL("https://www.thm.de")} />
+        <DrawerItem labelStyle={globalStyles.textParagraph} label={'Homepage der THM'} onPress={() => Linking.openURL("https://www.thm.de")} />
       </View>
     </DrawerContentScrollView>
   );

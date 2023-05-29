@@ -56,8 +56,8 @@ export default function HomeScreen({navigation}) {
           onPress={handlePress}>
           <Text
             style={[
-              globalStyles.bigButtonText,
-              isPressed && globalStyles.defaultText,
+              globalStyles.textBigButton,
+              isPressed && globalStyles.textParagraph,
             ]}>
             Online Self Assessment beginnen!
           </Text>

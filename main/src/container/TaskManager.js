@@ -20,7 +20,7 @@ export default class TaskManager extends Component {
   // singleton instance
   static managerInstance = null;
   // fields
-  #userProgress = 0; // user's overall topic
+  #userProgress = 0; // user's overall progress
   #topics = null; // collection of all topics
   #topicsProgress = 0; // overall topic's progress starting at 0 until #topics.length
   #userProgressInTopic = 0; // users progress in current topic
@@ -144,7 +144,7 @@ export default class TaskManager extends Component {
    */
   #retreiveTaskList = index => this.#tasksMap.get(this.#topics[index])
 
-  // TODO: When else branch is reached, all topics are done.- it shouldn't just set progress to 0; instead the summary screen will be shown
+  // TODO: When else branch is reached, all topics are done.- it shouldn't just set progress to 0
   #increaseTopicProgress = () =>
     this.#topicsProgress < this.#topics.length - 1 ? this.#topicsProgress++ : this.#topicsProgress = 0
 

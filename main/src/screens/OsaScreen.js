@@ -8,6 +8,8 @@ import ReadingTask from '../container/osa_tasks/ReadingTask';
 import QuizTask from '../container/osa_tasks/QuizTask';
 import InteractiveTask from '../container/osa_tasks/InteractiveTask';
 import SummaryTask from '../container/osa_tasks/SummaryTask';
+import ReadingScreen from './osa_tasks_screens/ReadingScreen';
+import QuizScreen from './osa_tasks_screens/QuizScreen';
 
 /**
  * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
@@ -31,11 +33,12 @@ export default function OsaScreen({navigation, route}) {
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return <ReadingTask task={task} />;
+      return <ReadingScreen {...task} />;
     } else if (task instanceof QuizTask) {
-      return <QuizTask task={task} />;
+      return <QuizScreen {...task} />;
     } else if (task instanceof InteractiveTask) {
-      return <InteractiveTask task={task} />;
+      // TODO: InteractiveScreen ???
+      return <InteractiveTask {...task} />;
     } else {
       return null;
     }

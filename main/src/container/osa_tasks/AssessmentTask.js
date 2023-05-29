@@ -4,15 +4,12 @@ import { Component } from 'react'
  * AssessmentTask class - this is the parent class of all task subclasses
  */
 class AssessmentTask extends Component {
-  _id = null
-  _title = null
-  _topic = null
 
   constructor(props) {
     super(props)
-    this._id = props.id
-    this._title = props.title
-    this._topic = props.topic
+    this.id = props.id
+    this.title = props.title
+    this.topic = props.topic
   }
   
 }

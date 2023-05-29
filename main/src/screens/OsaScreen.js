@@ -18,6 +18,7 @@ export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
+  const [showNextButton, setShowNextButton] = useState(false); // State to control button visibility
 
   // iterating through tasks logic
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function OsaScreen({navigation, route}) {
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return <ReadingScreen {...task} />;
+      return <ReadingScreen {...task} onTextEnd={displayNextButton} />;
     } else if (task instanceof QuizTask) {
       return <QuizScreen {...task} />;
     } else if (task instanceof InteractiveTask) {
@@ -42,6 +43,9 @@ export default function OsaScreen({navigation, route}) {
     } else {
       return null;
     }
+  };
+  const displayNextButton = () => {
+    setShowNextButton(true); // Show buttons when all text has been clicked through
   };
 
   // navigate to summary screen (replace instead of navigate to change back button behaviour)
@@ -61,24 +65,28 @@ export default function OsaScreen({navigation, route}) {
 
   return (
     <View style={globalStyles.flexContainer}>
-      <View style={styles.imageWrapper}>{task && renderTask()}</View>
+      <View style={styles.osaScreenWrapper}>{task && renderTask()}</View>
 
       <View style={styles.buttonWrapper}>
-        <TouchableOpacity
-          style={[globalStyles.bigButton]}
-          onPress={previousTask}>
-          <Text style={[globalStyles.bigButtonText]}>Zurück</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[globalStyles.bigButton]} onPress={nextTask}>
-          <Text style={[globalStyles.bigButtonText]}>Weiter</Text>
-        </TouchableOpacity>
+        {progress > 0 && (
+          <TouchableOpacity
+            style={[globalStyles.bigButton]}
+            onPress={previousTask}>
+            <Text style={[globalStyles.bigButtonText]}>Zurück</Text>
+          </TouchableOpacity>
+        )}
+        {showNextButton && (
+          <TouchableOpacity style={[globalStyles.bigButton]} onPress={nextTask}>
+            <Text style={[globalStyles.bigButtonText]}>Weiter</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  imageWrapper: {
+  osaScreenWrapper: {
     borderRadius: 8,
     backgroundColor: '#fff',
     shadowColor: '#000',
@@ -89,6 +97,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     elevation: 6,
+    margin: 10,
+    padding: 20,
   },
   buttonWrapper: {
     marginVertical: 16,

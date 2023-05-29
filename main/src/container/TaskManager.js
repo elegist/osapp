@@ -144,7 +144,6 @@ export default class TaskManager extends Component {
    */
   #retreiveTaskList = index => this.#tasksMap.get(this.#topics[index])
 
-  // TODO: When else branch is reached, all topics are done.- it shouldn't just set progress to 0
   #increaseTopicProgress = () =>
     this.#topicsProgress < this.#topics.length - 1 ? this.#topicsProgress++ : this.#topicsProgress = 0
 

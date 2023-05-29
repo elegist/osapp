@@ -192,5 +192,4 @@ export default class TaskManager extends Component {
     this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
     return this.#currentTaskList[this.#userProgressInTopic];
   };
-  // TODO: navigating back currently decreases user's progress. Maybe this isn't the best solution when we want to display something like a progress bar
 }

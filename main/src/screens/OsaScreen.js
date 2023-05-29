@@ -104,7 +104,7 @@ export default function OsaScreen({navigation, route}) {
         )}
         {showNextButton && (
           <TouchableOpacity style={[globalStyles.bigButton]} onPress={nextTask}>
-            <Text style={[globalStyles.textSmallButton]}>Weiter</Text>
+            <Text style={[globalStyles.textSmallButton]}>{progress == numberOfTasks - 1 ? "Abschließen" : "Weiter"}</Text>
           </TouchableOpacity>
         )}
       </View>

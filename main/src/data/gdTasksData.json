@@ -12,7 +12,7 @@
       "type": "quiz",
       "question": "Was ist 2x2 ?",
       "choices": ["43", "783498", "INF", "PI", "SQRT(245)", "4"],
-      "correctChoice": ["4"]
+      "correctChoices": ["4"]
     },
     {
       "id": 2,

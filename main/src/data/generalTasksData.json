@@ -12,7 +12,7 @@
       "type": "quiz",
       "question": "In welchem Gebäude befinden sich die größten Vorlesungssäle?",
       "choices": ["A-Gebäude", "B-Gebäude", "C-Gebäude"],
-      "correctChoice": ["A-Gebäude"]
+      "correctChoices": ["A-Gebäude"]
     },
     {
       "id": 2,

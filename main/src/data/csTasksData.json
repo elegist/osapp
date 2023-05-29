@@ -12,7 +12,7 @@
       "type": "quiz",
       "question": "Welche Bezeichnungen sind korrekt?",
       "choices": ["if-bedingung", "if-anweisung", "if-schleife"],
-      "correctChoice": ["if-bedingung", "if-anweiseung"]
+      "correctChoices": ["if-bedingung", "if-anweiseung"]
     },
     {
       "id": 2,

@@ -72,7 +72,7 @@ export default function OsaScreen({navigation, route}) {
 
   const handlePressHome = () => {
     navigation.navigate('home');
-  }
+  };
 
   return (
     <ImageBackground

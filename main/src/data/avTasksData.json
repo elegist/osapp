@@ -12,7 +12,7 @@
       "type": "quiz",
       "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam erat.",
       "choices": ["A", "B", "C", "D"],
-      "correctChoice": ["A", "C"]
+      "correctChoices": ["A", "C"]
     },
     {
       "id": 2,

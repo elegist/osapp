@@ -11,7 +11,7 @@ class QuizTask extends AssessmentTask {
     super(props);
     this.question = props.question;
     this.choices = props.choices;
-    this.correctChoice = props.correctChoice;
+    this.correctChoices = props.correctChoices;
   }
 }
 export default QuizTask;

@@ -12,7 +12,9 @@ export class QuizScreen extends Component {
         <Text>Choices: {this.props.choices}</Text>
         <Text>Correct choices: {this.props.correctChoices}</Text>
         {/* Additional UI elements related to QuizTask */}
-        <Checkbox label={"test1"}></Checkbox>
+        {this.props.choices.map((choice, index) => {
+          return <Checkbox key={index} label={choice}></Checkbox>;
+        })}
       </View>
     );
   }

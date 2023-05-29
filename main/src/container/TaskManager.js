@@ -117,7 +117,7 @@ export default class TaskManager extends Component {
             topic: taskData.topic,
             question: task.question,
             choices: task.choices,
-            correctChoice: task.correctChoice,
+            correctChoices: task.correctChoices,
           });
           break;
         case INTERACTIVE:

@@ -35,7 +35,7 @@ export default function HomeScreen({navigation}) {
     <ImageBackground
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
-      <View style={globalStyles.topBar}>
+      <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
         {/* THM logo as svg to be placed here */}
         <SvgXml xml={thmSvg} height="60%" width="30%" />
         <TouchableOpacity onPress={toggleBurgerMenu}>

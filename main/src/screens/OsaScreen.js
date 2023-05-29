@@ -17,6 +17,7 @@ import SummaryTask from '../container/osa_tasks/SummaryTask';
 import ReadingScreen from './osa_tasks_screens/ReadingScreen';
 import QuizScreen from './osa_tasks_screens/QuizScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ProgressBar from 'react-native-progress/Bar';
 
 /**
  * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
@@ -26,6 +27,8 @@ export default function OsaScreen({navigation, route}) {
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false); // State to control button visibility
+
+  const numberOfTasks = TASK_MANAGER.numberOfTasks;
 
   // iterating through tasks logic
   useEffect(() => {
@@ -78,10 +81,16 @@ export default function OsaScreen({navigation, route}) {
     <ImageBackground
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
-      <View style={globalStyles.topBar}>
+      <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
         <TouchableOpacity onPress={handlePressHome}>
           <Icon name="home" size={36} color="black" />
         </TouchableOpacity>
+        <ProgressBar
+          style={styles.progressBar}
+          progress={progress / numberOfTasks}
+          color={'#8CBA45'}
+          height={16}></ProgressBar>
+        <Icon style={{opacity: 0}} name="home" size={36} color="black" />
       </View>
       <View style={styles.osaScreenWrapper}>{task && renderTask()}</View>
 
@@ -128,5 +137,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     gap: 16,
+  },
+  progressBar: {
+    height: 16,
+    alignSelf: 'center',
   },
 });

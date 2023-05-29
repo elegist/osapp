@@ -23,11 +23,9 @@ export default StyleSheet.create({
   topBar: {
     maxHeight: '10%',
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignContent: 'space-between',
-    paddingTop: 2,
+    paddingTop: 8,
     paddingHorizontal: 32,
   },
   bigButton: {

@@ -106,7 +106,7 @@ export default function OsaScreen({navigation, route}) {
 const styles = StyleSheet.create({
   osaScreenWrapper: {
     minHeight: '75%',
-    width: '90%',
+    width: '80%',
     alignSelf: 'center',
     borderRadius: 8,
     backgroundColor: '#fff',

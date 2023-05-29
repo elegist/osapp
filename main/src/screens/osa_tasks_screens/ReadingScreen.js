@@ -101,7 +101,7 @@ export class ReadingScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
         <Animated.View>
-          <Text style={globalStyles.textHeading}>Title: {this.props.title}</Text>
+          <Text style={globalStyles.textHeading}>{this.props.title}</Text>
           <Animated.Text style={[globalStyles.textParagraph, fadeStyle]}>
             {this.textArray[currentIndex]}
           </Animated.Text>

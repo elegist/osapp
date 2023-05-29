@@ -50,14 +50,17 @@ export default StyleSheet.create({
   textHeading: {
     fontFamily: 'PTSans-Bold',
     fontSize: 40,
+    color: '#1C2327',
   },
   textHeadingSecondary: {
     fontFamily: 'PTSans-Regular',
     fontSize: 20,
+    color: '#1C2327',
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
-    fontSize: 14,
+    fontSize: 16,
+    color: '#1C2327',
   },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
@@ -71,6 +74,7 @@ export default StyleSheet.create({
   },
   textChoiceButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 14,
+    fontSize: 16,
+    color: '#1C2327',
   },
 });

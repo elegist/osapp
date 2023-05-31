@@ -24,15 +24,15 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginVertical: 4,
+    marginVertical: 12,
     alignItems: 'center',
     alignSelf: 'center',
     width: '40%',
   },
   checkbox: {
     display: 'flex',
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
     borderWidth: 2,
     borderColor: '#8CBA45',
     borderRadius: 4,

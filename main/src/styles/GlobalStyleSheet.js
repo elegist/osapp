@@ -25,13 +25,13 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingTop: 8,
+    paddingTop: 16,
     paddingHorizontal: 32,
   },
   bigButton: {
     backgroundColor: '#8CBA45',
     borderRadius: 10,
-    padding: 15,
+    padding: 16,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -43,6 +43,19 @@ export default StyleSheet.create({
   },
   bigButtonPressed: {
     backgroundColor: '#FFFFFF',
+  },
+  smallButton: {
+    backgroundColor: '#8CBA45',
+    borderRadius: 10,
+    padding: 12,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 2,
   },
   // Typography
   textHeading: {
@@ -62,12 +75,12 @@ export default StyleSheet.create({
   },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 20,
+    fontSize: 24,
     color: 'white',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 16,
+    fontSize: 20,
     color: 'white',
   },
   textChoiceButton: {

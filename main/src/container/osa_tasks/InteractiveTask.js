@@ -11,16 +11,6 @@ class InteractiveTask extends AssessmentTask {
     super(props);
     this.text = props.text;
   }
-
-  render() {
-    return (
-      <View>
-        <Text>Topic: {this.topic}</Text>
-        <Text>Title: {this.title}</Text>
-        <Text>Text: {this.text}</Text>
-        {/* Additional UI elements related to InteractiveTask */}
-      </View>
-    );
-  }
 }
+
 export default InteractiveTask;

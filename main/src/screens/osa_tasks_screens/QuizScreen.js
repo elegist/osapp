@@ -4,6 +4,18 @@ import Checkbox from '../../components/Checkbox';
 import globalStyles from '../../styles/GlobalStyleSheet';
 
 export class QuizScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      answerChecked: false,
+    };
+  }
+
+  handleCheckAnswer = () => {
+    this.setState({answerChecked: true});
+    this.props.onQuizFinished();
+  };
+
   render() {
     return (
       <View>
@@ -21,6 +33,16 @@ export class QuizScreen extends Component {
             return <Checkbox key={index} label={choice}></Checkbox>;
           })}
         </View>
+        <TouchableOpacity
+          disabled={this.state.answerChecked}
+          style={
+            this.state.answerChecked
+              ? globalStyles.smallButtonDisabled
+              : globalStyles.smallButton
+          }
+          onPress={this.handleCheckAnswer}>
+          <Text style={globalStyles.textSmallButton}>Check answer</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -29,7 +51,7 @@ export class QuizScreen extends Component {
 const styles = StyleSheet.create({
   choiceContainer: {
     marginVertical: 16,
-  }
-})
+  },
+});
 
 export default QuizScreen;

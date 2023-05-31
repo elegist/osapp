@@ -57,6 +57,11 @@ export default StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 2,
   },
+  smallButtonDisabled: {
+    backgroundColor: '#ABABAB',
+    borderRadius: 10,
+    padding: 12,
+  },
   // Typography
   textHeading: {
     fontFamily: 'PTSans-Bold',
@@ -77,11 +82,13 @@ export default StyleSheet.create({
     fontFamily: 'PTSans-Bold',
     fontSize: 24,
     color: 'white',
+    textAlign: 'center',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',
     fontSize: 20,
     color: 'white',
+    textAlign: 'center',
   },
   textChoiceButton: {
     fontFamily: 'PTSans-Bold',

@@ -18,6 +18,7 @@ import ReadingScreen from './osa_tasks_screens/ReadingScreen';
 import QuizScreen from './osa_tasks_screens/QuizScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressBar from 'react-native-progress/Bar';
+import InteractiveScreen from './osa_tasks_screens/InteractiveScreen';
 
 /**
  * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
@@ -33,6 +34,7 @@ export default function OsaScreen({navigation, route}) {
   // iterating through tasks logic
   useEffect(() => {
     setTask(TASK_MANAGER.getTask(progress));
+    setShowNextButton(false);
   }, [progress]);
   const nextTask = () => {
     setProgress(progress + 1);
@@ -46,10 +48,10 @@ export default function OsaScreen({navigation, route}) {
     if (task instanceof ReadingTask) {
       return <ReadingScreen {...task} onTextEnd={displayNextButton} />;
     } else if (task instanceof QuizTask) {
-      return <QuizScreen {...task} />;
+      return <QuizScreen {...task} onQuizFinished={displayNextButton} />;
     } else if (task instanceof InteractiveTask) {
       // TODO: InteractiveScreen ???
-      return <InteractiveTask {...task} />;
+      return <InteractiveScreen {...task} onTaskFinished={displayNextButton} />;
     } else {
       return null;
     }
@@ -97,14 +99,18 @@ export default function OsaScreen({navigation, route}) {
       <View style={styles.buttonWrapper}>
         {progress > 0 && (
           <TouchableOpacity
-            style={[globalStyles.smallButton]}
+            style={globalStyles.smallButton}
             onPress={previousTask}>
-            <Text style={[globalStyles.textSmallButton]}>Zurück</Text>
+            <Text style={globalStyles.textSmallButton}>Zurück</Text>
           </TouchableOpacity>
         )}
         {showNextButton && (
-          <TouchableOpacity style={[globalStyles.smallButton]} onPress={nextTask}>
-            <Text style={[globalStyles.textSmallButton]}>{progress == numberOfTasks - 1 ? "Abschließen" : "Weiter"}</Text>
+          <TouchableOpacity
+            style={[globalStyles.smallButton]}
+            onPress={nextTask}>
+            <Text style={globalStyles.textSmallButton}>
+              {progress == numberOfTasks - 1 ? 'Abschließen' : 'Weiter'}
+            </Text>
           </TouchableOpacity>
         )}
       </View>

@@ -80,7 +80,7 @@ export default StyleSheet.create({
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
-    fontSize: 16,
+    fontSize: 30,
     color: '#1C2327',
   },
   textBigButton: {

@@ -10,6 +10,7 @@ class QuizTask extends AssessmentTask {
   constructor(props) {
     super(props);
     this.question = props.question;
+    this.style = props.style;
     this.choices = props.choices;
     this.correctChoices = props.correctChoices;
   }

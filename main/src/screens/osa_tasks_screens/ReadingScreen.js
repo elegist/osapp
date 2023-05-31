@@ -100,13 +100,16 @@ export class ReadingScreen extends Component {
     };
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
-        <Animated.View>
-          <Text style={globalStyles.textHeading}>{this.props.title}</Text>
-          <Animated.Text style={[globalStyles.textParagraph, fadeStyle]}>
-            {this.textArray[currentIndex]}
-          </Animated.Text>
-          {/* Additional UI elements related to ReadingTask */}
-        </Animated.View>
+        <View>
+          <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
+          <Animated.View>
+            <Text style={globalStyles.textHeading}>{this.props.title}</Text>
+            <Animated.Text style={[globalStyles.textParagraph, fadeStyle]}>
+              {this.textArray[currentIndex]}
+            </Animated.Text>
+            {/* Additional UI elements related to ReadingTask */}
+          </Animated.View>
+        </View>
       </TouchableWithoutFeedback>
     );
   }

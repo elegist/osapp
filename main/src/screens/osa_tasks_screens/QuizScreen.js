@@ -18,23 +18,40 @@ export class QuizScreen extends Component {
     this.props.onQuizFinished();
   };
 
-  render() {
-    return (
-      <View>
-        {/* <Text>Topic: {this.props.topic}</Text>
-        <Text>Title: {this.props.title}</Text>
-        <Text>Question: {this.props.question}</Text>
-        <Text>Choices: {this.props.choices}</Text>
-        <Text>Correct choices: {this.props.correctChoices}</Text> */}
-        {/* Additional UI elements related to QuizTask */}
-        <Text style={globalStyles.textHeadingSecondary}>
-          {this.props.question}
-        </Text>
+  renderQuestion = () => {
+    const SINGLE_CHOICE = 'single';
+    const MUTLIPLE_CHOICE = 'multiple';
+
+    if (this.props.style == SINGLE_CHOICE) {
+      return (
+        <View>
+          <RadioButton
+            choices={this.props.choices}
+            onSelect={choice => this.setState({userChoice: choice})}
+          />
+        </View>
+      );
+    } else if (this.props.style == MUTLIPLE_CHOICE) {
+      return (
         <View style={styles.choiceContainer}>
           {this.props.choices.map((choice, index) => {
             return <Checkbox key={index} label={choice}></Checkbox>;
           })}
         </View>
+      );
+    }
+  };
+
+  render() {
+    return (
+      <View>
+        <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
+        <Text style={globalStyles.textHeadingSecondary}>
+          {this.props.question}
+        </Text>
+
+        <View>{this.renderQuestion()}</View>
+
         <TouchableOpacity
           disabled={this.state.answerChecked}
           style={
@@ -43,16 +60,9 @@ export class QuizScreen extends Component {
               : globalStyles.smallButton
           }
           onPress={this.handleCheckAnswer}>
-          <Text style={globalStyles.textSmallButton}>Check answer</Text>
+          <Text style={globalStyles.textSmallButton}>Abgeben</Text>
         </TouchableOpacity>
       </View>
-
-      // <View>
-      //   <RadioButton
-      //     choices={this.props.choices}
-      //     onSelect={choice => this.setState({userChoice: choice})}
-      //   />
-      // </View>
     );
   }
 }

@@ -10,6 +10,7 @@
     {
       "id": 1,
       "type": "quiz",
+      "style": "multiple",
       "question": "Welche Bezeichnungen sind korrekt?",
       "choices": ["if-bedingung", "if-anweisung", "if-schleife"],
       "correctChoices": ["if-bedingung", "if-anweiseung"]

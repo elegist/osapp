@@ -117,6 +117,7 @@ export default class TaskManager extends Component {
           newTask = new QuizTask({
             id: taskData.id,
             topic: taskData.topic,
+            style: task.style,
             question: task.question,
             choices: task.choices,
             correctChoices: task.correctChoices,

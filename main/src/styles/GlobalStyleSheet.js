@@ -73,6 +73,11 @@ export default StyleSheet.create({
     fontSize: 20,
     color: '#1C2327',
   },
+  textSecondary: {
+    fontFamily: 'PTSans-Italic',
+    fontSize: 14,
+    color: '#9b9b9b',
+  },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
     fontSize: 16,

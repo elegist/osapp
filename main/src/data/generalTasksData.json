@@ -10,9 +10,9 @@
     {
       "id": 1,
       "type": "quiz",
-      "question": "In welchem Gebäude befinden sich die größten Vorlesungssäle?",
-      "choices": ["A-Gebäude", "B-Gebäude", "C-Gebäude"],
-      "correctChoices": ["A-Gebäude"]
+      "style": "single",
+      "question": "Wie gut kennst du dich bereits mit der Medieninformatik aus?",
+      "choices": ["Sehr gut", "Gut", "Mittelmäßig", "Wenig", "Gar nicht"]
     },
     {
       "id": 2,
@@ -22,6 +22,14 @@
     },
     {
       "id": 3,
+      "type": "quiz",
+      "style": "multiple",
+      "question": "In welchem Gebäude befinden sich die größten Vorlesungssäle?",
+      "choices": ["A-Gebäude", "B-Gebäude", "C-Gebäude"],
+      "correctChoices": ["A-Gebäude"]
+    },
+    {
+      "id": 4,
       "type": "interactive",
       "title": "Test Interactive",
       "text": "Dieser Text wird eine Erklärung dafür enthalten, was genau du in dieser Interaktiven Task machen musst ..."

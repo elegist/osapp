@@ -11,7 +11,7 @@ export default function Checkbox({label}) {
       style={styles.checkBoxContainer}
       onPress={() => setChecked(!checked)}>
       <View style={styles.checkbox}>
-        {checked && <Icon style={styles.check} name="check"></Icon>}
+        {checked && <Icon style={styles.check} name="check-square"></Icon>}
       </View>
       <Text style={{...globalStyles.textChoiceButton, marginLeft: 8}}>
         {label}
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   check: {
-    color: '#1C2327',
+    color: '#8CBA45',
+    fontSize: 20,
   },
   checkBoxLabel: {
     marginHorizontal: 8,

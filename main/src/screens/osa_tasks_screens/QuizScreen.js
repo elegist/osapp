@@ -2,12 +2,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
 import Checkbox from '../../components/Checkbox';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import RadioButton from '../../components/RadioButton';
 
 export class QuizScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       answerChecked: false,
+      userChoice: null,
     };
   }
 
@@ -44,6 +46,13 @@ export class QuizScreen extends Component {
           <Text style={globalStyles.textSmallButton}>Check answer</Text>
         </TouchableOpacity>
       </View>
+
+      // <View>
+      //   <RadioButton
+      //     choices={this.props.choices}
+      //     onSelect={choice => this.setState({userChoice: choice})}
+      //   />
+      // </View>
     );
   }
 }

@@ -110,8 +110,7 @@ export default class TaskManager extends Component {
             id: task.id,
             topic: task.topic,
             title: task.title,
-            text: task.text,
-            images: task.images,
+            content: task.content
           });
           break;
         case QUIZ:

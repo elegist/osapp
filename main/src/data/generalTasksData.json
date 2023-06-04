@@ -5,10 +5,15 @@
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",
-      "text": "Herzlich Willkommen zur OSApp Medieninformatik! Die App soll dich bei deiner Studienwahl unterstützen. Auf dich warten Infos, sowie ein paar Quizfragen und interaktive Aufgaben. Es ist unwichtig, ob du hier alles richtig machst. Wichtiger ist, dass du den Studiengang kennenlernst. Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen. Es geht immerhin um deine Zukunft! Doch bevor wir loslegen, lass uns noch etwas über die THM erfahren.",
-      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"],
       "content": [
-
+          "Herzlich Willkommen zur OSApp Medieninformatik!",
+          "Die App soll dich bei deiner Studienwahl unterstützen.",
+          "Auf dich warten Infos und ein paar Aufgaben.",
+          "Es ist unwichtig, ob du hier alles richtig machst.",
+          "Wichtiger ist, dass du den Studiengang kennenlernst.",
+          "Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen.",          
+          "Es geht immerhin um deine Zukunft!",
+          "Doch bevor wir loslegen, lass uns noch etwas über die THM erfahren."
       ]
     },
     {
@@ -16,7 +21,32 @@
       "type": "reading",
       "title": "Allgemeine Information",
       "text": "Denn so wichtig wie der Studiengang ist auch der Studienort. Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang. Gehst du hinein, findest du recht schnell den Info-Counter. Hier reichst du deine Unterlagen ein und erhältst deinen Studienausweis. Überall in der THM findest du Hör- und Seminarsäle. Diese können ganz unterschiedlich aussehen. Dort findet nur ein Teil des Unterrichts statt, denn jeder Studiengang hat auch Labore. Hier lernst du die praktische Arbeit kennen. Labore können, je nach Zweck, ganz unterschiedlich aussehen. Zeit mit deinen Kommilitonen zu verbringen ist wichtig. Vor allen Dingen außerhalb der Hörsäle. Und da wir schon dabei sind, das Essen darf natürlich nicht fehlen. Das waren einige der wichtigen Orte auf dem Campus Friedberg. Gut gestärkt kommen wir aus der Mensa und starten jetzt durch.",
-      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"]
+      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"],
+      "content": [
+          "Denn so wichtig wie der Studiengang ist auch der Studienort.",
+          "[img]thm-haupteingang.jpg",
+          "Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang.",
+          "Gehst du hinein, findest du recht schnell den Info-Counter.",
+          "[img]thm-info.jpg",
+          "Hier reichst du deine Unterlagen ein und erhältst deinen Studienausweis.",
+          "Überall in der THM findest du Hör- und Seminarsäle.",
+          "[img]thm-hoersaal.jpg",
+          "Diese können ganz unterschiedlich aussehen.",          
+          "Hier findet jedoch nur ein Teil des Unterrichts statt,",
+          "denn jeder Studiengang hat auch Labore,",
+          "[img]thm-medienlabor.jpg",
+          "in denen du auch die Praxis kennenlernen darfst.",
+          "Labore können, je nach Zweck, ganz unterschiedlich aussehen.",
+          "[img]thm-studio.jpg",
+          "Wir können dir leider nicht alles zeigen, aber:",
+          "Zeit mit deinen Kommilitonen zu verbringen ist wichtig.",
+          "[img]thm-campus.jpg",
+          "Vor allen Dingen außerhalb der Labore und Hörsäle",
+          "Und da wir schon dabei sind, das Essen darf natürlich nicht fehlen.",
+          "[img]thm-mensa.jpg",
+          "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg",
+          "Gut gestärkt kommen wir also aus der Mensa und starten jetzt durch..."
+      ]
     },
     {
       "id": 2,

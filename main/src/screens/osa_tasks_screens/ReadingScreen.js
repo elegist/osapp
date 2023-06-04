@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import FastImage from 'react-native-fast-image';
 
 const MAX_TEXT_LENGTH = 100;
 
@@ -14,6 +15,7 @@ const MAX_TEXT_LENGTH = 100;
  * View element of ReadingTask
  */
 export class ReadingScreen extends Component {
+  content = [];
   textArray = [];
   imagesArray = [];
   fadeAnimation = new Animated.Value(0); // Animated value for fade animation
@@ -21,8 +23,7 @@ export class ReadingScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.textArray = this.splitText(this.props.text, MAX_TEXT_LENGTH);
-    this.imagesArray = this.initImagesArray(this.props.images);
+    this.initReadingTask(this.props.props.content);
     this.state = {
       currentIndex: 0, // Starting index for display
     };
@@ -32,42 +33,20 @@ export class ReadingScreen extends Component {
     this.fadeInText(); // Trigger the fade-in animation when the component mounts the first time
   }
 
-  initImagesArray = (images) => {
-    const array = []
-    images.forEach(element => {
-      const image = '../src/assets/osa_images/' + element + '.jpg'
-      array.push(image)
-    });
-    console.log(array);
-    return array
-  }
-
-  /**
-   * Splits given text into whole sentences with a max word count.
-   * @param {String} text Text to be displayed
-   * @param {Number} maxWordLength Max length of one sentence
-   * @returns {Array} Array containing the split text
-   */
-  splitText = (text, maxWordLength) => {
-    const sentences = text.match(/[^.!?]+[.!?]/g) || [];
-    let currentSplit = '';
-    const resultArray = [];
-
-    for (let i = 0; i < sentences.length; i++) {
-      const sentence = sentences[i];
-      if (currentSplit.length + sentence.length > maxWordLength) {
-        resultArray.push(currentSplit.trim());
-        currentSplit = sentence + ' ';
+  initReadingTask = contentArray => {
+    console.log(contentArray);
+    const startsWithImg = /^\[img\](.*)/;
+    contentArray.forEach(element => {
+      const matchImage = element.match(startsWithImg);
+      if (matchImage && matchImage.length > 1) {
+        const image = './src/assets/osa_images/' + matchImage[1];
+        this.imagesArray.push(image);
       } else {
-        currentSplit += sentence + ' ';
+        this.textArray.push(element);
       }
-    }
-
-    if (currentSplit.trim().length > 0) {
-      resultArray.push(currentSplit.trim());
-    }
-
-    return resultArray;
+    });
+    console.log('Texts: ', this.textArray);
+    console.log('Images: ', this.imagesArray);
   };
 
   /**
@@ -83,14 +62,14 @@ export class ReadingScreen extends Component {
           this.fadeInText();
         });
       });
-      if(nextIndex == this.textArray.length - 1) this.props.onTextEnd(); // Callback provided by the parent component
+      if (nextIndex == this.textArray.length - 1) this.props.onTextEnd(); // Callback provided by the parent component
     }
   };
 
   // Animations
   fadeInText = () => {
-    this.scaleAnimation.setValue(0)
-    this.fadeAnimation.setValue(0)
+    this.scaleAnimation.setValue(0);
+    this.fadeAnimation.setValue(0);
     Animated.parallel([
       Animated.timing(this.fadeAnimation, {
         toValue: 1,
@@ -119,11 +98,17 @@ export class ReadingScreen extends Component {
     const {currentIndex} = this.state;
     const fadeStyle = {
       opacity: this.fadeAnimation,
-      transform: [{ scale: this.scaleAnimation }],
+      transform: [{scale: this.scaleAnimation}],
     };
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
         <View style={globalStyles.fullContainer}>
+          <View style={{ backgroundColor: 'white', width: '100%', height: '100%', position: 'absolute', borderRadius: 50 }}>
+            <FastImage
+              source={require('../../assets/osa_images/thm-haupteingang.jpg')}
+              style={globalStyles.osaImage}
+            />
+          </View>
           <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
           <Animated.View>
             <Animated.Text style={[globalStyles.textReadingTask, fadeStyle]}>

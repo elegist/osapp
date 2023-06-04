@@ -116,4 +116,16 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#1C2327',
   },
+  //images
+  osaImage: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    borderRadius: 50,
+    borderWidth: 1,
+    zIndex: -1,
+    opacity: .5
+  }
 });

@@ -1,0 +1,39 @@
+{
+    "comment": "This file holds templates and serves as a documentation file for the task's data structure",
+    ".comment": "You can copy & paste these and fill them with real data. Do not delete this file!",
+    "..comment": "Make sure to give each task a unique (ascending) id and place images in ./source/assets/osa_images",
+    "...comment": "You can just copy the whole thing for a new topic, delete the comment lines and customize your tasks.",
+    "....comment": "Each .json file should have the following structure:",
+
+    "topic": "YOUR TOPIC",
+    "tasks": [
+      {
+        "id": 0,
+        "type": "reading",
+        "title": "YOUR READING TASK TITLE",
+        "content": ["Reading task text", "As an array", "divided by images to display", "[img]name-of-image.jpg", "followed by text or image", "in a custom order"]
+      },
+      {
+        "id": 1,
+        "type": "quiz",
+        "style": "multiple",
+        "question": "YOUR MULTIPLE CHOICE QUESTION",
+        "choices": ["Place", "as", "many", "choices", "as", "you", "want"],
+        "correctChoices": ["Place"]
+      },
+      {
+        "id": 2,
+        "type": "quiz",
+        "style": "single",
+        "question": "YOUR SINGLE CHOICE QUESTION",
+        "choices": ["Place", "as", "many", "choices", "as", "you", "want"]
+      },
+      {
+        "id": 3,
+        "type": "interactive",
+        "title": "YOUR INTERACTIVE TASK TITLE",
+        "text": "Just a placeholder at the moment."
+      }
+    ]
+  }
+  

@@ -15,17 +15,16 @@ const MAX_TEXT_LENGTH = 100;
  * View element of ReadingTask
  */
 export class ReadingScreen extends Component {
-  content = [];
-  textArray = [];
-  imagesArray = [];
-  fadeAnimation = new Animated.Value(0); // Animated value for fade animation
-  scaleAnimation = new Animated.Value(0); // Animated value for scale animation
+  contentArray = [];
+  fadeAnimation = new Animated.Value(0);
+  scaleAnimation = new Animated.Value(0);
 
   constructor(props) {
     super(props);
     this.initReadingTask(this.props.props.content);
     this.state = {
       currentIndex: 0, // Starting index for display
+      currentImage: '',
     };
   }
 
@@ -33,20 +32,26 @@ export class ReadingScreen extends Component {
     this.fadeInText(); // Trigger the fade-in animation when the component mounts the first time
   }
 
-  initReadingTask = contentArray => {
-    console.log(contentArray);
+  /**
+   * Takes in the content prop and populates this instance with data
+   * @param {Array} taskContents Collection of the task's text and images
+   */
+  initReadingTask = taskContents => {
     const startsWithImg = /^\[img\](.*)/;
-    contentArray.forEach(element => {
+    taskContents.forEach(element => {
+      const entry = {
+        isImage: false,
+        value: '',
+      };
       const matchImage = element.match(startsWithImg);
       if (matchImage && matchImage.length > 1) {
-        const image = './src/assets/osa_images/' + matchImage[1];
-        this.imagesArray.push(image);
+        entry['isImage'] = true;
+        entry['value'] = '../../assets/osa_images/' + matchImage[1];
       } else {
-        this.textArray.push(element);
+        entry['value'] = element;
       }
+      this.contentArray.push(entry);
     });
-    console.log('Texts: ', this.textArray);
-    console.log('Images: ', this.imagesArray);
   };
 
   /**
@@ -56,13 +61,22 @@ export class ReadingScreen extends Component {
     const {currentIndex} = this.state;
     const nextIndex = currentIndex + 1;
 
-    if (nextIndex < this.textArray.length) {
+    if (nextIndex < this.contentArray.length) {
       this.fadeOutText(() => {
         this.setState({currentIndex: nextIndex}, () => {
-          this.fadeInText();
+          // TODO: logic to cycle through images
+          if (this.contentArray[nextIndex]['isImage']) {
+            console.log('Is Image: ', this.contentArray[nextIndex]['value']);
+            this.setState({
+              currentImage: this.contentArray[nextIndex]['value'],
+            });
+          } else {
+            this.fadeInText();
+          }
+          if (nextIndex === this.contentArray.length - 1)
+            this.props.onTextEnd(); // Callback provided by the parent component
         });
       });
-      if (nextIndex == this.textArray.length - 1) this.props.onTextEnd(); // Callback provided by the parent component
     }
   };
 
@@ -95,7 +109,7 @@ export class ReadingScreen extends Component {
   };
 
   render() {
-    const {currentIndex} = this.state;
+    const {currentIndex, currentImage} = this.state;
     const fadeStyle = {
       opacity: this.fadeAnimation,
       transform: [{scale: this.scaleAnimation}],
@@ -103,16 +117,26 @@ export class ReadingScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
         <View style={globalStyles.fullContainer}>
-          <View style={{ backgroundColor: 'white', width: '100%', height: '100%', position: 'absolute', borderRadius: 50 }}>
-            <FastImage
-              source={require('../../assets/osa_images/thm-haupteingang.jpg')}
-              style={globalStyles.osaImage}
-            />
-          </View>
+          {this.contentArray[currentIndex]['isImage'] && (
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                borderRadius: 50,
+                zIndex: -1,
+              }}>
+              <FastImage
+                source={{uri: this.contentArray[currentIndex]['value']}}
+                style={globalStyles.osaImage}
+              />
+            </View>
+          )}
           <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
           <Animated.View>
             <Animated.Text style={[globalStyles.textReadingTask, fadeStyle]}>
-              {this.textArray[currentIndex]}
+              {this.contentArray[currentIndex]['value']}
             </Animated.Text>
             {/* Additional UI elements related to ReadingTask */}
           </Animated.View>

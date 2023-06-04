@@ -14,6 +14,16 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
   },
+  fullContainer: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center'
+  },
   mainBackground: {
     flex: 0,
     width: '100%',
@@ -78,9 +88,15 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#9b9b9b',
   },
+  textReadingTask: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: 40,
+    lineHeight: 60,
+    color: '#1C2327',
+  },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
-    fontSize: 30,
+    fontSize: 18,
     color: '#1C2327',
   },
   textBigButton: {

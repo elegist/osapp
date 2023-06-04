@@ -5,34 +5,55 @@
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",
-      "text": "Herzlich Willkommen zur OSApp der Medieninformatik! In dieser App wirst du herausfinden, ob ein Studium der Medieninformatik an der THM etwas für dich sein kann oder nicht. Wir hoffen, du wirst viel Spaß an den folgenden Aufgaben haben. Zunächst, lass uns dich aber ein wenig durch die THM führen und dich mit den verschiedenen wichtigen Räumlichkeiten vertraut machen."
+      "text": "Herzlich Willkommen zur OSApp Medieninformatik! Die App soll dich bei deiner Studienwahl unterstützen. Auf dich warten Infos, sowie ein paar Quizfragen und interaktive Aufgaben. Es ist unwichtig, ob du hier alles richtig machst. Wichtiger ist, dass du den Studiengang kennenlernst. Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen. Es geht immerhin um deine Zukunft! Doch bevor wir loslegen, lass uns noch etwas über die THM erfahren.",
+      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"],
+      "content": [
+
+      ]
     },
     {
       "id": 1,
-      "type": "quiz",
-      "style": "single",
-      "question": "Wie gut kennst du dich bereits mit der Medieninformatik aus?",
-      "choices": ["Sehr gut", "Gut", "Mittelmäßig", "Wenig", "Gar nicht"]
+      "type": "reading",
+      "title": "Allgemeine Information",
+      "text": "Denn so wichtig wie der Studiengang ist auch der Studienort. Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang. Gehst du hinein, findest du recht schnell den Info-Counter. Hier reichst du deine Unterlagen ein und erhältst deinen Studienausweis. Überall in der THM findest du Hör- und Seminarsäle. Diese können ganz unterschiedlich aussehen. Dort findet nur ein Teil des Unterrichts statt, denn jeder Studiengang hat auch Labore. Hier lernst du die praktische Arbeit kennen. Labore können, je nach Zweck, ganz unterschiedlich aussehen. Zeit mit deinen Kommilitonen zu verbringen ist wichtig. Vor allen Dingen außerhalb der Hörsäle. Und da wir schon dabei sind, das Essen darf natürlich nicht fehlen. Das waren einige der wichtigen Orte auf dem Campus Friedberg. Gut gestärkt kommen wir aus der Mensa und starten jetzt durch.",
+      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"]
     },
     {
       "id": 2,
-      "type": "reading",
-      "title": "Die Mensa",
-      "text": "Nachdem du jetzt schon weißt, wo sich die größten Vorlesungssäle befinden, lass uns dir jetzt eines der wichtigsten Gebäude zeigen: Die Mensa natürlich! Hier kannst du dir zur Mittagszeit immer etwas warmes zu essen für einen geringen Preis kaufen und dich mit deinen Komillitonen austauschen. Außerhalb der Essenszeiten ist dies auch ein super Ort um sich mit dem Laptop an einen Tisch zu setzen und ein wenig Studiumsinhalte nachzubereiten und zu lernen."
+      "type": "quiz",
+      "style": "single",
+      "question": "Möglicherweise hast du dich schon etwas über die Medieninformatik informiert. Wie schätzt du deinen Überblick ein?",
+      "choices": ["Ich kenne mich gut aus", "Ich weiß grob Bescheid", "Ich lass es auf mich zukommen", "Ich habe mich noch nicht informiert"]
     },
     {
       "id": 3,
-      "type": "quiz",
-      "style": "multiple",
-      "question": "In welchem Gebäude befinden sich die größten Vorlesungssäle?",
-      "choices": ["A-Gebäude", "B-Gebäude", "C-Gebäude"],
-      "correctChoices": ["A-Gebäude"]
+      "type": "reading",
+      "title": "Positive feedback",
+      "text": "Wichtig ist, dass du offen bist für Neues! Denk daran immer ehrlich zu antworten, nimm dir Zeit für die Fragen.",
+      "images": [""]
     },
     {
       "id": 4,
-      "type": "interactive",
-      "title": "Test Interactive",
-      "text": "Dieser Text wird eine Erklärung dafür enthalten, was genau du in dieser Interaktiven Task machen musst ..."
+      "type": "quiz",
+      "style": "multiple",
+      "question": "Was schätzt du, könnten Themen sein, mit denen du dich im Studium der Medieninformatik beschäftigst?",
+      "choices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"],
+      "correctChoices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"]
+    },
+    {
+      "id": 5,
+      "type": "reading",
+      "title": "Vielseitigkeit MI",
+      "text": "Tatsächlich beschäftigst du dich mit all diesen Themen! Medieninformatik ist vielseitig, und so auch der Studiengang. Das war also nur eine kleine Auswahl der Dinge, die du bei uns lernst. Lass uns doch mal anschauen, was Studierende so erschaffen haben.",
+      "images": [""]
+    },
+    {
+      "id": 6,
+      "type": "reading",
+      "title": "Übergang Thema 1",
+      "text": "Jetzt weißt du ja schon einiges über den Studiengang! Aber du bist ja hier um herauszufinden, ob MI etwas für dich ist. Lass uns also mal genauer in die Themen einsteigen. Achte besonders darauf, ob dir ein Thema liegt oder nicht.",
+      "images": [""]
     }
   ]
 }
+

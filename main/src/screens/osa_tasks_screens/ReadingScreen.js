@@ -3,7 +3,7 @@ import {
   View,
   Animated,
   TouchableWithoutFeedback,
-  StyleSheet,
+  Easing,
 } from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
@@ -15,11 +15,14 @@ const MAX_TEXT_LENGTH = 100;
  */
 export class ReadingScreen extends Component {
   textArray = [];
+  imagesArray = [];
   fadeAnimation = new Animated.Value(0); // Animated value for fade animation
+  scaleAnimation = new Animated.Value(0); // Animated value for scale animation
 
   constructor(props) {
     super(props);
     this.textArray = this.splitText(this.props.text, MAX_TEXT_LENGTH);
+    this.imagesArray = this.initImagesArray(this.props.images);
     this.state = {
       currentIndex: 0, // Starting index for display
     };
@@ -27,6 +30,16 @@ export class ReadingScreen extends Component {
 
   componentDidMount() {
     this.fadeInText(); // Trigger the fade-in animation when the component mounts the first time
+  }
+
+  initImagesArray = (images) => {
+    const array = []
+    images.forEach(element => {
+      const image = '../src/assets/osa_images/' + element + '.jpg'
+      array.push(image)
+    });
+    console.log(array);
+    return array
   }
 
   /**
@@ -70,19 +83,28 @@ export class ReadingScreen extends Component {
           this.fadeInText();
         });
       });
-    } else {
-      // text end
-      this.props.onTextEnd(); // Callback provided by the parent component
+      if(nextIndex == this.textArray.length - 1) this.props.onTextEnd(); // Callback provided by the parent component
     }
   };
 
   // Animations
   fadeInText = () => {
-    Animated.timing(this.fadeAnimation, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
+    this.scaleAnimation.setValue(0)
+    this.fadeAnimation.setValue(0)
+    Animated.parallel([
+      Animated.timing(this.fadeAnimation, {
+        toValue: 1,
+        duration: 1200,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+      Animated.timing(this.scaleAnimation, {
+        toValue: 1,
+        duration: 1200,
+        useNativeDriver: true,
+        easing: Easing.out(Easing.back()),
+      }),
+    ]).start();
   };
 
   fadeOutText = callback => {
@@ -97,14 +119,14 @@ export class ReadingScreen extends Component {
     const {currentIndex} = this.state;
     const fadeStyle = {
       opacity: this.fadeAnimation,
+      transform: [{ scale: this.scaleAnimation }],
     };
     return (
       <TouchableWithoutFeedback onPress={this.proceed}>
-        <View>
+        <View style={globalStyles.fullContainer}>
           <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
           <Animated.View>
-            <Text style={globalStyles.textHeading}>{this.props.title}</Text>
-            <Animated.Text style={[globalStyles.textParagraph, fadeStyle]}>
+            <Animated.Text style={[globalStyles.textReadingTask, fadeStyle]}>
               {this.textArray[currentIndex]}
             </Animated.Text>
             {/* Additional UI elements related to ReadingTask */}

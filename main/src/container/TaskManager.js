@@ -107,16 +107,17 @@ export default class TaskManager extends Component {
       switch (task.type) {
         case READING:
           newTask = new ReadingTask({
-            id: taskData.id,
-            topic: taskData.topic,
+            id: task.id,
+            topic: task.topic,
             title: task.title,
             text: task.text,
+            images: task.images,
           });
           break;
         case QUIZ:
           newTask = new QuizTask({
-            id: taskData.id,
-            topic: taskData.topic,
+            id: task.id,
+            topic: task.topic,
             style: task.style,
             question: task.question,
             choices: task.choices,
@@ -125,8 +126,8 @@ export default class TaskManager extends Component {
           break;
         case INTERACTIVE:
           newTask = new InteractiveTask({
-            id: taskData.id,
-            topic: taskData.topic,
+            id: task.id,
+            topic: task.topic,
             title: task.title,
             text: task.text,
           });
@@ -199,6 +200,7 @@ export default class TaskManager extends Component {
 
     // retreive new / updated task list
     this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
+    //return task object
     return this.#currentTaskList[this.#userProgressInTopic];
   };
 }

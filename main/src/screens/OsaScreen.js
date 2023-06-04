@@ -1,5 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
-import FastImage from 'react-native-fast-image';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +6,6 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import gif from '../assets/bestesgif.gif';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
@@ -20,54 +18,65 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressBar from 'react-native-progress/Bar';
 import InteractiveScreen from './osa_tasks_screens/InteractiveScreen';
 
-/**
- * OsaScreen - main screen for the self assessment. This screen handles the presentation of all tasks
- */
-export default function OsaScreen({navigation, route}) {
+export default function OsaScreen({ navigation, route }) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
-  const [showNextButton, setShowNextButton] = useState(false); // State to control button visibility
-
+  const [showNextButton, setShowNextButton] = useState(false);
+  const [displayTaskContainer, setDisplayTaskContainer] = useState(false);
   const numberOfTasks = TASK_MANAGER.numberOfTasks;
 
-  // iterating through tasks logic
   useEffect(() => {
-    setTask(TASK_MANAGER.getTask(progress));
+    const currentTask = TASK_MANAGER.getTask(progress);
+    setTask(currentTask);
     setShowNextButton(false);
+
+    let isTaskContainerDisplayed = false;
+
+    if (currentTask instanceof ReadingTask) {
+      isTaskContainerDisplayed = false;
+    } else if (currentTask instanceof QuizTask) {
+      isTaskContainerDisplayed = true;
+    } else if (currentTask instanceof InteractiveTask) {
+      isTaskContainerDisplayed = false; // or true, depending on your logic
+    }
+
+    setDisplayTaskContainer(isTaskContainerDisplayed);
   }, [progress]);
+
   const nextTask = () => {
-    setProgress(progress + 1);
+    setProgress((prevProgress) => prevProgress + 1);
   };
+
   const previousTask = () => {
-    progress > 0 ? setProgress(progress - 1) : 0;
+    setProgress((prevProgress) => (prevProgress > 0 ? prevProgress - 1 : 0));
   };
-  // rendering tasks logic
+
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return <ReadingScreen {...task} onTextEnd={displayNextButton} />;
+      return (
+        <ReadingScreen key={task.id} {...task} onTextEnd={displayNextButton} />
+      );
     } else if (task instanceof QuizTask) {
       return <QuizScreen {...task} onQuizFinished={displayNextButton} />;
     } else if (task instanceof InteractiveTask) {
-      // TODO: InteractiveScreen ???
       return <InteractiveScreen {...task} onTaskFinished={displayNextButton} />;
     } else {
       return null;
     }
   };
+
   const displayNextButton = () => {
-    setShowNextButton(true); // Show buttons when all text has been clicked through
+    setShowNextButton(true);
   };
 
-  // navigate to summary screen (replace instead of navigate to change back button behaviour)
   useEffect(() => {
     if (task instanceof SummaryTask) {
       navigation.replace('summaryScreen');
     }
   }, [task]);
 
-  // resetting task manager when leaving this screen
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', () => {
       TASK_MANAGER.resetTaskManager();
@@ -83,7 +92,7 @@ export default function OsaScreen({navigation, route}) {
     <ImageBackground
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
-      <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
+      <View style={{ ...globalStyles.topBar, justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={handlePressHome}>
           <Icon name="home" size={36} color="black" />
         </TouchableOpacity>
@@ -91,10 +100,14 @@ export default function OsaScreen({navigation, route}) {
           style={styles.progressBar}
           progress={progress / numberOfTasks}
           color={'#8CBA45'}
-          height={16}></ProgressBar>
-        <Icon style={{opacity: 0}} name="home" size={36} color="black" />
+          height={16}
+        />
+        <Icon style={{ opacity: 0 }} name="home" size={36} color="black" />
       </View>
-      <View style={styles.osaScreenWrapper}>{task && renderTask()}</View>
+      <View
+        style={displayTaskContainer ? styles.osaScreenWrapper : styles.osaNoWrapper}>
+        {task && renderTask()}
+      </View>
 
       <View style={styles.buttonWrapper}>
         {progress > 0 && (
@@ -109,7 +122,7 @@ export default function OsaScreen({navigation, route}) {
             style={[globalStyles.smallButton]}
             onPress={nextTask}>
             <Text style={globalStyles.textSmallButton}>
-              {progress == numberOfTasks - 1 ? 'Abschließen' : 'Weiter'}
+              {progress === numberOfTasks - 1 ? 'Abschließen' : 'Weiter'}
             </Text>
           </TouchableOpacity>
         )}
@@ -133,6 +146,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     elevation: 6,
+    margin: 10,
+    padding: 20,
+  },
+  osaNoWrapper: {
+    minHeight: '75%',
+    width: '80%',
+    alignSelf: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: 10,
     padding: 20,
   },

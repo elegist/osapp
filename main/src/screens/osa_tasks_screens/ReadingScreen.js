@@ -4,10 +4,12 @@ import {
   Animated,
   TouchableWithoutFeedback,
   Easing,
+  Image,
 } from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
+import ImageMapper from './ImageMapper';
 
 const MAX_TEXT_LENGTH = 100;
 
@@ -46,13 +48,15 @@ export class ReadingScreen extends Component {
       const matchImage = element.match(startsWithImg);
       if (matchImage && matchImage.length > 1) {
         entry['isImage'] = true;
-        entry['value'] = '../../assets/osa_images/' + matchImage[1];
+        const imageName = matchImage[1];
+        entry['value'] = ImageMapper.getImagePath(imageName);
       } else {
         entry['value'] = element;
       }
       this.contentArray.push(entry);
     });
   };
+  
 
   /**
    * Call this when user touches the screen. Iterates through text array
@@ -127,8 +131,8 @@ export class ReadingScreen extends Component {
                 borderRadius: 50,
                 zIndex: -1,
               }}>
-              <FastImage
-                source={{uri: this.contentArray[currentIndex]['value']}}
+              <Image
+                source={this.contentArray[currentIndex]['value']}
                 style={globalStyles.osaImage}
               />
             </View>

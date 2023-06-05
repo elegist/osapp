@@ -20,8 +20,6 @@
       "id": 1,
       "type": "reading",
       "title": "Allgemeine Information",
-      "text": "Denn so wichtig wie der Studiengang ist auch der Studienort. Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang. Gehst du hinein, findest du recht schnell den Info-Counter. Hier reichst du deine Unterlagen ein und erhältst deinen Studienausweis. Überall in der THM findest du Hör- und Seminarsäle. Diese können ganz unterschiedlich aussehen. Dort findet nur ein Teil des Unterrichts statt, denn jeder Studiengang hat auch Labore. Hier lernst du die praktische Arbeit kennen. Labore können, je nach Zweck, ganz unterschiedlich aussehen. Zeit mit deinen Kommilitonen zu verbringen ist wichtig. Vor allen Dingen außerhalb der Hörsäle. Und da wir schon dabei sind, das Essen darf natürlich nicht fehlen. Das waren einige der wichtigen Orte auf dem Campus Friedberg. Gut gestärkt kommen wir aus der Mensa und starten jetzt durch.",
-      "images": ["thm-haupteingang", "thm-gebaeude-b", "thm-info"],
       "content": [
           "Denn so wichtig wie der Studiengang ist auch der Studienort.",
           "Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang.",
@@ -59,8 +57,11 @@
       "id": 3,
       "type": "reading",
       "title": "Positive feedback",
-      "text": "Wichtig ist, dass du offen bist für Neues! Denk daran immer ehrlich zu antworten, nimm dir Zeit für die Fragen.",
-      "images": [""]
+      "images": [""],
+      "content": [
+        "Wichtig ist, dass du offen bist für Neues!",
+        "Denk daran immer ehrlich zu antworten und nimm dir Zeit für die Fragen."
+      ]
     },
     {
       "id": 4,
@@ -74,15 +75,22 @@
       "id": 5,
       "type": "reading",
       "title": "Vielseitigkeit MI",
-      "text": "Tatsächlich beschäftigst du dich mit all diesen Themen! Medieninformatik ist vielseitig, und so auch der Studiengang. Das war also nur eine kleine Auswahl der Dinge, die du bei uns lernst. Lass uns doch mal anschauen, was Studierende so erschaffen haben.",
-      "images": [""]
+      "content": [
+        "Tatsächlich beschäftigst du dich mit all diesen Themen!",
+        "Medieninformatik ist vielseitig, und so auch der Studiengang.",
+        "Das war also nur eine kleine Auswahl der Dinge, die du bei uns lernst.",
+        "Lass uns doch mal anschauen, was Studierende so erschaffen haben."
+      ]
     },
     {
       "id": 6,
       "type": "reading",
       "title": "Übergang Thema 1",
-      "text": "Jetzt weißt du ja schon einiges über den Studiengang! Aber du bist ja hier um herauszufinden, ob MI etwas für dich ist. Lass uns also mal genauer in die Themen einsteigen. Achte besonders darauf, ob dir ein Thema liegt oder nicht.",
-      "images": [""]
+      "content": [
+        "Jetzt weißt du ja schon einiges über den Studiengang!",
+        "Aber du bist ja hier um herauszufinden, ob das auch etwas für dich ist.",
+        "Also lass uns doch genauer in die einzelnen Themen einsteigen..."
+      ]
     }
   ]
 }

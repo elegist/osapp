@@ -5,7 +5,11 @@
       "id": 0,
       "type": "reading",
       "title": "Web und App Design und Programmierung",
-      "text": "Dieser Bereich ist ein sehr wichtiger Bestandteil des Studiums der Medieninformatik. Hier wird richtig programmiert. Vertreten ist dabei eine riesige Bandbreite an verschiedenen Themengebieten. Web-, Appprogrammierung, Algorithmik, Automaten und Datenbanken sind nur einige wenige Beispiele. Als Studierende in der Medieninformatik werden hier sehr viele Projekte in Eigenarbeit gestämmt - natürlich mit fachmännischer Betreuung der Modulverantwortlichen. In den späteren Modulen wirst Du sogar komplett selbst beispielsweise Webseiten konzipieren, designen, umsetzen und warten, mit allem drum und dran."
+      "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
+        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+      ]
     },
     {
       "id": 1,
@@ -19,13 +23,21 @@
       "id": 2,
       "type": "reading",
       "title": "Phasellus condimentum lectus a",
-      "text": "Curabitur maximus dolor a mauris blandit, a ultricies nisi faucibus. Aenean lacus enim, scelerisque in nibh ut, sagittis porta neque. Sed commodo in arcu vitae dapibus. Nunc euismod quis magna et consequat. Phasellus commodo dolor egestas, condimentum nibh at, convallis sapien. Nunc accumsan finibus dui, eu imperdiet eros elementum at."
+      "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
+        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+      ]
     },
     {
       "id": 3,
       "type": "interactive",
       "title": "Nullam aliquam",
-      "text": "Fusce vulputate varius dui, sed vulputate dolor fermentum at. Lorem ipsum dolor sit amet, consectetur."
+      "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
+        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+      ]
     }
   ]
 }

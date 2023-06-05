@@ -5,7 +5,13 @@
       "id": 0,
       "type": "reading",
       "title": "Modellierung, Shading und Animation",
-      "text": "Kommen wir nun zum Fachbereich GD. Hier lernst du alles rund um die Computergrafik. Du wirst selbst von Scratch anfangen modelle zu bauen, sie zu shaden und in bestimmten Fächern sogar animieren. Mit von der Partie hier ist allerdings auch die Mathematik. Das macht in diesem Fachbereich aber auch sehr viel Sinn, wie du hoffentlich im Folgenden Abschnitt sehen wirst. Keine Angst vor der Mathematik! Da sie in diesem Fach praktisch angewandt wird, ist sie hier auch nur halb so schlimm - du weißt immer warum du die Mathematik gerade machen sollst und wofür du sie wirklich gebrauch kannst."
+      "content": ["Kommen wir nun zum Fachbereich GD. Hier lernst du alles rund um die Computergrafik.", 
+      "Du wirst selbst von Scratch anfangen modelle zu bauen, sie zu shaden und in bestimmten Fächern sogar animieren.", 
+      "Mit von der Partie hier ist allerdings auch die Mathematik.", 
+      "Das macht in diesem Fachbereich aber auch sehr viel Sinn, wie du hoffentlich im Folgenden Abschnitt sehen wirst.", 
+      "Keine Angst vor der Mathematik! Da sie in diesem Fach praktisch angewandt wird, ist sie hier auch nur halb so schlimm -", 
+      "du weißt immer warum du die Mathematik gerade machen sollst und wofür du sie wirklich gebrauch kannst."
+    ]
     },
     {
       "id": 1,
@@ -19,13 +25,21 @@
       "id": 2,
       "type": "reading",
       "title": "Proin euismod metus",
-      "text": "Nulla facilisi. Morbi ac neque erat. Nulla lorem ligula, commodo in lacus vitae, sollicitudin consequat augue. Aliquam pulvinar eros felis, a dictum quam vestibulum eu. Quisque auctor eget sapien in semper. Duis facilisis sem vitae tortor ultricies, eget dictum quam ornare. Suspendisse vitae pellentesque quam."
+      "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
+        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+      ]
     },
     {
       "id": 3,
       "type": "interactive",
       "title": "Sed justo libero",
-      "text": "Cras sit amet nulla lectus. Proin a mauris nulla. Maecenas tempor libero ac orci dapibus."
+      "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
+        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+      ]
     }
   ]
 }

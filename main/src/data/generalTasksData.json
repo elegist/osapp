@@ -7,13 +7,14 @@
       "title": "Willkommen!",
       "content": [
           "Herzlich Willkommen zur OSApp Medieninformatik!",
+          "[img]thm-gebaeude-b.jpg",
           "Die App soll dich bei deiner Studienwahl unterstützen.",
           "Auf dich warten Infos und ein paar Aufgaben.",
           "Es ist unwichtig, ob du hier alles richtig machst.",
           "Wichtiger ist, dass du den Studiengang kennenlernst.",
           "Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen.",          
           "Es geht immerhin um deine Zukunft!",
-          "Doch bevor wir loslegen, lass uns noch etwas über die THM erfahren."
+          "Doch bevor wir richtig loslegen, lass uns etwas über die THM erfahren."
       ]
     },
     {
@@ -21,11 +22,12 @@
       "type": "reading",
       "title": "Allgemeine Information",
       "content": [
-          "Denn so wichtig wie der Studiengang ist auch der Studienort.",
-          "Wir schauen uns also etwas um. Beginnen wir doch beim Haupteingang.",
+          "Denn ebenso wichtig wie der Studiengang ist der Studienort.",
+          "Medieninformatik studierst du am Campus Friedberg",
+          "Schauen wir uns dort mal etwas um. Wir starten beim Haupteingang.",
           "[img]thm-haupteingang.jpg",
           "Gehst du hinein, findest du recht schnell den Info-Counter.",
-          "Hier reichst du deine Unterlagen ein und erhältst deinen Studienausweis.",
+          "Dort reichst du deine Unterlagen ein und erhältst deinen Studienausweis.",
           "[img]thm-info.jpg",
           "Überall in der THM findest du Hör- und Seminarsäle.",
           "Diese können ganz unterschiedlich aussehen.",
@@ -40,9 +42,8 @@
           "Zeit mit deinen Kommilitonen zu verbringen ist wichtig.",
           "[img]thm-campus.jpg",
           "Vor allen Dingen außerhalb der Labore und Hörsäle",
-          "Und da wir schon dabei sind, das Essen darf natürlich nicht fehlen.",
-          "[img]thm-mensa.jpg",
           "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg",
+          "[img]thm-mensa.jpg",
           "Gut gestärkt kommen wir also aus der Mensa und starten jetzt durch..."
       ]
     },
@@ -76,10 +77,10 @@
       "type": "reading",
       "title": "Vielseitigkeit MI",
       "content": [
-        "Tatsächlich beschäftigst du dich mit all diesen Themen!",
-        "Medieninformatik ist vielseitig, und so auch der Studiengang.",
+        "Tatsächlich beschäftigst du dich im Studium mit all diesen Themen!",
+        "Denn die Medieninformatik ist vielseitig, und so auch der Studiengang.",
         "Das war also nur eine kleine Auswahl der Dinge, die du bei uns lernst.",
-        "Lass uns doch mal anschauen, was Studierende so erschaffen haben."
+        "Lass uns doch mal schauen, was Studierende so erschaffen haben."
       ]
     },
     {
@@ -88,8 +89,10 @@
       "title": "Übergang Thema 1",
       "content": [
         "Jetzt weißt du ja schon einiges über den Studiengang!",
-        "Aber du bist ja hier um herauszufinden, ob das auch etwas für dich ist.",
-        "Also lass uns doch genauer in die einzelnen Themen einsteigen..."
+        "Aber du bist ja hier um herauszufinden, ob Medieninformatik auch etwas für dich ist.",
+        "Setzen wir uns also einfach an einen ruhigen Lernort…",
+        "[img]thm-bib2.jpg",
+        "…und steigen mal so richtig in die Themen ein!"
       ]
     }
   ]

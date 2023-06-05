@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   osaNoWrapper: {
     minHeight: '75%',
-    width: '80%',
+    width: '90%',
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',

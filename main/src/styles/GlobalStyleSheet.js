@@ -22,7 +22,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   mainBackground: {
     flex: 0,
@@ -89,10 +89,15 @@ export default StyleSheet.create({
     color: '#9b9b9b',
   },
   textReadingTask: {
-    fontFamily: 'PTSans-Regular',
+    fontFamily: 'PTSans-Bold',
     fontSize: 40,
     lineHeight: 60,
     color: '#1C2327',
+    textShadowColor: 'rgba(0, 0, 0, .8)',
+    textShadowOffset: {width: 2, height: 2},
+    textShadowRadius: 2,
+    textAlign: 'center',
+    padding: 10,
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
@@ -126,6 +131,6 @@ export default StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     zIndex: -1,
-    opacity: .5
-  }
+    opacity: 0.5,
+  },
 });

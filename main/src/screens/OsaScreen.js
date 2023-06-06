@@ -101,6 +101,7 @@ export default function OsaScreen({ navigation, route }) {
           progress={progress / numberOfTasks}
           color={'#8CBA45'}
           height={16}
+          width={null}
         />
         <Icon style={{ opacity: 0 }} name="home" size={36} color="black" />
       </View>
@@ -170,5 +171,6 @@ const styles = StyleSheet.create({
   progressBar: {
     height: 16,
     alignSelf: 'center',
+    flex: 0.5
   },
 });

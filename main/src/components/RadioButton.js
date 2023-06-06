@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     alignItems: 'center',
     alignSelf: 'center',
-    width: '40%',
+    textAlign: 'center',
+    width: '70%',
   },
   radioButton: {
     display: 'flex',

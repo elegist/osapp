@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,7 +18,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressBar from 'react-native-progress/Bar';
 import InteractiveScreen from './osa_tasks_screens/InteractiveScreen';
 
-export default function OsaScreen({ navigation, route }) {
+export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
@@ -45,21 +45,32 @@ export default function OsaScreen({ navigation, route }) {
   }, [progress]);
 
   const nextTask = () => {
-    setProgress((prevProgress) => prevProgress + 1);
+    setProgress(prevProgress => prevProgress + 1);
   };
 
   const previousTask = () => {
-    setProgress((prevProgress) => (prevProgress > 0 ? prevProgress - 1 : 0));
+    setProgress(prevProgress => (prevProgress > 0 ? prevProgress - 1 : 0));
   };
 
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
       return (
-        <ReadingScreen key={task.id} {...task} onTextEnd={displayNextButton} />
+        <ReadingScreen
+          key={task.id}
+          {...task}
+          onTextEnd={displayNextButton}
+          nextTask={nextTask}
+        />
       );
     } else if (task instanceof QuizTask) {
-      return <QuizScreen {...task} onQuizFinished={displayNextButton} />;
+      return (
+        <QuizScreen
+          {...task}
+          onQuizFinished={displayNextButton}
+          nextTask={nextTask}
+        />
+      );
     } else if (task instanceof InteractiveTask) {
       return <InteractiveScreen {...task} onTaskFinished={displayNextButton} />;
     } else {
@@ -92,25 +103,45 @@ export default function OsaScreen({ navigation, route }) {
     <ImageBackground
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
-      <View style={{ ...globalStyles.topBar, justifyContent: 'space-between' }}>
+      <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
         <TouchableOpacity onPress={handlePressHome}>
           <Icon name="home" size={36} color="black" />
         </TouchableOpacity>
-        <ProgressBar
-          style={styles.progressBar}
-          progress={progress / numberOfTasks}
-          color={'#8CBA45'}
-          height={16}
-          width={null}
-        />
-        <Icon style={{ opacity: 0 }} name="home" size={36} color="black" />
+
+        <View style={styles.topNavigation}>
+          <TouchableOpacity disabled={progress === 0} onPress={previousTask}>
+            <Icon
+              name="caret-left"
+              size={36}
+              color={progress === 0 ? '#ABABAB' : '#8CBA45'}
+            />
+          </TouchableOpacity>
+          <ProgressBar
+            style={styles.progressBar}
+            progress={progress / numberOfTasks}
+            color={'#8CBA45'}
+            height={16}
+            width={null}
+          />
+          <TouchableOpacity disabled={!showNextButton} onPress={nextTask}>
+            <Icon
+              name="caret-right"
+              size={36}
+              color={!showNextButton ? '#ABABAB' : '#8CBA45'}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <Icon style={{opacity: 0}} name="home" size={36} color="black" />
       </View>
       <View
-        style={displayTaskContainer ? styles.osaScreenWrapper : styles.osaNoWrapper}>
+        style={
+          displayTaskContainer ? styles.osaScreenWrapper : styles.osaNoWrapper
+        }>
         {task && renderTask()}
       </View>
 
-      <View style={styles.buttonWrapper}>
+      {/* <View style={styles.buttonWrapper}>
         {progress > 0 && (
           <TouchableOpacity
             style={globalStyles.smallButton}
@@ -127,7 +158,7 @@ export default function OsaScreen({ navigation, route }) {
             </Text>
           </TouchableOpacity>
         )}
-      </View>
+      </View> */}
     </ImageBackground>
   );
 }
@@ -171,6 +202,19 @@ const styles = StyleSheet.create({
   progressBar: {
     height: 16,
     alignSelf: 'center',
-    flex: 0.5
+    flex: 0.75,
+  },
+  topNavigation: {
+    display: 'flex',
+    flex: 0.75,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '100%',
+  },
+  navButtonEnabled: {
+    color: '#8CBA45',
+  },
+  navButtonDisabled: {
+    color: '#ABABAB',
   },
 });

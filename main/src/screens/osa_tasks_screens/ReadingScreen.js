@@ -84,6 +84,10 @@ export class ReadingScreen extends Component {
         });
       });
     }
+
+    if (nextIndex === this.contentArray.length) {
+      this.props.nextTask();
+    }
   };
 
   // Animations
@@ -97,7 +101,7 @@ export class ReadingScreen extends Component {
         duration: 1200,
         useNativeDriver: true,
         easing: Easing.ease,
-      })
+      }),
     ]).start();
   };
 
@@ -165,16 +169,16 @@ export class ReadingScreen extends Component {
         <View style={globalStyles.fullContainer}>
           {currentImage && (
             <Animated.View
-            style={[
-              {
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                borderRadius: 50,
-                zIndex: -1,
-              },
-              backgroundColorStyle, // Apply background color animation here
-            ]}>
+              style={[
+                {
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  borderRadius: 50,
+                  zIndex: -1,
+                },
+                backgroundColorStyle, // Apply background color animation here
+              ]}>
               <Animated.Image
                 source={currentImage}
                 style={[globalStyles.osaImage, animImageStyle]}

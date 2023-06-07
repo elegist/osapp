@@ -59,7 +59,7 @@ export class QuizScreen extends Component {
               ? globalStyles.smallButtonDisabled
               : globalStyles.smallButton
           }
-          onPress={this.handleCheckAnswer}>
+          onPress={this.props.nextTask}>
           <Text style={globalStyles.textSmallButton}>Abgeben</Text>
         </TouchableOpacity>
       </View>

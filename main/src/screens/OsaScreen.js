@@ -104,35 +104,27 @@ export default function OsaScreen({navigation, route}) {
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
       <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
-        <TouchableOpacity onPress={handlePressHome}>
-          <Icon name="home" size={36} color="black" />
-        </TouchableOpacity>
-
-        <View style={styles.topNavigation}>
-          <TouchableOpacity disabled={progress === 0} onPress={previousTask}>
-            <Icon
-              name="caret-left"
-              size={36}
-              color={progress === 0 ? '#ABABAB' : '#8CBA45'}
-            />
-          </TouchableOpacity>
-          <ProgressBar
-            style={styles.progressBar}
-            progress={progress / numberOfTasks}
-            color={'#8CBA45'}
-            height={16}
-            width={null}
+        <TouchableOpacity disabled={progress === 0} onPress={previousTask}>
+          <Icon
+            name="step-backward"
+            size={36}
+            color="black"
+            style={progress === 0 ? {opacity: 0} : {opacity: 1}}
           />
-          <TouchableOpacity disabled={!showNextButton} onPress={nextTask}>
-            <Icon
-              name="caret-right"
-              size={36}
-              color={!showNextButton ? '#ABABAB' : '#8CBA45'}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <Icon style={{opacity: 0}} name="home" size={36} color="black" />
+        </TouchableOpacity>
+        <ProgressBar
+          style={styles.progressBar}
+          progress={progress / numberOfTasks}
+          color={'#8CBA45'}
+          height={16}
+          width={null}
+        />
+        <Icon
+          style={{opacity: 0}}
+          name="step-backward"
+          size={36}
+          color="black"
+        />
       </View>
       <View
         style={
@@ -202,14 +194,7 @@ const styles = StyleSheet.create({
   progressBar: {
     height: 16,
     alignSelf: 'center',
-    flex: 0.75,
-  },
-  topNavigation: {
-    display: 'flex',
-    flex: 0.75,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: '100%',
+    flex: 0.85,
   },
   navButtonEnabled: {
     color: '#8CBA45',

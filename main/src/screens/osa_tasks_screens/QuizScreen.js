@@ -1,4 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from 'react-native';
 import React, {Component} from 'react';
 import Checkbox from '../../components/Checkbox';
 import globalStyles from '../../styles/GlobalStyleSheet';
@@ -9,7 +15,8 @@ export class QuizScreen extends Component {
     super(props);
     this.state = {
       answerChecked: false,
-      userChoice: null,
+      radioChoice: null,
+      checkChoices: [],
     };
   }
 
@@ -18,7 +25,7 @@ export class QuizScreen extends Component {
     this.props.onQuizFinished();
   };
 
-  renderQuestion = () => {
+  renderChoices = () => {
     const SINGLE_CHOICE = 'single';
     const MUTLIPLE_CHOICE = 'multiple';
 
@@ -27,7 +34,7 @@ export class QuizScreen extends Component {
         <View>
           <RadioButton
             choices={this.props.choices}
-            onSelect={choice => this.setState({userChoice: choice})}
+            onSelect={choice => this.setState({radioChoice: choice})}
           />
         </View>
       );
@@ -35,7 +42,26 @@ export class QuizScreen extends Component {
       return (
         <View style={styles.choiceContainer}>
           {this.props.choices.map((choice, index) => {
-            return <Checkbox key={index} label={choice}></Checkbox>;
+            return (
+              <Checkbox
+                key={index}
+                index={index}
+                label={choice}
+                onSelect={choice => {
+                  if (this.state.checkChoices.includes(choice)) {
+                    const array = this.state.checkChoices;
+                    const index = array.indexOf(choice);
+
+                    array.splice(index, 1);
+
+                    this.setState({checkChoices: array});
+                  } else {
+                    this.setState({
+                      checkChoices: [...this.state.checkChoices, choice],
+                    });
+                  }
+                }}></Checkbox>
+            );
           })}
         </View>
       );
@@ -44,18 +70,23 @@ export class QuizScreen extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
+      <View style={styles.quizContainer}>
         <Text style={globalStyles.textHeadingSecondary}>
           {this.props.question}
         </Text>
 
-        <View>{this.renderQuestion()}</View>
+        <ScrollView persistentScrollbar={true} style={{maxHeight: "60%"}}>
+          {this.renderChoices()}
+        </ScrollView>
 
         <TouchableOpacity
-          disabled={this.state.answerChecked}
+          disabled={
+            this.state.radioChoice === null &&
+            this.state.checkChoices.length === 0
+          }
           style={
-            this.state.answerChecked
+            this.state.radioChoice === null &&
+            this.state.checkChoices.length === 0
               ? globalStyles.smallButtonDisabled
               : globalStyles.smallButton
           }
@@ -68,6 +99,10 @@ export class QuizScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  quizContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   choiceContainer: {
     marginVertical: 16,
   },

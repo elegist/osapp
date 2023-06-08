@@ -86,7 +86,7 @@ export class ReadingScreen extends Component {
     }
 
     if (nextIndex === this.contentArray.length) {
-      this.props.nextTask();
+      this.fadeOutText(this.props.nextTask);
     }
   };
 

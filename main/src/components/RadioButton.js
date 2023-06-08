@@ -38,10 +38,7 @@ const styles = StyleSheet.create({
   radioButtonContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginVertical: 12,
-    alignItems: 'center',
-    alignSelf: 'center',
-    textAlign: 'center',
+    marginVertical: 16,
     width: '70%',
   },
   radioButton: {

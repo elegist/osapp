@@ -3,13 +3,19 @@ import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../styles/GlobalStyleSheet';
 
-export default function Checkbox({label}) {
+export default function Checkbox({label, index, onSelect}) {
   const [checked, setChecked] = useState(false);
+
+  const handleCheck = () => {
+    setChecked(!checked);
+    // TODO: rather pass in the index for better handling of the data later on? prepared with index prop. also keep in mind for radio button
+    onSelect(label);
+  };
 
   return (
     <TouchableOpacity
       style={styles.checkBoxContainer}
-      onPress={() => setChecked(!checked)}>
+      onPress={() => handleCheck()}>
       <View style={styles.checkbox}>
         {checked && <Icon style={styles.check} name="check-square"></Icon>}
       </View>
@@ -24,10 +30,7 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginVertical: 12,
-    alignItems: 'center',
-    alignSelf: 'center',
-    textAlign: 'center',
+    marginVertical: 16,
     width: '70%',
   },
   checkbox: {

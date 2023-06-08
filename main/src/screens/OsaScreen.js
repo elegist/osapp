@@ -119,12 +119,15 @@ export default function OsaScreen({navigation, route}) {
           height={16}
           width={null}
         />
-        <Icon
-          style={{opacity: 0}}
-          name="step-backward"
-          size={36}
-          color="black"
-        />
+        {/* TODO: remove later, this is only for debug purposes! */}
+        <TouchableOpacity onPress={nextTask}>
+          <Icon
+            style={{opacity: 1}}
+            name="step-forward"
+            size={36}
+            color="red"
+          />
+        </TouchableOpacity>
       </View>
       <View
         style={
@@ -172,6 +175,7 @@ const styles = StyleSheet.create({
     elevation: 6,
     margin: 10,
     padding: 20,
+    alignItems: "center"
   },
   osaNoWrapper: {
     minHeight: '75%',

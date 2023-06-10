@@ -70,7 +70,7 @@
       "type": "quiz",
       "style": "multiple",
       "question": "Was schätzt du, könnten Themen sein, mit denen du dich im Studium der Medieninformatik beschäftigst?",
-      "choices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung", "TestScroll", "TestScroll2", "Lange Liste"],
+      "choices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"],
       "correctChoices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"]
     },
     {

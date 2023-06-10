@@ -15,8 +15,6 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   fullContainer: {
-    width: '100%',
-    height: '100%',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -25,9 +23,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   mainBackground: {
-    flex: 0,
-    width: '100%',
-    height: '100%',
+    flex: 1,
     resizeMode: 'cover',
   },
   topBar: {

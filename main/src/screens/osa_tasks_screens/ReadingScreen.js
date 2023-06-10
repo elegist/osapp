@@ -9,7 +9,7 @@ import {
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
-import ImageMapper from './ImageMapper';
+import ImageMapper from '../helper/ImageMapper';
 
 const MAX_TEXT_LENGTH = 100;
 
@@ -77,9 +77,6 @@ export class ReadingScreen extends Component {
           } else {
             this.makeImageTransparent();
             this.fadeInText();
-          }
-          if (nextIndex === this.contentArray.length - 1) {
-            this.props.onTextEnd(); // Callback provided by the parent component
           }
         });
       });

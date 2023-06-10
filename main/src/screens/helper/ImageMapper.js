@@ -1,4 +1,3 @@
-// Used to resolve relative paths for images and binds them to the view in a require statement
 /**
  * Provides manual mapping of relative image paths
  */

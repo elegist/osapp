@@ -22,7 +22,6 @@ export class QuizScreen extends Component {
 
   handleCheckAnswer = () => {
     this.setState({answerChecked: true});
-    this.props.onQuizFinished();
   };
 
   renderChoices = () => {
@@ -31,7 +30,7 @@ export class QuizScreen extends Component {
 
     if (this.props.style == SINGLE_CHOICE) {
       return (
-        <View>
+        <View style={styles.radioButtonView}>
           <RadioButton
             choices={this.props.choices}
             onSelect={choice => this.setState({radioChoice: choice})}
@@ -40,7 +39,7 @@ export class QuizScreen extends Component {
       );
     } else if (this.props.style == MUTLIPLE_CHOICE) {
       return (
-        <View style={styles.choiceContainer}>
+        <View style={styles.checkBoxesView}>
           {this.props.choices.map((choice, index) => {
             return (
               <Checkbox
@@ -60,7 +59,8 @@ export class QuizScreen extends Component {
                       checkChoices: [...this.state.checkChoices, choice],
                     });
                   }
-                }}></Checkbox>
+                }}
+              />
             );
           })}
         </View>
@@ -70,12 +70,15 @@ export class QuizScreen extends Component {
 
   render() {
     return (
-      <View style={styles.quizContainer}>
+      <View style={styles.viewContainer}>
         <Text style={globalStyles.textHeadingSecondary}>
           {this.props.question}
         </Text>
 
-        <ScrollView persistentScrollbar={true} style={{maxHeight: "60%"}}>
+        <ScrollView
+          persistentScrollbar={true}
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}>
           {this.renderChoices()}
         </ScrollView>
 
@@ -99,12 +102,24 @@ export class QuizScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  quizContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  viewContainer: {
+    flex: 1,
   },
-  choiceContainer: {
-    marginVertical: 16,
+  scrollView: {
+    flex: 0,
+    marginVertical: 10,
+    padding: 5,
+    flexGrow: 0,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  radioButtonView: {
+    alignItems: 'center',
+  },
+  checkBoxesView: {
+    paddingHorizontal: 5,
   },
 });
 

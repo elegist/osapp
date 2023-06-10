@@ -22,14 +22,12 @@ export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
-  const [showNextButton, setShowNextButton] = useState(false);
   const [displayTaskContainer, setDisplayTaskContainer] = useState(false);
   const numberOfTasks = TASK_MANAGER.numberOfTasks;
 
   useEffect(() => {
     const currentTask = TASK_MANAGER.getTask(progress);
     setTask(currentTask);
-    setShowNextButton(false);
 
     let isTaskContainerDisplayed = false;
 
@@ -38,7 +36,7 @@ export default function OsaScreen({navigation, route}) {
     } else if (currentTask instanceof QuizTask) {
       isTaskContainerDisplayed = true;
     } else if (currentTask instanceof InteractiveTask) {
-      isTaskContainerDisplayed = false; // or true, depending on your logic
+      isTaskContainerDisplayed = false;
     }
 
     setDisplayTaskContainer(isTaskContainerDisplayed);
@@ -55,31 +53,14 @@ export default function OsaScreen({navigation, route}) {
   const renderTask = () => {
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return (
-        <ReadingScreen
-          key={task.id}
-          {...task}
-          onTextEnd={displayNextButton}
-          nextTask={nextTask}
-        />
-      );
+      return <ReadingScreen key={task.id} {...task} nextTask={nextTask} />;
     } else if (task instanceof QuizTask) {
-      return (
-        <QuizScreen
-          {...task}
-          onQuizFinished={displayNextButton}
-          nextTask={nextTask}
-        />
-      );
+      return <QuizScreen {...task} nextTask={nextTask} />;
     } else if (task instanceof InteractiveTask) {
-      return <InteractiveScreen {...task} onTaskFinished={displayNextButton} />;
+      return <InteractiveScreen {...task} nextTask={nextTask} />;
     } else {
       return null;
     }
-  };
-
-  const displayNextButton = () => {
-    setShowNextButton(true);
   };
 
   useEffect(() => {
@@ -94,10 +75,6 @@ export default function OsaScreen({navigation, route}) {
     });
     return unsubscribe;
   }, [navigation]);
-
-  const handlePressHome = () => {
-    navigation.navigate('home');
-  };
 
   return (
     <ImageBackground
@@ -129,39 +106,17 @@ export default function OsaScreen({navigation, route}) {
           />
         </TouchableOpacity>
       </View>
-      <View
-        style={
-          displayTaskContainer ? styles.osaScreenWrapper : styles.osaNoWrapper
-        }>
+      <View style={displayTaskContainer ? styles.osaCard : styles.osaNoCard}>
         {task && renderTask()}
       </View>
-
-      {/* <View style={styles.buttonWrapper}>
-        {progress > 0 && (
-          <TouchableOpacity
-            style={globalStyles.smallButton}
-            onPress={previousTask}>
-            <Text style={globalStyles.textSmallButton}>Zurück</Text>
-          </TouchableOpacity>
-        )}
-        {showNextButton && (
-          <TouchableOpacity
-            style={[globalStyles.smallButton]}
-            onPress={nextTask}>
-            <Text style={globalStyles.textSmallButton}>
-              {progress === numberOfTasks - 1 ? 'Abschließen' : 'Weiter'}
-            </Text>
-          </TouchableOpacity>
-        )}
-      </View> */}
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  osaScreenWrapper: {
-    minHeight: '75%',
-    width: '80%',
+  osaCard: {
+    maxHeight: '85%',
+    maxWidth: '90%',
     alignSelf: 'center',
     borderRadius: 8,
     backgroundColor: '#fff',
@@ -175,9 +130,9 @@ const styles = StyleSheet.create({
     elevation: 6,
     margin: 10,
     padding: 20,
-    alignItems: "center"
+    alignItems: 'center',
   },
-  osaNoWrapper: {
+  osaNoCard: {
     minHeight: '75%',
     width: '100%',
     alignSelf: 'center',

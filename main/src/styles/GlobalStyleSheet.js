@@ -129,7 +129,6 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 0,
     borderRadius: 50,
-    borderWidth: 1,
     zIndex: -1,
     opacity: 0.5,
   },

@@ -9,12 +9,12 @@
           "Herzlich Willkommen zur OSApp Medieninformatik!",
           "[img]thm-gebaeude-b.jpg",
           "Die App soll dich bei deiner Studienwahl unterstützen.",
-          "Auf dich warten Infos und ein paar Aufgaben.",
+          "Mit Informationen rund um den Studiengang und ein paar Aufgaben.",
           "Es ist unwichtig, ob du hier alles richtig machst.",
           "Wichtiger ist, dass du den Studiengang kennenlernst.",
           "Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen.",          
           "Es geht immerhin um deine Zukunft!",
-          "Doch bevor wir richtig loslegen, lass uns etwas über die THM erfahren."
+          "Bereit? Dann starten wir direkt auf dem THM-Campus."
       ]
     },
     {
@@ -36,15 +36,16 @@
           "denn jeder Studiengang hat auch Labore,",
           "[img]thm-medienlabor.jpg",
           "in denen du auch die Praxis kennenlernen darfst.",
-          "Labore können, je nach Zweck, ganz unterschiedlich aussehen.",
+          "Labore bieten dir, je nach Zweck, ganz unterschiedliche Ausstattung.",
           "[img]thm-studio.jpg",
-          "Wir können dir leider nicht alles zeigen, aber:",
-          "Zeit mit deinen Kommilitonen zu verbringen ist wichtig.",
+          "Wir können hier leider nicht alles zeigen, aber:",
+          "Komm doch einfach mal vorbei und schau dich selbst etwas um.",
           "[img]thm-campus.jpg",
-          "Vor allen Dingen außerhalb der Labore und Hörsäle",
-          "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg",
+          "Vor Ort triffst du Studierende und kannst dir selbst ein Bild machen.",
+          "zum Beispiel bei einem leckeren Mittagessen in der Mensa.",
           "[img]thm-mensa.jpg",
-          "Gut gestärkt kommen wir also aus der Mensa und starten jetzt durch..."
+          "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg.",
+          "Lass uns doch mal mit ein paar Fragen anfangen:"
       ]
     },
     {
@@ -60,8 +61,8 @@
       "title": "Positive feedback",
       "images": [""],
       "content": [
-        "Wichtig ist, dass du offen bist für Neues!",
-        "Denk daran immer ehrlich zu antworten und nimm dir Zeit für die Fragen."
+        "Sei am besten immer offen für Neues.",
+        "Und denk daran: Lass dir ruhig Zeit für die Beantwortung der Fragen."
       ]
     },
     {
@@ -79,7 +80,11 @@
       "content": [
         "Tatsächlich beschäftigst du dich im Studium mit all diesen Themen!",
         "Denn die Medieninformatik ist vielseitig, und so auch der Studiengang.",
-        "Das war also nur eine kleine Auswahl der Dinge, die du bei uns lernst.",
+        "Du wirst dich im Laufe des Studiums für einen Schwerpunkt entscheiden müssen",
+        "Doch das schließt nichts aus, denn:",
+        "Neben den Pflichtthemen gibt es noch Wahlfächer.",
+        "So kannst du noch tiefer in deinen Schwerpunkt eintauchen,",
+        "und im jeweils anderen Schwerpunkt einen Blick über den Tellerrand wagen.",
         "Lass uns doch mal schauen, was Studierende so erschaffen haben."
       ]
     },

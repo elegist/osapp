@@ -142,7 +142,7 @@ export class ReadingScreen extends Component {
   };
   makeImageTransparent = () => {
     Animated.timing(this.fadeImageAnim, {
-      toValue: 0.3,
+      toValue: 0.25,
       duration: 500,
       useNativeDriver: true,
       easing: Easing.ease,

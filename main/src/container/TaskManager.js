@@ -8,6 +8,7 @@ import csTasksData from '../data/csTasksData.json';
 import avTasksData from '../data/avTasksData.json';
 import gdTasksData from '../data/gdTasksData.json';
 import SummaryTask from './osa_tasks/SummaryTask';
+import ExamplesTask from './osa_tasks/ExamplesTask';
 
 /**
  * TaskManager (singleton) -
@@ -66,6 +67,7 @@ export default class TaskManager extends Component {
   #initTaskManager = () => {
     this.#topics = [
       'Allgemein',
+      'Examples',
       'Informatik',
       'Audiovisuelle Medien',
       'Graphische Datenverarbeitung',
@@ -74,6 +76,7 @@ export default class TaskManager extends Component {
 
     let tasksArray = [
       this.#generateTasks(generalTasksData),
+      [new ExamplesTask({id: 0, title: 'Projektbeispiele', topic: 'Examples'})],
       this.#generateTasks(csTasksData),
       this.#generateTasks(avTasksData),
       this.#generateTasks(gdTasksData),
@@ -174,31 +177,41 @@ export default class TaskManager extends Component {
       return this.#currentTaskList[0];
     }
     if (progress >= this.#userProgress) {
+      //DEBUG: console.log("User progresses...");
       // load next task
       if (this.#userProgressInTopic < this.#currentTaskList.length - 1) {
+        //DEBUG: console.log("Same topic, user progresses on task...")
         // increase user's progress on current topic and proceed with task
         this.#userProgressInTopic++;
         this.#userProgress++;
       } else {
+        //DEBUG: console.log("Topic ended, user progresses to next topic");
         // reset user's progress, move to next topic and retreive new task list
         this.#userProgressInTopic = 0;
         this.#increaseTopicProgress();
+        // retreive new / updated task list
+        this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
       }
     } else {
+      //DEBUG: console.log("User navigates back");
       // load previous task
       if (this.#userProgressInTopic > 0) {
+        //DEBUG: console.log("There are previous tasks in this topic, user navigates back one task");
         this.#userProgressInTopic--;
       } else {
+        //DEBUG: console.log("No previous task left, switching to previous topic...");
         // load last topic
         this.#decreaseTopicProgress();
+        // retreive new / updated task list
+        this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
+        // set user's progress to the last task in this topic
         this.#userProgressInTopic = this.#currentTaskList.length - 1;
       }
     }
     // update user progress (ensures correct comparison on next call)
     this.#userProgress = progress;
 
-    // retreive new / updated task list
-    this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
+    //DEBUG: console.log("#userProgress: " + this.#userProgress, "#userProgressInTopic: " + this.#userProgressInTopic, "topicsProgress: " + this.#topicsProgress);
     //return task object
     return this.#currentTaskList[this.#userProgressInTopic];
   };

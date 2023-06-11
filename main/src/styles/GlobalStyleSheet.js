@@ -11,8 +11,6 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
   },
   fullContainer: {
     flex: 1,

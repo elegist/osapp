@@ -4,6 +4,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from '../../screens/HomeScreen';
 import OsaScreen from '../../screens/OsaScreen';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import ExamplesScreen from '../../screens/osa_tasks_screens/ExamplesScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,8 +31,19 @@ const DrawerNavigator = () => {
         name="testDrawer"
         component={OsaScreen}
         options={{
-          title: 'Testscreen',
+          title: 'OSA',
           drawerLabelStyle: globalStyles.textParagraph,
+        }}
+      />
+      <Drawer.Screen
+        name="examplesDrawer"
+        component={ExamplesScreen}
+        options={{
+          title: 'Studienprojekte',
+          drawerLabelStyle: globalStyles.textParagraph,
+        }}
+        initialParams={{
+          source: 'drawer',
         }}
       />
     </Drawer.Navigator>

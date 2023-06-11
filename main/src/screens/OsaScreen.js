@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   ImageBackground,
@@ -17,6 +16,8 @@ import QuizScreen from './osa_tasks_screens/QuizScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressBar from 'react-native-progress/Bar';
 import InteractiveScreen from './osa_tasks_screens/InteractiveScreen';
+import ExamplesTask from '../container/osa_tasks/ExamplesTask';
+import ExamplesScreen from './osa_tasks_screens/ExamplesScreen';
 
 export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
@@ -37,6 +38,8 @@ export default function OsaScreen({navigation, route}) {
       isTaskContainerDisplayed = true;
     } else if (currentTask instanceof InteractiveTask) {
       isTaskContainerDisplayed = false;
+    } else {
+      isTaskContainerDisplayed = false;
     }
 
     setDisplayTaskContainer(isTaskContainerDisplayed);
@@ -51,6 +54,7 @@ export default function OsaScreen({navigation, route}) {
   };
 
   const renderTask = () => {
+    //console.log(task);
     if (!task) return null;
     if (task instanceof ReadingTask) {
       return <ReadingScreen key={task.id} {...task} nextTask={nextTask} />;
@@ -58,6 +62,8 @@ export default function OsaScreen({navigation, route}) {
       return <QuizScreen {...task} nextTask={nextTask} />;
     } else if (task instanceof InteractiveTask) {
       return <InteractiveScreen {...task} nextTask={nextTask} />;
+    } else if(task instanceof ExamplesTask) {
+      return <ExamplesScreen key={task.id} {...task} nextTask={nextTask} source='tasks' />
     } else {
       return null;
     }

@@ -95,7 +95,7 @@ export class ReadingScreen extends Component {
       Animated.delay(200),
       Animated.timing(this.fadeTextAnim, {
         toValue: 1,
-        duration: 1200,
+        duration: 800,
         useNativeDriver: true,
         easing: Easing.ease,
       }),
@@ -106,12 +106,12 @@ export class ReadingScreen extends Component {
     Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 0,
-        duration: 600,
+        duration: 400,
         useNativeDriver: true,
       }),
       Animated.timing(this.scaleTextAnim, {
         toValue: 0,
-        duration: 600,
+        duration: 400,
         useNativeDriver: true,
         easing: Easing.ease,
       }),
@@ -122,7 +122,7 @@ export class ReadingScreen extends Component {
     this.fadeImageAnim.setValue(0);
     Animated.timing(this.fadeImageAnim, {
       toValue: 1,
-      duration: 1200,
+      duration: 1000,
       useNativeDriver: true,
       easing: Easing.ease,
     }).start(() => {
@@ -139,7 +139,7 @@ export class ReadingScreen extends Component {
   };
   makeImageTransparent = () => {
     Animated.timing(this.fadeImageAnim, {
-      toValue: 0.25,
+      toValue: 0.2,
       duration: 500,
       useNativeDriver: true,
       easing: Easing.ease,

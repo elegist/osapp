@@ -4,11 +4,13 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Animated,
 } from 'react-native';
 import React, {Component} from 'react';
 import Checkbox from '../../components/Checkbox';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import RadioButton from '../../components/RadioButton';
+import {Easing} from 'react-native-reanimated';
 
 export class QuizScreen extends Component {
   constructor(props) {
@@ -18,6 +20,10 @@ export class QuizScreen extends Component {
       radioChoice: null,
       checkChoices: [],
     };
+
+    this.fadeAnim = new Animated.Value(0);
+    this.moveAnim = new Animated.Value(25);
+    this.fadeAnim2 = new Animated.Value(0);
   }
 
   handleCheckAnswer = () => {
@@ -70,19 +76,49 @@ export class QuizScreen extends Component {
     }
   };
 
+  componentDidMount() {
+    Animated.sequence([
+      Animated.timing(this.fadeAnim, {
+        toValue: 1,
+        duration: 1200,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+
+      Animated.parallel([
+        Animated.timing(this.fadeAnim2, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(this.moveAnim, {
+          toValue: 0,
+          duration: 600,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+      ])
+    ]).start();
+  }
+
   render() {
     return (
-      <View style={styles.viewContainer}>
+      <Animated.View style={{...styles.viewContainer, opacity: this.fadeAnim}}>
         <Text style={globalStyles.textHeadingSecondary}>
           {this.props.question}
         </Text>
 
-        <ScrollView
+        <Animated.ScrollView
           persistentScrollbar={true}
-          style={styles.scrollView}
+          style={{
+            ...styles.scrollView,
+            opacity: this.fadeAnim2,
+            transform: [{translateY: this.moveAnim}],
+          }}
           contentContainerStyle={styles.scrollViewContent}>
           {this.renderChoices()}
-        </ScrollView>
+        </Animated.ScrollView>
 
         <TouchableOpacity
           disabled={
@@ -98,7 +134,7 @@ export class QuizScreen extends Component {
           onPress={this.props.nextTask}>
           <Text style={globalStyles.textSmallButton}>Abgeben</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     );
   }
 }

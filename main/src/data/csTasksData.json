@@ -4,15 +4,25 @@
     {
       "id": 0,
       "type": "reading",
-      "title": "Web und App Design und Programmierung",
+      "title": "Übergang Thema 1",
       "content": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
-        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+        "Jetzt weißt du ja schon einiges über den Studiengang!",
+        "Aber du bist ja hier um herauszufinden, ob Medieninformatik auch etwas für dich ist.",
+        "Setzen wir uns also einfach an einen ruhigen Lernort…",
+        "[img]thm-bib2.jpg",
+        "…und steigen mal so richtig in die Themen ein!"
       ]
     },
     {
       "id": 1,
+      "type": "reading",
+      "title": "Einleitung Informatik",
+      "content": [
+        "Hier folgt mehr Text um die erste Informatikaufgabe einzuleiten..."
+      ]
+    },
+    {
+      "id": 2,
       "type": "quiz",
       "style": "multiple",
       "question": "Welche Bezeichnungen sind korrekt?",
@@ -20,7 +30,7 @@
       "correctChoices": ["if-bedingung", "if-anweiseung"]
     },
     {
-      "id": 2,
+      "id": 3,
       "type": "reading",
       "title": "Phasellus condimentum lectus a",
       "content": [
@@ -30,7 +40,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "type": "interactive",
       "title": "Nullam aliquam",
       "content": [

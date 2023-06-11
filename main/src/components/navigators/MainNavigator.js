@@ -4,6 +4,7 @@ import OsaScreen from '../../screens/OsaScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SummaryScreen from '../../screens/SummaryScreen';
+import ExamplesScreen from '../../screens/osa_tasks_screens/ExamplesScreen';
 
 export class MainNavigator extends Component {
 
@@ -26,6 +27,11 @@ export class MainNavigator extends Component {
             <Stack.Screen 
               name="summaryScreen"
               component={SummaryScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="examplesScreen"
+              component={ExamplesScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

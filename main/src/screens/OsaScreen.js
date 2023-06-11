@@ -23,26 +23,11 @@ export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
-  const [displayTaskContainer, setDisplayTaskContainer] = useState(false);
   const numberOfTasks = TASK_MANAGER.numberOfTasks;
 
   useEffect(() => {
     const currentTask = TASK_MANAGER.getTask(progress);
     setTask(currentTask);
-
-    let isTaskContainerDisplayed = false;
-
-    if (currentTask instanceof ReadingTask) {
-      isTaskContainerDisplayed = false;
-    } else if (currentTask instanceof QuizTask) {
-      isTaskContainerDisplayed = true;
-    } else if (currentTask instanceof InteractiveTask) {
-      isTaskContainerDisplayed = false;
-    } else {
-      isTaskContainerDisplayed = false;
-    }
-
-    setDisplayTaskContainer(isTaskContainerDisplayed);
   }, [progress]);
 
   const nextTask = () => {
@@ -112,7 +97,7 @@ export default function OsaScreen({navigation, route}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={displayTaskContainer ? styles.osaCard : styles.osaNoCard}>
+      <View style={styles.osaNoCard}>
         {task && renderTask()}
       </View>
     </ImageBackground>
@@ -120,24 +105,6 @@ export default function OsaScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  osaCard: {
-    maxHeight: '85%',
-    maxWidth: '90%',
-    alignSelf: 'center',
-    borderRadius: 8,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 3,
-      height: 3,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 6,
-    margin: 10,
-    padding: 20,
-    alignItems: 'center',
-  },
   osaNoCard: {
     minHeight: '75%',
     width: '100%',

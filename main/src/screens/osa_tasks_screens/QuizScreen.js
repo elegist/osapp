@@ -30,7 +30,7 @@ export class QuizScreen extends Component {
 
     if (this.props.style == SINGLE_CHOICE) {
       return (
-        <View style={styles.radioButtonView}>
+        <View style={styles.choicesView}>
           <RadioButton
             choices={this.props.choices}
             onSelect={choice => this.setState({radioChoice: choice})}
@@ -39,30 +39,32 @@ export class QuizScreen extends Component {
       );
     } else if (this.props.style == MUTLIPLE_CHOICE) {
       return (
-        <View style={styles.checkBoxesView}>
-          {this.props.choices.map((choice, index) => {
-            return (
-              <Checkbox
-                key={index}
-                index={index}
-                label={choice}
-                onSelect={choice => {
-                  if (this.state.checkChoices.includes(choice)) {
-                    const array = this.state.checkChoices;
-                    const index = array.indexOf(choice);
+        <View style={styles.choicesView}>
+          <View>
+            {this.props.choices.map((choice, index) => {
+              return (
+                <Checkbox
+                  key={index}
+                  index={index}
+                  label={choice}
+                  onSelect={choice => {
+                    if (this.state.checkChoices.includes(choice)) {
+                      const array = this.state.checkChoices;
+                      const index = array.indexOf(choice);
 
-                    array.splice(index, 1);
+                      array.splice(index, 1);
 
-                    this.setState({checkChoices: array});
-                  } else {
-                    this.setState({
-                      checkChoices: [...this.state.checkChoices, choice],
-                    });
-                  }
-                }}
-              />
-            );
-          })}
+                      this.setState({checkChoices: array});
+                    } else {
+                      this.setState({
+                        checkChoices: [...this.state.checkChoices, choice],
+                      });
+                    }
+                  }}
+                />
+              );
+            })}
+          </View>
         </View>
       );
     }
@@ -103,7 +105,18 @@ export class QuizScreen extends Component {
 
 const styles = StyleSheet.create({
   viewContainer: {
-    flex: 1,
+    height: '92%',
+    padding: 20,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    elevation: 6,
   },
   scrollView: {
     flex: 0,
@@ -115,11 +128,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
   },
-  radioButtonView: {
+  choicesView: {
     alignItems: 'center',
-  },
-  checkBoxesView: {
-    paddingHorizontal: 5,
   },
 });
 

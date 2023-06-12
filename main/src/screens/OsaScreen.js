@@ -97,7 +97,7 @@ export default function OsaScreen({navigation, route}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.osaNoCard}>
+      <View style={styles.taskContainer}>
         {task && renderTask()}
       </View>
     </ImageBackground>
@@ -105,7 +105,7 @@ export default function OsaScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  osaNoCard: {
+  taskContainer: {
     minHeight: '75%',
     width: '100%',
     alignSelf: 'center',

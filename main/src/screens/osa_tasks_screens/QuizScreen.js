@@ -80,7 +80,7 @@ export class QuizScreen extends Component {
     Animated.sequence([
       Animated.timing(this.fadeAnim, {
         toValue: 1,
-        duration: 1200,
+        duration: 600,
         useNativeDriver: true,
         easing: Easing.ease,
       }),
@@ -88,13 +88,13 @@ export class QuizScreen extends Component {
       Animated.parallel([
         Animated.timing(this.fadeAnim2, {
           toValue: 1,
-          duration: 600,
+          duration: 400,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(this.moveAnim, {
           toValue: 0,
-          duration: 600,
+          duration: 400,
           useNativeDriver: true,
           easing: Easing.ease,
         }),
@@ -142,6 +142,8 @@ export class QuizScreen extends Component {
 const styles = StyleSheet.create({
   viewContainer: {
     height: '92%',
+    width: "100%",
+    justifyContent: "space-evenly",
     padding: 20,
     borderRadius: 8,
     backgroundColor: '#fff',
@@ -155,10 +157,9 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   scrollView: {
-    flex: 0,
+    flex: 1,
     marginVertical: 10,
     padding: 5,
-    flexGrow: 0,
   },
   scrollViewContent: {
     flexGrow: 1,

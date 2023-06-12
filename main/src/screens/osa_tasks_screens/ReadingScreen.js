@@ -95,7 +95,7 @@ export class ReadingScreen extends Component {
       Animated.delay(200),
       Animated.timing(this.fadeTextAnim, {
         toValue: 1,
-        duration: 800,
+        duration: 600,
         useNativeDriver: true,
         easing: Easing.ease,
       }),
@@ -106,12 +106,12 @@ export class ReadingScreen extends Component {
     Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 0,
-        duration: 400,
+        duration: 300,
         useNativeDriver: true,
       }),
       Animated.timing(this.scaleTextAnim, {
         toValue: 0,
-        duration: 400,
+        duration: 300,
         useNativeDriver: true,
         easing: Easing.ease,
       }),
@@ -122,7 +122,7 @@ export class ReadingScreen extends Component {
     this.fadeImageAnim.setValue(0);
     Animated.timing(this.fadeImageAnim, {
       toValue: 1,
-      duration: 1000,
+      duration: 600,
       useNativeDriver: true,
       easing: Easing.ease,
     }).start(() => {
@@ -182,7 +182,6 @@ export class ReadingScreen extends Component {
               />
             </Animated.View>
           )}
-          <Text style={globalStyles.textSecondary}>{this.props.topic}</Text>
           <Animated.View>
             <Animated.Text
               style={[globalStyles.textReadingTask, animTextStyle]}>

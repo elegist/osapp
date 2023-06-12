@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
-    padding: 20,
+    margin: 5,
+    padding: 10,
   },
   buttonWrapper: {
     alignSelf: 'center',

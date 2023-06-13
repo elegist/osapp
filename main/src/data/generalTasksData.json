@@ -2,6 +2,24 @@
   "topic": "Allgemein",
   "tasks": [
     {
+      "id": -1,
+      "type": "interactive",
+      "slug": "cs1",
+      "content": [
+        "Dies ist der erste Interaktive Task",
+        "Dieser Text soll erklären, wie der Interaktive Task zu bedienen ist",
+        "Diese Textblöcke könnten eventuell nochmal abrufbar sein, über einen Button"
+      ],
+      "help": [
+        "Dies ist der erste Hilfsblock",
+        "Hier ist der zweite Hilfsblock, dieser soll erst beim zweiten mal angezeigt werden",
+        "Mit steigenden genutzten Hilfen, sollten diese im Result screen auch vermerkt werden",
+        "Daher sollte der Index dieses Arrays gespeichert werden"
+      ]
+    },
+
+    
+    {
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",

@@ -115,6 +115,21 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#1C2327',
   },
+  textCodeRegular: {
+    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: 16,
+    color: "#1C2327"
+  },
+  textCodeItalic: {
+    fontFamily: 'JetBrainsMono-Italic',
+    fontSize: 16,
+    color: "#1C2327"
+  },
+  textCodeBold: {
+    fontFamily: 'JetBrainsMono-Bold',
+    fontSize: 16,
+    color: "#1C2327"
+  },
   //images
   osaImage: {
     backgroundColor: 'white',

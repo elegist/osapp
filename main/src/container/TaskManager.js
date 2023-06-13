@@ -113,7 +113,7 @@ export default class TaskManager extends Component {
             id: task.id,
             topic: task.topic,
             title: task.title,
-            content: task.content
+            content: task.content,
           });
           break;
         case QUIZ:
@@ -129,9 +129,9 @@ export default class TaskManager extends Component {
         case INTERACTIVE:
           newTask = new InteractiveTask({
             id: task.id,
-            topic: task.topic,
-            title: task.title,
-            text: task.text,
+            slug: task.slug,
+            content: task.content,
+            help: task.help,
           });
           break;
         default:

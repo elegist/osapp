@@ -2,8 +2,32 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import Rectangle from './Rectangle';
 
 export default function TaskCs1() {
+  const taskData = [
+    {
+      index: 0,
+      label: "index: 0"
+    },
+    {
+      index: 1,
+      label: "index: 1"
+    },
+    {
+      index: 2,
+      label: "index: 2"
+    },
+    {
+      index: 3,
+      label: "index: 3"
+    },
+    {
+      index: 4,
+      label: "index: 4"
+    },
+  ];
+
   return (
     <View style={style.taskWrapper}>
       <View style={style.codeWindow}>
@@ -39,21 +63,9 @@ export default function TaskCs1() {
         </Text>
       </View>
       <View style={style.resultWindow}>
-        <TouchableOpacity style={style.rectangle}>
-          <Text style={globalStyles.textParagraph}>index: 1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={style.rectangle}>
-          <Text style={globalStyles.textParagraph}>index: 2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={style.rectangle}>
-          <Text style={globalStyles.textParagraph}>index: 3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={style.rectangle}>
-          <Text style={globalStyles.textParagraph}>index: 4</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={style.rectangle}>
-          <Text style={globalStyles.textParagraph}>index: 5</Text>
-        </TouchableOpacity>
+        {taskData.map(rectangle => (
+          <Rectangle key={rectangle.index} label={rectangle.label} />
+        ))}
       </View>
     </View>
   );
@@ -61,7 +73,7 @@ export default function TaskCs1() {
 
 const style = StyleSheet.create({
   taskWrapper: {
-    height: "90%",
+    height: '90%',
     width: '80%',
     gap: 10,
   },
@@ -75,14 +87,7 @@ const style = StyleSheet.create({
   resultWindow: {
     flex: 3,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  rectangle: {
-    backgroundColor: '#D9D9D9',
-    margin: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    borderRadius: 10,
+    alignItems: 'center',
   },
   helpButton: {
     position: 'absolute',

@@ -11,7 +11,7 @@ export default class InteractiveScreen extends Component {
   renderTask = () => {
     switch (this.props.slug) {
       case 'cs1':
-        return <TaskCs1 />;
+        return <TaskCs1 help={this.props.help} />;
         break;
       default:
         break;

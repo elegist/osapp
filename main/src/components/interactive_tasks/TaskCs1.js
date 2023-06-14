@@ -4,8 +4,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import Rectangle from './Rectangle';
 
-export default function TaskCs1() {
+export default function TaskCs1({help}) {
   const [modalVisibile, setModalVisible] = useState(false);
+  const [helpIndex, setHelpIndex] = useState(0);
 
   const taskData = [
     {
@@ -79,9 +80,21 @@ export default function TaskCs1() {
         onRequestClose={() => setModalVisible(false)}>
         <View style={style.modalContainer}>
           <View style={style.modalContent}>
-            <Text style={globalStyles.textParagraph}>Testing the modal</Text>
-            <TouchableOpacity style={style.closeButton} onPress={() => setModalVisible(false)}>
+            <TouchableOpacity
+              style={style.closeButton}
+              onPress={() => setModalVisible(false)}>
               <Icon name="close" size={40} color="white"></Icon>
+            </TouchableOpacity>
+            <Text style={globalStyles.textParagraph}>{help[helpIndex]}</Text>
+            <TouchableOpacity
+              disabled={help.length - 1 === helpIndex}
+              style={
+                help.length - 1 === helpIndex
+                  ? globalStyles.smallButtonDisabled
+                  : globalStyles.smallButton
+              }
+              onPress={() => setHelpIndex(helpIndex + 1)}>
+              <Text style={globalStyles.textSmallButton}>nächster Tipp</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -136,8 +149,10 @@ const style = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.75)',
   },
   modalContent: {
+    maxWidth: '60%',
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
+    gap: 20,
   },
 });

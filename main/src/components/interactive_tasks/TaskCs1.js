@@ -1,37 +1,41 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import Rectangle from './Rectangle';
 
 export default function TaskCs1() {
+  const [modalVisibile, setModalVisible] = useState(false);
+
   const taskData = [
     {
       index: 0,
-      label: "index: 0"
+      label: 'index: 0',
     },
     {
       index: 1,
-      label: "index: 1"
+      label: 'index: 1',
     },
     {
       index: 2,
-      label: "index: 2"
+      label: 'index: 2',
     },
     {
       index: 3,
-      label: "index: 3"
+      label: 'index: 3',
     },
     {
       index: 4,
-      label: "index: 4"
+      label: 'index: 4',
     },
   ];
 
   return (
     <View style={style.taskWrapper}>
       <View style={style.codeWindow}>
-        <TouchableOpacity style={style.helpButton}>
+        <TouchableOpacity
+          style={style.helpButton}
+          onPress={() => setModalVisible(true)}>
           <Icon name="question" size={40} color="white" />
         </TouchableOpacity>
 
@@ -67,6 +71,21 @@ export default function TaskCs1() {
           <Rectangle key={rectangle.index} label={rectangle.label} />
         ))}
       </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisibile}
+        onRequestClose={() => setModalVisible(false)}>
+        <View style={style.modalContainer}>
+          <View style={style.modalContent}>
+            <Text style={globalStyles.textParagraph}>Testing the modal</Text>
+            <TouchableOpacity style={style.closeButton} onPress={() => setModalVisible(false)}>
+              <Icon name="close" size={40} color="white"></Icon>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -98,5 +117,27 @@ const style = StyleSheet.create({
     elevation: 5,
     backgroundColor: '#F4DD08',
     borderRadius: 50,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: -40,
+    right: -40,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    margin: 5,
+    elevation: 5,
+    backgroundColor: '#dd4040',
+    borderRadius: 50,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
   },
 });

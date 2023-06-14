@@ -74,7 +74,7 @@ export default function TaskCs1({help}) {
       </View>
 
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisibile}
         onRequestClose={() => setModalVisible(false)}>

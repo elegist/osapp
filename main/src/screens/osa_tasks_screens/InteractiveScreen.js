@@ -19,6 +19,13 @@ export default class InteractiveScreen extends Component {
   };
 
   render() {
-    return <View style={globalStyles.fullContainer}>{this.renderTask()}</View>;
+    return (
+      <View style={globalStyles.fullContainer}>
+        {this.renderTask()}
+        <TouchableOpacity style={globalStyles.smallButton}>
+          <Text style={globalStyles.textSmallButton}>Abgeben</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }

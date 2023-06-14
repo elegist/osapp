@@ -38,13 +38,30 @@ export default function TaskCs1() {
           red
         </Text>
       </View>
-      <View style={style.resultWindow}></View>
+      <View style={style.resultWindow}>
+        <TouchableOpacity style={style.rectangle}>
+          <Text style={globalStyles.textParagraph}>index: 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={style.rectangle}>
+          <Text style={globalStyles.textParagraph}>index: 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={style.rectangle}>
+          <Text style={globalStyles.textParagraph}>index: 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={style.rectangle}>
+          <Text style={globalStyles.textParagraph}>index: 4</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={style.rectangle}>
+          <Text style={globalStyles.textParagraph}>index: 5</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const style = StyleSheet.create({
   taskWrapper: {
+    height: "90%",
     width: '80%',
     gap: 10,
   },
@@ -56,7 +73,16 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   resultWindow: {
-    flex: 2,
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  rectangle: {
+    backgroundColor: '#D9D9D9',
+    margin: 5,
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 10,
   },
   helpButton: {
     position: 'absolute',

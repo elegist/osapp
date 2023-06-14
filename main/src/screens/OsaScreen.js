@@ -106,32 +106,14 @@ export default function OsaScreen({navigation, route}) {
 
 const styles = StyleSheet.create({
   taskContainer: {
-    minHeight: '75%',
+    flex: 1,
     width: '100%',
-    alignSelf: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
     margin: 5,
     padding: 10,
-  },
-  buttonWrapper: {
-    alignSelf: 'center',
-    maxHeight: '10%',
-    marginVertical: 16,
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
   },
   progressBar: {
     height: 16,
     alignSelf: 'center',
     flex: 0.85,
-  },
-  navButtonEnabled: {
-    color: '#8CBA45',
-  },
-  navButtonDisabled: {
-    color: '#ABABAB',
   },
 });

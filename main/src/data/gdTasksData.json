@@ -5,40 +5,8 @@
       "id": 0,
       "type": "reading",
       "title": "Modellierung, Shading und Animation",
-      "content": ["Kommen wir nun zum Fachbereich GD. Hier lernst du alles rund um die Computergrafik.", 
-      "Du wirst selbst von Scratch anfangen modelle zu bauen, sie zu shaden und in bestimmten Fächern sogar animieren.", 
-      "Mit von der Partie hier ist allerdings auch die Mathematik.", 
-      "Das macht in diesem Fachbereich aber auch sehr viel Sinn, wie du hoffentlich im Folgenden Abschnitt sehen wirst.", 
-      "Keine Angst vor der Mathematik! Da sie in diesem Fach praktisch angewandt wird, ist sie hier auch nur halb so schlimm -", 
-      "du weißt immer warum du die Mathematik gerade machen sollst und wofür du sie wirklich gebrauch kannst."
-    ]
-    },
-    {
-      "id": 1,
-      "type": "quiz",
-      "style": "multiple",
-      "question": "Was ist 2x2 ?",
-      "choices": ["43", "783498", "INF", "PI", "SQRT(245)", "4"],
-      "correctChoices": ["4"]
-    },
-    {
-      "id": 2,
-      "type": "reading",
-      "title": "Proin euismod metus",
       "content": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
-        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
-      ]
-    },
-    {
-      "id": 3,
-      "type": "interactive",
-      "title": "Sed justo libero",
-      "content": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
-        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+        "Hier folgt toller GD content..."
       ]
     }
   ]

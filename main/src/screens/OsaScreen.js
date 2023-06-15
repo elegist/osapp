@@ -44,11 +44,18 @@ export default function OsaScreen({navigation, route}) {
     if (task instanceof ReadingTask) {
       return <ReadingScreen key={task.id} {...task} nextTask={nextTask} />;
     } else if (task instanceof QuizTask) {
-      return <QuizScreen {...task} nextTask={nextTask} />;
+      return <QuizScreen key={task.id} {...task} nextTask={nextTask} />;
     } else if (task instanceof InteractiveTask) {
-      return <InteractiveScreen {...task} nextTask={nextTask} />;
-    } else if(task instanceof ExamplesTask) {
-      return <ExamplesScreen key={task.id} {...task} nextTask={nextTask} source='tasks' />
+      return <InteractiveScreen key={task.id} {...task} nextTask={nextTask} />;
+    } else if (task instanceof ExamplesTask) {
+      return (
+        <ExamplesScreen
+          key={task.id}
+          {...task}
+          nextTask={nextTask}
+          source="tasks"
+        />
+      );
     } else {
       return null;
     }
@@ -97,9 +104,7 @@ export default function OsaScreen({navigation, route}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.taskContainer}>
-        {task && renderTask()}
-      </View>
+      <View style={styles.taskContainer}>{task && renderTask()}</View>
     </ImageBackground>
   );
 }

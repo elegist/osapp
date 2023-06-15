@@ -5,10 +5,10 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 import Rectangle from './Rectangle';
 
 export default function TaskCs1({help}) {
-  const [modalVisibile, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [helpIndex, setHelpIndex] = useState(0);
 
-  const taskData = [
+  const rectangles = [
     {
       index: 0,
       label: 'index: 0',
@@ -68,7 +68,7 @@ export default function TaskCs1({help}) {
         </Text>
       </View>
       <View style={style.resultWindow}>
-        {taskData.map(rectangle => (
+        {rectangles.map(rectangle => (
           <Rectangle key={rectangle.index} label={rectangle.label} />
         ))}
       </View>
@@ -76,7 +76,7 @@ export default function TaskCs1({help}) {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisibile}
+        visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={style.modalContainer}>
           <View style={style.modalContent}>

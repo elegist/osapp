@@ -3,104 +3,88 @@ import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import Rectangle from './Rectangle';
+import InteractiveTaskBase from './InteractiveTaskBase';
 
-export default function TaskCs1({help}) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [helpIndex, setHelpIndex] = useState(0);
+export default class TaskCs1 extends InteractiveTaskBase {
+  constructor(props) {
+    super(props);
 
-  const rectangles = [
-    {
-      index: 0,
-      label: 'index: 0',
-    },
-    {
-      index: 1,
-      label: 'index: 1',
-    },
-    {
-      index: 2,
-      label: 'index: 2',
-    },
-    {
-      index: 3,
-      label: 'index: 3',
-    },
-    {
-      index: 4,
-      label: 'index: 4',
-    },
-  ];
+    this.rectangles = [
+      {
+        index: 0,
+        label: 'index: 0',
+      },
+      {
+        index: 1,
+        label: 'index: 1',
+      },
+      {
+        index: 2,
+        label: 'index: 2',
+      },
+      {
+        index: 3,
+        label: 'index: 3',
+      },
+      {
+        index: 4,
+        label: 'index: 4',
+      },
+    ];
+  }
 
-  return (
-    <View style={style.taskWrapper}>
-      <View style={style.codeWindow}>
-        <TouchableOpacity
-          style={style.helpButton}
-          onPress={() => setModalVisible(true)}>
-          <Icon name="question" size={40} color="white" />
-        </TouchableOpacity>
+  render() {
+    return (
+      <View style={style.taskWrapper}>
+        <View style={style.codeWindow}>
+          <TouchableOpacity
+            disabled={this.props.submitted}
+            style={style.helpButton}
+            onPress={() => this.setState({modalVisible: true})}>
+            <Icon name="question" size={40} color="white" />
+          </TouchableOpacity>
 
-        <Text style={globalStyles.textCodeRegular}>
-          <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
-            if{' '}
-          </Text>
-          rectangle.
-          <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
-            index
-          </Text>{' '}
-          <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
-            is{' '}
-          </Text>
-          even:
-        </Text>
-
-        <Text style={globalStyles.textCodeRegular}>
-          <Text>
+          <Text style={globalStyles.textCodeRegular}>
+            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+              if{' '}
+            </Text>
             rectangle.
             <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
-              color{' '}
+              index
+            </Text>{' '}
+            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+              is{' '}
             </Text>
+            even:
           </Text>
-          <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
-            is{' '}
-          </Text>
-          red
-        </Text>
-      </View>
-      <View style={style.resultWindow}>
-        {rectangles.map(rectangle => (
-          <Rectangle key={rectangle.index} label={rectangle.label} />
-        ))}
-      </View>
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}>
-        <View style={style.modalContainer}>
-          <View style={style.modalContent}>
-            <TouchableOpacity
-              style={style.closeButton}
-              onPress={() => setModalVisible(false)}>
-              <Icon name="close" size={40} color="white"></Icon>
-            </TouchableOpacity>
-            <Text style={globalStyles.textParagraph}>{help[helpIndex]}</Text>
-            <TouchableOpacity
-              disabled={help.length - 1 === helpIndex}
-              style={
-                help.length - 1 === helpIndex
-                  ? globalStyles.smallButtonDisabled
-                  : globalStyles.smallButton
-              }
-              onPress={() => setHelpIndex(helpIndex + 1)}>
-              <Text style={globalStyles.textSmallButton}>nächster Tipp</Text>
-            </TouchableOpacity>
-          </View>
+          <Text style={globalStyles.textCodeRegular}>
+            <Text>
+              rectangle.
+              <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+                color{' '}
+              </Text>
+            </Text>
+            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+              is{' '}
+            </Text>
+            red
+          </Text>
         </View>
-      </Modal>
-    </View>
-  );
+
+        <View style={style.resultWindow}>
+          {this.rectangles.map(rectangle => (
+            <Rectangle
+              key={rectangle.index}
+              label={rectangle.label}
+              submitted={this.props.submitted}
+            />
+          ))}
+        </View>
+        {this.includeModal()}
+      </View>
+    );
+  }
 }
 
 const style = StyleSheet.create({

@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 
-export default function Rectangle({label}) {
+export default function Rectangle({label, submitted}) {
   const [pressed, setPressed] = useState(false);
 
   const handlePress = () => {
@@ -11,6 +11,7 @@ export default function Rectangle({label}) {
 
   return (
     <TouchableOpacity
+      disabled={submitted}
       style={
         pressed
           ? {...style.rectangle, backgroundColor: '#FD4F4F'}

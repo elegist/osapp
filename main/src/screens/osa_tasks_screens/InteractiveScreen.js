@@ -1,4 +1,11 @@
-import {Text, View, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskCs1 from '../../components/interactive_tasks/TaskCs1';
@@ -9,6 +16,8 @@ export default class InteractiveScreen extends Component {
     super(props);
     this.state = {
       submitted: false,
+      explanationTextVisible: true,
+      explanationTextIndex: 0,
     };
   }
 
@@ -38,6 +47,33 @@ export default class InteractiveScreen extends Component {
   render() {
     return (
       <View style={globalStyles.fullContainer}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.explanationTextVisible}
+          onRequestClose={() => this.setState({explanationTextVisible: false})}>
+          <View style={style.modalContainer}>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                if (
+                  this.state.explanationTextIndex <
+                  this.props.content.length - 1
+                ) {
+                  this.setState({
+                    explanationTextIndex: this.state.explanationTextIndex + 1,
+                  });
+                } else {
+                  this.setState({explanationTextVisible: false});
+                }
+              }}>
+              <View style={style.modalContent}>
+                <Text style={globalStyles.textParagraph}>
+                  {this.props.content[this.state.explanationTextIndex]}
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </Modal>
         {this.renderTask()}
         <TouchableOpacity
           style={globalStyles.smallButton}
@@ -50,3 +86,22 @@ export default class InteractiveScreen extends Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  modalContent: {
+    width: '80%',
+    height: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    gap: 20,
+  },
+});

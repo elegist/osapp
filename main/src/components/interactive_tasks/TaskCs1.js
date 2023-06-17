@@ -7,6 +7,7 @@ import InteractiveTaskBase from './InteractiveTaskBase';
 export default class TaskCs1 extends InteractiveTaskBase {
   constructor(props) {
     super(props);
+    super.setDefaultState();
 
     this.rectangles = [
       {
@@ -30,6 +31,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
         label: 'index: 4',
       },
     ];
+
   }
 
   render() {

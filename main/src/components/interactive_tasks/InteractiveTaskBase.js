@@ -6,10 +6,8 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 export default class InteractiveTaskBase extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modalVisible: false,
-      helpIndex: 0,
-    };
+
+    this.setDefaultState();
 
     this.baseStyles = StyleSheet.create({
       taskWrapper: {
@@ -51,6 +49,13 @@ export default class InteractiveTaskBase extends Component {
         borderRadius: 50,
       },
     });
+  }
+
+  setDefaultState() {
+    this.state = {
+      modalVisible: false,
+      helpIndex: 0,
+    };
   }
 
   includeModal() {

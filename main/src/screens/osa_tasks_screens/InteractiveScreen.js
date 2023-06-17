@@ -46,7 +46,7 @@ export default class InteractiveScreen extends Component {
 
   render() {
     return (
-      <View style={globalStyles.fullContainer}>
+      <View style={style.taskContainer}>
         <Modal
           animationType="fade"
           transparent={true}
@@ -88,6 +88,11 @@ export default class InteractiveScreen extends Component {
 }
 
 const style = StyleSheet.create({
+  taskContainer: {
+    height: '99%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',

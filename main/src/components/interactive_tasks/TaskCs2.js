@@ -1,14 +1,38 @@
 import {Text, View, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import globalStyles from '../../styles/GlobalStyleSheet';
 
 export default class TaskCs2 extends InteractiveTaskBase {
   constructor(props) {
     super(props);
+    super.setDefaultState();
   }
 
   render() {
-    return <View style={this.baseStyles.taskWrapper}></View>;
+    return (
+      <View style={this.baseStyles.taskWrapper}>
+        <View style={this.baseStyles.codeWindow}>
+          <TouchableOpacity
+            disabled={this.props.submitted}
+            style={this.baseStyles.helpButton}
+            onPress={() => this.setState({modalVisible: true})}>
+            <Icon name="question" size={40} color="white" />
+          </TouchableOpacity>
+
+          <Text style={globalStyles.textCodeRegular}>
+            rectangles.
+            <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+              sortByColor(red)
+            </Text>
+          </Text>
+        </View>
+
+        <View style={this.baseStyles.resultWindow}></View>
+        {this.includeModal()}
+      </View>
+    );
   }
 }
 

@@ -2,7 +2,6 @@ import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import Rectangle from './Rectangle';
 import InteractiveTaskBase from './InteractiveTaskBase';
 
 export default class TaskCs1 extends InteractiveTaskBase {
@@ -87,6 +86,27 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 }
 
+const Rectangle = ({label, submitted}) => {
+  const [pressed, setPressed] = useState(false);
+
+  const handlePress = () => {
+    setPressed(!pressed);
+  };
+
+  return (
+    <TouchableOpacity
+      disabled={submitted}
+      style={
+        pressed
+          ? {...style.rectangle, backgroundColor: '#FD4F4F'}
+          : {...style.rectangle, backgroundColor: '#D9D9D9'}
+      }
+      onPress={handlePress}>
+      <Text style={globalStyles.textParagraph}>{label}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const style = StyleSheet.create({
   taskWrapper: {
     height: '90%',
@@ -138,5 +158,11 @@ const style = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     gap: 20,
+  },
+  rectangle: {
+    margin: 5,
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 10,
   },
 });

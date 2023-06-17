@@ -10,6 +10,47 @@ export default class InteractiveTaskBase extends Component {
       modalVisible: false,
       helpIndex: 0,
     };
+
+    this.baseStyles = StyleSheet.create({
+      taskWrapper: {
+        height: '90%',
+        width: '80%',
+        gap: 10,
+      },
+      codeWindow: {
+        flex: 1,
+        backgroundColor: '#ABABAB',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      resultWindow: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      helpButton: {
+        position: 'absolute',
+        top: -20,
+        right: -25,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        elevation: 5,
+        backgroundColor: '#F4DD08',
+        borderRadius: 50,
+      },
+      closeButton: {
+        position: 'absolute',
+        top: -40,
+        right: -40,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        margin: 5,
+        elevation: 5,
+        backgroundColor: '#dd4040',
+        borderRadius: 50,
+      },
+    });
   }
 
   includeModal() {

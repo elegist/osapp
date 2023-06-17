@@ -34,11 +34,11 @@ export default class TaskCs1 extends InteractiveTaskBase {
 
   render() {
     return (
-      <View style={style.taskWrapper}>
-        <View style={style.codeWindow}>
+      <View style={this.baseStyles.taskWrapper}>
+        <View style={this.baseStyles.codeWindow}>
           <TouchableOpacity
             disabled={this.props.submitted}
-            style={style.helpButton}
+            style={this.baseStyles.helpButton}
             onPress={() => this.setState({modalVisible: true})}>
             <Icon name="question" size={40} color="white" />
           </TouchableOpacity>
@@ -71,7 +71,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
           </Text>
         </View>
 
-        <View style={style.resultWindow}>
+        <View style={this.baseStyles.resultWindow}>
           {this.rectangles.map(rectangle => (
             <Rectangle
               key={rectangle.index}
@@ -93,6 +93,15 @@ const Rectangle = ({label, submitted}) => {
     setPressed(!pressed);
   };
 
+  const style = StyleSheet.create({
+    rectangle: {
+      margin: 5,
+      paddingVertical: 20,
+      paddingHorizontal: 40,
+      borderRadius: 10,
+    },
+  });
+
   return (
     <TouchableOpacity
       disabled={submitted}
@@ -106,63 +115,3 @@ const Rectangle = ({label, submitted}) => {
     </TouchableOpacity>
   );
 };
-
-const style = StyleSheet.create({
-  taskWrapper: {
-    height: '90%',
-    width: '80%',
-    gap: 10,
-  },
-  codeWindow: {
-    flex: 1,
-    backgroundColor: '#ABABAB',
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  resultWindow: {
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  helpButton: {
-    position: 'absolute',
-    top: -20,
-    right: -25,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    elevation: 5,
-    backgroundColor: '#F4DD08',
-    borderRadius: 50,
-  },
-  closeButton: {
-    position: 'absolute',
-    top: -40,
-    right: -40,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    margin: 5,
-    elevation: 5,
-    backgroundColor: '#dd4040',
-    borderRadius: 50,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.75)',
-  },
-  modalContent: {
-    maxWidth: '60%',
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    gap: 20,
-  },
-  rectangle: {
-    margin: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    borderRadius: 10,
-  },
-});

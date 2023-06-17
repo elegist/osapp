@@ -8,14 +8,36 @@ export default class TaskCs2 extends InteractiveTaskBase {
   }
 
   render() {
-    return (
-      <View>
-        {this.includeModal()}
-        <TouchableOpacity onPress={() => this.setState({modalVisible: true})}>
-          <Text>open</Text>
-        </TouchableOpacity>
-        <Text>{this.props.help[0]}</Text>
-      </View>
-    );
+    return <View style={this.baseStyles.taskWrapper}></View>;
   }
 }
+
+const Rectangle = ({label, submitted}) => {
+  const [pressed, setPressed] = useState(false);
+
+  const handlePress = () => {
+    setPressed(!pressed);
+  };
+
+  const style = StyleSheet.create({
+    rectangle: {
+      margin: 5,
+      paddingVertical: 20,
+      paddingHorizontal: 40,
+      borderRadius: 10,
+    },
+  });
+
+  return (
+    <TouchableOpacity
+      disabled={submitted}
+      style={
+        pressed
+          ? {...style.rectangle, backgroundColor: '#FD4F4F'}
+          : {...style.rectangle, backgroundColor: '#D9D9D9'}
+      }
+      onPress={handlePress}>
+      <Text style={globalStyles.textParagraph}>{label}</Text>
+    </TouchableOpacity>
+  );
+};

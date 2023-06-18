@@ -11,8 +11,6 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
 import ImageMapper from '../helper/ImageMapper';
 
-const MAX_TEXT_LENGTH = 100;
-
 /**
  * View element of ReadingTask
  */
@@ -20,6 +18,7 @@ export class ReadingScreen extends Component {
   contentArray = [];
   fadeTextAnim = new Animated.Value(0);
   scaleTextAnim = new Animated.Value(1);
+  swipeTextAnim = new Animated.Value(0);
   fadeImageAnim = new Animated.Value(0);
   backgroundColorAnim = new Animated.Value(0);
 
@@ -60,7 +59,7 @@ export class ReadingScreen extends Component {
   };
 
   /**
-   * Call this when user touches the screen. Iterates through text array
+   * Called when the user swipes up, proceeds to next text or finished task after last one
    */
   proceed = () => {
     const {currentIndex} = this.state;
@@ -75,7 +74,6 @@ export class ReadingScreen extends Component {
             });
             this.fadeInImage();
           } else {
-            this.makeImageTransparent();
             this.fadeInText();
           }
         });
@@ -87,17 +85,39 @@ export class ReadingScreen extends Component {
     }
   };
 
+  /**
+   * Called when the user swipes down
+   */
+  goBack = () => {
+    const { currentIndex } = this.state;
+    const previousIndex = currentIndex - 1;
+  
+    if (previousIndex >= 0 && previousIndex < this.contentArray.length) {
+      this.fadeOutText(() => {
+        this.setState({ currentIndex: previousIndex }, () => {
+          if (this.contentArray[previousIndex]['isImage']) {
+            this.setState({
+              currentImage: this.contentArray[previousIndex]['value'],
+            });
+            this.fadeInImage();
+          } else {
+            this.fadeInText();
+          }
+        });
+      });
+    }
+  };
+  
   // Animations
   fadeInText = () => {
-    this.fadeTextAnim.setValue(0);
+    this.swipeTextAnim.setValue(0);
     this.scaleTextAnim.setValue(1);
-    Animated.sequence([
-      Animated.delay(200),
+    Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 1,
-        duration: 600,
+        duration: 500,
         useNativeDriver: true,
-        easing: Easing.ease,
+        easing: Easing.easeIn,
       }),
     ]).start();
   };
@@ -108,52 +128,69 @@ export class ReadingScreen extends Component {
         toValue: 0,
         duration: 300,
         useNativeDriver: true,
+        easing: Easing.easeIn,
       }),
       Animated.timing(this.scaleTextAnim, {
         toValue: 0,
-        duration: 300,
+        duration: 750,
         useNativeDriver: true,
-        easing: Easing.ease,
+        easing: Easing.easeOut,
+      }),
+      Animated.timing(this.swipeTextAnim, {
+        toValue: -600,
+        duration: 600,
+        useNativeDriver: true,
+        easing: Easing.easeOut,
       }),
     ]).start(callback);
   };
 
   fadeInImage = () => {
+    this.backgroundColorAnim.setValue(0);
     this.fadeImageAnim.setValue(0);
-    Animated.timing(this.fadeImageAnim, {
-      toValue: 1,
-      duration: 600,
-      useNativeDriver: true,
-      easing: Easing.ease,
-    }).start(() => {
-      // Animation completed, update background color
-      this.updateBackgroundColor();
+  
+    Animated.sequence([
+      // 1st part of the animation (fading in)
+      Animated.parallel([
+        Animated.timing(this.fadeImageAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+      ]),
+      Animated.delay(450), // Delay before the image goes green
+    ]).start(() => {
+      this.proceed();
+      // 2nd part of the animation (fading out to half green)
+      Animated.parallel([
+        Animated.timing(this.fadeImageAnim, {
+          toValue: 0.2,
+          duration: 600,
+          useNativeDriver: true,
+          easing: Easing.easeIn,
+        }),
+        Animated.timing(this.backgroundColorAnim, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: false,
+          easing: Easing.easeIn,
+        }),
+      ]).start();
     });
-  };
-  updateBackgroundColor = () => {
-    Animated.timing(this.backgroundColorAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-  };
-  makeImageTransparent = () => {
-    Animated.timing(this.fadeImageAnim, {
-      toValue: 0.2,
-      duration: 500,
-      useNativeDriver: true,
-      easing: Easing.ease,
-    }).start();
-  };
+  };  
 
   render() {
     const {currentIndex, currentImage} = this.state;
     const animTextStyle = {
       opacity: this.fadeTextAnim,
-      transform: [{scale: this.scaleTextAnim}],
+      transform: [
+        {scale: this.scaleTextAnim},
+        {translateY: this.swipeTextAnim},
+      ],
     };
     const animImageStyle = {
-      opacity: this.fadeImageAnim,
+      opacity: this.fadeImageAnim
     };
     const backgroundColorStyle = {
       backgroundColor: this.backgroundColorAnim.interpolate({
@@ -162,8 +199,15 @@ export class ReadingScreen extends Component {
       }),
     };
     return (
-      <TouchableWithoutFeedback onPress={this.proceed}>
-        <View style={globalStyles.fullContainer}>
+      <TouchableWithoutFeedback>
+        <View
+          onTouchStart={e => (this.touchY = e.nativeEvent.pageY)}
+          onTouchEnd={e => {
+            if (this.touchY - e.nativeEvent.pageY > 20) this.proceed();
+            else if (this.touchY - e.nativeEvent.pageY < -20)
+              this.goBack();
+          }}
+          style={globalStyles.fullContainer}>
           {currentImage && (
             <Animated.View
               style={[

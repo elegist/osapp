@@ -23,18 +23,28 @@ export default function OsaScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const [progress, setProgress] = useState(0);
   const [task, setTask] = useState(null);
+  const [previousTask, setPreviousTask] = useState(null); // Added previousTask state
   const numberOfTasks = TASK_MANAGER.numberOfTasks;
 
   useEffect(() => {
     const currentTask = TASK_MANAGER.getTask(progress);
+    setPreviousTask(task);
     setTask(currentTask);
+    currentTask.startTimeMeasurement()
   }, [progress]);
+
+  useEffect(() => {
+    if (!(task instanceof SummaryTask)) {
+      task?.startTimeMeasurement()
+    }
+    previousTask?.stopTimeMeasurement()
+  }, [task, previousTask])
 
   const nextTask = () => {
     setProgress(prevProgress => prevProgress + 1);
   };
 
-  const previousTask = () => {
+  const lastTask = () => {
     setProgress(prevProgress => (prevProgress > 0 ? prevProgress - 1 : 0));
   };
 
@@ -60,19 +70,12 @@ export default function OsaScreen({navigation, route}) {
     }
   }, [task]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', () => {
-      TASK_MANAGER.resetTaskManager();
-    });
-    return unsubscribe;
-  }, [navigation]);
-
   return (
     <ImageBackground
       source={require('../assets/Background.png')}
       style={globalStyles.mainBackground}>
       <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
-        <TouchableOpacity disabled={progress === 0} onPress={previousTask}>
+        <TouchableOpacity disabled={progress === 0} onPress={lastTask}>
           <Icon
             name="step-backward"
             size={36}

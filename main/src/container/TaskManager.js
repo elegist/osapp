@@ -17,9 +17,7 @@ import ExamplesTask from './osa_tasks/ExamplesTask';
  * @function resetTaskManager() - resets this singleton to its default state
  * @function getTask(progress) - retreive one specific task
  */
-export default class TaskManager extends Component {
-  // singleton instance
-  static managerInstance = null;
+export default class TaskManager {
   // fields
   #userProgress = 0; // user's overall progress
   #topics = null; // collection of all topics
@@ -27,13 +25,21 @@ export default class TaskManager extends Component {
   #userProgressInTopic = 0; // users progress in current topic
   #tasksMap = null; // collection of all tasks mapped to their corresponding topic
   #currentTaskList = null; // collection of all tasks that are currently active in the osa
+  #summaryTask = new SummaryTask({id: 0, title: 'Summary', topic: 'Summary'});
 
   numberOfTasks = 0;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.#initTaskManager();
   }
+
+  getTasksMap = () => {
+    return this.#tasksMap;
+  };
+
+  getSummaryTask = () => {
+    return this.#summaryTask;
+  };
 
   /**
    * Get a singleton instance of this class
@@ -47,17 +53,10 @@ export default class TaskManager extends Component {
   }
 
   /**
-   * Reset this instance to its default state
+   * Reset instance to its default state
    */
   resetTaskManager() {
-    this.#userProgress = 0; // user's overall topic
-    this.#topics = null; // collection of all topics
-    this.#topicsProgress = 0; // overall topic's progress starting at 0 until #topics.length
-    this.#userProgressInTopic = 0; // users progress in current topic
-    this.#tasksMap = null; // collection of all tasks mapped to their corresponding topic
-    this.#currentTaskList = null; // collection of all tasks that are currently active in the osa
-
-    this.#initTaskManager();
+    TaskManager.managerInstance = null;
   }
 
   /**
@@ -80,7 +79,7 @@ export default class TaskManager extends Component {
       this.#generateTasks(csTasksData),
       this.#generateTasks(avTasksData),
       this.#generateTasks(gdTasksData),
-      [new SummaryTask({id: 0, title: 'Summary', topic: 'Summary'})],
+      [this.#summaryTask],
     ];
 
     // generates a map containing all tasks assigned to their topics.
@@ -111,15 +110,16 @@ export default class TaskManager extends Component {
         case READING:
           newTask = new ReadingTask({
             id: task.id,
-            topic: task.topic,
+            topic: taskData.topic,
             title: task.title,
-            content: task.content
+            content: task.content,
           });
           break;
         case QUIZ:
           newTask = new QuizTask({
             id: task.id,
-            topic: task.topic,
+            topic: taskData.topic,
+            title: task.title,
             style: task.style,
             question: task.question,
             choices: task.choices,
@@ -129,7 +129,7 @@ export default class TaskManager extends Component {
         case INTERACTIVE:
           newTask = new InteractiveTask({
             id: task.id,
-            topic: task.topic,
+            topic: taskData.topic,
             title: task.title,
             text: task.text,
           });

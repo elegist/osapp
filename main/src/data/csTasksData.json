@@ -1,5 +1,5 @@
 {
-  "topic": "Web und Mobile Anwendungen",
+  "topic": "Informatik",
   "tasks": [
     {
       "id": 0,
@@ -31,6 +31,7 @@
       "id": 2,
       "type": "quiz",
       "style": "single",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Zahlenreihen und -folgen sind Grundlagen, die du im Studium lernst. Versuche dich doch mal daran: Wie geht diese Folge weiter: 1, 1, 2, 3, 5, 8, ?",
       "choices": ["10", "11", "13", "15", "22", "36"]
     },
@@ -38,6 +39,7 @@
       "id": 3,
       "type": "quiz",
       "style": "single",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "1011 ist die binäre Darstellung welcher Dezimalzahl?",
       "choices": ["1", "10", "11", "15", "19", "128", "1011"]
     },
@@ -45,6 +47,7 @@
       "id": 4,
       "type": "quiz",
       "style": "single",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Wie geht diese binäre Zahlenfolge weiter: 1, 10, 11, 100, 101, 110, 111, 1000, ?",
       "choices": ["1101", "1011", "1001", "1110", "1111"]
     },
@@ -65,6 +68,7 @@
       "id": 6,
       "type": "quiz",
       "style": "multiple",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Was solltest du können um eine herkömmliche Webseite zu erstellen?",
       "choices": ["HTML", "CSS", "JavaScript", "Java", "C++", "Wordpress"],
       "correctChoices": ["HTML", "CSS", "JavaScript"]
@@ -73,6 +77,7 @@
       "id": 7,
       "type": "quiz",
       "style": "multiple",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "2023 laufen 81.3% aller Webseiten auf einem Unix-System, wie zum Beispiel:",
       "choices": ["Windows Server", "MacOS", "Linux", "Windows 11"],
       "correctChoices": ["MacOS", "Linux"]
@@ -81,6 +86,7 @@
       "id": 8,
       "type": "quiz",
       "style": "multiple",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Ein Webbrowser ist ein...",
       "choices": ["Programm um u.a. Webseiten darzustellen.", "Computerspiel", "Tool für Webdesigner"],
       "correctChoices": ["Programm um u.a. Webseiten darzustellen."]
@@ -107,6 +113,7 @@
       "id": 11,
       "type": "quiz",
       "style": "multiple",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Wobei handelt es sich um eine Programmiersprache?",
       "choices": ["Borneo", "Java", "C", "Visual Studio", "Windows"],
       "correctChoices": ["Java", "C"]
@@ -115,6 +122,7 @@
       "id": 12,
       "type": "quiz",
       "style": "single",
+      "title": "YOUR QUESTION TASK TITLE",
       "question": "Erklärung if-Statement",
       "choices": ["Verstanden"]
     },

@@ -51,6 +51,10 @@ export default class TaskCs2 extends InteractiveTaskBase {
     }
   }
 
+  updateRectangles = newRectangles => {
+    this.setState({rectangles: newRectangles});
+  };
+
   render() {
     return (
       <View style={this.baseStyles.taskWrapper}>
@@ -71,16 +75,20 @@ export default class TaskCs2 extends InteractiveTaskBase {
         </View>
 
         <View style={this.baseStyles.resultWindow}>
-          {this.state.rectangles.map((rectangle, index) => {
-            return (
-              <Rectangle
-                key={index}
-                index={index}
-                label={rectangle.label}
-                order={rectangle.order}
-              />
-            );
-          })}
+          {this.state.rectangles
+            .sort((a, b) => a.order - b.order)
+            .map((rectangle, index) => {
+              return (
+                <Rectangle
+                  key={index}
+                  index={index}
+                  label={rectangle.label}
+                  order={rectangle.order}
+                  previousRectangles={this.state.rectangles}
+                  updateRectangles={this.updateRectangles}
+                />
+              );
+            })}
         </View>
         {this.includeModal()}
       </View>
@@ -88,7 +96,13 @@ export default class TaskCs2 extends InteractiveTaskBase {
   }
 }
 
-const Rectangle = ({index, label, order}) => {
+const Rectangle = ({
+  index,
+  label,
+  order,
+  previousRectangles,
+  updateRectangles,
+}) => {
   const elementHeight = 75;
   const [moving, setMoving] = useState(false);
 
@@ -100,15 +114,41 @@ const Rectangle = ({index, label, order}) => {
       runOnJS(setMoving)(true);
       context.rectangleOrder = order;
       context.startY = translateY.value;
-      rotateZ.value = withTiming('5deg', {duration: 100});
+      rotateZ.value = withTiming('4deg', {duration: 200});
     },
     onActive(event, context) {
       translateY.value = context.startY + event.translationY;
+      const approxPosition = Math.floor(translateY.value);
+      if (translateY.value !== 0 && approxPosition % elementHeight === 0) {
+        let newOrder;
+        const moveByValue = approxPosition / elementHeight;
+        if (order + moveByValue <= 0) {
+          newOrder = 0;
+        } else if (order + moveByValue >= previousRectangles.length - 1) {
+          newOrder = previousRectangles.length - 1;
+        } else {
+          newOrder = order + moveByValue;
+        }
+        context.newOrder = newOrder;
+      }
     },
     onFinish(event, context) {
       runOnJS(setMoving)(false);
-      translateY.value = withSpring(context.startY);
-      rotateZ.value = withTiming('0deg', {duration: 150});
+      translateY.value = withSpring(0);
+      rotateZ.value = withTiming('0deg', {duration: 300});
+
+      const newRectangles = previousRectangles.map(data => {
+        if (data.order === order) {
+          return {...data, order: context.newOrder};
+        }
+        if (data.order === context.newOrder) {
+          return {...data, order: order};
+        }
+
+        return data;
+      });
+
+      runOnJS(updateRectangles)(newRectangles);
     },
   });
 
@@ -123,7 +163,7 @@ const Rectangle = ({index, label, order}) => {
       paddingHorizontal: 40,
       borderRadius: 10,
       backgroundColor: '#D9D9D9',
-      elevation: withSpring(moving ? 6 : 0),
+      elevation: withSpring(moving ? 8 : 0),
       zIndex: moving ? 10 : 0,
       transform: [{translateY: translateY.value}, {rotateZ: rotateZ.value}],
     };

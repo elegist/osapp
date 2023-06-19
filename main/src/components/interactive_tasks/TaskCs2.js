@@ -27,12 +27,7 @@ export default class TaskCs2 extends InteractiveTaskBase {
             <Icon name="question" size={40} color="white" />
           </TouchableOpacity>
 
-          <Text style={globalStyles.textCodeRegular}>
-            rectangles.
-            <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
-              sortByColor(red)
-            </Text>
-          </Text>
+          <Text style={globalStyles.textCodeBold}>test</Text>
         </View>
 
         <View style={this.baseStyles.resultWindow}></View>

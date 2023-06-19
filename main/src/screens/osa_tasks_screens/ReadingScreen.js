@@ -104,7 +104,7 @@ export class ReadingScreen extends Component {
             this.fadeInText();
           }
         });
-      });
+      }, true);
     }
   };
   
@@ -122,7 +122,13 @@ export class ReadingScreen extends Component {
     ]).start();
   };
 
-  fadeOutText = callback => {
+  /**
+   * Fades out the current text to make room for the next one
+   * @param {Function} callback Call anything after animation finishes
+   * @param {Boolean} reverseSwipe default = false; swipe animation plays forwards, pass true for reverse animation
+   */
+  fadeOutText = (callback, reverseSwipe = false) => {
+    const swipeTo = reverseSwipe ? 600 : -600;
     Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 0,
@@ -137,7 +143,7 @@ export class ReadingScreen extends Component {
         easing: Easing.easeOut,
       }),
       Animated.timing(this.swipeTextAnim, {
-        toValue: -600,
+        toValue: swipeTo,
         duration: 600,
         useNativeDriver: true,
         easing: Easing.easeOut,

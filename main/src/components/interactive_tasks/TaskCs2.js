@@ -11,7 +11,7 @@ export default class TaskCs2 extends InteractiveTaskBase {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.submitted !== this.props.submitted) {
+    if (prevProps.submitted !== this.props.submitted) {
       //TODO: evaluate the users solution here
     }
   }
@@ -27,7 +27,12 @@ export default class TaskCs2 extends InteractiveTaskBase {
             <Icon name="question" size={40} color="white" />
           </TouchableOpacity>
 
-          <Text style={globalStyles.textCodeBold}>test</Text>
+          <Text style={globalStyles.textCodeRegular}>
+            rectangles.
+            <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+              sortByColor(red)
+            </Text>
+          </Text>
         </View>
 
         <View style={this.baseStyles.resultWindow}></View>

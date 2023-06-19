@@ -17,6 +17,7 @@
         "id": 1,
         "type": "quiz",
         "style": "multiple",
+        "title": "YOUR QUESTION TASK TITLE",
         "question": "YOUR MULTIPLE CHOICE QUESTION",
         "choices": ["Place", "as", "many", "choices", "as", "you", "want"],
         "correctChoices": ["Place"]
@@ -25,6 +26,7 @@
         "id": 2,
         "type": "quiz",
         "style": "single",
+        "title": "YOUR QUESTION TASK TITLE",
         "question": "YOUR SINGLE CHOICE QUESTION",
         "choices": ["Place", "as", "many", "choices", "as", "you", "want"]
       },

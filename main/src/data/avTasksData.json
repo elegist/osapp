@@ -4,39 +4,9 @@
     {
       "id": 0,
       "type": "reading",
-      "title": "Musik, Videos und Bilder",
+      "title": "Einleitung AV",
       "content": [
-        "Im Fach Audiovisuelle Medien wirst du alles nötlige Wissen erlangen um eigene Musik und Videos zu produzieren.",
-        "Auch mit im Programm ist die Durchführung von Livestreams viel weiteres.",
-        "Lass uns dir einmal einen Vorgeschmack darauf geben, was in diesem Fachbereich kommen wird"
-      ]
-    },
-    {
-      "id": 1,
-      "type": "quiz",
-      "style": "multiple",
-      "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam erat.",
-      "choices": ["A", "B", "C", "D"],
-      "correctChoices": ["A", "C"]
-    },
-    {
-      "id": 2,
-      "type": "reading",
-      "title": "Lorem ipsum dolor sit amet",
-      "content": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
-        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
-      ]
-    },
-    {
-      "id": 3,
-      "type": "interactive",
-      "title": "Aliquam malesuada suscipit egestas. Suspendisse.",
-      "content": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-        "Fusce laoreet ipsum nibh, sit amet efficitur elit egestas consectetur.", 
-        "Quisque vehicula lobortis felis ac consequat. Vivamus at rhoncus urna. Phasellus ac."
+        "Hier folgt toller Content für AV…"
       ]
     }
   ]

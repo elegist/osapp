@@ -79,6 +79,7 @@
       "id": 2,
       "type": "quiz",
       "style": "single",
+      "title": "Eigener Überblick",
       "question": "Möglicherweise hast du dich schon etwas über die Medieninformatik informiert. Wie schätzt du deinen Überblick ein?",
       "choices": [
         "Ich kenne mich gut aus",
@@ -90,7 +91,7 @@
     {
       "id": 3,
       "type": "reading",
-      "title": "Positive feedback",
+      "title": "Weiter so!",
       "images": [""],
       "content": [
         "Sei am besten immer offen für Neues.",
@@ -101,6 +102,7 @@
       "id": 4,
       "type": "quiz",
       "style": "multiple",
+      "title": "Was ist Medieninformatik?",
       "question": "Was schätzt du, könnten Themen sein, mit denen du dich im Studium der Medieninformatik beschäftigst?",
       "choices": [
         "Webseiten erstellen",

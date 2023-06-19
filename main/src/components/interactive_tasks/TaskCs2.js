@@ -22,24 +22,29 @@ export default class TaskCs2 extends InteractiveTaskBase {
       ...this.state,
       rectangles: [
         {
-          order: 0,
           label: 'index: 0',
+          color: '#FD4F4F',
+          order: 0,
         },
         {
-          order: 1,
           label: 'index: 1',
+          color: '#D9D9D9',
+          order: 1,
         },
         {
-          order: 2,
           label: 'index: 2',
+          color: '#FD4F4F',
+          order: 2,
         },
         {
-          order: 3,
           label: 'index: 3',
+          color: '#D9D9D9',
+          order: 3,
         },
         {
-          order: 4,
           label: 'index: 4',
+          color: '#FD4F4F',
+          order: 4,
         },
       ],
     };
@@ -53,6 +58,8 @@ export default class TaskCs2 extends InteractiveTaskBase {
 
   updateRectangles = newRectangles => {
     this.setState({rectangles: newRectangles});
+
+    console.log(JSON.stringify(newRectangles, null, 2));
   };
 
   render() {
@@ -83,6 +90,7 @@ export default class TaskCs2 extends InteractiveTaskBase {
                   key={index}
                   index={index}
                   label={rectangle.label}
+                  color={rectangle.color}
                   order={rectangle.order}
                   previousRectangles={this.state.rectangles}
                   updateRectangles={this.updateRectangles}
@@ -99,6 +107,7 @@ export default class TaskCs2 extends InteractiveTaskBase {
 const Rectangle = ({
   index,
   label,
+  color,
   order,
   previousRectangles,
   updateRectangles,
@@ -112,16 +121,21 @@ const Rectangle = ({
   const gestureHandler = useAnimatedGestureHandler({
     onStart(event, context) {
       runOnJS(setMoving)(true);
-      context.rectangleOrder = order;
       context.startY = translateY.value;
       rotateZ.value = withTiming('4deg', {duration: 200});
+      context.newOrder = order;
     },
     onActive(event, context) {
-      translateY.value = context.startY + event.translationY;
+      translateY.value = event.translationY;
       const approxPosition = Math.floor(translateY.value);
-      if (translateY.value !== 0 && approxPosition % elementHeight === 0) {
+      const moduloLeeway = 20;
+      if (
+        (Math.abs(approxPosition) >= elementHeight &&
+          approxPosition % elementHeight <= moduloLeeway) ||
+        approxPosition % 75 >= 75 - moduloLeeway
+      ) {
         let newOrder;
-        const moveByValue = approxPosition / elementHeight;
+        const moveByValue = Math.round(approxPosition / elementHeight);
         if (order + moveByValue <= 0) {
           newOrder = 0;
         } else if (order + moveByValue >= previousRectangles.length - 1) {
@@ -139,10 +153,10 @@ const Rectangle = ({
 
       const newRectangles = previousRectangles.map(data => {
         if (data.order === order) {
-          return {...data, order: context.newOrder};
+          return {...data, order: context.newOrder, color: color};
         }
         if (data.order === context.newOrder) {
-          return {...data, order: order};
+          return {...data, order: order, color: color};
         }
 
         return data;

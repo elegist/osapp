@@ -10,6 +10,12 @@ export default class TaskCs2 extends InteractiveTaskBase {
     super.setDefaultState();
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.submitted !== this.props.submitted) {
+      //TODO: evaluate the users solution here
+    }
+  }
+
   render() {
     return (
       <View style={this.baseStyles.taskWrapper}>

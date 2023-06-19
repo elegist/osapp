@@ -31,7 +31,12 @@ export default class TaskCs1 extends InteractiveTaskBase {
         label: 'index: 4',
       },
     ];
+  }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.submitted !== this.props.submitted) {
+      //TODO: evaluate the users solution here
+    }
   }
 
   render() {

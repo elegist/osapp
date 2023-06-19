@@ -104,13 +104,30 @@ export default function OsaScreen({navigation, route}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.taskContainer}>{task && renderTask()}</View>
+      <View
+        style={
+          task instanceof InteractiveTask
+            ? styles.interactiveTaskContainer
+            : styles.taskContainer
+        }>
+        {task && renderTask()}
+      </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   taskContainer: {
+    minHeight: '75%',
+    width: '100%',
+    alignSelf: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 5,
+    padding: 10,
+  },
+  interactiveTaskContainer: {
     flex: 1,
     width: '100%',
     margin: 5,

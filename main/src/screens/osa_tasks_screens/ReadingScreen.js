@@ -1,27 +1,31 @@
-import {
-  Text,
-  View,
-  Animated,
-  TouchableWithoutFeedback,
-  Easing,
-  Image,
-} from 'react-native';
+import {View, Animated, TouchableWithoutFeedback, Easing} from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import FastImage from 'react-native-fast-image';
+import TaskManager from '../../container/TaskManager';
 import ImageMapper from '../helper/ImageMapper';
-
-const MAX_TEXT_LENGTH = 100;
+import FastImage from 'react-native-fast-image';
+import swipeImage from '../../assets/misc/swipe_up.webp';
+import tapImage from '../../assets/misc/tap.webp';
 
 /**
  * View element of ReadingTask
  */
 export class ReadingScreen extends Component {
+  taskManager = TaskManager.getInstance();
   contentArray = [];
+  // text animations
   fadeTextAnim = new Animated.Value(0);
   scaleTextAnim = new Animated.Value(1);
+  swipeTextAnim = new Animated.Value(0);
+  // card image animations
   fadeImageAnim = new Animated.Value(0);
   backgroundColorAnim = new Animated.Value(0);
+  // hint animations
+  swipeHintAnim = new Animated.Value(0);
+  blendInSwipeHintAnim = new Animated.Value(0);
+
+  tapHintAnim = new Animated.Value(1);
+  blendInTapHintAnim = new Animated.Value(0);
 
   constructor(props) {
     super(props);
@@ -29,11 +33,17 @@ export class ReadingScreen extends Component {
     this.state = {
       currentIndex: 0,
       currentImage: '',
+      imageIsDisplayedOnly: false,
+      tapHintWasDisplayed: false,
     };
   }
 
   componentDidMount() {
     this.fadeInText();
+    // Check if this is the first screen to display swipe hint animation
+    if (this.taskManager.getUsersOverallProgress() == 0) {
+      this.startSwipeHintAnim();
+    }
   }
 
   /**
@@ -60,25 +70,37 @@ export class ReadingScreen extends Component {
   };
 
   /**
-   * Call this when user touches the screen. Iterates through text array
+   * Called when the user swipes up, proceeds to next text or finished task after last one
    */
   proceed = () => {
     const {currentIndex} = this.state;
     const nextIndex = currentIndex + 1;
 
+    this.stopSwipeHintAnim();
+
     if (nextIndex < this.contentArray.length) {
       this.fadeOutText(() => {
-        this.setState({currentIndex: nextIndex}, () => {
-          if (this.contentArray[nextIndex]['isImage']) {
-            this.setState({
-              currentImage: this.contentArray[nextIndex]['value'],
-            });
-            this.fadeInImage();
-          } else {
-            this.makeImageTransparent();
-            this.fadeInText();
-          }
-        });
+        this.setState(
+          {
+            currentIndex: nextIndex,
+            firstScreen: false,
+          },
+          () => {
+            if (this.contentArray[nextIndex]['isImage']) {
+              this.setState({
+                currentImage: this.contentArray[nextIndex]['value'],
+                imageIsDisplayedOnly: true,
+              });
+              this.fadeInImage();
+            } else {
+              this.setState({
+                imageIsDisplayedOnly: false,
+              });
+              this.stopTapHintAnim();
+              this.fadeInText();
+            }
+          },
+        );
       });
     }
 
@@ -87,22 +109,51 @@ export class ReadingScreen extends Component {
     }
   };
 
+  /**
+   * Called when the user swipes down
+   */
+  goBack = () => {
+    const {currentIndex} = this.state;
+    const previousIndex = currentIndex - 1;
+
+    if (previousIndex >= 0 && previousIndex < this.contentArray.length) {
+      this.fadeOutText(() => {
+        this.setState({currentIndex: previousIndex}, () => {
+          if (this.contentArray[previousIndex]['isImage']) {
+            this.backgroundColorAnim.setValue(0);
+            this.fadeImageAnim.setValue(0);
+            this.goBack();
+          } else {
+            this.setState({
+              imageIsDisplayedOnly: false,
+            });
+            this.fadeInText();
+          }
+        });
+      }, true);
+    }
+  };
+
   // Animations
   fadeInText = () => {
-    this.fadeTextAnim.setValue(0);
+    this.swipeTextAnim.setValue(0);
     this.scaleTextAnim.setValue(1);
-    Animated.sequence([
-      Animated.delay(200),
+    Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 1,
-        duration: 600,
+        duration: 500,
         useNativeDriver: true,
-        easing: Easing.ease,
       }),
     ]).start();
   };
 
-  fadeOutText = callback => {
+  /**
+   * Fades out the current text to make room for the next one
+   * @param {Function} callback Call anything after animation finishes
+   * @param {Boolean} reverseSwipe default = false; swipe animation plays forwards, pass true for reverse animation
+   */
+  fadeOutText = (callback, reverseSwipe = false) => {
+    const swipeTo = reverseSwipe ? 600 : -600;
     Animated.parallel([
       Animated.timing(this.fadeTextAnim, {
         toValue: 0,
@@ -111,46 +162,140 @@ export class ReadingScreen extends Component {
       }),
       Animated.timing(this.scaleTextAnim, {
         toValue: 0,
-        duration: 300,
+        duration: 750,
         useNativeDriver: true,
-        easing: Easing.ease,
+      }),
+      Animated.timing(this.swipeTextAnim, {
+        toValue: swipeTo,
+        duration: 600,
+        useNativeDriver: true,
       }),
     ]).start(callback);
   };
 
   fadeInImage = () => {
+    this.backgroundColorAnim.setValue(0);
     this.fadeImageAnim.setValue(0);
-    Animated.timing(this.fadeImageAnim, {
-      toValue: 1,
-      duration: 600,
-      useNativeDriver: true,
-      easing: Easing.ease,
-    }).start(() => {
-      // Animation completed, update background color
-      this.updateBackgroundColor();
+
+    Animated.sequence([
+      // 1st part of the animation (fading in)
+      Animated.parallel([
+        Animated.timing(this.fadeImageAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+      ]),
+      Animated.delay(450), // Delay before the image goes green
+    ]).start(() => {
+      if (
+        this.taskManager.getUsersOverallProgress() == 0 &&
+        !this.state.tapHintWasDisplayed
+      )
+        this.startTapHintAnim();
     });
   };
-  updateBackgroundColor = () => {
-    Animated.timing(this.backgroundColorAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-  };
+
   makeImageTransparent = () => {
-    Animated.timing(this.fadeImageAnim, {
-      toValue: 0.2,
-      duration: 500,
-      useNativeDriver: true,
-      easing: Easing.ease,
-    }).start();
+    Animated.parallel([
+      Animated.timing(this.fadeImageAnim, {
+        toValue: 0.2,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(this.backgroundColorAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: false,
+      }),
+    ]).start();
+  };
+
+  startTapHintAnim = () => {
+    this.tapHintAnimSequence = Animated.sequence([
+      Animated.delay(2000),
+      Animated.timing(this.blendInTapHintAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(this.tapHintAnim, {
+            toValue: 0.8,
+            duration: 650,
+            useNativeDriver: true,
+            easing: Easing.cubic,
+          }),
+          Animated.timing(this.tapHintAnim, {
+            toValue: 1,
+            duration: 650,
+            useNativeDriver: true,
+          }),
+        ]),
+      ),
+    ]);
+    this.tapHintAnimSequence.start();
+  };
+
+  stopTapHintAnim = () => {
+    this.state.tapHintWasDisplayed = true;
+    if (this.tapHintAnimSequence) {
+      this.tapHintAnimSequence.stop();
+    }
+    this.blendInTapHintAnim.setValue(0);
+  };
+
+  startSwipeHintAnim = () => {
+    this.swipeHintAnimSequence = Animated.sequence([
+      Animated.delay(2000),
+      Animated.timing(this.blendInSwipeHintAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+      Animated.delay(50),
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(this.swipeHintAnim, {
+            toValue: -40,
+            duration: 800,
+            useNativeDriver: true,
+            easing: Easing.cubic,
+          }),
+          Animated.delay(1000),
+          Animated.timing(this.swipeHintAnim, {
+            toValue: 0,
+            duration: 1,
+            useNativeDriver: true,
+          }),
+        ]),
+      ),
+    ]);
+
+    this.swipeHintAnimSequence.start();
+  };
+
+  stopSwipeHintAnim = () => {
+    if (this.swipeHintAnimSequence) {
+      this.swipeHintAnimSequence.stop();
+    }
+    this.blendInSwipeHintAnim.setValue(0);
   };
 
   render() {
-    const {currentIndex, currentImage} = this.state;
+    const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
+    const {currentIndex, currentImage, imageIsDisplayedOnly, firstScreen} =
+      this.state;
     const animTextStyle = {
       opacity: this.fadeTextAnim,
-      transform: [{scale: this.scaleTextAnim}],
+      transform: [
+        {scale: this.scaleTextAnim},
+        {translateY: this.swipeTextAnim},
+      ],
     };
     const animImageStyle = {
       opacity: this.fadeImageAnim,
@@ -161,9 +306,65 @@ export class ReadingScreen extends Component {
         outputRange: ['transparent', '#80ba24'], // Initial and final background colors
       }),
     };
+    const animateSwipeStyle = {
+      opacity: this.blendInSwipeHintAnim,
+      transform: [{translateY: this.swipeHintAnim}],
+    };
+    const animateTapStyle = {
+      opacity: this.blendInTapHintAnim,
+      transform: [{scale: this.tapHintAnim}],
+    };
     return (
-      <TouchableWithoutFeedback onPress={this.proceed}>
+      <TouchableWithoutFeedback
+        onPress={e => {
+          if (imageIsDisplayedOnly) {
+            this.proceed();
+            this.makeImageTransparent();
+          }
+        }}
+        onPressIn={e => (this.touchY = e.nativeEvent.pageY)}
+        onPressOut={e => {
+          const touchDifference = this.touchY - e.nativeEvent.pageY;
+          const touchThreshold = 20;
+
+          if (touchDifference > touchThreshold && !imageIsDisplayedOnly)
+            this.proceed();
+          else if (touchDifference < -touchThreshold && !imageIsDisplayedOnly)
+            this.goBack();
+        }}>
         <View style={globalStyles.fullContainer}>
+          <AnimatedFastImage
+            style={[
+              {
+                width: 60,
+                height: 60,
+                position: 'absolute',
+                zIndex: 10,
+                top: 80,
+                right: 30,
+              },
+              animateSwipeStyle,
+            ]}
+            source={swipeImage}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+          <AnimatedFastImage
+            style={[
+              {
+                width: 60,
+                height: 60,
+                position: 'absolute',
+                zIndex: 10,
+                bottom: 80,
+                left: 80,
+              },
+              animateTapStyle,
+            ]}
+            source={tapImage}
+            resizeMode={FastImage.resizeMode.contain}
+            pointerEvents={'none'}
+          />
+
           {currentImage && (
             <Animated.View
               style={[

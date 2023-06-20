@@ -8,6 +8,49 @@
       "content": [
         "Hier folgt toller Content für AV…"
       ]
+    },
+    {
+      "id": 1,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Dateiformate",
+      "question": "Welche der folgenden Dateiformate unterstützen sowohl Audio- als auch Videodaten?",
+      "choices": ["MP4", "WAV", "AVI", "JPEG", "GIF"],
+      "correctChoices": ["MP4", "AVI"]
+    },
+    {
+      "id": 2,
+      "type": "quiz",
+      "style": "single",
+      "title": "Bildauflösungen",
+      "question": "Welche der folgenden Bildauflösungen wird typischerweise für hochauflösendes (HD) Fernsehen verwendet?",
+      "choices": ["720p", "480p", "720i", "1080p", "240p"]
+    },
+    {
+      "id": 3,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Dateigröße Videos",
+      "question": "Welche der folgenden Faktoren beeinflussen die Dateigröße von Videos?",
+      "choices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode", "Anzahl der Farben im Bild"],
+      "correctChoices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode"]
+    },
+    {
+      "id": 4,
+      "type": "quiz",
+      "style": "single",
+      "title": "Lautstärkepegel",
+      "question": "Welche der folgenden Begriffe beschreibt die Anpassung der Lautstärkepegel in einem Audiomix?",
+      "choices": ["Panning", "Mastering", "Equalizing", "Fading"]
+    },
+    {
+      "id": 5,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Raumklang",
+      "question": "Welche der folgenden Audioeffekte wird häufig verwendet, um den Klang eines Raums zu simulieren?",
+      "choices": ["Reverb", "Echo", "Delay", "Distortion"],
+      "correctChoices": ["Reverb", "Echo"]
     }
   ]
 }

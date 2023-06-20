@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
@@ -30,15 +31,15 @@ export default function OsaScreen({navigation, route}) {
     const currentTask = TASK_MANAGER.getTask(progress);
     setPreviousTask(task);
     setTask(currentTask);
-    currentTask.startTimeMeasurement()
+    currentTask.startTimeMeasurement();
   }, [progress]);
 
   useEffect(() => {
     if (!(task instanceof SummaryTask)) {
-      task?.startTimeMeasurement()
+      task?.startTimeMeasurement();
     }
-    previousTask?.stopTimeMeasurement()
-  }, [task, previousTask])
+    previousTask?.stopTimeMeasurement();
+  }, [task, previousTask]);
 
   const nextTask = () => {
     setProgress(prevProgress => prevProgress + 1);

@@ -104,7 +104,7 @@ export default StyleSheet.create({
     fontSize: getResponsiveSizing(40),
     lineHeight: getResponsiveSizing(60),
     color: '#1C2327',
-    textShadowColor: 'rgba(0, 0, 0, .8)',
+    textShadowColor: 'rgba(0, 0, 0, .6)',
     textShadowOffset: {width: 2, height: 2},
     textShadowRadius: 2,
     textAlign: 'center',

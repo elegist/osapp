@@ -118,7 +118,7 @@
       "style": "single",
       "title": "Algorithmus",
       "question": "Was ist ein Algorithmus?",
-      "choices": ["Eine Art Hardware", "Eine Reihe von Anweisungen zur Lösung eines Problems", "Eine Social-Media Anwendung", "Ein Netzwerkprotokoll"],
+      "choices": ["Eine Art Hardware", "Eine Reihe von Anweisungen zur Lösung eines Problems", "Eine Social-Media Anwendung", "Ein Netzwerkprotokoll"]
     },
     {
       "id": 12,

@@ -22,26 +22,31 @@ export default class TaskCs2 extends InteractiveTaskBase {
       ...this.state,
       rectangles: [
         {
+          index: 0,
           label: 'index: 0',
           color: '#FD4F4F',
           order: 0,
         },
         {
+          index: 1,
           label: 'index: 1',
           color: '#D9D9D9',
           order: 1,
         },
         {
+          index: 2,
           label: 'index: 2',
           color: '#FD4F4F',
           order: 2,
         },
         {
+          index: 3,
           label: 'index: 3',
           color: '#D9D9D9',
           order: 3,
         },
         {
+          index: 4,
           label: 'index: 4',
           color: '#FD4F4F',
           order: 4,
@@ -84,11 +89,11 @@ export default class TaskCs2 extends InteractiveTaskBase {
         <View style={this.baseStyles.resultWindow}>
           {this.state.rectangles
             .sort((a, b) => a.order - b.order)
-            .map((rectangle, index) => {
+            .map(rectangle => {
+              const key = `${rectangle.id}-${rectangle.order}`;
               return (
                 <Rectangle
-                  key={index}
-                  index={index}
+                  key={key}
                   label={rectangle.label}
                   color={rectangle.color}
                   order={rectangle.order}
@@ -105,7 +110,6 @@ export default class TaskCs2 extends InteractiveTaskBase {
 }
 
 const Rectangle = ({
-  index,
   label,
   color,
   order,
@@ -156,7 +160,7 @@ const Rectangle = ({
           return {...data, order: context.newOrder, color: color};
         }
         if (data.order === context.newOrder) {
-          return {...data, order: order, color: color};
+          return {...data, order: order, color: data.color};
         }
 
         return data;
@@ -176,19 +180,16 @@ const Rectangle = ({
       paddingVertical: 20,
       paddingHorizontal: 40,
       borderRadius: 10,
-      backgroundColor: '#D9D9D9',
+      backgroundColor: color,
       elevation: withSpring(moving ? 8 : 0),
-      zIndex: moving ? 10 : 0,
       transform: [{translateY: translateY.value}, {rotateZ: rotateZ.value}],
     };
-  }, [moving]);
+  }, [moving, color]);
 
   return (
     <PanGestureHandler onGestureEvent={gestureHandler}>
       <Animated.View style={animatedStyle}>
-        <Animated.View>
-          <Text style={globalStyles.textParagraph}>{label}</Text>
-        </Animated.View>
+        <Text style={globalStyles.textParagraph}>{label}</Text>
       </Animated.View>
     </PanGestureHandler>
   );

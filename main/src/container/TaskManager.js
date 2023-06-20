@@ -33,6 +33,10 @@ export default class TaskManager {
     this.#initTaskManager();
   }
 
+  getUsersOverallProgress = () => {
+    return this.#userProgress
+  }
+
   getTasksMap = () => {
     return this.#tasksMap;
   };

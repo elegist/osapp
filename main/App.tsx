@@ -9,13 +9,14 @@ import * as React from 'react';
 
 // Navigator
 import MainNavigator from './src/components/navigators/MainNavigator';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 function App(): JSX.Element {
 
   return (
-    <MainNavigator>
-
-    </MainNavigator>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <MainNavigator></MainNavigator>
+    </GestureHandlerRootView>
   );
 }
 export default App;

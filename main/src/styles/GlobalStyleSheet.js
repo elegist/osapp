@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions, PixelRatio} from 'react-native';
 
 /**
  * Global style sheet for the app
@@ -6,6 +6,23 @@ import {StyleSheet} from 'react-native';
  * ------------------------------
  * Note that drop shadows only work on iOS devices, make sure that there's an elevation for Android
  */
+
+const {width, height} = Dimensions.get('window');
+const PIXEL_RATIO = PixelRatio.get();
+
+//1920
+
+export const getResponsiveSizing = fontSize => {
+  const standardScreenHeight = 1920;
+  const heightPercentage = (fontSize * (height / standardScreenHeight)).toFixed(
+    2,
+  );
+  const convertedFontSize = PixelRatio.roundToNearestPixel(
+    heightPercentage * PIXEL_RATIO,
+  );
+  return convertedFontSize;
+};
+
 export default StyleSheet.create({
   flexContainer: {
     flex: 1,
@@ -69,23 +86,23 @@ export default StyleSheet.create({
   // Typography
   textHeading: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 40,
+    fontSize: getResponsiveSizing(40),
     color: '#1C2327',
   },
   textHeadingSecondary: {
     fontFamily: 'PTSans-Regular',
-    fontSize: 20,
+    fontSize: getResponsiveSizing(20),
     color: '#1C2327',
   },
   textSecondary: {
     fontFamily: 'PTSans-Italic',
-    fontSize: 14,
+    fontSize: getResponsiveSizing(14),
     color: '#9b9b9b',
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 40,
-    lineHeight: 60,
+    fontSize: getResponsiveSizing(40),
+    lineHeight: getResponsiveSizing(60),
     color: '#1C2327',
     textShadowColor: 'rgba(0, 0, 0, .8)',
     textShadowOffset: {width: 2, height: 2},
@@ -95,24 +112,39 @@ export default StyleSheet.create({
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
-    fontSize: 18,
+    fontSize: getResponsiveSizing(18),
     color: '#1C2327',
   },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 24,
+    fontSize: getResponsiveSizing(24),
     color: 'white',
     textAlign: 'center',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 20,
+    fontSize: getResponsiveSizing(20),
     color: 'white',
     textAlign: 'center',
   },
   textChoiceButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: 16,
+    fontSize: getResponsiveSizing(16),
+    color: '#1C2327',
+  },
+  textCodeRegular: {
+    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: getResponsiveSizing(16),
+    color: '#1C2327',
+  },
+  textCodeItalic: {
+    fontFamily: 'JetBrainsMono-Italic',
+    fontSize: getResponsiveSizing(16),
+    color: '#1C2327',
+  },
+  textCodeBold: {
+    fontFamily: 'JetBrainsMono-Bold',
+    fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
   //images
@@ -125,5 +157,9 @@ export default StyleSheet.create({
     borderRadius: 50,
     zIndex: -1,
     opacity: 0.5,
+  },
+  horizontalLine: {
+    borderBottomColor: '#9b9b9b',
+    borderBottomWidth: 1,
   },
 });

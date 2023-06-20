@@ -57,6 +57,9 @@
 		<string>PTSans-BoldItalic.ttf</string>
 		<string>PTSans-Italic.ttf</string>
 		<string>PTSans-Regular.ttf</string>
+		<string>JetBrainsMono-Bold.ttf</string>
+		<string>JetBrainsMono-Italic.ttf</string>
+		<string>JetBrainsMono-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

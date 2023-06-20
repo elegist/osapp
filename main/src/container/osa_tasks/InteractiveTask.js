@@ -9,7 +9,9 @@ import AssessmentTask from './AssessmentTask';
 class InteractiveTask extends AssessmentTask {
   constructor(props) {
     super(props);
-    this.text = props.text;
+    this.slug = props.slug;
+    this.content = props.content;
+    this.help = props.help;
   }
 }
 

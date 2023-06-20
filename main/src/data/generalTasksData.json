@@ -2,19 +2,46 @@
   "topic": "Allgemein",
   "tasks": [
     {
+      "id": -2,
+      "type": "interactive",
+      "slug": "cs1",
+      "content": [
+        "Dies ist der erste Interaktive Task",
+        "Dieser Text soll erklären, wie der Interaktive Task zu bedienen ist",
+        "Diese Textblöcke könnten eventuell nochmal abrufbar sein, über einen Button"
+      ],
+      "help": [
+        "Dies ist der erste Hilfsblock",
+        "Hier ist der zweite Hilfsblock, dieser soll erst beim zweiten mal angezeigt werden",
+        "Mit steigenden genutzten Hilfen, sollten diese im Result screen auch vermerkt werden",
+        "Daher sollte der Index dieses Arrays gespeichert werden"
+      ]
+    },
+    {
+      "id": -1,
+      "type": "interactive",
+      "slug": "cs2",
+      "content": ["test", "test2"],
+      "help": [
+        "test des hilfeblocks im zweiten task",
+        "und wenn es jetzt mehrere gibt"
+      ]
+    },
+
+    {
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",
       "content": [
-          "Herzlich Willkommen zur OSApp Medieninformatik!",
-          "[img]thm-gebaeude-b.jpg",
-          "Die App soll dich bei deiner Studienwahl unterstützen.",
-          "Mit Informationen rund um den Studiengang und ein paar Aufgaben.",
-          "Es ist unwichtig, ob du hier alles richtig machst.",
-          "Wichtiger ist, dass du den Studiengang kennenlernst.",
-          "Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen.",          
-          "Es geht immerhin um deine Zukunft!",
-          "Bereit? Dann starten wir direkt auf dem THM-Campus."
+        "Herzlich Willkommen zur OSApp Medieninformatik!",
+        "[img]thm-gebaeude-b.jpg",
+        "Die App soll dich bei deiner Studienwahl unterstützen.",
+        "Mit Informationen rund um den Studiengang und ein paar Aufgaben.",
+        "Es ist unwichtig, ob du hier alles richtig machst.",
+        "Wichtiger ist, dass du den Studiengang kennenlernst.",
+        "Nimm dir also etwas Zeit und beantworte ganz in Ruhe alle Fragen.",
+        "Es geht immerhin um deine Zukunft!",
+        "Bereit? Dann starten wir direkt auf dem THM-Campus."
       ]
     },
     {
@@ -22,30 +49,30 @@
       "type": "reading",
       "title": "Allgemeine Information",
       "content": [
-          "Denn ebenso wichtig wie der Studiengang ist der Studienort.",
-          "Medieninformatik studierst du am Campus Friedberg",
-          "Schauen wir uns dort mal etwas um. Wir starten beim Haupteingang.",
-          "[img]thm-haupteingang.jpg",
-          "Gehst du hinein, findest du recht schnell den Info-Counter.",
-          "Dort reichst du deine Unterlagen ein und erhältst deinen Studienausweis.",
-          "[img]thm-info.jpg",
-          "Überall in der THM findest du Hör- und Seminarsäle.",
-          "Diese können ganz unterschiedlich aussehen.",
-          "[img]thm-hoersaal.jpg",  
-          "Hier findet jedoch nur ein Teil des Unterrichts statt,",
-          "denn jeder Studiengang hat auch Labore,",
-          "[img]thm-medienlabor.jpg",
-          "in denen du auch die Praxis kennenlernen darfst.",
-          "Labore bieten dir, je nach Zweck, ganz unterschiedliche Ausstattung.",
-          "[img]thm-studio.jpg",
-          "Wir können hier leider nicht alles zeigen, aber:",
-          "Komm doch einfach mal vorbei und schau dich selbst etwas um.",
-          "[img]thm-campus.jpg",
-          "Vor Ort triffst du Studierende und kannst dir selbst ein Bild machen.",
-          "zum Beispiel bei einem leckeren Mittagessen in der Mensa.",
-          "[img]thm-mensa.jpg",
-          "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg.",
-          "Lass uns doch mal mit ein paar Fragen anfangen:"
+        "Denn ebenso wichtig wie der Studiengang ist der Studienort.",
+        "Medieninformatik studierst du am Campus Friedberg",
+        "Schauen wir uns dort mal etwas um. Wir starten beim Haupteingang.",
+        "[img]thm-haupteingang.jpg",
+        "Gehst du hinein, findest du recht schnell den Info-Counter.",
+        "Dort reichst du deine Unterlagen ein und erhältst deinen Studienausweis.",
+        "[img]thm-info.jpg",
+        "Überall in der THM findest du Hör- und Seminarsäle.",
+        "Diese können ganz unterschiedlich aussehen.",
+        "[img]thm-hoersaal.jpg",
+        "Hier findet jedoch nur ein Teil des Unterrichts statt,",
+        "denn jeder Studiengang hat auch Labore,",
+        "[img]thm-medienlabor.jpg",
+        "in denen du auch die Praxis kennenlernen darfst.",
+        "Labore bieten dir, je nach Zweck, ganz unterschiedliche Ausstattung.",
+        "[img]thm-studio.jpg",
+        "Wir können hier leider nicht alles zeigen, aber:",
+        "Komm doch einfach mal vorbei und schau dich selbst etwas um.",
+        "[img]thm-campus.jpg",
+        "Vor Ort triffst du Studierende und kannst dir selbst ein Bild machen.",
+        "zum Beispiel bei einem leckeren Mittagessen in der Mensa.",
+        "[img]thm-mensa.jpg",
+        "Das waren ein paar der wichtigen Orte auf dem Campus Friedberg.",
+        "Lass uns doch mal mit ein paar Fragen anfangen:"
       ]
     },
     {
@@ -54,7 +81,12 @@
       "style": "single",
       "title": "Eigener Überblick",
       "question": "Möglicherweise hast du dich schon etwas über die Medieninformatik informiert. Wie schätzt du deinen Überblick ein?",
-      "choices": ["Ich kenne mich gut aus", "Ich weiß grob Bescheid", "Ich lass es auf mich zukommen", "Ich habe mich noch nicht informiert"]
+      "choices": [
+        "Ich kenne mich gut aus",
+        "Ich weiß grob Bescheid",
+        "Ich lass es auf mich zukommen",
+        "Ich habe mich noch nicht informiert"
+      ]
     },
     {
       "id": 3,
@@ -72,8 +104,24 @@
       "style": "multiple",
       "title": "Was ist Medieninformatik?",
       "question": "Was schätzt du, könnten Themen sein, mit denen du dich im Studium der Medieninformatik beschäftigst?",
-      "choices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"],
-      "correctChoices": ["Webseiten erstellen", "Musikvideos analysieren", "Algorithmen verstehen", "Instrumente aufnehmen und mischen", "Datenbanken planen und erstellen", "Eine App programmieren", "3D-Modellierung"]
+      "choices": [
+        "Webseiten erstellen",
+        "Musikvideos analysieren",
+        "Algorithmen verstehen",
+        "Instrumente aufnehmen und mischen",
+        "Datenbanken planen und erstellen",
+        "Eine App programmieren",
+        "3D-Modellierung"
+      ],
+      "correctChoices": [
+        "Webseiten erstellen",
+        "Musikvideos analysieren",
+        "Algorithmen verstehen",
+        "Instrumente aufnehmen und mischen",
+        "Datenbanken planen und erstellen",
+        "Eine App programmieren",
+        "3D-Modellierung"
+      ]
     },
     {
       "id": 5,
@@ -92,4 +140,3 @@
     }
   ]
 }
-

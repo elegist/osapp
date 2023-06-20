@@ -131,7 +131,9 @@ export default class TaskManager {
             id: task.id,
             topic: taskData.topic,
             title: task.title,
-            text: task.text,
+            slug: task.slug,
+            content: task.content,
+            help: task.help,
           });
           break;
         default:

@@ -102,9 +102,11 @@ const Rectangle = ({label, submitted}) => {
 
   const style = StyleSheet.create({
     rectangle: {
-      margin: 5,
-      paddingVertical: 20,
-      paddingHorizontal: 40,
+      width: "50%",
+      height: "15%",
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginVertical: 5,
       borderRadius: 10,
     },
   });

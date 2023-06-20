@@ -2,8 +2,9 @@
     "comment": "This file holds templates and serves as a documentation file for the task's data structure",
     ".comment": "You can copy & paste these and fill them with real data. Do not delete this file!",
     "..comment": "Make sure to give each task a unique (ascending) id and place images in ./source/assets/osa_images",
-    "...comment": "You can just copy the whole thing for a new topic, delete the comment lines and customize your tasks.",
-    "....comment": "Each .json file should have the following structure:",
+    "...comment": "Mark images with a leading [img] and then the image name. You also have to add the image to the ImageMapper (Screens/helper)",
+    "....comment": "You can just copy the whole thing for a new topic, delete these comment lines and customize your tasks.",
+    ".....comment": "Each .json file should have the following structure:",
 
     "topic": "YOUR TOPIC",
     "tasks": [
@@ -32,10 +33,15 @@
       },
       {
         "id": 3,
-        "type": "interactive",
         "title": "YOUR INTERACTIVE TASK TITLE",
-        "text": "Just a placeholder at the moment."
-      }
+        "type": "interactive",
+        "slug": "@see InteractiveScreen.js",
+        "content": ["Erster erklärtext", "Zweiter Erklärtext", "Jeder Erklärtext wird für sich im Modal angezeigt"],
+        "help": [
+          "Erster Tipp",
+          "Zweiter Tipp..."
+        ]
+      }  
     ]
   }
   

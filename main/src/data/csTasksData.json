@@ -31,7 +31,7 @@
       "id": 2,
       "type": "quiz",
       "style": "single",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Zahlenreihe Dezimal",
       "question": "Zahlenreihen und -folgen sind Grundlagen, die du im Studium lernst. Versuche dich doch mal daran: Wie geht diese Folge weiter: 1, 1, 2, 3, 5, 8, ?",
       "choices": ["10", "11", "13", "15", "22", "36"]
     },
@@ -39,7 +39,7 @@
       "id": 3,
       "type": "quiz",
       "style": "single",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Binäre Darstellung",
       "question": "1011 ist die binäre Darstellung welcher Dezimalzahl?",
       "choices": ["1", "10", "11", "15", "19", "128", "1011"]
     },
@@ -47,7 +47,7 @@
       "id": 4,
       "type": "quiz",
       "style": "single",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Zahlenreihe Binär",
       "question": "Wie geht diese binäre Zahlenfolge weiter: 1, 10, 11, 100, 101, 110, 111, 1000, ?",
       "choices": ["1101", "1011", "1001", "1110", "1111"]
     },
@@ -56,7 +56,7 @@
       "type": "reading",
       "title": "Einleitung Webentwicklung",
       "content": [
-        "Nach dieser kleinen Aufwärmübung kommen wir zum ersten praktischen Thema",
+        "Nach dieser Übung kommen wir zum ersten praktischen Thema",
         "[img]internet.jpg",
         "Das Internet ist ein fester Teil unseres Alltags geworden.",
         "Als Medieninformatiker:in gestaltest du es aktiv mit.",
@@ -68,7 +68,7 @@
       "id": 6,
       "type": "quiz",
       "style": "multiple",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Webseiten erstellen",
       "question": "Was solltest du können um eine herkömmliche Webseite zu erstellen?",
       "choices": ["HTML", "CSS", "JavaScript", "Java", "C++", "Wordpress"],
       "correctChoices": ["HTML", "CSS", "JavaScript"]
@@ -77,7 +77,7 @@
       "id": 7,
       "type": "quiz",
       "style": "multiple",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Betriebssysteme",
       "question": "2023 laufen 81.3% aller Webseiten auf einem Unix-System, wie zum Beispiel:",
       "choices": ["Windows Server", "MacOS", "Linux", "Windows 11"],
       "correctChoices": ["MacOS", "Linux"]
@@ -86,22 +86,25 @@
       "id": 8,
       "type": "quiz",
       "style": "multiple",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Quiz Webbrowser",
       "question": "Ein Webbrowser ist ein...",
       "choices": ["Programm um u.a. Webseiten darzustellen.", "Computerspiel", "Tool für Webdesigner"],
       "correctChoices": ["Programm um u.a. Webseiten darzustellen."]
     },
     {
       "id": 9,
-      "type": "interactive",
-      "title": "YOUR INTERACTIVE TASK TITLE",
-      "text": "Just a placeholder at the moment."
+      "type": "quiz",
+      "style": "single",
+      "title": "Quiz HTTP",
+      "question": "Was bedeutet die Abkürzung 'HTTP'?",
+      "choices": ["HyperText Markup Protocol", "HyperText Transfer Protocol", "HyperText Transmission Protocol", "HyperTransfer Text Protocol"]
     },
     {
       "id": 10,
       "type": "reading",
       "title": "Einleitung Softwareentwicklung",
       "content": [
+        "Gut gemacht! Auf zum nächsten Thema!",
         "Ein weiterer praktischer Teil der Medieninformatik ist die Softwareentwicklung",
         "[img]programming.jpg",
         "Hier lernst du das Programmieren, und wie Softwareprojekte umgesetzt werden",
@@ -112,25 +115,74 @@
     {
       "id": 11,
       "type": "quiz",
+      "style": "single",
+      "title": "Algorithmus",
+      "question": "Was ist ein Algorithmus?",
+      "choices": ["Eine Art Hardware", "Eine Reihe von Anweisungen zur Lösung eines Problems", "Eine Social-Media Anwendung", "Ein Netzwerkprotokoll"],
+    },
+    {
+      "id": 12,
+      "type": "quiz",
       "style": "multiple",
-      "title": "YOUR QUESTION TASK TITLE",
+      "title": "Programmiersprachen",
       "question": "Wobei handelt es sich um eine Programmiersprache?",
       "choices": ["Borneo", "Java", "C", "Visual Studio", "Windows"],
       "correctChoices": ["Java", "C"]
     },
     {
-      "id": 12,
+      "id": 13,
       "type": "quiz",
       "style": "single",
-      "title": "YOUR QUESTION TASK TITLE",
-      "question": "Erklärung if-Statement",
-      "choices": ["Verstanden"]
+      "title": "Wertebereiche",
+      "question": "Welcher der folgenden Datentypen hat den größten Wertebereich?",
+      "choices": ["byte", "boolean", "int", "long", "short"]
     },
     {
-      "id": 13,
+      "id": 14,
+      "type": "reading",
+      "title": "Einleitung interaktive Aufgaben",
+      "content": [
+        "Die nächsten Aufgaben sind keine reinen Quizfragen",
+        "Du sollst im besten Fall selbst etwas ins Grübeln kommen.",
+        "Versuche, so wenige Hilfen wie möglich in Anspruch zu nehmen.",
+        "Viel Spaß!"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Color rectangle",
       "type": "interactive",
-      "title": "YOUR INTERACTIVE TASK TITLE",
-      "text": "Just a placeholder at the moment."
+      "slug": "cs1",
+      "content": [
+        "In der Schule hast du dich bestimmt schon oft mit geraden und ungeraden Zahlen beschäftigt.",
+        "Auch beim Programmieren muss man sich stets mit verschiedenen Eigenschaften von Objekten und Primitiven (z.B. Zahlen) beschäftigen.",
+        "Für das Prüfen, ob etwas gerade oder ungerade ist, bringen viele Sprachen bereits vorgefertigte Anweisungen mit.",
+        "Was eventuell für dich neu sein wird, ist die if-Anweisung.",
+        "Die meisten Befehle in höheren Programmiersprachen entstammen dem englischen und sollen dir das Programmieren verständlicher machen. Übersetze sie einfach!",
+        "Versuche doch mal, den folgenden Programmiercode zu interpretieren und die Elemente darunter entsprechend einzufärben."
+      ],
+      "help": [
+        "Die farblichen Markierungen helfen dir, die Logik des Codes besser zu verstehen.",
+        "Du könntest die if-Anweisung so lesen: 'Wenn eine Bedingung erfüllt ist, mache etwas.'",
+        "Stell dir vor, es gibt mehrere Elemente des Typs 'rectangle', diese sind alle mit einem 'index' nummeriert.",
+        "Wenn nun ein rectangle.index gerade (even) ist, ist es rot eingefärbt (rectangle.color is red)."
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Sort by color",
+      "type": "interactive",
+      "slug": "cs2",
+      "content": [
+        "In unserem Beispiel von eben ist 'rectangle' ein Objekt mit verschiedenen Eigenschaften, wie zum Beispiel einer Farbe.", 
+        "Was Eigenschaften und Methoden beim Programmieren sind musst du zu diesem Zeitpunkt noch nicht genau verstehen.",
+        "Es reicht, wenn du dir überlegst, welche 'Aussage' der Code hat: Was genau soll ausgeführt werden?"
+      ],
+      "help": [
+        "Versuche doch mal die Elemente zu verschieben.",
+        "Die wichtige Anweisung ist hier: sortByColor(red).",
+        "Sie bedeutet so viel wie: 'Sortiere die Elemente nach ihrer Farbe'"
+      ]
     }
   ]
 }

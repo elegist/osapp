@@ -100,9 +100,6 @@ export default class InteractiveTaskBase extends Component {
                 );
               })}
             </ScrollView>
-            {/* <Text style={globalStyles.textParagraph}>
-              {this.props.help[this.state.helpIndex]}
-            </Text> */}
             <TouchableOpacity
               disabled={this.props.help.length - 1 === this.state.helpIndex}
               style={

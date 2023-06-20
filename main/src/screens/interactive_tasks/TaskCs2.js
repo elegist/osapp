@@ -63,8 +63,6 @@ export default class TaskCs2 extends InteractiveTaskBase {
 
   updateRectangles = newRectangles => {
     this.setState({rectangles: newRectangles});
-
-    console.log(JSON.stringify(newRectangles, null, 2));
   };
 
   render() {

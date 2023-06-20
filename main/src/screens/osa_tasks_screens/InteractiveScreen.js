@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import TaskCs1 from '../../components/interactive_tasks/TaskCs1';
-import TaskCs2 from '../../components/interactive_tasks/TaskCs2';
+import TaskCs1 from '../interactive_tasks/TaskCs1';
+import TaskCs2 from '../interactive_tasks/TaskCs2';
 
 export default class InteractiveScreen extends Component {
   constructor(props) {

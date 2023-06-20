@@ -19,7 +19,6 @@ export class ReadingScreen extends Component {
   swipeTextAnim = new Animated.Value(0);
   // card image animations
   fadeImageAnim = new Animated.Value(0);
-  pulsateImageAnim = new Animated.Value(1);
   backgroundColorAnim = new Animated.Value(0);
   // hint animations
   swipeHintAnim = new Animated.Value(0);
@@ -97,7 +96,7 @@ export class ReadingScreen extends Component {
               this.setState({
                 imageIsDisplayedOnly: false,
               });
-              this.stopPulsatingImage();
+              this.stopTapHintAnim();
               this.fadeInText();
             }
           },
@@ -124,11 +123,6 @@ export class ReadingScreen extends Component {
             this.backgroundColorAnim.setValue(0);
             this.fadeImageAnim.setValue(0);
             this.goBack();
-
-            /*             this.setState({
-              currentImage: this.contentArray[previousIndex]['value'],
-            });
-            this.fadeInImage(); */
           } else {
             this.setState({
               imageIsDisplayedOnly: false,
@@ -149,7 +143,6 @@ export class ReadingScreen extends Component {
         toValue: 1,
         duration: 500,
         useNativeDriver: true,
-        easing: Easing.easeIn,
       }),
     ]).start();
   };
@@ -166,19 +159,16 @@ export class ReadingScreen extends Component {
         toValue: 0,
         duration: 300,
         useNativeDriver: true,
-        easing: Easing.easeIn,
       }),
       Animated.timing(this.scaleTextAnim, {
         toValue: 0,
         duration: 750,
         useNativeDriver: true,
-        easing: Easing.easeOut,
       }),
       Animated.timing(this.swipeTextAnim, {
         toValue: swipeTo,
         duration: 600,
         useNativeDriver: true,
-        easing: Easing.easeOut,
       }),
     ]).start(callback);
   };
@@ -198,7 +188,13 @@ export class ReadingScreen extends Component {
         }),
       ]),
       Animated.delay(450), // Delay before the image goes green
-    ]).start(this.startPulsatingImage());
+    ]).start(() => {
+      if (
+        this.taskManager.getUsersOverallProgress() == 0 &&
+        !this.state.tapHintWasDisplayed
+      )
+        this.startTapHintAnim();
+    });
   };
 
   makeImageTransparent = () => {
@@ -207,76 +203,49 @@ export class ReadingScreen extends Component {
         toValue: 0.2,
         duration: 600,
         useNativeDriver: true,
-        easing: Easing.easeIn,
       }),
       Animated.timing(this.backgroundColorAnim, {
         toValue: 1,
         duration: 600,
         useNativeDriver: false,
-        easing: Easing.easeIn,
       }),
     ]).start();
   };
 
-  startPulsatingImage = () => {
-    if (
-      this.taskManager.getUsersOverallProgress() == 0 &&
-      !this.state.tapHintWasDisplayed
-    ) {
-      this.tapHintAnimSequence = Animated.sequence([
-        Animated.delay(3800),
-        Animated.timing(this.blendInTapHintAnim, {
-          toValue: 1,
-          duration: 800,
-          useNativeDriver: true,
-          easing: Easing.ease,
-        }),
-        Animated.loop(
-          Animated.sequence([
-            Animated.timing(this.tapHintAnim, {
-              toValue: .9,
-              duration: 650,
-              useNativeDriver: true,
-              easing: Easing.cubic,
-            }),
-            Animated.timing(this.tapHintAnim, {
-              toValue: 1,
-              duration: 650,
-              useNativeDriver: true,
-            }),
-          ]),
-        ),
-      ]);
-      this.tapHintAnimSequence.start();
-    } else {
-      Animated.sequence([
-        Animated.delay(5000),
-        Animated.loop(
-          Animated.sequence([
-            Animated.timing(this.pulsateImageAnim, {
-              toValue: 0.99,
-              duration: 650,
-              useNativeDriver: true,
-              easing: Easing.bounce,
-            }),
-            Animated.timing(this.pulsateImageAnim, {
-              toValue: 1,
-              duration: 650,
-              useNativeDriver: true,
-            }),
-          ]),
-        ),
-      ]).start();
-    }
+  startTapHintAnim = () => {
+    this.tapHintAnimSequence = Animated.sequence([
+      Animated.delay(2000),
+      Animated.timing(this.blendInTapHintAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(this.tapHintAnim, {
+            toValue: 0.8,
+            duration: 650,
+            useNativeDriver: true,
+            easing: Easing.cubic,
+          }),
+          Animated.timing(this.tapHintAnim, {
+            toValue: 1,
+            duration: 650,
+            useNativeDriver: true,
+          }),
+        ]),
+      ),
+    ]);
+    this.tapHintAnimSequence.start();
   };
 
-  stopPulsatingImage = () => {
+  stopTapHintAnim = () => {
     this.state.tapHintWasDisplayed = true;
-    if(this.tapHintAnimSequence) {
+    if (this.tapHintAnimSequence) {
       this.tapHintAnimSequence.stop();
     }
     this.blendInTapHintAnim.setValue(0);
-    this.pulsateImageAnim.stopAnimation();
   };
 
   startSwipeHintAnim = () => {
@@ -330,7 +299,6 @@ export class ReadingScreen extends Component {
     };
     const animImageStyle = {
       opacity: this.fadeImageAnim,
-      transform: [{scale: this.pulsateImageAnim}],
     };
     const backgroundColorStyle = {
       backgroundColor: this.backgroundColorAnim.interpolate({

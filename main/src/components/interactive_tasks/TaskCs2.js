@@ -2,7 +2,9 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {Component, useEffect, useState} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import globalStyles from '../../styles/GlobalStyleSheet';
+import globalStyles, {
+  getResponsiveSizing,
+} from '../../styles/GlobalStyleSheet';
 import Animated, {
   useAnimatedGestureHandler,
   runOnJS,
@@ -63,8 +65,6 @@ export default class TaskCs2 extends InteractiveTaskBase {
 
   updateRectangles = newRectangles => {
     this.setState({rectangles: newRectangles});
-
-    console.log(JSON.stringify(newRectangles, null, 2));
   };
 
   render() {
@@ -116,7 +116,7 @@ const Rectangle = ({
   previousRectangles,
   updateRectangles,
 }) => {
-  const elementHeight = 75;
+  const elementHeight = getResponsiveSizing(75);
   const [moving, setMoving] = useState(false);
 
   const translateY = useSharedValue(0);
@@ -177,8 +177,8 @@ const Rectangle = ({
       margin: 5,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingVertical: 20,
-      paddingHorizontal: 40,
+      width: '50%',
+      height: '15%',
       borderRadius: 10,
       backgroundColor: color,
       elevation: withSpring(moving ? 8 : 0),

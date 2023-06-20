@@ -281,7 +281,7 @@ export class ReadingScreen extends Component {
 
   startSwipeHintAnim = () => {
     this.swipeHintAnimSequence = Animated.sequence([
-      Animated.delay(5000),
+      Animated.delay(2000),
       Animated.timing(this.blendInSwipeHintAnim, {
         toValue: 1,
         duration: 800,

@@ -87,12 +87,15 @@ export default class InteractiveTaskBase extends Component {
                         style={{alignSelf: 'center'}}
                       />
                     )}
-
-                    <View
-                      style={{
-                        ...globalStyles.horizontalLine,
-                        marginTop: 20,
-                      }}></View>
+                    {index !== this.props.help.length - 1 ? (
+                      <View
+                        style={{
+                          ...globalStyles.horizontalLine,
+                          marginTop: 20,
+                        }}></View>
+                    ) : (
+                      <></>
+                    )}
                   </View>
                 );
               })}

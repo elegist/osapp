@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, Modal, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export default class InteractiveTaskBase extends Component {
   constructor(props) {
@@ -72,9 +73,33 @@ export default class InteractiveTaskBase extends Component {
               onPress={() => this.setState({modalVisible: false})}>
               <Icon name="close" size={40} color="white"></Icon>
             </TouchableOpacity>
-            <Text style={globalStyles.textParagraph}>
+            <ScrollView>
+              {this.props.help.map((hint, index) => {
+                return (
+                  <View key={index} style={style.hintBlock}>
+                    {index <= this.state.helpIndex ? (
+                      <Text style={globalStyles.textParagraph}>{hint}</Text>
+                    ) : (
+                      <Icon
+                        name="question"
+                        color="#9B9B9B"
+                        size={42}
+                        style={{alignSelf: 'center'}}
+                      />
+                    )}
+
+                    <View
+                      style={{
+                        ...globalStyles.horizontalLine,
+                        marginTop: 20,
+                      }}></View>
+                  </View>
+                );
+              })}
+            </ScrollView>
+            {/* <Text style={globalStyles.textParagraph}>
               {this.props.help[this.state.helpIndex]}
-            </Text>
+            </Text> */}
             <TouchableOpacity
               disabled={this.props.help.length - 1 === this.state.helpIndex}
               style={
@@ -113,10 +138,14 @@ const style = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.75)',
   },
   modalContent: {
-    maxWidth: '60%',
+    height: '60%',
+    width: '70%',
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
     gap: 20,
+  },
+  hintBlock: {
+    marginBottom: 20,
   },
 });

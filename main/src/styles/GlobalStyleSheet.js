@@ -118,17 +118,17 @@ export default StyleSheet.create({
   textCodeRegular: {
     fontFamily: 'JetBrainsMono-Regular',
     fontSize: 16,
-    color: "#1C2327"
+    color: '#1C2327',
   },
   textCodeItalic: {
     fontFamily: 'JetBrainsMono-Italic',
     fontSize: 16,
-    color: "#1C2327"
+    color: '#1C2327',
   },
   textCodeBold: {
     fontFamily: 'JetBrainsMono-Bold',
     fontSize: 16,
-    color: "#1C2327"
+    color: '#1C2327',
   },
   //images
   osaImage: {
@@ -140,5 +140,9 @@ export default StyleSheet.create({
     borderRadius: 50,
     zIndex: -1,
     opacity: 0.5,
+  },
+  horizontalLine: {
+    borderBottomColor: '#9b9b9b',
+    borderBottomWidth: 1,
   },
 });

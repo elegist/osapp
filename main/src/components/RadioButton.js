@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginVertical: 16,
-    width: '70%',
+    width: '90%',
   },
   radioButton: {
     display: 'flex',

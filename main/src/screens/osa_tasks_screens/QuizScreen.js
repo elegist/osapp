@@ -90,7 +90,7 @@ export class QuizScreen extends Component {
           toValue: 1,
           duration: 400,
           useNativeDriver: true,
-          easing: Easing.ease
+          easing: Easing.ease,
         }),
         Animated.timing(this.moveAnim, {
           toValue: 0,
@@ -98,7 +98,7 @@ export class QuizScreen extends Component {
           useNativeDriver: true,
           easing: Easing.ease,
         }),
-      ])
+      ]),
     ]).start();
   }
 
@@ -142,8 +142,9 @@ export class QuizScreen extends Component {
 const styles = StyleSheet.create({
   viewContainer: {
     height: '92%',
-    width: "100%",
-    justifyContent: "space-evenly",
+    width: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     padding: 20,
     borderRadius: 8,
     backgroundColor: '#fff',

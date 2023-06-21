@@ -15,7 +15,7 @@ const PIXEL_RATIO = PixelRatio.get();
 export const getResponsiveSizing = fontSize => {
   const standardScreenHeight = 1920;
   const heightPercentage = (fontSize * (height / standardScreenHeight)).toFixed(
-    2,
+    0,
   );
   const convertedFontSize = PixelRatio.roundToNearestPixel(
     heightPercentage * PIXEL_RATIO,

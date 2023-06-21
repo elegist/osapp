@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginVertical: 16,
+    width: '90%',
   },
   checkbox: {
     display: 'flex',

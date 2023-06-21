@@ -70,7 +70,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
             even:
           </Text>
 
-          <Text style={globalStyles.textCodeRegular}>
+          <Text style={{...globalStyles.textCodeRegular, paddingLeft: 20}}>
             <Text>
               rectangle.
               <Text

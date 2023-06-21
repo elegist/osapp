@@ -2,6 +2,25 @@
   "topic": "Allgemein",
   "tasks": [
     {
+      "id": 17,
+      "title": "Color rectangle 2",
+      "type": "interactive",
+      "slug": "cs3",
+      "content": [
+        "Nachdem du die Grundlagen von Bedingungen verstanden hast, folgt hier nochmal eine etwas knackigere Aufgabe.",
+        "Das Grundkonzept ist das gleiche wie bei der ersten Aufgabe, die du bewätigt hast, allerdings ist das ganze hier noch etwas komplexer.",
+        "Lass dich aber nicht entmutigen, falls du nicht sofort auf die Lösung kommst. Du sollst hier ruhig ein wenig nachdenken - und denk dran: langes Nachdenken ist nicht unbedingt ein schlechtes Zeichen!"
+      ],
+      "help": [
+        "Es geht erneut darum, die Elemente gemäß dem Code richtig einzufärben.",
+        "Du erinnerst dich vielleicht an die Bedingung, ob ein Index 'even' ist. Dieses Konzept findet sich auch hier wieder.",
+        "Die Aussage 'index % 2 is 0' bedeutet, dass der index geteilt durch '2' keinen Rest ergibt.",
+        "Das heißt zum Beispiel, bei einem index von '4' ist die Aussage wahr, da '2' ein Teiler von '4' ist.",
+        "Dementsprechend ist es bei der Aussage 'index % 2 is not 0' genau umgekehrt. Es bleibt hier ein Rest übrig.",
+        "Das heißt zum Beispiel, bei einem index von '3' ist die Aussage unwahr, da '2' kein Teiler von '4' ist."
+      ]
+    },
+    {
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",

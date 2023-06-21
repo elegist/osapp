@@ -118,7 +118,7 @@ const Rectangle = ({
   previousRectangles,
   updateRectangles,
 }) => {
-  const elementHeight = getResponsiveSizing(75);
+  const elementHeight = getResponsiveSizing(54);
   const [moving, setMoving] = useState(false);
 
   const translateY = useSharedValue(0);
@@ -175,12 +175,12 @@ const Rectangle = ({
   const animatedStyle = useAnimatedStyle(() => {
     return {
       position: 'absolute',
-      top: order * elementHeight,
+      top: order * elementHeight + elementHeight / 4,
       margin: 5,
       justifyContent: 'center',
       alignItems: 'center',
       width: '50%',
-      height: '15%',
+      height: elementHeight - 10,
       borderRadius: 10,
       backgroundColor: color,
       elevation: withSpring(moving ? 8 : 0),

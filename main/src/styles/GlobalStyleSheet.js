@@ -12,15 +12,24 @@ const PIXEL_RATIO = PixelRatio.get();
 
 //1920
 
-export const getResponsiveSizing = fontSize => {
+export const getResponsiveSizing = size => {
+  const adjustedSize = size - 4;
+  const standardScreenWidth = 1080;
   const standardScreenHeight = 1920;
-  const heightPercentage = (fontSize * (height / standardScreenHeight)).toFixed(
-    0,
+  const widthPercentage = (
+    adjustedSize *
+    (width / standardScreenWidth)
+  ).toFixed(2);
+  const heightPercentage = (
+    adjustedSize *
+    (height / standardScreenHeight)
+  ).toFixed(2);
+  const convertedSize = PixelRatio.roundToNearestPixel(
+    Math.sqrt(
+      widthPercentage * widthPercentage + heightPercentage * heightPercentage,
+    ) * PIXEL_RATIO,
   );
-  const convertedFontSize = PixelRatio.roundToNearestPixel(
-    heightPercentage * PIXEL_RATIO,
-  );
-  return convertedFontSize;
+  return convertedSize;
 };
 
 export default StyleSheet.create({

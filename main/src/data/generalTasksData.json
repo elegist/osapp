@@ -2,25 +2,6 @@
   "topic": "Allgemein",
   "tasks": [
     {
-      "id": 15,
-      "title": "Color rectangle",
-      "type": "interactive",
-      "slug": "cs1",
-      "content": [
-        "In der Schule hast du dich bestimmt schon oft mit geraden und ungeraden Zahlen beschäftigt.",
-        "Für das Prüfen, ob etwas gerade oder ungerade ist, bringen viele Programmiersprachen bereits vorgefertigte Anweisungen mit.",
-        "Was eventuell für dich neu sein wird, ist die if-Anweisung.",
-        "Die meisten Befehle in höheren Programmiersprachen entstammen dem englischen und sollen dir das Programmieren verständlicher machen. Übersetze sie einfach!",
-        "Versuche doch mal, den folgenden Programmiercode zu interpretieren und die Elemente darunter entsprechend einzufärben."
-      ],
-      "help": [
-        "Die farblichen Markierungen helfen dir, die Logik des Codes besser zu verstehen.",
-        "Du könntest die if-Anweisung so lesen: 'Wenn eine Bedingung erfüllt ist, mache etwas.'",
-        "Stell dir vor, es gibt mehrere Elemente des Typs 'rectangle', diese sind alle mit einem 'index' nummeriert.",
-        "Wenn nun ein rectangle.index gerade (even) ist, ist es rot eingefärbt (rectangle.color is red)."
-      ]
-    },
-    {
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",

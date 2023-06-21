@@ -2,9 +2,7 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {Component, useEffect, useState} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import globalStyles, {
-  getResponsiveSizing,
-} from '../../styles/GlobalStyleSheet';
+import globalStyles, {getResponsiveSizing} from '../../styles/GlobalStyleSheet';
 import Animated, {
   useAnimatedGestureHandler,
   runOnJS,
@@ -80,7 +78,11 @@ export default class TaskCs2 extends InteractiveTaskBase {
 
           <Text style={globalStyles.textCodeRegular}>
             rectangles.
-            <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+            <Text
+              style={{
+                ...globalStyles.textCodeItalic,
+                color: this.colors.green,
+              }}>
               sortByColor(red)
             </Text>
           </Text>

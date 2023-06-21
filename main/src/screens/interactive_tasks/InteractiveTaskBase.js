@@ -10,6 +10,12 @@ export default class InteractiveTaskBase extends Component {
 
     this.setDefaultState();
 
+    this.colors = {
+      gray: '#D5D5D5',
+      green: '#008000',
+      red: '#B30000',
+    };
+
     this.baseStyles = StyleSheet.create({
       taskWrapper: {
         height: '90%',
@@ -18,7 +24,7 @@ export default class InteractiveTaskBase extends Component {
       },
       codeWindow: {
         flex: 1,
-        backgroundColor: '#ABABAB',
+        backgroundColor: this.colors.gray,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',

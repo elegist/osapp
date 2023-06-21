@@ -34,7 +34,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.submitted !== this.props.submitted) {
+    if (prevProps.submitted !== this.props.submitted) {
       //TODO: evaluate the users solution here
     }
   }
@@ -51,14 +51,20 @@ export default class TaskCs1 extends InteractiveTaskBase {
           </TouchableOpacity>
 
           <Text style={globalStyles.textCodeRegular}>
-            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+            <Text
+              style={{...globalStyles.textCodeBold, color: this.colors.red}}>
               if{' '}
             </Text>
             rectangle.
-            <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+            <Text
+              style={{
+                ...globalStyles.textCodeItalic,
+                color: this.colors.green,
+              }}>
               index
             </Text>{' '}
-            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+            <Text
+              style={{...globalStyles.textCodeBold, color: this.colors.red}}>
               is{' '}
             </Text>
             even:
@@ -67,11 +73,16 @@ export default class TaskCs1 extends InteractiveTaskBase {
           <Text style={globalStyles.textCodeRegular}>
             <Text>
               rectangle.
-              <Text style={{...globalStyles.textCodeItalic, color: '#7ff54a'}}>
+              <Text
+                style={{
+                  ...globalStyles.textCodeItalic,
+                  color: this.colors.green,
+                }}>
                 color{' '}
               </Text>
             </Text>
-            <Text style={{...globalStyles.textCodeBold, color: '#dd4040'}}>
+            <Text
+              style={{...globalStyles.textCodeBold, color: this.colors.red}}>
               is{' '}
             </Text>
             red
@@ -102,8 +113,8 @@ const Rectangle = ({label, submitted}) => {
 
   const style = StyleSheet.create({
     rectangle: {
-      width: "50%",
-      height: "15%",
+      width: '50%',
+      height: '15%',
       justifyContent: 'center',
       alignItems: 'center',
       marginVertical: 5,

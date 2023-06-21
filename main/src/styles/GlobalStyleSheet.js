@@ -13,16 +13,12 @@ const PIXEL_RATIO = PixelRatio.get();
 //1920
 
 export const getResponsiveSizing = fontSize => {
-  const standardScreenWidth = 1080; // The width of the screen you are designing for
-  const standardScreenHeight = 1920; // The height of the screen you are designing for
-  const widthPercentage = (fontSize * (width / standardScreenWidth)).toFixed(2);
+  const standardScreenHeight = 1920;
   const heightPercentage = (fontSize * (height / standardScreenHeight)).toFixed(
     2,
   );
   const convertedFontSize = PixelRatio.roundToNearestPixel(
-    Math.sqrt(
-      widthPercentage * widthPercentage + heightPercentage * heightPercentage,
-    ) * PIXEL_RATIO,
+    heightPercentage * PIXEL_RATIO,
   );
   return convertedFontSize;
 };
@@ -90,23 +86,23 @@ export default StyleSheet.create({
   // Typography
   textHeading: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(36),
+    fontSize: getResponsiveSizing(40),
     color: '#1C2327',
   },
   textHeadingSecondary: {
     fontFamily: 'PTSans-Regular',
-    fontSize: getResponsiveSizing(16),
+    fontSize: getResponsiveSizing(20),
     color: '#1C2327',
   },
   textSecondary: {
     fontFamily: 'PTSans-Italic',
-    fontSize: getResponsiveSizing(10),
+    fontSize: getResponsiveSizing(14),
     color: '#9b9b9b',
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(32),
-    lineHeight: getResponsiveSizing(42),
+    fontSize: getResponsiveSizing(40),
+    lineHeight: getResponsiveSizing(60),
     color: '#1C2327',
     textShadowColor: 'rgba(0, 0, 0, .6)',
     textShadowOffset: {width: 2, height: 2},
@@ -116,39 +112,39 @@ export default StyleSheet.create({
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
-    fontSize: getResponsiveSizing(12),
+    fontSize: getResponsiveSizing(18),
     color: '#1C2327',
   },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(20),
+    fontSize: getResponsiveSizing(24),
     color: 'white',
     textAlign: 'center',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(16),
+    fontSize: getResponsiveSizing(20),
     color: 'white',
     textAlign: 'center',
   },
   textChoiceButton: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(12),
+    fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
   textCodeRegular: {
     fontFamily: 'JetBrainsMono-Regular',
-    fontSize: getResponsiveSizing(10),
+    fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
   textCodeItalic: {
     fontFamily: 'JetBrainsMono-Italic',
-    fontSize: getResponsiveSizing(10),
+    fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
   textCodeBold: {
     fontFamily: 'JetBrainsMono-Bold',
-    fontSize: getResponsiveSizing(10),
+    fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
   //images

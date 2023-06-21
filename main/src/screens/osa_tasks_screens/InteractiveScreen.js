@@ -101,7 +101,7 @@ const style = StyleSheet.create({
   },
   modalContent: {
     width: '80%',
-    height: '80%',
+    height: '33%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',

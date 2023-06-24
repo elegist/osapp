@@ -136,7 +136,6 @@ export default class TaskManager {
             topic: taskData.topic,
             title: task.title,
             slug: task.slug,
-            content: task.content,
             help: task.help,
           });
           break;

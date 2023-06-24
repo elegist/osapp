@@ -134,17 +134,17 @@ export default StyleSheet.create({
   },
   textCodeRegular: {
     fontFamily: 'JetBrainsMono-Regular',
-    fontSize: getResponsiveSizing(16),
+    fontSize: getResponsiveSizing(14),
     color: '#1C2327',
   },
   textCodeItalic: {
     fontFamily: 'JetBrainsMono-Italic',
-    fontSize: getResponsiveSizing(16),
+    fontSize: getResponsiveSizing(14),
     color: '#1C2327',
   },
   textCodeBold: {
     fontFamily: 'JetBrainsMono-Bold',
-    fontSize: getResponsiveSizing(16),
+    fontSize: getResponsiveSizing(14),
     color: '#1C2327',
   },
   //images

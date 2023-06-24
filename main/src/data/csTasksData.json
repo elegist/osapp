@@ -167,14 +167,12 @@
       "title": "Color rectangle 1",
       "type": "interactive",
       "slug": "cs1",
-      "content": [
+      "help": [
         "In der Schule hast du dich bestimmt schon oft mit geraden und ungeraden Zahlen beschäftigt.",
         "Für das Prüfen, ob etwas gerade oder ungerade ist, bringen viele Programmiersprachen bereits vorgefertigte Anweisungen mit.",
         "Was eventuell für dich neu sein wird, ist die if-Anweisung.",
         "Die meisten Befehle in höheren Programmiersprachen entstammen dem englischen und sollen dir das Programmieren verständlicher machen. Übersetze sie einfach!",
-        "Versuche doch mal, den folgenden Programmiercode zu interpretieren und die Elemente darunter entsprechend einzufärben."
-      ],
-      "help": [
+        "Versuche doch mal, den folgenden Programmiercode zu interpretieren und die Elemente darunter entsprechend einzufärben.",
         "Die farblichen Markierungen helfen dir, die Logik des Codes besser zu verstehen.",
         "Du könntest die if-Anweisung so lesen: 'Wenn eine Bedingung erfüllt ist, mache etwas.'",
         "Stell dir vor, es gibt mehrere Elemente des Typs 'rectangle', diese sind alle mit einem 'index' nummeriert.",
@@ -186,12 +184,10 @@
       "title": "Sort by color",
       "type": "interactive",
       "slug": "cs2",
-      "content": [
+      "help": [
         "In unserem Beispiel von eben ist 'rectangle' ein Objekt mit verschiedenen Eigenschaften, wie zum Beispiel einer Farbe.",
         "Was Eigenschaften und Methoden beim Programmieren sind musst du zu diesem Zeitpunkt noch nicht genau verstehen.",
-        "Es reicht, wenn du dir überlegst, welche 'Aussage' der Code hat: Was genau soll ausgeführt werden?"
-      ],
-      "help": [
+        "Es reicht, wenn du dir überlegst, welche 'Aussage' der Code hat: Was genau soll ausgeführt werden?",
         "Versuche doch mal die Elemente zu verschieben.",
         "Die wichtige Anweisung ist hier: sortByColor(red).",
         "Sie bedeutet so viel wie: 'Sortiere die Elemente nach ihrer Farbe'"
@@ -202,12 +198,10 @@
       "title": "Color rectangle 2",
       "type": "interactive",
       "slug": "cs3",
-      "content": [
+      "help": [
         "Nachdem du die Grundlagen von Bedingungen verstanden hast, folgt hier nochmal eine etwas knackigere Aufgabe.",
         "Das Grundkonzept ist das gleiche wie bei der ersten Aufgabe, die du bewätigt hast, allerdings ist das ganze hier noch etwas komplexer.",
-        "Lass dich aber nicht entmutigen, falls du nicht sofort auf die Lösung kommst. Du sollst hier ruhig ein wenig nachdenken - und denk dran: langes Nachdenken ist nicht unbedingt ein schlechtes Zeichen!"
-      ],
-      "help": [
+        "Lass dich aber nicht entmutigen, falls du nicht sofort auf die Lösung kommst. Du sollst hier ruhig ein wenig nachdenken - und denk dran: langes Nachdenken ist nicht unbedingt ein schlechtes Zeichen!",
         "Es geht erneut darum, die Elemente gemäß dem Code richtig einzufärben.",
         "Du erinnerst dich vielleicht an die Bedingung, ob ein Index 'even' ist. Dieses Konzept findet sich auch hier wieder.",
         "Die Aussage 'index % 2 is 0' bedeutet, dass der index geteilt durch '2' keinen Rest ergibt.",

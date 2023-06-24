@@ -52,33 +52,6 @@ export default class InteractiveScreen extends Component {
   render() {
     return (
       <View style={style.taskContainer}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={this.state.explanationTextVisible}
-          onRequestClose={() => this.setState({explanationTextVisible: false})}>
-          <View style={style.modalContainer}>
-            <TouchableWithoutFeedback
-              onPress={() => {
-                if (
-                  this.state.explanationTextIndex <
-                  this.props.content.length - 1
-                ) {
-                  this.setState({
-                    explanationTextIndex: this.state.explanationTextIndex + 1,
-                  });
-                } else {
-                  this.setState({explanationTextVisible: false});
-                }
-              }}>
-              <View style={style.modalContent}>
-                <Text style={globalStyles.textParagraph}>
-                  {this.props.content[this.state.explanationTextIndex]}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </Modal>
         {this.renderTask()}
         <TouchableOpacity
           style={globalStyles.smallButton}
@@ -97,21 +70,5 @@ const style = StyleSheet.create({
     height: '99%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.75)',
-  },
-  modalContent: {
-    width: '80%',
-    minHeight: '33%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    gap: 20,
   },
 });

@@ -1,8 +1,9 @@
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Animated} from 'react-native';
 import React, {Component, useState} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
+import { Easing } from 'react-native-reanimated';
 
 export default class TaskCs3 extends InteractiveTaskBase {
   constructor(props) {
@@ -49,6 +50,35 @@ export default class TaskCs3 extends InteractiveTaskBase {
         },
       ],
     };
+    this.fadeAnim = new Animated.Value(0);
+    this.moveAnim = new Animated.Value(25);
+    this.fadeAnim2 = new Animated.Value(0);
+  }
+
+  componentDidMount() {
+    Animated.sequence([
+      Animated.timing(this.fadeAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+
+      Animated.parallel([
+        Animated.timing(this.fadeAnim2, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+        Animated.timing(this.moveAnim, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+      ]),
+    ]).start();
   }
 
   updateRectangles = newRectangles => {
@@ -58,12 +88,13 @@ export default class TaskCs3 extends InteractiveTaskBase {
   render() {
     return (
       <View style={this.baseStyles.taskWrapper}>
-        <View style={this.baseStyles.codeWindow}>
+        <Animated.View
+          style={{...this.baseStyles.codeWindow, opacity: this.fadeAnim}}>
           <TouchableOpacity
             disabled={this.props.submitted}
             style={this.baseStyles.helpButton}
             onPress={() => this.setState({modalVisible: true})}>
-            <Icon name="question" size={40} color="white" />
+            <Icon name="question" size={36} color="white" />
           </TouchableOpacity>
           <Text style={globalStyles.textCodeRegular}>
             <Text
@@ -136,13 +167,18 @@ export default class TaskCs3 extends InteractiveTaskBase {
             </Text>
             red
           </Text>
-        </View>
-        <View style={this.baseStyles.resultWindow}>
+        </Animated.View>
+        <Animated.View
+          style={{
+            ...this.baseStyles.resultWindow,
+            opacity: this.fadeAnim2,
+            transform: [{translateY: this.moveAnim}],
+          }}>
           <RectangleContainer
             rectangles={this.state.rectangles}
             updateRectangles={this.updateRectangles}
           />
-        </View>
+        </Animated.View>
         {this.includeModal()}
       </View>
     );

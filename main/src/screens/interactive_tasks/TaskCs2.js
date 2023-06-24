@@ -1,9 +1,15 @@
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Animated as ReactAnimated,
+} from 'react-native';
 import React, {Component, useEffect, useState} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles, {getResponsiveSizing} from '../../styles/GlobalStyleSheet';
 import Animated, {
+  Easing,
   useAnimatedGestureHandler,
   runOnJS,
   useAnimatedStyle,
@@ -53,6 +59,36 @@ export default class TaskCs2 extends InteractiveTaskBase {
         },
       ],
     };
+
+    this.fadeAnim = new ReactAnimated.Value(0);
+    this.moveAnim = new ReactAnimated.Value(25);
+    this.fadeAnim2 = new ReactAnimated.Value(0);
+  }
+
+  componentDidMount() {
+    ReactAnimated.sequence([
+      ReactAnimated.timing(this.fadeAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+
+      ReactAnimated.parallel([
+        ReactAnimated.timing(this.fadeAnim2, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+        ReactAnimated.timing(this.moveAnim, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease,
+        }),
+      ]),
+    ]).start();
   }
 
   componentDidUpdate(prevProps) {
@@ -68,12 +104,13 @@ export default class TaskCs2 extends InteractiveTaskBase {
   render() {
     return (
       <View style={this.baseStyles.taskWrapper}>
-        <View style={this.baseStyles.codeWindow}>
+        <ReactAnimated.View
+          style={{...this.baseStyles.codeWindow, opacity: this.fadeAnim}}>
           <TouchableOpacity
             disabled={this.props.submitted}
             style={this.baseStyles.helpButton}
             onPress={() => this.setState({modalVisible: true})}>
-            <Icon name="question" size={40} color="white" />
+            <Icon name="question" size={36} color="white" />
           </TouchableOpacity>
 
           <Text style={globalStyles.textCodeRegular}>
@@ -86,9 +123,14 @@ export default class TaskCs2 extends InteractiveTaskBase {
               sortByColor(red)
             </Text>
           </Text>
-        </View>
+        </ReactAnimated.View>
 
-        <View style={this.baseStyles.resultWindow}>
+        <ReactAnimated.View
+          style={{
+            ...this.baseStyles.resultWindow,
+            opacity: this.fadeAnim2,
+            transform: [{translateY: this.moveAnim}],
+          }}>
           {this.state.rectangles
             .sort((a, b) => a.order - b.order)
             .map(rectangle => {
@@ -104,7 +146,7 @@ export default class TaskCs2 extends InteractiveTaskBase {
                 />
               );
             })}
-        </View>
+        </ReactAnimated.View>
         {this.includeModal()}
       </View>
     );

@@ -1,5 +1,5 @@
 import {Text, View, TouchableOpacity} from 'react-native';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
@@ -8,7 +8,52 @@ export default class TaskCs3 extends InteractiveTaskBase {
   constructor(props) {
     super(props);
     super.setDefaultState();
+    this.state = {
+      ...this.state,
+      rectangles: [
+        {
+          index: 0,
+          color: '#D9D9D9',
+        },
+        {
+          index: 1,
+          color: '#D9D9D9',
+        },
+        {
+          index: 2,
+          color: '#D9D9D9',
+        },
+        {
+          index: 3,
+          color: '#D9D9D9',
+        },
+        {
+          index: 4,
+          color: '#D9D9D9',
+        },
+        {
+          index: 5,
+          color: '#D9D9D9',
+        },
+        {
+          index: 6,
+          color: '#D9D9D9',
+        },
+        {
+          index: 7,
+          color: '#D9D9D9',
+        },
+        {
+          index: 8,
+          color: '#D9D9D9',
+        },
+      ],
+    };
   }
+
+  updateRectangles = newRectangles => {
+    this.setState({rectangles: newRectangles});
+  };
 
   render() {
     return (
@@ -92,9 +137,88 @@ export default class TaskCs3 extends InteractiveTaskBase {
             red
           </Text>
         </View>
-        <View style={this.baseStyles.resultWindow}></View>
+        <View style={this.baseStyles.resultWindow}>
+          <RectangleContainer
+            rectangles={this.state.rectangles}
+            updateRectangles={this.updateRectangles}
+          />
+        </View>
         {this.includeModal()}
       </View>
     );
   }
 }
+
+const Rectangle = ({data, rectangles, updateRectangles}) => {
+  const [colorIndex, setColorIndex] = useState(1);
+  const colors = ['#D9D9D9', '#FD4F4F', '#86B300'];
+
+  const handlePress = () => {
+    if (colorIndex < colors.length - 1) {
+      setColorIndex(colorIndex + 1);
+    } else {
+      setColorIndex(0);
+    }
+
+    const newRectangles = rectangles.map((rect, index) => {
+      if (data.index === rect.index) {
+        return {...rect, color: colors[colorIndex]};
+      }
+
+      return rect;
+    });
+
+    updateRectangles(newRectangles);
+    // const newRectangles = rectangles.map((entry, index) => {
+    //   return {...entry, color: '#FF0000'};
+    // });
+  };
+
+  return (
+    <TouchableOpacity
+      onPress={handlePress}
+      style={{
+        width: '33.33%',
+        backgroundColor: data.color,
+        paddingHorizontal: 10,
+        paddingVertical: 20,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text style={globalStyles.textParagraph}>index: {data.index}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const RectangleContainer = ({rectangles, updateRectangles}) => {
+  const rows = [];
+
+  for (let i = 0; i < rectangles.length; i += 3) {
+    const row = rectangles.slice(i, i + 3);
+    rows.push(row);
+  }
+
+  return (
+    <View style={{flexDirection: 'column', gap: 10, alignSelf: 'center'}}>
+      {rows.map((row, index) => {
+        return (
+          <View
+            key={index}
+            style={{flexDirection: 'row', gap: 10, alignSelf: 'center'}}>
+            {row.map(item => {
+              return (
+                <Rectangle
+                  key={item.index}
+                  data={item}
+                  rectangles={rectangles}
+                  updateRectangles={updateRectangles}
+                />
+              );
+            })}
+          </View>
+        );
+      })}
+    </View>
+  );
+};

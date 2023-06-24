@@ -13,7 +13,7 @@ const PIXEL_RATIO = PixelRatio.get();
 //1920
 
 export const getResponsiveSizing = size => {
-  const adjustedSize = size - 4;
+  const adjustedSize = size - 6;
   const standardScreenWidth = 1080;
   const standardScreenHeight = 1920;
   const widthPercentage = (

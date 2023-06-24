@@ -1,5 +1,12 @@
-import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Dimensions,
+} from 'react-native';
+import React, {createRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import InteractiveTaskBase from './InteractiveTaskBase';
@@ -15,9 +22,16 @@ export default class TaskCs1 extends InteractiveTaskBase {
     super(props);
     super.setDefaultState();
 
+    this.containerRef = createRef();
+
     this.state = {
       ...this.state,
       tutorialVisible: true,
+      tutorialOverlayPosition: null,
+      tutorialOverlaySize: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+      },
     };
 
     this.rectangles = [
@@ -110,6 +124,15 @@ export default class TaskCs1 extends InteractiveTaskBase {
     this.props.activateButton();
   };
 
+  handleContainerLayout = () => {
+    const {width, height} = Dimensions.get('window');
+    this.containerRef.current.measureInWindow((x, y) => {
+      this.setState({
+        tutorialOverlayPosition: {top: y, left: x},
+      });
+    });
+  };
+
   render() {
     const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
     const animateTapStyle = {
@@ -119,11 +142,13 @@ export default class TaskCs1 extends InteractiveTaskBase {
 
     return (
       <Animated.View
+        ref={this.containerRef}
+        onLayout={this.handleContainerLayout}
         style={{
           ...this.baseStyles.taskWrapper,
           opacity: this.fadeAnim,
         }}>
-        <View style={this.baseStyles.codeWindow}>
+        <View style={{...this.baseStyles.codeWindow, zIndex: 10}}>
           <TouchableOpacity
             disabled={this.props.submitted}
             style={this.baseStyles.helpButton}
@@ -136,7 +161,6 @@ export default class TaskCs1 extends InteractiveTaskBase {
                     width: 60,
                     height: 60,
                     position: 'absolute',
-                    zIndex: 10,
                     top: 25,
                     right: -10,
                   },
@@ -203,6 +227,18 @@ export default class TaskCs1 extends InteractiveTaskBase {
           ))}
         </Animated.View>
         {this.includeModal()}
+        {this.state.tutorialOverlayPosition && this.state.tutorialVisible && (
+          <View
+            style={{
+              position: 'absolute',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              top: -this.state.tutorialOverlayPosition.top,
+              left: -this.state.tutorialOverlayPosition.left,
+              width: this.state.tutorialOverlaySize.width,
+              height: this.state.tutorialOverlaySize.height,
+            }}
+          />
+        )}
       </Animated.View>
     );
   }

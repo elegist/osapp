@@ -70,7 +70,7 @@ export default class InteractiveScreen extends Component {
         {this.renderTask()}
         <TouchableOpacity
           disabled={this.state.buttonDisabled}
-          style={globalStyles.smallButton}
+          style={{...globalStyles.smallButton, zIndex: -1}}
           onPress={this.handlePress}>
           <Text style={globalStyles.textSmallButton}>
             {this.state.submitted ? 'Fortfahren' : 'Abgeben'}

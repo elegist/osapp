@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskCs1 from '../interactive_tasks/TaskCs1';
 import TaskCs2 from '../interactive_tasks/TaskCs2';
+import TaskCs3 from '../interactive_tasks/TaskCs3';
 
 export default class InteractiveScreen extends Component {
   constructor(props) {
@@ -30,6 +31,10 @@ export default class InteractiveScreen extends Component {
       case 'cs2':
         return (
           <TaskCs2 help={this.props.help} submitted={this.state.submitted} />
+        );
+      case 'cs3':
+        return (
+          <TaskCs3 help={this.props.help} submitted={this.state.submitted} />
         );
       default:
         break;

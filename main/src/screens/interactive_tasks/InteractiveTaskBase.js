@@ -19,7 +19,7 @@ export default class InteractiveTaskBase extends Component {
     this.baseStyles = StyleSheet.create({
       taskWrapper: {
         height: '90%',
-        width: '80%',
+        width: '85%',
         gap: 10,
       },
       codeWindow: {
@@ -27,7 +27,8 @@ export default class InteractiveTaskBase extends Component {
         backgroundColor: this.colors.gray,
         borderRadius: 5,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 10,
       },
       resultWindow: {
         flex: 3,

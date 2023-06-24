@@ -124,28 +124,28 @@ export default class TaskCs1 extends InteractiveTaskBase {
           opacity: this.fadeAnim,
         }}>
         <View style={this.baseStyles.codeWindow}>
-          {this.state.tutorialVisible && (
-            <AnimatedFastImage
-              style={[
-                {
-                  width: 60,
-                  height: 60,
-                  position: 'absolute',
-                  zIndex: 10,
-                  top: 10,
-                  right: -30,
-                },
-                animateTapStyle,
-              ]}
-              source={tapImage}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          )}
           <TouchableOpacity
             disabled={this.props.submitted}
             style={this.baseStyles.helpButton}
             onPress={this.handlePress}>
             <Icon name="question" size={36} color="white" />
+            {this.state.tutorialVisible && (
+              <AnimatedFastImage
+                style={[
+                  {
+                    width: 60,
+                    height: 60,
+                    position: 'absolute',
+                    zIndex: 10,
+                    top: 25,
+                    right: -10,
+                  },
+                  animateTapStyle,
+                ]}
+                source={tapImage}
+                resizeMode={FastImage.resizeMode.contain}
+              />
+            )}
           </TouchableOpacity>
 
           <Text style={globalStyles.textCodeRegular}>

@@ -10,7 +10,6 @@ class InteractiveTask extends AssessmentTask {
   constructor(props) {
     super(props);
     this.slug = props.slug;
-    this.content = props.content;
     this.help = props.help;
   }
 }

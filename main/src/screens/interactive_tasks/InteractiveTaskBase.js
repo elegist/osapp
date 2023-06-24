@@ -19,15 +19,17 @@ export default class InteractiveTaskBase extends Component {
     this.baseStyles = StyleSheet.create({
       taskWrapper: {
         height: '90%',
-        width: '80%',
+        width: '90%',
         gap: 10,
       },
       codeWindow: {
         flex: 1,
         backgroundColor: this.colors.gray,
         borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        paddingTop: 10,
+        paddingLeft: 10,
       },
       resultWindow: {
         flex: 3,
@@ -36,8 +38,8 @@ export default class InteractiveTaskBase extends Component {
       },
       helpButton: {
         position: 'absolute',
-        top: -20,
-        right: -25,
+        top: -15,
+        right: -20,
         paddingHorizontal: 15,
         paddingVertical: 5,
         elevation: 5,
@@ -77,7 +79,7 @@ export default class InteractiveTaskBase extends Component {
             <TouchableOpacity
               style={style.closeButton}
               onPress={() => this.setState({modalVisible: false})}>
-              <Icon name="close" size={40} color="white"></Icon>
+              <Icon name="close" size={32} color="white"></Icon>
             </TouchableOpacity>
             <ScrollView>
               {this.props.help.map((hint, index) => {
@@ -128,8 +130,8 @@ export default class InteractiveTaskBase extends Component {
 const style = StyleSheet.create({
   closeButton: {
     position: 'absolute',
-    top: -40,
-    right: -40,
+    top: -35,
+    right: -35,
     paddingHorizontal: 15,
     paddingVertical: 10,
     margin: 5,
@@ -144,7 +146,7 @@ const style = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.75)',
   },
   modalContent: {
-    height: '60%',
+    height: '90%',
     width: '70%',
     backgroundColor: 'white',
     padding: 20,

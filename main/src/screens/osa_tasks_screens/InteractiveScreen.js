@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskCs1 from '../interactive_tasks/TaskCs1';
 import TaskCs2 from '../interactive_tasks/TaskCs2';
+import TaskCs3 from '../interactive_tasks/TaskCs3';
 
 export default class InteractiveScreen extends Component {
   constructor(props) {
@@ -18,18 +19,37 @@ export default class InteractiveScreen extends Component {
       submitted: false,
       explanationTextVisible: true,
       explanationTextIndex: 0,
+      buttonDisabled: false,
     };
   }
+
+  componentDidMount() {
+    if (this.props.slug === 'cs1') {
+      this.setState({buttonDisabled: true});
+    }
+  }
+
+  activateButton = () => {
+    this.setState({buttonDisabled: false});
+  };
 
   renderTask = () => {
     switch (this.props.slug) {
       case 'cs1':
         return (
-          <TaskCs1 help={this.props.help} submitted={this.state.submitted} />
+          <TaskCs1
+            help={this.props.help}
+            submitted={this.state.submitted}
+            activateButton={this.activateButton}
+          />
         );
       case 'cs2':
         return (
           <TaskCs2 help={this.props.help} submitted={this.state.submitted} />
+        );
+      case 'cs3':
+        return (
+          <TaskCs3 help={this.props.help} submitted={this.state.submitted} />
         );
       default:
         break;
@@ -47,36 +67,10 @@ export default class InteractiveScreen extends Component {
   render() {
     return (
       <View style={style.taskContainer}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={this.state.explanationTextVisible}
-          onRequestClose={() => this.setState({explanationTextVisible: false})}>
-          <View style={style.modalContainer}>
-            <TouchableWithoutFeedback
-              onPress={() => {
-                if (
-                  this.state.explanationTextIndex <
-                  this.props.content.length - 1
-                ) {
-                  this.setState({
-                    explanationTextIndex: this.state.explanationTextIndex + 1,
-                  });
-                } else {
-                  this.setState({explanationTextVisible: false});
-                }
-              }}>
-              <View style={style.modalContent}>
-                <Text style={globalStyles.textParagraph}>
-                  {this.props.content[this.state.explanationTextIndex]}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </Modal>
         {this.renderTask()}
         <TouchableOpacity
-          style={globalStyles.smallButton}
+          disabled={this.state.buttonDisabled}
+          style={{...globalStyles.smallButton, zIndex: -1}}
           onPress={this.handlePress}>
           <Text style={globalStyles.textSmallButton}>
             {this.state.submitted ? 'Fortfahren' : 'Abgeben'}
@@ -92,21 +86,5 @@ const style = StyleSheet.create({
     height: '99%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.75)',
-  },
-  modalContent: {
-    width: '80%',
-    height: '33%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    gap: 20,
   },
 });

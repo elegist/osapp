@@ -19,14 +19,29 @@ export default class InteractiveScreen extends Component {
       submitted: false,
       explanationTextVisible: true,
       explanationTextIndex: 0,
+      buttonDisabled: false,
     };
   }
+
+  componentDidMount() {
+    if (this.props.slug === 'cs1') {
+      this.setState({buttonDisabled: true});
+    }
+  }
+
+  activateButton = () => {
+    this.setState({buttonDisabled: false});
+  };
 
   renderTask = () => {
     switch (this.props.slug) {
       case 'cs1':
         return (
-          <TaskCs1 help={this.props.help} submitted={this.state.submitted} />
+          <TaskCs1
+            help={this.props.help}
+            submitted={this.state.submitted}
+            activateButton={this.activateButton}
+          />
         );
       case 'cs2':
         return (
@@ -54,6 +69,7 @@ export default class InteractiveScreen extends Component {
       <View style={style.taskContainer}>
         {this.renderTask()}
         <TouchableOpacity
+          disabled={this.state.buttonDisabled}
           style={globalStyles.smallButton}
           onPress={this.handlePress}>
           <Text style={globalStyles.textSmallButton}>

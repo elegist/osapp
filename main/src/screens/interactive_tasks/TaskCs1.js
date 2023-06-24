@@ -4,11 +4,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import InteractiveTaskBase from './InteractiveTaskBase';
 import {Easing} from 'react-native-reanimated';
+import FastImage from 'react-native-fast-image';
+import tapImage from '../../assets/misc/tap.webp';
 
 export default class TaskCs1 extends InteractiveTaskBase {
+  tapHintAnim = new Animated.Value(1);
+  blendInTapHintAnim = new Animated.Value(0);
+
   constructor(props) {
     super(props);
     super.setDefaultState();
+
+    this.state = {
+      ...this.state,
+      tutorialVisible: true,
+    };
 
     this.rectangles = [
       {
@@ -39,6 +49,31 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 
   componentDidMount() {
+    Animated.sequence([
+      Animated.delay(500),
+      Animated.timing(this.blendInTapHintAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }),
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(this.tapHintAnim, {
+            toValue: 0.8,
+            duration: 650,
+            useNativeDriver: true,
+            easing: Easing.cubic,
+          }),
+          Animated.timing(this.tapHintAnim, {
+            toValue: 1,
+            duration: 650,
+            useNativeDriver: true,
+          }),
+        ]),
+      ),
+    ]).start();
+
     Animated.sequence([
       Animated.timing(this.fadeAnim, {
         toValue: 1,
@@ -71,10 +106,17 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 
   handlePress = () => {
-    this.setState({modalVisible: true});
+    this.setState({modalVisible: true, tutorialVisible: false});
+    this.props.activateButton();
   };
 
   render() {
+    const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
+    const animateTapStyle = {
+      opacity: this.blendInTapHintAnim,
+      transform: [{scale: this.tapHintAnim}],
+    };
+
     return (
       <Animated.View
         style={{
@@ -82,6 +124,23 @@ export default class TaskCs1 extends InteractiveTaskBase {
           opacity: this.fadeAnim,
         }}>
         <View style={this.baseStyles.codeWindow}>
+          {this.state.tutorialVisible && (
+            <AnimatedFastImage
+              style={[
+                {
+                  width: 60,
+                  height: 60,
+                  position: 'absolute',
+                  zIndex: 10,
+                  top: 10,
+                  right: -30,
+                },
+                animateTapStyle,
+              ]}
+              source={tapImage}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          )}
           <TouchableOpacity
             disabled={this.props.submitted}
             style={this.baseStyles.helpButton}
@@ -139,6 +198,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
               key={rectangle.index}
               label={rectangle.label}
               submitted={this.props.submitted}
+              tutorialVisible={this.state.tutorialVisible}
             />
           ))}
         </Animated.View>
@@ -148,7 +208,7 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 }
 
-const Rectangle = ({label, submitted}) => {
+const Rectangle = ({label, submitted, tutorialVisible}) => {
   const [pressed, setPressed] = useState(false);
 
   const handlePress = () => {
@@ -168,7 +228,7 @@ const Rectangle = ({label, submitted}) => {
 
   return (
     <TouchableOpacity
-      disabled={submitted}
+      disabled={submitted || tutorialVisible}
       style={
         pressed
           ? {...style.rectangle, backgroundColor: '#FD4F4F'}

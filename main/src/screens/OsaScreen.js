@@ -110,7 +110,7 @@ export default function OsaScreen({navigation, route}) {
       </View>
       <View
         style={
-          task instanceof InteractiveTask
+          task instanceof InteractiveTask || task instanceof ExamplesTask
             ? styles.interactiveTaskContainer
             : styles.taskContainer
         }>

@@ -21,7 +21,7 @@
         "title": "YOUR QUESTION TASK TITLE",
         "question": "YOUR MULTIPLE CHOICE QUESTION",
         "choices": ["Place", "as", "many", "choices", "as", "you", "want"],
-        "correctChoices": ["Place"]
+        "correctChoices": ["many", "as", "you", "want"]
       },
       {
         "id": 2,
@@ -29,7 +29,8 @@
         "style": "single",
         "title": "YOUR QUESTION TASK TITLE",
         "question": "YOUR SINGLE CHOICE QUESTION",
-        "choices": ["Place", "as", "many", "choices", "as", "you", "want"]
+        "choices": ["Place", "as", "many", "choices", "as", "you", "want"],
+        "correctChoices": ["many", "as", "you", "want"]
       },
       {
         "id": 3,

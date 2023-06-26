@@ -33,7 +33,8 @@
       "style": "single",
       "title": "Zahlenreihe Dezimal",
       "question": "Zahlenreihen und -folgen sind Grundlagen, die du im Studium lernst. Versuche dich doch mal daran: Wie geht diese Folge weiter: 1, 1, 2, 3, 5, 8, ?",
-      "choices": ["10", "11", "13", "15", "22", "36"]
+      "choices": ["10", "11", "13", "15", "22", "36"],
+      "correctChoices": ["13"]
     },
     {
       "id": 3,
@@ -41,7 +42,8 @@
       "style": "single",
       "title": "Zahlenreihe Binär",
       "question": "Wie geht diese binäre Zahlenfolge weiter: 1, 10, 11, 100, 101, 110, 111, 1000, ?",
-      "choices": ["1101", "1011", "1001", "1110", "1111"]
+      "choices": ["1101", "1011", "1001", "1110", "1111"],
+      "correctChoices": ["1001"]
     },
     {
       "id": 4,
@@ -49,7 +51,8 @@
       "style": "single",
       "title": "Binäre Darstellung",
       "question": "1011 ist die binäre Darstellung welcher Dezimalzahl?",
-      "choices": ["1", "10", "11", "15", "19", "128", "1011"]
+      "choices": ["1", "10", "11", "15", "19", "128", "1011"],
+      "correctChoices": ["11"]
     },
     {
       "id": 5,
@@ -106,7 +109,8 @@
         "HyperText Transfer Protocol",
         "HyperText Transmission Protocol",
         "HyperTransfer Text Protocol"
-      ]
+      ],
+      "correctChoices": ["HyperText Transfer Protocol"]
     },
     {
       "id": 10,
@@ -132,7 +136,8 @@
         "Eine Reihe von Anweisungen zur Lösung eines Problems",
         "Eine Social-Media Anwendung",
         "Ein Netzwerkprotokoll"
-      ]
+      ],
+      "correctChoices": ["Eine Reihe von Anweisungen zur Lösung eines Problems"]
     },
     {
       "id": 12,
@@ -149,7 +154,8 @@
       "style": "single",
       "title": "Wertebereiche",
       "question": "Welcher der folgenden Datentypen hat den größten Wertebereich?",
-      "choices": ["byte", "boolean", "int", "long", "short"]
+      "choices": ["byte", "boolean", "int", "long", "short"],
+      "correctChoices": ["long"]
     },
     {
       "id": 14,

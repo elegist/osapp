@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, SectionList} from 'react-native';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
+import ReadingTask from '../container/osa_tasks/ReadingTask';
 
 /**
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
@@ -14,15 +15,18 @@ export default function SummaryScreen({navigation, route}) {
     const list = [];
     let id = 0;
     taskArray.forEach(topic => {
+      if(topic[0].topic == 'Allgemein' || topic[0].topic == 'Examples' || topic[0].topic == 'Summary') return;
       const section = {
         title: topic[0].topic,
       };
       const data = [];
       topic.forEach(element => {
+        if(element instanceof ReadingTask) return;
         data.push({
           id: id,
           title: element.title,
-          timeElapsed: element.getTimeElapsedFormatted()
+          timeElapsed: element.getTimeElapsedFormatted(),
+          taskSuccess: element.getTaskSuccess() ? "true" : "false"
         })
         id++;
       });
@@ -46,7 +50,8 @@ export default function SummaryScreen({navigation, route}) {
         renderItem={({item}) => (
           <View style={styles.taskItem}>
             <Text>{item.title}</Text>
-            <Text>{ item.timeElapsed }</Text>
+            <Text>{item.timeElapsed }</Text>
+            <Text>{item.taskSuccess }</Text>
           </View>
         )}
       />

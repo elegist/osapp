@@ -59,6 +59,12 @@
         "Ich weiß grob Bescheid",
         "Ich lass es auf mich zukommen",
         "Ich habe mich noch nicht informiert"
+      ],
+      "correctChoices": [
+        "Ich kenne mich gut aus",
+        "Ich weiß grob Bescheid",
+        "Ich lass es auf mich zukommen",
+        "Ich habe mich noch nicht informiert"
       ]
     },
     {

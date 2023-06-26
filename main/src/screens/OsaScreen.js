@@ -53,16 +53,15 @@ export default function OsaScreen({navigation, route}) {
     //console.log(task);
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return <ReadingScreen key={task.id} {...task} nextTask={nextTask} />;
+      return <ReadingScreen key={task.id} task={task} nextTask={nextTask} />;
     } else if (task instanceof QuizTask) {
-      return <QuizScreen key={task.id} {...task} nextTask={nextTask} />;
+      return <QuizScreen key={task.id} task={task} nextTask={nextTask} />;
     } else if (task instanceof InteractiveTask) {
-      return <InteractiveScreen key={task.id} {...task} nextTask={nextTask} />;
+      return <InteractiveScreen key={task.id} task={task} nextTask={nextTask} />;
     } else if (task instanceof ExamplesTask) {
       return (
         <ExamplesScreen
           key={task.id}
-          {...task}
           nextTask={nextTask}
           source="tasks"
         />

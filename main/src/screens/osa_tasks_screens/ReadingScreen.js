@@ -29,7 +29,7 @@ export class ReadingScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.initReadingTask(this.props.props.content);
+    this.initReadingTask(this.props.task.props.content);
     this.state = {
       currentIndex: 0,
       currentImage: '',

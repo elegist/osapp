@@ -24,7 +24,8 @@
       "style": "single",
       "title": "Bildauflösungen",
       "question": "Welche der folgenden Bildauflösungen wird typischerweise für hochauflösendes (HD) Fernsehen verwendet?",
-      "choices": ["720p", "480p", "720i", "1080p", "240p"]
+      "choices": ["720p", "480p", "720i", "1080i", "240p"],
+      "correctChoices": ["1080i"]
     },
     {
       "id": 3,
@@ -41,7 +42,8 @@
       "style": "single",
       "title": "Lautstärkepegel",
       "question": "Welche der folgenden Begriffe beschreibt die Anpassung der Lautstärkepegel in einem Audiomix?",
-      "choices": ["Panning", "Mastering", "Equalizing", "Fading"]
+      "choices": ["Panning", "Mastering", "Equalizing", "Fading"],
+      "correctChoices": ["Fading"]
     },
     {
       "id": 5,

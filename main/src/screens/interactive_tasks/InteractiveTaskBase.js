@@ -24,6 +24,7 @@ export default class InteractiveTaskBase extends Component {
       },
       codeWindow: {
         flex: 1,
+        width: "100%",
         backgroundColor: this.colors.gray,
         borderRadius: 5,
         justifyContent: 'flex-start',

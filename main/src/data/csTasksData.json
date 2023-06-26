@@ -158,7 +158,8 @@
       "content": [
         "Die nächsten Aufgaben sind keine reinen Quizfragen",
         "Du sollst im besten Fall selbst etwas ins Grübeln kommen.",
-        "Versuche, so wenige Hilfen wie möglich in Anspruch zu nehmen.",
+        "In der ersten Aufgabe geht es darum, den angezeigten Code zu interprestieren",
+        "Versuche dabei so wenige Hilfen wie möglich in Anspruch zu nehmen.",
         "Viel Spaß!"
       ]
     },
@@ -168,15 +169,13 @@
       "type": "interactive",
       "slug": "cs1",
       "help": [
-        "In der Schule hast du dich bestimmt schon oft mit geraden und ungeraden Zahlen beschäftigt.",
-        "Für das Prüfen, ob etwas gerade oder ungerade ist, bringen viele Programmiersprachen bereits vorgefertigte Anweisungen mit.",
-        "Was eventuell für dich neu sein wird, ist die if-Anweisung.",
-        "Die meisten Befehle in höheren Programmiersprachen entstammen dem englischen und sollen dir das Programmieren verständlicher machen. Übersetze sie einfach!",
-        "Versuche doch mal, den folgenden Programmiercode zu interpretieren und die Elemente darunter entsprechend einzufärben.",
-        "Die farblichen Markierungen helfen dir, die Logik des Codes besser zu verstehen.",
-        "Du könntest die if-Anweisung so lesen: 'Wenn eine Bedingung erfüllt ist, mache etwas.'",
-        "Stell dir vor, es gibt mehrere Elemente des Typs 'rectangle', diese sind alle mit einem 'index' nummeriert.",
-        "Wenn nun ein rectangle.index gerade (even) ist, ist es rot eingefärbt (rectangle.color is red)."
+        "Hier findest du immer eine Aufgabenstellung und weitere Tipps, besser ist es allerdings, wenn du die Aufgaben ohne Hilfen schaffst.",
+        "Schau dir die Aufgabe an und versuche den Code zu interpretieren, bevor du dir den nächsten Tipp holst.",
+        "Die farblichen Markierungen im Code helfen dir, indem Anweisungen und Bedingungen (if, is) und Eigenschaften (index, color) hervorgehoben werden.",
+        "Befehle in höheren Programmiersprachen entstammen in der Regel dem Englischen und sollen dir das Programmieren verständlicher machen. Übersetze sie einfach!",
+        "Du könntest die if-Anweisung so lesen: 'Wenn eine Bedingung erfüllt (wahr) ist, mache etwas.'",
+        "In diesem Beispiel scheint es mehrere Elemente des Typs 'rectangle' zu geben, die mit einem 'index' nummeriert sind.",
+        "Wenn nun ein rectangle.index gerade (even) ist, soll es rot eingefärbt werden: rectangle.color is red."
       ]
     },
     {
@@ -186,11 +185,12 @@
       "slug": "cs2",
       "help": [
         "In unserem Beispiel von eben ist 'rectangle' ein Objekt mit verschiedenen Eigenschaften, wie zum Beispiel einer Farbe.",
-        "Was Eigenschaften und Methoden beim Programmieren sind musst du zu diesem Zeitpunkt noch nicht genau verstehen.",
+        "Was Objekte, Eigenschaften und Methoden beim Programmieren sind musst du zu diesem Zeitpunkt noch nicht genau verstehen.",
         "Es reicht, wenn du dir überlegst, welche 'Aussage' der Code hat: Was genau soll ausgeführt werden?",
-        "Versuche doch mal die Elemente zu verschieben.",
-        "Die wichtige Anweisung ist hier: sortByColor(red).",
-        "Sie bedeutet so viel wie: 'Sortiere die Elemente nach ihrer Farbe'"
+        "Du kannst die Rechtecke hier nicht nur antippen, sondern auch vertauschen!",
+        "In diesem Code wird eine Methode 'sortByColor(...)' des Objekts 'rectangles' mit dem Parameter 'red' aufgerufen",
+        "Auf die richtige Lösung kommst du, wenn du den Code (Objekt, Methode, Parameter) übersetzt und überlegst, was sie bewirken soll.",
+        "Die Methode sortByColor soll die Rechtecke nach Farbe sortieren"
       ]
     },
     {
@@ -199,15 +199,14 @@
       "type": "interactive",
       "slug": "cs3",
       "help": [
-        "Nachdem du die Grundlagen von Bedingungen verstanden hast, folgt hier nochmal eine etwas knackigere Aufgabe.",
-        "Das Grundkonzept ist das gleiche wie bei der ersten Aufgabe, die du bewätigt hast, allerdings ist das ganze hier noch etwas komplexer.",
-        "Lass dich aber nicht entmutigen, falls du nicht sofort auf die Lösung kommst. Du sollst hier ruhig ein wenig nachdenken - und denk dran: langes Nachdenken ist nicht unbedingt ein schlechtes Zeichen!",
-        "Es geht erneut darum, die Elemente gemäß dem Code richtig einzufärben.",
-        "Du erinnerst dich vielleicht an die Bedingung, ob ein Index 'even' ist. Dieses Konzept findet sich auch hier wieder.",
-        "Die Aussage 'index % 2 is 0' bedeutet, dass der index geteilt durch '2' keinen Rest ergibt.",
-        "Das heißt zum Beispiel, bei einem index von '4' ist die Aussage wahr, da '2' ein Teiler von '4' ist.",
-        "Dementsprechend ist es bei der Aussage 'index % 2 is not 0' genau umgekehrt. Es bleibt hier ein Rest übrig.",
-        "Das heißt zum Beispiel, bei einem index von '3' ist die Aussage unwahr, da '2' kein Teiler von '4' ist."
+        "Hier lernst du den Operator 'Modulo', oder auch 'Restwert' kennen: '%'. Dieser bedeutet so viel wie 'Teile eine Zahl und liefere den Restwert als Ergebnis'.",
+        "Beispiel: Wenn du 5 durch 2 teilst, erhältst du einen Restwert von 1. Versuche dich doch mal an der Aufgabe, bevor du dir den nächsten Tipp holst.",
+        "Auch hier hilft wieder das Übersetzen: if = Wenn …; else if = … ansonsten, wenn …",
+        "Das 'if' ist ein logischer Operator: Es prüft ob eine Aussage wahr oder falsch ist.",
+        "Die Aussage ist das was zwischen dem 'if' und dem ':' steht; Hier zum Beispiel rectangle.index % 2 is 0",
+        "Die Zeile darunter ist die Anweisung, die ausgeführt werden soll, wenn die if-Bedingung zutrifft.",
+        "Du könntest den Code also so lesen: Wenn index modulo zwei als Restwert null ergibt: … Ansonsten: …",
+        "Jetzt musst du nur noch die Rechtecke entsprechend einfärben." 
       ]
     }
   ]

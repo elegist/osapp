@@ -40,12 +40,12 @@ class AssessmentTask extends Component {
     this.#timeElapsed = timeNow - this.#startTime;
     const formattedTime = this.#formatTime(this.#timeElapsed);
 
-    console.log(
+/*     console.log(
       'Hello World! I am task ' +
         this.title +
         '. I was active for: ' +
         formattedTime,
-    );
+    ); */
   };
 
   #formatTime = milliseconds => {

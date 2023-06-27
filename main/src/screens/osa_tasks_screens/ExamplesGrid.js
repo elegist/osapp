@@ -81,6 +81,7 @@ class ExamplesGrid extends Component {
 const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const descriptionTruncationLength = 100;
   const [fullDescription, setFullDescription] = useState(false);
+  const [fullscreenImage, setFullscreenImage] = useState(false);
 
   const openLink = link => {
     Linking.openURL(link);
@@ -171,15 +172,17 @@ const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   </View>
                 ))}
               </View>
-              <FastImage
-                style={{
-                  width: 300,
-                  height: 300,
-                  alignSelf: 'center',
-                  marginVertical: 5,
-                }}
-                source={ImageMapper.getImagePath(content.thumbnail)}
-              />
+              <TouchableOpacity onPress={() => setFullscreenImage(true)}>
+                <FastImage
+                  style={{
+                    width: 250,
+                    height: 250,
+                    alignSelf: 'center',
+                    marginVertical: 5,
+                  }}
+                  source={ImageMapper.getImagePath(content.thumbnail)}
+                />
+              </TouchableOpacity>
               {content.link && (
                 <TouchableOpacity
                   style={{
@@ -220,6 +223,26 @@ const ExampleModal = ({modalVisible, onRequestClose, content}) => {
           )}
         </View>
       </View>
+
+      {fullscreenImage && (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          }}>
+          <TouchableOpacity onPress={() => setFullscreenImage(false)}>
+            <FastImage
+              source={ImageMapper.getImagePath(content.thumbnail)}
+              style={{width: '100%', height: '100%', position: 'relative'}}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </Modal>
   );
 };

@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text,
+  ScrollView,
+} from 'react-native';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ImageMapper from '../helper/ImageMapper';
 import examplesData from '../../data/examplesData.json';
-import {ScrollView} from 'react-native-gesture-handler';
 
 class ExamplesGrid extends Component {
   render() {
@@ -30,15 +36,14 @@ class ExamplesGrid extends Component {
                     </TouchableOpacity>
                   ))}
                 </View>
-                {index < examplesData.length - 1 && (
-                  <View
-                    style={{
-                      ...globalStyles.horizontalLine,
-                      width: '90%',
-                      marginVertical: 20,
-                    }}
-                  />
-                )}
+                <View
+                  style={{
+                    ...globalStyles.horizontalLine,
+                    width: '90%',
+                    marginVertical: 20,
+                    borderBottomWidth: index < examplesData.length - 1 ? 1 : 0,
+                  }}
+                />
               </View>
             );
           })}
@@ -55,11 +60,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   scrollContainer: {
-    height: '95%',
-    padding: 10,
+    height: '98%',
     backgroundColor: 'rgba(245, 245, 245, 0.8)',
+    padding: 10,
     borderRadius: 10,
-    marginVertical: 5,
   },
   topicContainer: {
     width: '100%',

@@ -8,7 +8,7 @@
         "semester": 3,
         "technologies": ["HTML", "CSS", "Javascript"],
         "thumbnail": "medienproduktion.jpg",
-        "material": "[img]medienproduktion.gif",
+        "material": "[img]thumb1.jpg",
         "link": "https://hosting.iem.thm.de/mpm-projects/mpm2022e1/",
         "description": "Um Studieninteressierten einen interessanten und interaktiven Ersteindruck zu geben, haben sich Studierende der Medieninformatik im dritten Semester der Aufgabe angenommen, diese webbasierte, animierte Reise durch den Studiengang zu planen, designen und umzusetzen."
       },
@@ -53,7 +53,7 @@
         "semester": 2,
         "technologies": ["Davinci Resolve", "Logic Pro"],
         "thumbnail": "av2-1.jpg",
-        "material": "[mp4]lazarus.mp4",
+        "material": "[video]lazarus.mp4",
         "link": null,
         "description": "Dieses Projekt ist, mit Anleitung der Modulverantwortlichen, komplett in Regie eines siebener Teams an Student*innen entstanden. Es wird von den Dozenten eine sehr realistische Situation erschaffen - du bekommst einen fiktiven Auftrag, ein Musikvideo zu produzieren und kümmerst dich dann um alles nötige: Beschaffung der Musiker*innen, Locationscouting, Postproduction, und so weiter!"
       },
@@ -63,7 +63,7 @@
         "semester": 2,
         "technologies": ["Davinci Resolve", "Logic Pro"],
         "thumbnail": "av2-2.jpg",
-        "material": "[mp4]angels.mp4",
+        "material": "[video]angels.mp4",
         "link": null,
         "description": "Dieses Projekt ist, mit Anleitung der Modulverantwortlichen, komplett in Regie eines zehner Teams an Student*innen entstanden. Es wird von den Dozenten eine sehr realistische Situation erschaffen - du bekommst einen fiktiven Auftrag, ein Musikvideo zu produzieren und kümmerst dich dann um alles nötige: Beschaffung der Musiker*innen, Locationscouting, Postproduction, und so weiter!"
       },

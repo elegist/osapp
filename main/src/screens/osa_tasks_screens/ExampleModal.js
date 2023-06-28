@@ -11,7 +11,6 @@ import {
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ImageMapper from '../helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ImageGallery from '../../components/ImageGallery';
 import FastImage from 'react-native-fast-image';
 import VideoPlayer from '../../components/VideoPlayer';
 

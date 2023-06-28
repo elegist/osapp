@@ -55,6 +55,8 @@ class ImageMapper {
         return require(thumbnailPath + 'foto.jpg');
       case 'angels_720p.mp4':
         return require(contentPath + 'angels_720p.mp4');
+      case 'mow2.mp4':
+        return require(contentPath + 'mow2.mp4');
       // Add more cases for other image names
       default:
         return null; // Handle unknown image names

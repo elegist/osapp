@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   ScrollView,
+  Animated,
 } from 'react-native';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ImageMapper from '../helper/ImageMapper';
@@ -12,6 +13,7 @@ import FastImage from 'react-native-fast-image';
 import {ExampleModal} from './ExampleModal';
 
 import examplesData from '../../data/examplesData.json';
+import {Easing} from 'react-native-reanimated';
 
 class ExamplesGrid extends Component {
   constructor(props) {
@@ -20,6 +22,44 @@ class ExamplesGrid extends Component {
       modalVisible: false,
       selectedContent: null,
     };
+
+    this.staggerOpacity = [];
+    this.staggerScale = [];
+
+    examplesData.forEach(topic => {
+      topic.examples.forEach((_, index) => {
+        this.staggerOpacity[index] = new Animated.Value(0);
+        this.staggerScale[index] = new Animated.Value(0);
+      });
+    });
+  }
+
+  componentDidMount() {
+    const animationDuration = 1000;
+    const opacityAnimations = [];
+    const scaleAnimations = [];
+
+    this.staggerOpacity.forEach((animation, index) => {
+      opacityAnimations[index] = Animated.timing(animation, {
+        toValue: 1,
+        duration: animationDuration,
+        useNativeDriver: true,
+      });
+    });
+
+    this.staggerScale.forEach((animation, index) => {
+      scaleAnimations[index] = Animated.timing(animation, {
+        toValue: 1,
+        duration: animationDuration,
+        easing: Easing.elastic(1.5),
+        useNativeDriver: true,
+      });
+    });
+
+    Animated.parallel([
+      Animated.stagger(400, opacityAnimations),
+      Animated.stagger(400, scaleAnimations),
+    ]).start();
   }
 
   openModalWithContent = content => {
@@ -32,6 +72,8 @@ class ExamplesGrid extends Component {
   };
 
   render() {
+    const AnimatedTouchableOpacity =
+      Animated.createAnimatedComponent(TouchableOpacity);
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -41,15 +83,21 @@ class ExamplesGrid extends Component {
                 <Text style={globalStyles.textSecondary}>{topic.name}</Text>
                 <View style={styles.exampleContainer}>
                   {topic.examples.map((example, index) => (
-                    <TouchableOpacity
+                    <AnimatedTouchableOpacity
                       key={index}
                       onPress={() => this.openModalWithContent(example)}
-                      style={styles.thumbnailContainer}>
+                      style={[
+                        styles.thumbnailContainer,
+                        {
+                          opacity: this.staggerOpacity[index],
+                          transform: [{scale: this.staggerScale[index]}],
+                        },
+                      ]}>
                       <FastImage
                         source={ImageMapper.getImagePath(example.thumbnail)}
                         style={styles.thumbnail}
                       />
-                    </TouchableOpacity>
+                    </AnimatedTouchableOpacity>
                   ))}
                 </View>
                 <View

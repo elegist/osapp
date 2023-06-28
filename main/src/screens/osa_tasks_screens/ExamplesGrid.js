@@ -23,6 +23,8 @@ class ExamplesGrid extends Component {
       selectedContent: null,
     };
 
+    this.animationOpacity = new Animated.Value(0);
+
     this.staggerOpacity = [];
     this.staggerScale = [];
 
@@ -56,9 +58,16 @@ class ExamplesGrid extends Component {
       });
     });
 
-    Animated.parallel([
-      Animated.stagger(400, opacityAnimations),
-      Animated.stagger(400, scaleAnimations),
+    Animated.sequence([
+      Animated.timing(this.animationOpacity, {
+        toValue: 1,
+        duration: animationDuration / 2,
+        useNativeDriver: true,
+      }),
+      Animated.parallel([
+        Animated.stagger(400, opacityAnimations),
+        Animated.stagger(400, scaleAnimations),
+      ]),
     ]).start();
   }
 
@@ -75,7 +84,8 @@ class ExamplesGrid extends Component {
     const AnimatedTouchableOpacity =
       Animated.createAnimatedComponent(TouchableOpacity);
     return (
-      <View style={styles.container}>
+      <Animated.View
+        style={[styles.container, {opacity: this.animationOpacity}]}>
         <ScrollView style={styles.scrollContainer}>
           {examplesData.map((topic, index) => {
             return (
@@ -123,7 +133,7 @@ class ExamplesGrid extends Component {
             content={this.state.selectedContent}
           />
         )}
-      </View>
+      </Animated.View>
     );
   }
 }

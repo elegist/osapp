@@ -16,6 +16,11 @@ import FastImage from 'react-native-fast-image';
 import VideoPlayer from '../../components/VideoPlayer';
 
 export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
+  const colors = {
+    yellow: '#EFF186',
+    blue: '#86D8F1',
+    red: '#F9A6B6',
+  };
   const descriptionTruncationLength = 100;
   const [fullDescription, setFullDescription] = useState(false);
   const [fullscreenImage, setFullscreenImage] = useState(false);
@@ -91,12 +96,12 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   style={{
                     ...styles.informationBox,
                     flex: 1,
-                    backgroundColor: '#EFF186',
+                    backgroundColor: colors.blue,
                   }}>
                   <Text style={globalStyles.textSecondary}>Semester</Text>
                   <Text
                     style={{
-                      ...globalStyles.textParagraph,
+                      ...globalStyles.textParagraphBold,
                       textAlign: 'center',
                     }}>
                     {content.semester}
@@ -106,7 +111,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   style={{
                     ...styles.informationBox,
                     flex: 3,
-                    backgroundColor: '#86D8F1',
+                    backgroundColor: colors.blue,
                   }}>
                   <Text style={globalStyles.textSecondary}>Technologien:</Text>
                   <View style={styles.badgeContainer}>
@@ -142,7 +147,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
               <View
                 style={{
                   ...styles.informationBox,
-                  backgroundColor: '#F9A6B6',
+                  backgroundColor: colors.yellow,
                   marginTop: 15,
                 }}>
                 <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
@@ -223,7 +228,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   informationBox: {
-    padding: 5,
+    padding: 15,
     borderRadius: 10,
   },
   badgeContainer: {

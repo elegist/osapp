@@ -124,6 +124,11 @@ export default StyleSheet.create({
     fontSize: getResponsiveSizing(18),
     color: '#1C2327',
   },
+  textParagraphBold: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(18),
+    color: '#1C2327',
+  },
   textBigButton: {
     fontFamily: 'PTSans-Bold',
     fontSize: getResponsiveSizing(24),

@@ -5,6 +5,7 @@ import Slider from '@react-native-community/slider';
 import ImageMapper from '../screens/helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
+import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
 
 const VideoPlayer = ({video, thumbnail}) => {
   const videoRef = useRef(null);
@@ -37,12 +38,12 @@ const VideoPlayer = ({video, thumbnail}) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.controlsContainer}>
         <TouchableOpacity style={{width: '14%'}} onPress={handleMuteUnmute}>
           <Icon
             name={muted ? 'volume-off' : 'volume-up'}
-            size={36}
+            size={getResponsiveSizing(36)}
             color="black"
           />
         </TouchableOpacity>
@@ -63,8 +64,11 @@ const VideoPlayer = ({video, thumbnail}) => {
       {paused ? (
         <FastImage
           source={ImageMapper.getImagePath(thumbnail)}
-          style={{width: 320, height: 180}}
-          resizeMode={FastImage.resizeMode.cover}
+          style={{
+            width: getResponsiveSizing(320),
+            height: getResponsiveSizing(180),
+          }}
+          resizeMode={FastImage.resizeMode.contain}
         />
       ) : (
         <Video
@@ -75,7 +79,10 @@ const VideoPlayer = ({video, thumbnail}) => {
           volume={volume}
           onProgress={handleProgress}
           resizeMode="contain"
-          style={{width: 320, height: 180, elevation: 500}}
+          style={{
+            width: getResponsiveSizing(320),
+            height: getResponsiveSizing(180),
+          }}
         />
       )}
 
@@ -83,7 +90,7 @@ const VideoPlayer = ({video, thumbnail}) => {
         <TouchableOpacity onPress={handlePlayPause}>
           <Icon
             name={paused ? 'play-circle-o' : 'pause-circle-o'}
-            size={40}
+            size={getResponsiveSizing(40)}
             color="black"
           />
         </TouchableOpacity>
@@ -105,6 +112,10 @@ const VideoPlayer = ({video, thumbnail}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   controlsContainer: {
     width: '100%',
     flexDirection: 'row',

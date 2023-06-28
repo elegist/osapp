@@ -139,7 +139,12 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   <Icon name="external-link" size={16} color="#8CBA45" />
                 </TouchableOpacity>
               )}
-              <View>
+              <View
+                style={{
+                  ...styles.informationBox,
+                  backgroundColor: '#F9A6B6',
+                  marginTop: 15,
+                }}>
                 <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
                   Beschreibung:
                 </Text>
@@ -215,6 +220,7 @@ const styles = StyleSheet.create({
   informationContainer: {
     flexDirection: 'row',
     gap: 10,
+    marginVertical: 15,
   },
   informationBox: {
     padding: 5,

@@ -105,7 +105,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                 <View
                   style={{
                     ...styles.informationBox,
-                    flex: 2,
+                    flex: 3,
                     backgroundColor: '#86D8F1',
                   }}>
                   <Text style={globalStyles.textSecondary}>Technologien:</Text>
@@ -132,7 +132,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                     alignItems: 'center',
                     flexDirection: 'row',
                     gap: 5,
-                    marginVertical: 20,
+                    marginVertical: 5,
                   }}
                   onPress={() => openLink(content.link)}>
                   <Text style={globalStyles.textLink}>Ressource öffnen</Text>
@@ -194,8 +194,8 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
 const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
-    top: -35,
-    right: -35,
+    top: -25,
+    right: -25,
     paddingHorizontal: 15,
     paddingVertical: 10,
     margin: 5,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     height: '90%',
-    width: '80%',
+    width: '90%',
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,

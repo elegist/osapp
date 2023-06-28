@@ -85,24 +85,44 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                 }}>
                 {content.title}
               </Text>
-              <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
-                Semester:{' '}
-                <Text style={globalStyles.textParagraph}>
-                  {content.semester}
-                </Text>
-              </Text>
-              <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
-                Technologien:
-              </Text>
-              <View style={styles.badgeContainer}>
-                {content.technologies.map((technology, index) => (
-                  <View key={index} style={styles.badge}>
-                    <Text
-                      style={{...globalStyles.textSecondary, color: 'white'}}>
-                      {technology}
-                    </Text>
+
+              <View style={styles.informationContainer}>
+                <View
+                  style={{
+                    ...styles.informationBox,
+                    flex: 1,
+                    backgroundColor: '#EFF186',
+                  }}>
+                  <Text style={globalStyles.textSecondary}>Semester</Text>
+                  <Text
+                    style={{
+                      ...globalStyles.textParagraph,
+                      textAlign: 'center',
+                    }}>
+                    {content.semester}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    ...styles.informationBox,
+                    flex: 2,
+                    backgroundColor: '#86D8F1',
+                  }}>
+                  <Text style={globalStyles.textSecondary}>Technologien:</Text>
+                  <View style={styles.badgeContainer}>
+                    {content.technologies.map((technology, index) => (
+                      <View key={index} style={styles.badge}>
+                        <Text
+                          style={{
+                            ...globalStyles.textSecondary,
+                            color: 'white',
+                          }}>
+                          {technology}
+                        </Text>
+                      </View>
+                    ))}
                   </View>
-                ))}
+                </View>
               </View>
               {renderMaterial()}
               {content.link && (
@@ -192,16 +212,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     gap: 20,
   },
+  informationContainer: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  informationBox: {
+    padding: 5,
+    borderRadius: 10,
+  },
   badgeContainer: {
     flexWrap: 'wrap',
     flexDirection: 'row',
     gap: 5,
     marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   badge: {
-    backgroundColor: '#a1a1a1',
+    backgroundColor: '#808080',
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

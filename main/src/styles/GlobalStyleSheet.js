@@ -106,7 +106,7 @@ export default StyleSheet.create({
   textSecondary: {
     fontFamily: 'PTSans-Italic',
     fontSize: getResponsiveSizing(14),
-    color: '#9b9b9b',
+    color: '#4b4b4b',
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',

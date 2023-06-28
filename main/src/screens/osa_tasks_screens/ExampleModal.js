@@ -22,58 +22,39 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const [materialType, setMaterialType] = useState(null);
   const [materialSource, setMaterialSource] = useState(null);
 
-  const startsWithImg = /^\[(img)\](.*)/;
+  const materialDetails = /^\[(.*?)\](.*)/;
 
   useEffect(() => {
-    setMaterialType(content.material.match(startsWithImg)[1]);
-    setMaterialSource(content.material.match(startsWithImg)[2]);
+    setMaterialType(content.material.match(materialDetails)[1]);
+    setMaterialSource(content.material.match(materialDetails)[2]);
   });
 
-  console.log(materialSource);
+  const renderMaterial = () => {
+    switch (materialType) {
+      case 'img':
+        return (
+          <TouchableOpacity onPress={() => setFullscreenImage(true)}>
+            <FastImage
+              style={{
+                width: 250,
+                height: 250,
+                alignSelf: 'center',
+                marginVertical: 5,
+              }}
+              source={ImageMapper.getImagePath(materialSource)}
+            />
+          </TouchableOpacity>
+        );
+      case 'video':
+        return <Text>Video: {materialSource}</Text>;
+      default:
+        break;
+    }
+  };
 
   const openLink = link => {
     Linking.openURL(link);
   };
-
-  const styles = StyleSheet.create({
-    closeButton: {
-      position: 'absolute',
-      top: -35,
-      right: -35,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      margin: 5,
-      elevation: 5,
-      backgroundColor: '#dd4040',
-      borderRadius: 50,
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0,0,0,0.75)',
-    },
-    modalContent: {
-      height: '90%',
-      width: '80%',
-      backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10,
-      gap: 20,
-    },
-    badgeContainer: {
-      flexWrap: 'wrap',
-      flexDirection: 'row',
-      gap: 5,
-      marginBottom: 10,
-    },
-    badge: {
-      backgroundColor: '#a1a1a1',
-      paddingHorizontal: 5,
-      paddingVertical: 2,
-      borderRadius: 5,
-    },
-  });
 
   return (
     <Modal
@@ -120,17 +101,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   </View>
                 ))}
               </View>
-              <TouchableOpacity onPress={() => setFullscreenImage(true)}>
-                <FastImage
-                  style={{
-                    width: 250,
-                    height: 250,
-                    alignSelf: 'center',
-                    marginVertical: 5,
-                  }}
-                  source={ImageMapper.getImagePath(materialSource)}
-                />
-              </TouchableOpacity>
+              {renderMaterial()}
               {content.link && (
                 <TouchableOpacity
                   style={{
@@ -181,7 +152,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
           }}>
           <TouchableOpacity onPress={() => setFullscreenImage(false)}>
             <FastImage
-              source={ImageMapper.getImagePath(content.thumbnail)}
+              source={ImageMapper.getImagePath(materialSource)}
               style={{width: '100%', height: '100%', position: 'relative'}}
               resizeMode={FastImage.resizeMode.contain}
             />
@@ -191,3 +162,43 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  closeButton: {
+    position: 'absolute',
+    top: -35,
+    right: -35,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    margin: 5,
+    elevation: 5,
+    backgroundColor: '#dd4040',
+    borderRadius: 50,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  modalContent: {
+    height: '90%',
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    gap: 20,
+  },
+  badgeContainer: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    gap: 5,
+    marginBottom: 10,
+  },
+  badge: {
+    backgroundColor: '#a1a1a1',
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 5,
+  },
+});

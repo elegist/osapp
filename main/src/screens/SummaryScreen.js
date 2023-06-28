@@ -57,7 +57,6 @@ export default function SummaryScreen({navigation, route}) {
   };
 
   const listData = generateSummaryList();
-  console.log(listData);
 
   function toggleItem(sectionTitle) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);

@@ -13,6 +13,7 @@ import ImageMapper from '../helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImageGallery from '../../components/ImageGallery';
 import FastImage from 'react-native-fast-image';
+import VideoPlayer from '../../components/VideoPlayer';
 
 export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const descriptionTruncationLength = 100;
@@ -46,7 +47,9 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
           </TouchableOpacity>
         );
       case 'video':
-        return <Text>Video: {materialSource}</Text>;
+        return (
+          <VideoPlayer video={materialSource} thumbnail={content.thumbnail} />
+        );
       default:
         break;
     }

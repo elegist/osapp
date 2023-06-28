@@ -5,6 +5,7 @@ class ImageMapper {
   static getImagePath(imageName) {
     const path = '../../assets/osa_images/';
     const thumbnailPath = '../../assets/project_examples/thumbnails/';
+    const contentPath = '../../assets/project_examples/content/';
     switch (imageName) {
       case 'thm-haupteingang.jpg':
         return require(path + 'thm-haupteingang.jpg');
@@ -52,6 +53,8 @@ class ImageMapper {
         return require(thumbnailPath + 'av2-2.jpg');
       case 'foto.jpg':
         return require(thumbnailPath + 'foto.jpg');
+      case 'angels_720p.mp4':
+        return require(contentPath + 'angels_720p.mp4');
       // Add more cases for other image names
       default:
         return null; // Handle unknown image names

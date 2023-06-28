@@ -3,18 +3,15 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Image,
   Text,
   ScrollView,
-  Modal,
-  Linking,
 } from 'react-native';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ImageMapper from '../helper/ImageMapper';
-import examplesData from '../../data/examplesData.json';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ImageGallery from '../../components/ImageGallery';
 import FastImage from 'react-native-fast-image';
+import {ExampleModal} from './ExampleModal';
+
+import examplesData from '../../data/examplesData.json';
 
 class ExamplesGrid extends Component {
   constructor(props) {
@@ -68,184 +65,20 @@ class ExamplesGrid extends Component {
           })}
         </ScrollView>
 
-        <ExampleModal
-          modalVisible={this.state.modalVisible}
-          onRequestClose={this.closeModal}
-          content={this.state.selectedContent}
-        />
+        {this.state.selectedContent && (
+          <ExampleModal
+            modalVisible={this.state.modalVisible}
+            onRequestClose={() => {
+              this.closeModal();
+              this.setState({selectedContent: null});
+            }}
+            content={this.state.selectedContent}
+          />
+        )}
       </View>
     );
   }
 }
-
-const ExampleModal = ({modalVisible, onRequestClose, content}) => {
-  const descriptionTruncationLength = 100;
-  const [fullDescription, setFullDescription] = useState(false);
-  const [fullscreenImage, setFullscreenImage] = useState(false);
-
-  const openLink = link => {
-    Linking.openURL(link);
-  };
-
-  const styles = StyleSheet.create({
-    closeButton: {
-      position: 'absolute',
-      top: -35,
-      right: -35,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      margin: 5,
-      elevation: 5,
-      backgroundColor: '#dd4040',
-      borderRadius: 50,
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0,0,0,0.75)',
-    },
-    modalContent: {
-      height: '90%',
-      width: '80%',
-      backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10,
-      gap: 20,
-    },
-    badgeContainer: {
-      flexWrap: 'wrap',
-      flexDirection: 'row',
-      gap: 5,
-      marginBottom: 10,
-    },
-    badge: {
-      backgroundColor: '#a1a1a1',
-      paddingHorizontal: 5,
-      paddingVertical: 2,
-      borderRadius: 5,
-    },
-  });
-
-  return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={onRequestClose}>
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={() => {
-              onRequestClose();
-              setFullDescription(false);
-            }}>
-            <Icon name="close" size={32} color="white"></Icon>
-          </TouchableOpacity>
-          {content && (
-            <ScrollView>
-              <Text
-                style={{
-                  ...globalStyles.textHeadingSecondary,
-                  textAlign: 'center',
-                  marginBottom: 5,
-                }}>
-                {content.title}
-              </Text>
-              <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
-                Semester:{' '}
-                <Text style={globalStyles.textParagraph}>
-                  {content.semester}
-                </Text>
-              </Text>
-              <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
-                Technologien:
-              </Text>
-              <View style={styles.badgeContainer}>
-                {content.technologies.map((technology, index) => (
-                  <View key={index} style={styles.badge}>
-                    <Text
-                      style={{...globalStyles.textSecondary, color: 'white'}}>
-                      {technology}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-              <TouchableOpacity onPress={() => setFullscreenImage(true)}>
-                <FastImage
-                  style={{
-                    width: 250,
-                    height: 250,
-                    alignSelf: 'center',
-                    marginVertical: 5,
-                  }}
-                  source={ImageMapper.getImagePath(content.thumbnail)}
-                />
-              </TouchableOpacity>
-              {content.link && (
-                <TouchableOpacity
-                  style={{
-                    ...globalStyles.smallButton,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    gap: 10,
-                    marginVertical: 20,
-                  }}
-                  onPress={() => openLink(content.link)}>
-                  <Text style={globalStyles.textSmallButton}>
-                    Ressource öffnen
-                  </Text>
-                  <Icon name="external-link" size={24} color="white" />
-                </TouchableOpacity>
-              )}
-              <View>
-                <Text style={{...globalStyles.textSecondary, marginBottom: 5}}>
-                  Beschreibung:
-                </Text>
-                <TouchableOpacity
-                  onPress={() => setFullDescription(!fullDescription)}>
-                  <Text style={globalStyles.textParagraph}>
-                    {fullDescription
-                      ? content.description
-                      : `${content.description.slice(
-                          0,
-                          descriptionTruncationLength,
-                        )}...`}
-                  </Text>
-                  <Text style={globalStyles.textSecondary}>
-                    {fullDescription ? 'weniger' : 'mehr'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </ScrollView>
-          )}
-        </View>
-      </View>
-
-      {fullscreenImage && (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          }}>
-          <TouchableOpacity onPress={() => setFullscreenImage(false)}>
-            <FastImage
-              source={ImageMapper.getImagePath(content.thumbnail)}
-              style={{width: '100%', height: '100%', position: 'relative'}}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          </TouchableOpacity>
-        </View>
-      )}
-    </Modal>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {

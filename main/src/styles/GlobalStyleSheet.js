@@ -156,6 +156,11 @@ export default StyleSheet.create({
     fontSize: getResponsiveSizing(16),
     color: '#1C2327',
   },
+  textLink: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(16),
+    color: '#8CBA45',
+  },
   //images
   osaImage: {
     backgroundColor: 'white',

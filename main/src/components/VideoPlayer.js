@@ -111,18 +111,21 @@ const VideoPlayer = ({video, thumbnail}) => {
         <View style={styles.absoluteContainer}>
           <Animated.View
             style={[styles.controlsContainer, {opacity: controlsOpacity}]}>
-            <View style={{flexDirection: 'row'}}>
-              <TouchableOpacity
-                style={{width: '14%'}}
-                onPress={handleMuteUnmute}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <TouchableOpacity style={{flex: 1}} onPress={handleMuteUnmute}>
                 <Icon
                   name={muted ? 'volume-off' : 'volume-up'}
                   size={getResponsiveSizing(24)}
-                  color="white"
+                  color="#8CBA45"
                 />
               </TouchableOpacity>
               <Slider
-                style={styles.sliderVolume}
+                style={{flex: 8}}
                 value={volume}
                 minimumValue={0}
                 maximumValue={1}
@@ -138,23 +141,39 @@ const VideoPlayer = ({video, thumbnail}) => {
             <TouchableOpacity onPress={handlePlayPause}>
               <Icon
                 name={paused ? 'play-circle' : 'pause-circle'}
-                size={getResponsiveSizing(56)}
-                color="white"
+                size={getResponsiveSizing(62)}
+                color="#8CBA45"
               />
             </TouchableOpacity>
-            <Slider
-              style={styles.sliderTime}
-              value={currentTime}
-              minimumValue={0}
-              maximumValue={duration}
-              step={0.01}
-              onValueChange={handleSeek}
-              onTouchStart={() => setUsingSlider(true)}
-              onTouchEnd={() => setUsingSlider(false)}
-              minimumTrackTintColor="#8CBA45"
-              maximumTrackTintColor="#bababa"
-              thumbTintColor="#8CBA45"
-            />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <Slider
+                style={{flex: 8}}
+                value={currentTime}
+                minimumValue={0}
+                maximumValue={duration}
+                step={0.01}
+                onValueChange={handleSeek}
+                onTouchStart={() => setUsingSlider(true)}
+                onTouchEnd={() => setUsingSlider(false)}
+                minimumTrackTintColor="#8CBA45"
+                maximumTrackTintColor="#bababa"
+                thumbTintColor="#8CBA45"
+              />
+              <TouchableOpacity
+                style={{flex: 1}}
+                onPress={() => console.log('fullscreen')}>
+                <Icon
+                  name="arrows-alt"
+                  size={getResponsiveSizing(24)}
+                  color="#8CBA45"
+                />
+              </TouchableOpacity>
+            </View>
           </Animated.View>
         </View>
       )}
@@ -178,8 +197,8 @@ const styles = StyleSheet.create({
     right: 0,
   },
   video: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     aspectRatio: 16 / 9,
   },
   controlsContainer: {

@@ -16,11 +16,13 @@ const VideoPlayer = ({video, thumbnail}) => {
   const [duration, setDuration] = useState(0);
   const [controlsVisible, setControlsVisible] = useState(true);
 
+  const [usingSlider, setUsingSlider] = useState(false);
+
   const controlsTimeout = 3000;
   const controlsOpacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (!paused) {
+    if (!paused && !usingSlider) {
       const timer = setTimeout(() => {
         setControlsVisible(false);
         fadeOutControls();
@@ -28,7 +30,7 @@ const VideoPlayer = ({video, thumbnail}) => {
 
       return () => clearTimeout(timer);
     }
-  }, [paused, controlsVisible]);
+  }, [paused, usingSlider, controlsVisible]);
 
   const handlePlayPause = () => {
     setPaused(!paused);
@@ -124,6 +126,8 @@ const VideoPlayer = ({video, thumbnail}) => {
                 maximumValue={1}
                 step={0.01}
                 onValueChange={handleVolumeChange}
+                onTouchStart={() => setUsingSlider(true)}
+                onTouchEnd={() => setUsingSlider(false)}
                 minimumTrackTintColor="#8CBA45"
                 maximumTrackTintColor="#bababa"
                 thumbTintColor="#8CBA45"
@@ -143,6 +147,8 @@ const VideoPlayer = ({video, thumbnail}) => {
               maximumValue={duration}
               step={0.01}
               onValueChange={handleSeek}
+              onTouchStart={() => setUsingSlider(true)}
+              onTouchEnd={() => setUsingSlider(false)}
               minimumTrackTintColor="#8CBA45"
               maximumTrackTintColor="#bababa"
               thumbTintColor="#8CBA45"

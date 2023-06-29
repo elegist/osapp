@@ -1,7 +1,14 @@
-import {TouchableOpacity, Text, View, ImageBackground, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  ImageBackground,
+  StyleSheet,
+} from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ExamplesGrid from './ExamplesGrid';
+import TopBar from '../../components/TopBar';
 
 export class ExamplesScreen extends Component {
   constructor(props) {
@@ -19,19 +26,31 @@ export class ExamplesScreen extends Component {
         <ImageBackground
           source={require('../../assets/Background.png')}
           style={globalStyles.mainBackground}>
-          <Text style={styles.heading}>MI Examples Screen called from source: {source}</Text>
-          <ExamplesGrid />
+          <TopBar navigation={this.props.navigation} />
+          <Text style={styles.heading}>Beispielprojekte von Studierenden</Text>
+          <View
+            style={{
+              flex: 1,
+              width: '95%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignSelf: 'center'
+            }}>
+            <ExamplesGrid />
+          </View>
         </ImageBackground>
       );
     } else if (source === 'tasks') {
       return (
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           <Text style={styles.heading}>{this.props.title}</Text>
           {/* Additional UI elements related to ExamplesTask */}
           <ExamplesGrid />
 
           {source !== 'drawer' && (
-            <TouchableOpacity onPress={this.props.nextTask} style={globalStyles.smallButton}>
+            <TouchableOpacity
+              onPress={this.props.nextTask}
+              style={globalStyles.smallButton}>
               <Text style={globalStyles.textSmallButton}>Weiter</Text>
             </TouchableOpacity>
           )}
@@ -59,7 +78,7 @@ const styles = StyleSheet.create({
     color: '#1C2327',
     textAlign: 'center',
     fontWeight: 'bold',
-  }
+  },
 });
 
-export default ExamplesScreen
+export default ExamplesScreen;

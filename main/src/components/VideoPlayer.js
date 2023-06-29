@@ -18,6 +18,7 @@ const {width, height} = Dimensions.get('window');
 
 const VideoPlayer = ({video, thumbnail}) => {
   const videoRef = useRef(null);
+  const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
   const [paused, setPaused] = useState(true);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.7);
@@ -40,6 +41,11 @@ const VideoPlayer = ({video, thumbnail}) => {
       return () => clearTimeout(timer);
     }
   }, [paused, usingSlider, controlsVisible]);
+
+  const handleLoad = event => {
+    const {naturalSize} = event;
+    setAspectRatio({width: naturalSize.width, height: naturalSize.height});
+  };
 
   const handlePlayPause = () => {
     setPaused(!paused);
@@ -96,8 +102,12 @@ const VideoPlayer = ({video, thumbnail}) => {
       ) : (
         <Video
           ref={videoRef}
-          style={styles.video}
+          style={{
+            ...styles.video,
+            aspectRatio: aspectRatio.width / aspectRatio.height,
+          }}
           source={ImageMapper.getImagePath(video)}
+          onLoad={handleLoad}
           paused={paused}
           muted={muted}
           volume={volume}

@@ -164,8 +164,7 @@ const VideoPlayer = ({video, thumbnail}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: getResponsiveSizing(160 * 1.2),
-    height: getResponsiveSizing(90 * 1.2),
+    flex: 1,
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
@@ -181,10 +180,10 @@ const styles = StyleSheet.create({
   video: {
     width: "100%",
     height: "100%",
+    aspectRatio: 16 / 9,
   },
   controlsContainer: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,

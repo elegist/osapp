@@ -383,7 +383,8 @@ export class ReadingScreen extends Component {
               />
             </Animated.View>
           )}
-          <Animated.View style={globalStyles.readingTaskTextContainer}>
+          <Animated.View
+            style={!currentImage && globalStyles.readingTaskTextContainer}>
             <Animated.Text
               style={[globalStyles.textReadingTask, animTextStyle]}>
               {this.contentArray[currentIndex]['value']}

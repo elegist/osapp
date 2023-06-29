@@ -64,10 +64,7 @@ const VideoPlayer = ({video, thumbnail}) => {
       {paused ? (
         <FastImage
           source={ImageMapper.getImagePath(thumbnail)}
-          style={{
-            width: getResponsiveSizing(320),
-            height: getResponsiveSizing(180),
-          }}
+          style={styles.video}
           resizeMode={FastImage.resizeMode.contain}
         />
       ) : (
@@ -79,10 +76,7 @@ const VideoPlayer = ({video, thumbnail}) => {
           volume={volume}
           onProgress={handleProgress}
           resizeMode="contain"
-          style={{
-            width: getResponsiveSizing(320),
-            height: getResponsiveSizing(180),
-          }}
+          style={styles.video}
         />
       )}
 
@@ -114,7 +108,11 @@ const VideoPlayer = ({video, thumbnail}) => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  video: {
+    width: getResponsiveSizing(160 * 1.5),
+    height: getResponsiveSizing(90 * 1.5),
   },
   controlsContainer: {
     width: '100%',

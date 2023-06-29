@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+  Dimensions,
+} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import Video from 'react-native-video';
 import Slider from '@react-native-community/slider';
@@ -6,6 +13,8 @@ import ImageMapper from '../screens/helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
 import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
+
+const {width, height} = Dimensions.get('window');
 
 const VideoPlayer = ({video, thumbnail}) => {
   const videoRef = useRef(null);
@@ -77,11 +86,12 @@ const VideoPlayer = ({video, thumbnail}) => {
 
   return (
     <View style={styles.container}>
+      <View style={{...styles.absoluteContainer, backgroundColor: 'black'}} />
       {paused ? (
         <FastImage
           source={ImageMapper.getImagePath(thumbnail)}
           style={styles.video}
-          resizeMode={FastImage.resizeMode.contain}
+          resizeMode={FastImage.resizeMode.cover}
         />
       ) : (
         <Video
@@ -98,15 +108,7 @@ const VideoPlayer = ({video, thumbnail}) => {
       )}
 
       {controlsVisible && (
-        <View
-          style={{
-            width: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-          }}>
+        <View style={styles.absoluteContainer}>
           <Animated.View
             style={[styles.controlsContainer, {opacity: controlsOpacity}]}>
             <View style={{flexDirection: 'row'}}>
@@ -115,12 +117,12 @@ const VideoPlayer = ({video, thumbnail}) => {
                 onPress={handleMuteUnmute}>
                 <Icon
                   name={muted ? 'volume-off' : 'volume-up'}
-                  size={getResponsiveSizing(36)}
+                  size={getResponsiveSizing(24)}
                   color="white"
                 />
               </TouchableOpacity>
               <Slider
-                style={styles.slider}
+                style={styles.sliderVolume}
                 value={volume}
                 minimumValue={0}
                 maximumValue={1}
@@ -141,7 +143,7 @@ const VideoPlayer = ({video, thumbnail}) => {
               />
             </TouchableOpacity>
             <Slider
-              style={styles.slider}
+              style={styles.sliderTime}
               value={currentTime}
               minimumValue={0}
               maximumValue={duration}
@@ -162,22 +164,36 @@ const VideoPlayer = ({video, thumbnail}) => {
 
 const styles = StyleSheet.create({
   container: {
+    width: getResponsiveSizing(160 * 1.2),
+    height: getResponsiveSizing(90 * 1.2),
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
+  },
+  absoluteContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
   video: {
-    width: getResponsiveSizing(160 * 1.5),
-    height: getResponsiveSizing(90 * 1.5),
+    width: "100%",
+    height: "100%",
   },
   controlsContainer: {
     height: '100%',
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 10,
   },
-  slider: {
+  sliderVolume: {
     width: '70%',
+  },
+  sliderTime: {
+    width: '85%',
   },
 });
 

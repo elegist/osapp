@@ -13,6 +13,7 @@ import ImageMapper from '../helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
 import VideoPlayer from '../../components/VideoPlayer';
+import MaterialGallery from '../../components/MaterialGallery';
 
 export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const colors = {
@@ -27,12 +28,23 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const [materialType, setMaterialType] = useState(null);
   const [materialSource, setMaterialSource] = useState(null);
 
+  const [materials, setMaterials] = useState([]);
+
   const materialDetails = /^\[(.*?)\](.*)/;
 
   useEffect(() => {
     setMaterialType(content.material.match(materialDetails)[1]);
     setMaterialSource(content.material.match(materialDetails)[2]);
-  });
+
+    content.materials.forEach(material => {
+      const newMaterial = {
+        type: material.match(materialDetails)[1],
+        source: material.match(materialDetails)[2],
+      };
+
+      setMaterials(prevMaterials => [...prevMaterials, newMaterial]);
+    });
+  }, [content.materials]);
 
   const renderMaterial = () => {
     switch (materialType) {
@@ -76,6 +88,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
             onPress={() => {
               onRequestClose();
               setFullDescription(false);
+              setMaterials([]);
             }}>
             <Icon name="close" size={32} color="white"></Icon>
           </TouchableOpacity>
@@ -128,7 +141,13 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   </View>
                 </View>
               </View>
-              {renderMaterial()}
+              {/* {renderMaterial()} */}
+              {materials.length > 0 && (
+                <MaterialGallery
+                  materials={materials}
+                  thumbnail={content.thumbnail}
+                />
+              )}
               {content.link && (
                 <TouchableOpacity
                   style={{

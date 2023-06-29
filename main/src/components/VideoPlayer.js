@@ -164,6 +164,7 @@ const VideoPlayer = ({video, thumbnail}) => {
               <Slider
                 style={{flex: 8}}
                 value={currentTime}
+                disabled={paused}
                 minimumValue={0}
                 maximumValue={duration}
                 step={0.01}

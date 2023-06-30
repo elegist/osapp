@@ -105,6 +105,7 @@ const VideoPlayer = ({video, thumbnail}) => {
           style={{
             ...styles.video,
             aspectRatio: aspectRatio.width / aspectRatio.height,
+            maxHeight: height / 1.4,
           }}
           source={ImageMapper.getImagePath(video)}
           onLoad={handleLoad}
@@ -125,7 +126,10 @@ const VideoPlayer = ({video, thumbnail}) => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 10,
+                paddingHorizontal: 30,
+                paddingVertical: 10,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                borderRadius: 15
               }}>
               <TouchableOpacity style={{flex: 1}} onPress={handleMuteUnmute}>
                 <Icon
@@ -159,7 +163,10 @@ const VideoPlayer = ({video, thumbnail}) => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 10,
+                paddingHorizontal: 30,
+                paddingVertical: 10,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                borderRadius: 15
               }}>
               <Slider
                 style={{flex: 8}}
@@ -214,7 +221,7 @@ const styles = StyleSheet.create({
   },
   controlsContainer: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     paddingVertical: 10,
   },

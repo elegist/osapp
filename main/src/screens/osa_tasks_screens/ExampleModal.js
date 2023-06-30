@@ -25,17 +25,11 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
   const [fullDescription, setFullDescription] = useState(false);
   const [fullscreenImage, setFullscreenImage] = useState(false);
 
-  const [materialType, setMaterialType] = useState(null);
-  const [materialSource, setMaterialSource] = useState(null);
-
   const [materials, setMaterials] = useState([]);
 
   const materialDetails = /^\[(.*?)\](.*)/;
 
   useEffect(() => {
-    setMaterialType(content.material.match(materialDetails)[1]);
-    setMaterialSource(content.material.match(materialDetails)[2]);
-
     content.materials.forEach(material => {
       const newMaterial = {
         type: material.match(materialDetails)[1],
@@ -45,31 +39,6 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
       setMaterials(prevMaterials => [...prevMaterials, newMaterial]);
     });
   }, [content.materials]);
-
-  const renderMaterial = () => {
-    switch (materialType) {
-      case 'img':
-        return (
-          <TouchableOpacity onPress={() => setFullscreenImage(true)}>
-            <FastImage
-              style={{
-                width: 250,
-                height: 250,
-                alignSelf: 'center',
-                marginVertical: 5,
-              }}
-              source={ImageMapper.getImagePath(materialSource)}
-            />
-          </TouchableOpacity>
-        );
-      case 'video':
-        return (
-          <VideoPlayer video={materialSource} thumbnail={content.thumbnail} />
-        );
-      default:
-        break;
-    }
-  };
 
   const openLink = link => {
     Linking.openURL(link);
@@ -141,7 +110,6 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
                   </View>
                 </View>
               </View>
-              {/* {renderMaterial()} */}
               {materials.length > 0 && (
                 <MaterialGallery
                   materials={materials}

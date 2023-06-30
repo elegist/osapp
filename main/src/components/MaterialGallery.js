@@ -14,15 +14,27 @@ import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
 
 const MaterialGallery = ({materials, thumbnail}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
+
+  const handleLoad = event => {
+    const {nativeEvent} = event;
+    setAspectRatio({
+      width: nativeEvent.width,
+      height: nativeEvent.height,
+    });
+  };
 
   const renderMaterial = material => {
     switch (material.type) {
       case 'img':
         return (
           <FastImage
+            onLoad={handleLoad}
             style={{
-              width: 250,
-              height: 250,
+              flex: 1,
+              width: '100%',
+              height: '100%',
+              aspectRatio: aspectRatio.width / aspectRatio.height,
               alignSelf: 'center',
               marginVertical: 5,
             }}
@@ -40,48 +52,50 @@ const MaterialGallery = ({materials, thumbnail}) => {
     <View>
       <View>
         {renderMaterial(materials[currentIndex])}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingHorizontal: 20,
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              currentIndex > 0
-                ? setCurrentIndex(currentIndex - 1)
-                : setCurrentIndex(materials.length - 1);
+        {materials.length > 1 && (
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingHorizontal: 20,
             }}>
-            <Icon
-              name="chevron-circle-left"
-              color="#8CBA45"
-              size={getResponsiveSizing(36)}
-            />
-          </TouchableOpacity>
-          <View style={{flexDirection: 'row', gap: 10}}>
-            {materials.map((_, index) => (
+            <TouchableOpacity
+              onPress={() => {
+                currentIndex > 0
+                  ? setCurrentIndex(currentIndex - 1)
+                  : setCurrentIndex(materials.length - 1);
+              }}>
               <Icon
-                key={index}
-                name={index === currentIndex ? 'circle' : 'circle-o'}
+                name="chevron-circle-left"
                 color="#8CBA45"
-                size={getResponsiveSizing(16)}
+                size={getResponsiveSizing(36)}
               />
-            ))}
+            </TouchableOpacity>
+            <View style={{flexDirection: 'row', gap: 10}}>
+              {materials.map((_, index) => (
+                <Icon
+                  key={index}
+                  name={index === currentIndex ? 'circle' : 'circle-o'}
+                  color="#8CBA45"
+                  size={getResponsiveSizing(16)}
+                />
+              ))}
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                currentIndex < materials.length - 1
+                  ? setCurrentIndex(currentIndex + 1)
+                  : setCurrentIndex(0);
+              }}>
+              <Icon
+                name="chevron-circle-right"
+                color="#8CBA45"
+                size={getResponsiveSizing(36)}
+              />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              currentIndex < materials.length - 1
-                ? setCurrentIndex(currentIndex + 1)
-                : setCurrentIndex(0);
-            }}>
-            <Icon
-              name="chevron-circle-right"
-              color="#8CBA45"
-              size={getResponsiveSizing(36)}
-            />
-          </TouchableOpacity>
-        </View>
+        )}
       </View>
     </View>
   );

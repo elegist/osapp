@@ -16,7 +16,9 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
         drawerPosition: 'right',
+        overlayColor: 'rgba(0, 0, 0, 0.85)',
         drawerActiveBackgroundColor: '#8CBA45',
+        drawerInactiveBackgroundColor: 'rgba(140, 186, 69, 0.1)',
         drawerActiveTintColor: 'white',
       }}>
       <Drawer.Screen
@@ -24,14 +26,6 @@ const DrawerNavigator = () => {
         component={HomeScreen}
         options={{
           title: 'Home',
-          drawerLabelStyle: globalStyles.textParagraph,
-        }}
-      />
-      <Drawer.Screen
-        name="testDrawer"
-        component={OsaScreen}
-        options={{
-          title: 'OSA',
           drawerLabelStyle: globalStyles.textParagraph,
         }}
       />
@@ -44,6 +38,14 @@ const DrawerNavigator = () => {
         }}
         initialParams={{
           source: 'drawer',
+        }}
+      />
+      <Drawer.Screen
+        name="testDrawer"
+        component={OsaScreen}
+        options={{
+          title: 'OSA beginnen',
+          drawerLabelStyle: globalStyles.textParagraph,
         }}
       />
     </Drawer.Navigator>

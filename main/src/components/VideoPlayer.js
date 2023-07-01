@@ -176,7 +176,7 @@ const VideoPlayer = ({video, thumbnail}) => {
                 thumbTintColor="#8CBA45"
               />
               <Text style={{...globalStyles.textSecondary, color: 'white'}}>
-                {formatTime(currentTime)} / {formatTime(duration)}
+                {duration > 0 ? `${formatTime(currentTime)} / ${formatTime(duration)}` : "--:-- / --:--"}
               </Text>
             </View>
           </Animated.View>

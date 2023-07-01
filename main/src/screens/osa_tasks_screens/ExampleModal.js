@@ -12,7 +12,6 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 import ImageMapper from '../helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
-import VideoPlayer from '../../components/VideoPlayer';
 import MaterialGallery from '../../components/MaterialGallery';
 
 export const ExampleModal = ({modalVisible, onRequestClose, content}) => {

@@ -1,11 +1,4 @@
-import {
-  View,
-  ScrollView,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Animated,
-  Easing,
-} from 'react-native';
+import {View, TouchableOpacity, Animated, Easing} from 'react-native';
 import React, {useRef, useState} from 'react';
 import VideoPlayer from './VideoPlayer';
 import FastImage from 'react-native-fast-image';

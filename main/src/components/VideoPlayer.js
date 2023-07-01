@@ -17,7 +17,7 @@ import globalStyles from '../styles/GlobalStyleSheet';
 
 const {width, height} = Dimensions.get('window');
 
-const VideoPlayer = ({video, thumbnail}) => {
+const VideoPlayer = ({onLoad, video, thumbnail}) => {
   const videoRef = useRef(null);
   const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
   const [paused, setPaused] = useState(true);
@@ -107,6 +107,7 @@ const VideoPlayer = ({video, thumbnail}) => {
           source={ImageMapper.getImagePath(thumbnail)}
           style={styles.video}
           resizeMode={FastImage.resizeMode.cover}
+          onLoad={onLoad}
         />
       ) : (
         <Video
@@ -176,7 +177,9 @@ const VideoPlayer = ({video, thumbnail}) => {
                 thumbTintColor="#8CBA45"
               />
               <Text style={{...globalStyles.textSecondary, color: 'white'}}>
-                {duration > 0 ? `${formatTime(currentTime)} / ${formatTime(duration)}` : "--:-- / --:--"}
+                {duration > 0
+                  ? `${formatTime(currentTime)} / ${formatTime(duration)}`
+                  : '--:-- / --:--'}
               </Text>
             </View>
           </Animated.View>

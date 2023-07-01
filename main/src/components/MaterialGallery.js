@@ -16,12 +16,33 @@ const MaterialGallery = ({materials, thumbnail}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
 
+  const animationDuration = 200;
+  const opacityValue = useRef(new Animated.Value(0)).current;
+
+  const fadeIn = () => {
+    return Animated.timing(opacityValue, {
+      toValue: 1,
+      duration: animationDuration,
+      delay: animationDuration / 2,
+      useNativeDriver: true,
+    });
+  };
+
+  const fadeOut = () => {
+    return Animated.timing(opacityValue, {
+      toValue: 0,
+      duration: animationDuration,
+      useNativeDriver: true,
+    });
+  };
+
   const handleLoad = event => {
     const {nativeEvent} = event;
     setAspectRatio({
       width: nativeEvent.width,
       height: nativeEvent.height,
     });
+    fadeIn().start();
   };
 
   const renderMaterial = material => {
@@ -42,7 +63,13 @@ const MaterialGallery = ({materials, thumbnail}) => {
           />
         );
       case 'video':
-        return <VideoPlayer video={material.source} thumbnail={thumbnail} />;
+        return (
+          <VideoPlayer
+            video={material.source}
+            thumbnail={thumbnail}
+            onLoad={() => fadeIn().start()}
+          />
+        );
       default:
         break;
     }
@@ -51,7 +78,9 @@ const MaterialGallery = ({materials, thumbnail}) => {
   return (
     <View>
       <View>
-        {renderMaterial(materials[currentIndex])}
+        <Animated.View style={[{opacity: opacityValue}]}>
+          {renderMaterial(materials[currentIndex])}
+        </Animated.View>
         {materials.length > 1 && (
           <View
             style={{
@@ -62,9 +91,11 @@ const MaterialGallery = ({materials, thumbnail}) => {
             }}>
             <TouchableOpacity
               onPress={() => {
-                currentIndex > 0
-                  ? setCurrentIndex(currentIndex - 1)
-                  : setCurrentIndex(materials.length - 1);
+                fadeOut().start(() => {
+                  currentIndex > 0
+                    ? setCurrentIndex(currentIndex - 1)
+                    : setCurrentIndex(materials.length - 1);
+                });
               }}>
               <Icon
                 name="chevron-circle-left"
@@ -84,9 +115,11 @@ const MaterialGallery = ({materials, thumbnail}) => {
             </View>
             <TouchableOpacity
               onPress={() => {
-                currentIndex < materials.length - 1
-                  ? setCurrentIndex(currentIndex + 1)
-                  : setCurrentIndex(0);
+                fadeOut().start(() => {
+                  currentIndex < materials.length - 1
+                    ? setCurrentIndex(currentIndex + 1)
+                    : setCurrentIndex(0);
+                });
               }}>
               <Icon
                 name="chevron-circle-right"

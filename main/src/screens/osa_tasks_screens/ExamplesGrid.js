@@ -81,8 +81,6 @@ class ExamplesGrid extends Component {
   };
 
   render() {
-    const AnimatedTouchableOpacity =
-      Animated.createAnimatedComponent(TouchableOpacity);
     return (
       <Animated.View
         style={[styles.container, {opacity: this.animationOpacity}]}>
@@ -93,21 +91,23 @@ class ExamplesGrid extends Component {
                 <Text style={globalStyles.textSecondary}>{topic.name}</Text>
                 <View style={styles.exampleContainer}>
                   {topic.examples.map((example, index) => (
-                    <AnimatedTouchableOpacity
-                      key={index}
-                      onPress={() => this.openModalWithContent(example)}
+                    <Animated.View
                       style={[
-                        styles.thumbnailContainer,
                         {
                           opacity: this.staggerOpacity[index],
                           transform: [{scale: this.staggerScale[index]}],
                         },
                       ]}>
-                      <FastImage
-                        source={ImageMapper.getImagePath(example.thumbnail)}
-                        style={styles.thumbnail}
-                      />
-                    </AnimatedTouchableOpacity>
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => this.openModalWithContent(example)}
+                        style={styles.thumbnailContainer}>
+                        <FastImage
+                          source={ImageMapper.getImagePath(example.thumbnail)}
+                          style={styles.thumbnail}
+                        />
+                      </TouchableOpacity>
+                    </Animated.View>
                   ))}
                 </View>
                 <View

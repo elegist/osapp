@@ -356,7 +356,7 @@ export class ReadingScreen extends Component {
                 position: 'absolute',
                 zIndex: 10,
                 bottom: 80,
-                left: 80,
+                right: 80,
               },
               animateTapStyle,
             ]}
@@ -383,7 +383,8 @@ export class ReadingScreen extends Component {
               />
             </Animated.View>
           )}
-          <Animated.View>
+          <Animated.View
+            style={!currentImage && globalStyles.readingTaskTextContainer}>
             <Animated.Text
               style={[globalStyles.textReadingTask, animTextStyle]}>
               {this.contentArray[currentIndex]['value']}

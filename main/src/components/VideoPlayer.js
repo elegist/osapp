@@ -13,6 +13,7 @@ import ImageMapper from '../screens/helper/ImageMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
 import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
+import globalStyles from '../styles/GlobalStyleSheet';
 
 const {width, height} = Dimensions.get('window');
 
@@ -92,6 +93,12 @@ const VideoPlayer = ({video, thumbnail}) => {
     }).start();
   };
 
+  const formatTime = time => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time - minutes * 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   return (
     <View style={styles.container}>
       <View style={{...styles.absoluteContainer, backgroundColor: 'black'}} />
@@ -168,6 +175,9 @@ const VideoPlayer = ({video, thumbnail}) => {
                 maximumTrackTintColor="#bababa"
                 thumbTintColor="#8CBA45"
               />
+              <Text style={{...globalStyles.textSecondary, color: 'white'}}>
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </Text>
             </View>
           </Animated.View>
         </View>

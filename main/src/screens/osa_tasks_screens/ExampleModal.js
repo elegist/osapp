@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: '#dd4040',
     borderRadius: 50,
+    zIndex: 10,
   },
   modalContainer: {
     flex: 1,

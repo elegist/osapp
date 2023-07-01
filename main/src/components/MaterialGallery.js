@@ -4,6 +4,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Animated,
+  Easing,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import VideoPlayer from './VideoPlayer';
@@ -16,27 +17,72 @@ const MaterialGallery = ({materials, thumbnail}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
 
-  const animationDuration = 200;
+  const [swipeDirection, setSwipeDirection] = useState(-1);
+
+  const animationDuration = 280;
+  const translateDistance = 400;
+  const initialScale = 1.6;
+
+  const easingType = Easing.ease;
   const opacityValue = useRef(new Animated.Value(0)).current;
+  const scaleValue = useRef(new Animated.Value(initialScale)).current;
+  const swipeAnimationValue = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
-    return Animated.timing(opacityValue, {
-      toValue: 1,
-      duration: animationDuration,
-      delay: animationDuration / 2,
-      useNativeDriver: true,
-    });
+    return Animated.parallel([
+      Animated.timing(opacityValue, {
+        toValue: 1,
+        duration: animationDuration,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleValue, {
+        toValue: 1,
+        duration: animationDuration,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+      Animated.timing(swipeAnimationValue, {
+        toValue: 1,
+        duration: animationDuration,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+    ]);
   };
 
   const fadeOut = () => {
-    return Animated.timing(opacityValue, {
-      toValue: 0,
-      duration: animationDuration,
-      useNativeDriver: true,
+    return Animated.parallel([
+      Animated.timing(opacityValue, {
+        toValue: 0,
+        duration: animationDuration / 2,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleValue, {
+        toValue: initialScale,
+        duration: animationDuration,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+      Animated.timing(swipeAnimationValue, {
+        toValue: 0,
+        duration: animationDuration,
+        easing: easingType,
+        useNativeDriver: true,
+      }),
+    ]);
+  };
+
+  const translateXStyle = (direction = 1) => {
+    return swipeAnimationValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [translateDistance * direction, 0],
     });
   };
 
   const handleLoad = event => {
+    setSwipeDirection(swipeDirection * -1);
     const {nativeEvent} = event;
     setAspectRatio({
       width: nativeEvent.width,
@@ -67,7 +113,10 @@ const MaterialGallery = ({materials, thumbnail}) => {
           <VideoPlayer
             video={material.source}
             thumbnail={thumbnail}
-            onLoad={() => fadeIn().start()}
+            onLoad={() => {
+              setSwipeDirection(swipeDirection * -1);
+              fadeIn().start();
+            }}
           />
         );
       default:
@@ -78,7 +127,16 @@ const MaterialGallery = ({materials, thumbnail}) => {
   return (
     <View>
       <View>
-        <Animated.View style={[{opacity: opacityValue}]}>
+        <Animated.View
+          style={[
+            {
+              opacity: opacityValue,
+              transform: [
+                {translateX: translateXStyle(swipeDirection)},
+                {scale: scaleValue},
+              ],
+            },
+          ]}>
           {renderMaterial(materials[currentIndex])}
         </Animated.View>
         {materials.length > 1 && (
@@ -91,6 +149,7 @@ const MaterialGallery = ({materials, thumbnail}) => {
             }}>
             <TouchableOpacity
               onPress={() => {
+                setSwipeDirection(1);
                 fadeOut().start(() => {
                   currentIndex > 0
                     ? setCurrentIndex(currentIndex - 1)
@@ -115,6 +174,7 @@ const MaterialGallery = ({materials, thumbnail}) => {
             </View>
             <TouchableOpacity
               onPress={() => {
+                setSwipeDirection(-1);
                 fadeOut().start(() => {
                   currentIndex < materials.length - 1
                     ? setCurrentIndex(currentIndex + 1)

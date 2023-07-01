@@ -20,6 +20,7 @@ const VideoPlayer = ({video, thumbnail}) => {
   const videoRef = useRef(null);
   const [aspectRatio, setAspectRatio] = useState({width: 16, height: 9});
   const [paused, setPaused] = useState(true);
+  const [stopped, setStopped] = useState(true);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.7);
   const [currentTime, setCurrentTime] = useState(0);
@@ -49,6 +50,7 @@ const VideoPlayer = ({video, thumbnail}) => {
 
   const handlePlayPause = () => {
     setPaused(!paused);
+    setStopped(false);
   };
 
   const handleMuteUnmute = () => {
@@ -93,7 +95,7 @@ const VideoPlayer = ({video, thumbnail}) => {
   return (
     <View style={styles.container}>
       <View style={{...styles.absoluteContainer, backgroundColor: 'black'}} />
-      {paused ? (
+      {stopped ? (
         <FastImage
           source={ImageMapper.getImagePath(thumbnail)}
           style={styles.video}
@@ -109,7 +111,7 @@ const VideoPlayer = ({video, thumbnail}) => {
           }}
           source={ImageMapper.getImagePath(video)}
           onLoad={handleLoad}
-          paused={paused}
+          rate={paused ? 0 : 1}
           muted={muted}
           volume={volume}
           onProgress={handleProgress}
@@ -122,15 +124,7 @@ const VideoPlayer = ({video, thumbnail}) => {
         <View style={styles.absoluteContainer}>
           <Animated.View
             style={[styles.controlsContainer, {opacity: controlsOpacity}]}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 30,
-                paddingVertical: 10,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderRadius: 15
-              }}>
+            <View style={styles.sliderContainer}>
               <TouchableOpacity style={{flex: 1}} onPress={handleMuteUnmute}>
                 <Icon
                   name={muted ? 'volume-off' : 'volume-up'}
@@ -139,7 +133,7 @@ const VideoPlayer = ({video, thumbnail}) => {
                 />
               </TouchableOpacity>
               <Slider
-                style={{flex: 8}}
+                style={{flex: 6}}
                 value={volume}
                 minimumValue={0}
                 maximumValue={1}
@@ -159,19 +153,11 @@ const VideoPlayer = ({video, thumbnail}) => {
                 color="#8CBA45"
               />
             </TouchableOpacity>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 30,
-                paddingVertical: 10,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderRadius: 15
-              }}>
+            <View style={styles.sliderContainer}>
               <Slider
                 style={{flex: 8}}
                 value={currentTime}
-                disabled={paused}
+                disabled={stopped}
                 minimumValue={0}
                 maximumValue={duration}
                 step={0.01}
@@ -182,15 +168,6 @@ const VideoPlayer = ({video, thumbnail}) => {
                 maximumTrackTintColor="#bababa"
                 thumbTintColor="#8CBA45"
               />
-              <TouchableOpacity
-                style={{flex: 1}}
-                onPress={() => console.log('fullscreen')}>
-                <Icon
-                  name="arrows-alt"
-                  size={getResponsiveSizing(24)}
-                  color="#8CBA45"
-                />
-              </TouchableOpacity>
             </View>
           </Animated.View>
         </View>
@@ -224,6 +201,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingVertical: 10,
+  },
+  sliderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 15,
   },
   sliderVolume: {
     width: '70%',

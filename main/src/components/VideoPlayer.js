@@ -9,7 +9,7 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import Video from 'react-native-video';
 import Slider from '@react-native-community/slider';
-import ImageMapper from '../screens/helper/ImageMapper';
+import MediaMapper from '../screens/helper/MediaMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
 import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
@@ -104,7 +104,7 @@ const VideoPlayer = ({onLoad, video, thumbnail}) => {
       <View style={{...styles.absoluteContainer, backgroundColor: 'black'}} />
       {stopped ? (
         <FastImage
-          source={ImageMapper.getImagePath(thumbnail)}
+          source={MediaMapper.getMediaPath(thumbnail)}
           style={styles.video}
           resizeMode={FastImage.resizeMode.cover}
           onLoad={onLoad}
@@ -117,7 +117,7 @@ const VideoPlayer = ({onLoad, video, thumbnail}) => {
             aspectRatio: aspectRatio.width / aspectRatio.height,
             maxHeight: height / 1.4,
           }}
-          source={ImageMapper.getImagePath(video)}
+          source={MediaMapper.getMediaPath(video)}
           onLoad={handleLoad}
           rate={paused ? 0 : 1}
           muted={muted}

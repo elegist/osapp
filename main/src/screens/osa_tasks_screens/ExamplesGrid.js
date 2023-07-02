@@ -8,7 +8,7 @@ import {
   Animated,
 } from 'react-native';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import ImageMapper from '../helper/ImageMapper';
+import MediaMapper from '../helper/MediaMapper';
 import FastImage from 'react-native-fast-image';
 import {ExampleModal} from './ExampleModal';
 
@@ -103,7 +103,7 @@ class ExamplesGrid extends Component {
                         onPress={() => this.openModalWithContent(example)}
                         style={styles.thumbnailContainer}>
                         <FastImage
-                          source={ImageMapper.getImagePath(example.thumbnail)}
+                          source={MediaMapper.getMediaPath(example.thumbnail)}
                           style={styles.thumbnail}
                         />
                       </TouchableOpacity>

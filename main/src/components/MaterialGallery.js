@@ -2,7 +2,7 @@ import {View, TouchableOpacity, Animated, Easing} from 'react-native';
 import React, {useRef, useState} from 'react';
 import VideoPlayer from './VideoPlayer';
 import FastImage from 'react-native-fast-image';
-import ImageMapper from '../screens/helper/ImageMapper';
+import MediaMapper from '../screens/helper/MediaMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
 
@@ -98,7 +98,7 @@ const MaterialGallery = ({materials, thumbnail}) => {
               alignSelf: 'center',
               marginVertical: 5,
             }}
-            source={ImageMapper.getImagePath(material.source)}
+            source={MediaMapper.getMediaPath(material.source)}
           />
         );
       case 'video':

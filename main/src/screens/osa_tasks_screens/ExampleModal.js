@@ -9,7 +9,7 @@ import {
   Linking,
 } from 'react-native';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import ImageMapper from '../helper/ImageMapper';
+import MediaMapper from '../helper/MediaMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FastImage from 'react-native-fast-image';
 import MaterialGallery from '../../components/MaterialGallery';
@@ -170,7 +170,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
           }}>
           <TouchableOpacity onPress={() => setFullscreenImage(false)}>
             <FastImage
-              source={ImageMapper.getImagePath(materialSource)}
+              source={MediaMapper.getMediaPath(materialSource)}
               style={{width: '100%', height: '100%', position: 'relative'}}
               resizeMode={FastImage.resizeMode.contain}
             />

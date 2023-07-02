@@ -1,12 +1,12 @@
 /**
  * Provides manual mapping of relative image paths
  */
-class ImageMapper {
-  static getImagePath(imageName) {
+class MediaMapper {
+  static getMediaPath(mediaName) {
     const path = '../../assets/osa_images/';
     const thumbnailPath = '../../assets/project_examples/thumbnails/';
     const contentPath = '../../assets/project_examples/content/';
-    switch (imageName) {
+    switch (mediaName) {
       case 'thm-haupteingang.jpg':
         return require(path + 'thm-haupteingang.jpg');
       case 'thm-campus.jpg':
@@ -66,4 +66,4 @@ class ImageMapper {
   }
 }
 
-export default ImageMapper;
+export default MediaMapper;

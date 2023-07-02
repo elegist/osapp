@@ -7,12 +7,11 @@
         "subject": "Medienproduktion",
         "semester": 3,
         "technologies": ["HTML", "CSS", "Javascript"],
-        "thumbnail": "medienproduktion.jpg",
+        "thumbnail": "mpm-reise-thumbnail.png",
         "materials": [
-          "[img]thumb1.jpg",
-          "[img]thumb2.jpg",
-          "[img]thumb3.jpg",
-          "[video]mow2.mp4"
+          "[img]mpm-reise-1.png",
+          "[img]mpm-reise-2.png",
+          "[img]mpm-reise-3.png"
         ],
         "link": "https://hosting.iem.thm.de/mpm-projects/mpm2022e1/",
         "description": "Um Studieninteressierten einen interessanten und interaktiven Ersteindruck zu geben, haben sich Studierende der Medieninformatik im dritten Semester der Aufgabe angenommen, diese webbasierte, animierte Reise durch den Studiengang zu planen, designen und umzusetzen."
@@ -22,8 +21,14 @@
         "subject": "Webframeworks",
         "semester": 5,
         "technologies": ["Laravel (PHP)", "Blade (PHP)", "Vue.js (Javascript)"],
-        "thumbnail": "webframeworks.jpg",
-        "materials": ["[img]webframeworks.jpg"],
+        "thumbnail": "wfr-tasse-thumbnail.png",
+        "materials": [
+          "[img]wfr-1.png",
+          "[img]wfr-2.png",
+          "[img]wfr-3.png",
+          "[img]wfr-4.png",
+          "[img]wfr-5.png"
+        ],
         "link": "http://87.106.169.186/tassengenerator/blade/public/",
         "description": "In dem Wahlpflichtfach Webframeworks im vorletzten Fachsemester, hat ein zweier Team diesen webbasierten Tassenkonfigurator geplant, designt und umgesetzt. Dabei ist alles, was von einer üblichen eCommerce Webseite erwartet wird vorhanden: Nutzerregistrierung, Login, Bestellung aufgeben und, und, und. Klick dich doch auch gerne mal durch."
       },
@@ -32,8 +37,12 @@
         "subject": "Frontend Entwicklung",
         "semester": 5,
         "technologies": ["HTML", "CSS", "Javascript"],
-        "thumbnail": "frontend.jpg",
-        "materials": ["[img]frontend.jpg"],
+        "thumbnail": "fd-dijkstra-thumbnail.png",
+        "materials": [
+          "[img]fd-dijkstra.png",
+          "[video]fd-algorithm.mp4",
+          "[video]fd-story.mp4"
+        ],
         "link": "https://dijkstra-story.robinpatzak.com/",
         "description": "Im Fach Frontend Entwicklung liegt der Hauptaugenmerk, wie der Name schon vermuten lässt, auf dem Design und der Präsentation eines Projektes. Das zweier Team hinter der 'Dijkstra Story' hat es sich zur Aufgabe gemacht, die Funktionalität des Wegfindungsalgorithmus nach Dijkstra (diesen wirst du im Studiengang auch benötigen), anschaulich und optisch ansprechend zu erläutern. Mach dich doch gerne schonmal auf die Art mit dem Algorithmus vertraut."
       },
@@ -42,8 +51,15 @@
         "subject": "Mobile Anwendungen 2",
         "semester": 5,
         "technologies": ["Android", "Kotlin"],
-        "thumbnail": "mow2.jpg",
-        "materials": ["[video]mow2.mp4"],
+        "thumbnail": "mow2-bug-thumbnail.png",
+        "materials": [
+          "[img]mow2-mainmenu.png",
+          "[img]mow2-game.png",
+          "[img]mow2-settings.png",
+          "[img]mow2-gameover.png",
+          "[video]mow2-start.mp4",
+          "[video]mow2-highlevel.mp4"
+        ],
         "link": null,
         "description": "Dieses Mobile Game ist in einem vierer Team entstanden und wurde nativ für Android entwickelt. Aufwändige Grafiken, liebevolle Audiogestaltung und ein hoher Spielspaß waren hier die wichtigsten Bestandteile für das Team. An diesem Projekt kannst du sehen, dass du keine Angst haben brauchst, immer nur hoch seriöse Projekte umzusetzen, sondern dass du deiner Kreativität auch gerne freien lauf lassen darfst. "
       }
@@ -57,8 +73,8 @@
         "subject": "Audiovisuelle Medien 2",
         "semester": 2,
         "technologies": ["Davinci Resolve", "Logic Pro"],
-        "thumbnail": "av2-1.jpg",
-        "materials": ["[video]lazarus_720p.mp4"],
+        "thumbnail": "av2-lazarus-thumbnail.png",
+        "materials": ["[video]av2-lazarus.mp4"],
         "link": null,
         "description": "Dieses Projekt ist, mit Anleitung der Modulverantwortlichen, komplett in Regie eines siebener Teams an Student*innen entstanden. Es wird von den Dozenten eine sehr realistische Situation erschaffen - du bekommst einen fiktiven Auftrag, ein Musikvideo zu produzieren und kümmerst dich dann um alles nötige: Anheuerung der Musiker*innen, Locationscouting, Postproduction, und so weiter!"
       },
@@ -67,8 +83,8 @@
         "subject": "Audiovisuelle Medien 2",
         "semester": 2,
         "technologies": ["Davinci Resolve", "Logic Pro"],
-        "thumbnail": "av2-2.jpg",
-        "materials": ["[video]angels_720p.mp4"],
+        "thumbnail": "av2-angels-thumbnail.png",
+        "materials": ["[video]av2-angels.mp4"],
         "link": null,
         "description": "Dieses Projekt ist, mit Anleitung der Modulverantwortlichen, komplett in Regie eines zehner Teams an Student*innen entstanden. Es wird von den Dozenten eine sehr realistische Situation erschaffen - du bekommst einen fiktiven Auftrag, ein Musikvideo zu produzieren und kümmerst dich dann um alles nötige: Anheuerung der Musiker*innen, Locationscouting, Postproduction, und so weiter!"
       },
@@ -77,8 +93,8 @@
         "subject": "Fotografie & Bildbearbeitung",
         "semester": 5,
         "technologies": ["Affinity Photo"],
-        "thumbnail": "foto.jpg",
-        "materials": ["[img]foto.jpg"],
+        "thumbnail": "fub-regeneration-thumbnail.png",
+        "materials": ["[img]fub-regeneration.png"],
         "link": null,
         "description": "Dieses Projekt ist im Zuge des Moduls Fotografie & Bildbearbeitung entstanden, in dem sich Studierende kreativ komplett frei ausleben können. Von der Ideenfindung bis hin zur Fotografierung und Nachbearbeitung ist alles mit dabei. Natürlich wird man dabei auch kompetent von den Modulverantwortlichen unterstützt. Du bist hier aber völlig frei in deiner Projektwahl, und darfst dich komplett austoben!"
       }
@@ -92,30 +108,76 @@
         "subject": "Grafische Datenverarbeitung 1: Modellierung",
         "semester": 1,
         "technologies": ["Autodesk Maya"],
-        "thumbnail": "thumb1.jpg",
-        "materials": ["[img]thumb1.jpg"],
+        "thumbnail": "gd1-car-thumbnail.png",
+        "materials": [
+          "[img]gd1-full.png",
+          "[img]gd1-detail-1.png",
+          "[img]gd1-detail-2.png",
+          "[img]gd1-uv.png",
+          "[img]gd1-wireframe.png"
+        ],
         "link": null,
         "description": "Ein großer Teil der Medieninformatik ist auch die Arbeit an digitalen 3D Grafiken. Dieses Auto wurde eigenhändig von einer Student*in anhand einer ihr zur Verfügung gestellten Blaupause nachmodelliert. Angefangen mit einem einzigen Cube, hast du am Ende ein beeindruckendes Automodell vor dir, auf das du mächtig stolz sein kannst."
       },
       {
-        "title": "Shading",
+        "title": "Lampe",
         "subject": "Grafische Datenverarbeitung 2: Shading & Lighting",
         "semester": 2,
         "technologies": ["Autodesk Maya", "Shadermap 4"],
-        "thumbnail": "thumb2.jpg",
-        "materials": ["[img]thumb2.jpg"],
+        "thumbnail": "gd2-lamp-thumbnail.png",
+        "materials": ["[img]gd2-lamp.png"],
         "link": null,
         "description": "Nachdem im ersten Modul das Modellieren eines Objektes im Vordergrund stand, geht es in diesem Modul mehr darum, einem Modell Leben einzuhauchen. Du arbeitest daran, einem Objekt eine realistische und glaubhafte Oberflächenbeschreibung mit Texturen zu geben, und das Modell stimmig in Szene zu setzen mit entsprechenden Lichtquellen. "
       },
       {
-        "title": "Animation",
+        "title": "Ring",
+        "subject": "Grafische Datenverarbeitung 2: Shading & Lighting",
+        "semester": 2,
+        "technologies": ["Autodesk Maya", "Shadermap 4"],
+        "thumbnail": "gd2-ring-thumbnail.png",
+        "materials": ["[img]gd2-ring.png"],
+        "link": null,
+        "description": "Nachdem im ersten Modul das Modellieren eines Objektes im Vordergrund stand, geht es in diesem Modul mehr darum, einem Modell Leben einzuhauchen. Du arbeitest daran, einem Objekt eine realistische und glaubhafte Oberflächenbeschreibung mit Texturen zu geben, und das Modell stimmig in Szene zu setzen mit entsprechenden Lichtquellen. "
+      },
+      {
+        "title": "Gesichtsanimation",
         "subject": "Grafische Datenverarbeitung 3: Animation",
         "semester": 3,
         "technologies": ["Autodesk Maya"],
-        "thumbnail": "thumb3.jpg",
-        "materials": ["[img]thumb3.jpg"],
+        "thumbnail": "gd3-mimic-thumbnail.png",
+        "materials": ["[video]gd3-mimic.mp4"],
         "link": null,
         "description": "Du hast in den vorigen Modulen schon gelernt, wie man Modelle erschafft, sie stimmig in Szene setzt, aber jetzt wird es richtig interessant: Jetzt geht es darum Modelle zu animieren. Gesichtsausfrücke, glaubhafte Bewegungen und vieles mehr wirst du hier lernen umzusetzen und hast am Ende einen kleinen selbst animierten Clip."
+      },
+      {
+        "title": "Turnanimation",
+        "subject": "Grafische Datenverarbeitung 3: Animation",
+        "semester": 3,
+        "technologies": ["Autodesk Maya"],
+        "thumbnail": "gd3-rack-thumbnail.png",
+        "materials": ["[video]gd3-rack.mp4"],
+        "link": null,
+        "description": "Du hast in den vorigen Modulen schon gelernt, wie man Modelle erschafft, sie stimmig in Szene setzt, aber jetzt wird es richtig interessant: Jetzt geht es darum Modelle zu animieren. Gesichtsausfrücke, glaubhafte Bewegungen und vieles mehr wirst du hier lernen umzusetzen und hast am Ende einen kleinen selbst animierten Clip."
+      },
+      {
+        "title": "iPhone Animation",
+        "subject": "Motion-Design",
+        "semester": 5,
+        "technologies": ["Autodesk Maya"],
+        "thumbnail": "md-iphone-thumbnail.png",
+        "materials": ["[video]md-iphone.mp4"],
+        "link": null,
+        "description": "BESCHREIBUNG FÜR MOTION DESIGN"
+      },
+      {
+        "title": "Eichhörnchen Animation",
+        "subject": "Motion-Design",
+        "semester": 5,
+        "technologies": ["Autodesk Maya"],
+        "thumbnail": "md-squirrel-thumbnail.png",
+        "materials": ["[video]md-squirrel.mp4"],
+        "link": null,
+        "description": "BESCHREIBUNG FÜR MOTION DESIGN"
       }
     ]
   }

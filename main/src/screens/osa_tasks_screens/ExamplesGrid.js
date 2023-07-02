@@ -92,6 +92,7 @@ class ExamplesGrid extends Component {
                 <View style={styles.exampleContainer}>
                   {topic.examples.map((example, index) => (
                     <Animated.View
+                      key={index}
                       style={[
                         {
                           opacity: this.staggerOpacity[index],
@@ -99,7 +100,6 @@ class ExamplesGrid extends Component {
                         },
                       ]}>
                       <TouchableOpacity
-                        key={index}
                         onPress={() => this.openModalWithContent(example)}
                         style={styles.thumbnailContainer}>
                         <FastImage

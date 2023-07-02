@@ -34,8 +34,8 @@ export default class TaskManager {
   }
 
   getUsersOverallProgress = () => {
-    return this.#userProgress
-  }
+    return this.#userProgress;
+  };
 
   getTasksMap = () => {
     return this.#tasksMap;
@@ -117,6 +117,7 @@ export default class TaskManager {
             topic: taskData.topic,
             title: task.title,
             content: task.content,
+            summarySubSection: task.summarySubSection,
           });
           break;
         case QUIZ:
@@ -128,6 +129,7 @@ export default class TaskManager {
             question: task.question,
             choices: task.choices,
             correctChoices: task.correctChoices,
+            summarySubSection: task.summarySubSection,
           });
           break;
         case INTERACTIVE:
@@ -137,6 +139,7 @@ export default class TaskManager {
             title: task.title,
             slug: task.slug,
             help: task.help,
+            summarySubSection: task.summarySubSection,
           });
           break;
         default:

@@ -13,6 +13,12 @@ import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
 import {ScrollView} from 'react-native-gesture-handler';
+import InteractiveTask from '../container/osa_tasks/InteractiveTask';
+import QuizTask from '../container/osa_tasks/QuizTask';
+import {Image, SvgUri} from 'react-native-svg';
+import FastImage from 'react-native-fast-image';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
 /**
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
@@ -41,12 +47,20 @@ export default function SummaryScreen({navigation, route}) {
       };
       const data = [];
       topic.forEach(element => {
+        let timeRelevant = false;
+        let hintsUsedRelevant = false;
         if (element instanceof ReadingTask) return;
+        else if (element instanceof InteractiveTask) {
+          (timeRelevant = true), (hintsUsedRelevant = true);
+        }
         data.push({
           id: id,
           title: element.title,
           timeElapsed: element.getTimeElapsedFormatted(),
-          taskSuccess: element.getTaskSuccess() ? 'true' : 'false',
+          taskSuccess: element.getTaskSuccess(),
+          timeRelevant: timeRelevant,
+          hintsUsedRelevant: hintsUsedRelevant,
+          summarySubSection: element.summarySubSection,
         });
         id++;
       });
@@ -57,6 +71,76 @@ export default function SummaryScreen({navigation, route}) {
   };
 
   const listData = generateSummaryList();
+
+  const displaySectionItems = section => {
+    let previousSummarySubSection = null;
+
+    const renderSectionItems = () => {
+      const items = [];
+  
+      section.data.forEach(item => {
+        if (item.summarySubSection !== previousSummarySubSection) {
+          items.push(
+            <Text key={item.summarySubSection} style={styles.subSectionHeading}>
+              {item.summarySubSection}
+            </Text>
+          );
+        }
+  
+        previousSummarySubSection = item.summarySubSection;
+  
+        items.push(
+          <View key={item.id} style={styles.taskItem}>
+            <Text>{item.title}</Text>
+            {item.timeRelevant && (
+              <View style={styles.iconTextWrapper}>
+                <FeatherIcon
+                  style={{ opacity: 1, marginEnd: 5 }}
+                  name="clock"
+                  size={20}
+                />
+                <Text>{item.timeElapsed}</Text>
+              </View>
+            )}
+            {item.hintsUsedRelevant && (
+              <View style={styles.iconTextWrapper}>
+                <AntDesignIcon
+                  style={{ opacity: 1, marginEnd: 5 }}
+                  name="questioncircleo"
+                  size={20}
+                />
+                <Text>3</Text>
+              </View>
+            )}
+            {item.taskSuccess === true ? (
+              <FeatherIcon
+                style={{ opacity: 1 }}
+                name="check-circle"
+                size={20}
+                color="green"
+              />
+            ) : (
+              <FeatherIcon
+                style={{ opacity: 1 }}
+                name="alert-triangle"
+                size={20}
+                color="orange"
+              />
+            )}
+          </View>
+        );
+      });
+  
+      return items;
+    };
+  
+    return (
+      <ScrollView style={styles.scrollContainer}>
+        {renderSectionItems()}
+      </ScrollView>
+    );
+  };
+  
 
   function toggleItem(sectionTitle) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -83,17 +167,7 @@ export default function SummaryScreen({navigation, route}) {
             style={[styles.sectionHeader, styles.greenHeader]}>
             <Text style={styles.sectionTitle}>{section.title}</Text>
           </TouchableOpacity>
-          {expandedSection === section.title && (
-            <ScrollView style={styles.scrollContainer}>
-              {section.data.map(item => (
-                <View key={item.id} style={styles.taskItem}>
-                  <Text>{item.title}</Text>
-                  <Text>{item.timeElapsed}</Text>
-                  <Text>{item.taskSuccess}</Text>
-                </View>
-              ))}
-            </ScrollView>
-          )}
+          {expandedSection === section.title && displaySectionItems(section)}
         </View>
       ))}
     </View>
@@ -129,11 +203,23 @@ const styles = StyleSheet.create({
     height: '60%',
     marginHorizontal: 12,
   },
+  subSectionHeading: {
+    borderBottomWidth: 1,
+    padding: 2,
+    margin: 2,
+    marginBottom: 10,
+    fontSize: 16,
+    borderBottomColor: 'rgba(0, 0, 0, 0.5)',
+  },
   taskItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 5,
     backgroundColor: '#f2f2f2',
     marginBottom: 10,
+  },
+  iconTextWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

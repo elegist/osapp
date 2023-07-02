@@ -55,8 +55,8 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    bottom: '10%',
+    justifyContent: 'flex-start',
+    paddingTop: '30%'
   },
   topBar: {
     maxHeight: '10%',

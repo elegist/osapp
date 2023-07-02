@@ -340,7 +340,7 @@ export class ReadingScreen extends Component {
                 height: 60,
                 position: 'absolute',
                 zIndex: 10,
-                top: 80,
+                top: 120,
                 right: 30,
               },
               animateSwipeStyle,
@@ -351,8 +351,8 @@ export class ReadingScreen extends Component {
           <AnimatedFastImage
             style={[
               {
-                width: 60,
-                height: 60,
+                width: 70,
+                height: 70,
                 position: 'absolute',
                 zIndex: 10,
                 bottom: 80,

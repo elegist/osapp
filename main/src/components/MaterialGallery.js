@@ -97,6 +97,7 @@ const MaterialGallery = ({materials, thumbnail}) => {
       case 'img':
         return (
           <FastImage
+            key={currentIndex}
             onLoad={handleLoad}
             style={{
               flex: 1,
@@ -114,8 +115,9 @@ const MaterialGallery = ({materials, thumbnail}) => {
       case 'video':
         return (
           <VideoPlayer
-            video={material.source}
-            thumbnail={thumbnail}
+            key={currentIndex}
+            video={MediaMapper.getMediaPath(material.source)}
+            thumbnail={MediaMapper.getMediaPath(thumbnail)}
             onLoad={() => {
               setSwipeDirection(swipeDirection * -1);
               fadeIn().start();

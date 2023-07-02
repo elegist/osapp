@@ -114,7 +114,7 @@ export default StyleSheet.create({
   textSecondary: {
     fontFamily: 'PTSans-Italic',
     fontSize: getResponsiveSizing(14),
-    color: '#9b9b9b',
+    color: '#4b4b4b',
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',
@@ -129,6 +129,11 @@ export default StyleSheet.create({
   },
   textParagraph: {
     fontFamily: 'PTSans-Regular',
+    fontSize: getResponsiveSizing(18),
+    color: '#1C2327',
+  },
+  textParagraphBold: {
+    fontFamily: 'PTSans-Bold',
     fontSize: getResponsiveSizing(18),
     color: '#1C2327',
   },
@@ -163,6 +168,11 @@ export default StyleSheet.create({
     fontFamily: 'JetBrainsMono-Bold',
     fontSize: getResponsiveSizing(16),
     color: '#1C2327',
+  },
+  textLink: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(16),
+    color: '#8CBA45',
   },
   //images
   osaImage: {

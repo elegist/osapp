@@ -1,10 +1,18 @@
-import {View, TouchableOpacity, Animated, Easing} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Animated,
+  Easing,
+  Dimensions,
+} from 'react-native';
 import React, {useRef, useState} from 'react';
 import VideoPlayer from './VideoPlayer';
 import FastImage from 'react-native-fast-image';
 import MediaMapper from '../screens/helper/MediaMapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getResponsiveSizing} from '../styles/GlobalStyleSheet';
+
+const {height} = Dimensions.get('window');
 
 const MaterialGallery = ({materials, thumbnail}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -94,11 +102,13 @@ const MaterialGallery = ({materials, thumbnail}) => {
               flex: 1,
               width: '100%',
               height: '100%',
+              maxHeight: height / 1.4,
               aspectRatio: aspectRatio.width / aspectRatio.height,
               alignSelf: 'center',
               marginVertical: 5,
             }}
             source={MediaMapper.getMediaPath(material.source)}
+            resizeMode="contain"
           />
         );
       case 'video':

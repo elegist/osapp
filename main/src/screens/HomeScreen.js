@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {SvgXml} from 'react-native-svg';
-import globalStyles from '../styles/GlobalStyleSheet';
+import globalStyles, { getResponsiveSizing } from '../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -40,7 +40,7 @@ export default function HomeScreen({navigation}) {
       </View>
       <View style={styles.mainContainer}>
         <FastImage
-          style={{width: 400, height: 200}}
+          style={{width: getResponsiveSizing(250), height: getResponsiveSizing(125)}}
           source={require('../assets/OSAPP.png')}
           resizeMode={FastImage.resizeMode.contain}
         />

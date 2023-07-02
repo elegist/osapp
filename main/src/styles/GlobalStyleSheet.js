@@ -50,6 +50,14 @@ export default StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
+  readingTaskTextContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: '30%'
+  },
   topBar: {
     maxHeight: '10%',
     flex: 1,
@@ -110,8 +118,8 @@ export default StyleSheet.create({
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(40),
-    lineHeight: getResponsiveSizing(60),
+    fontSize: getResponsiveSizing(36),
+    lineHeight: getResponsiveSizing(52),
     color: '#1C2327',
     textShadowColor: 'rgba(0, 0, 0, .6)',
     textShadowOffset: {width: 2, height: 2},

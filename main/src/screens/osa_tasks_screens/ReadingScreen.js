@@ -2,7 +2,7 @@ import {View, Animated, TouchableWithoutFeedback, Easing} from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskManager from '../../container/TaskManager';
-import ImageMapper from '../helper/ImageMapper';
+import MediaMapper from '../helper/MediaMapper';
 import FastImage from 'react-native-fast-image';
 import swipeImage from '../../assets/misc/swipe_up.webp';
 import tapImage from '../../assets/misc/tap.webp';
@@ -61,7 +61,7 @@ export class ReadingScreen extends Component {
       if (matchImage && matchImage.length > 1) {
         entry['isImage'] = true;
         const imageName = matchImage[1];
-        entry['value'] = ImageMapper.getImagePath(imageName);
+        entry['value'] = MediaMapper.getMediaPath(imageName);
       } else {
         entry['value'] = element;
       }

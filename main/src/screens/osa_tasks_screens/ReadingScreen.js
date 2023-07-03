@@ -61,7 +61,7 @@ export class ReadingScreen extends Component {
       if (matchImage && matchImage.length > 1) {
         entry['isImage'] = true;
         const imageName = matchImage[1];
-        entry['value'] = MediaMapper.getOsaImagePath(imageName);
+        entry['value'] = MediaMapper.getOsaImage(imageName);
       } else {
         entry['value'] = element;
       }

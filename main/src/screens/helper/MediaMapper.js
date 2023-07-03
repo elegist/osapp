@@ -2,7 +2,7 @@
  * Provides manual mapping of relative image paths
  */
 class MediaMapper {
-  static getOsaImagePath(mediaName) {
+  static getOsaImage(mediaName) {
     const path = '../../assets/osa_images/';
     switch (mediaName) {
       case 'thm-haupteingang.jpg':

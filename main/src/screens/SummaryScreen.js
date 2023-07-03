@@ -227,8 +227,8 @@ export default function SummaryScreen({navigation, route}) {
         <Text style={[globalStyles.textSummaryScreenTitle, styles.screenTitle]}>
           Auswertung
         </Text>
-        {listData.map(section => (
-          <View key={section.title}>
+        {listData.map((section, index) => (
+          <View key={index}>
             <TouchableOpacity
               onPress={() => toggleItem(section.title)}
               style={[styles.sectionHeader, getHeaderStyle(section.title)]}>

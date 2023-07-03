@@ -1,47 +1,87 @@
 {
-    "comment": "This file holds templates and serves as a documentation file for the task's data structure",
-    ".comment": "You can copy & paste these and fill them with real data. Do not delete this file!",
-    "..comment": "Make sure to give each task a unique (ascending) id and place images in ./source/assets/osa_images",
-    "...comment": "Mark images with a leading [img] and then the image name. You also have to add the image to the ImageMapper (Screens/helper)",
-    "....comment": "You can just copy the whole thing for a new topic, delete these comment lines and customize your tasks.",
-    ".....comment": "Each .json file should have the following structure:",
-
-    "topic": "YOUR TOPIC",
-    "tasks": [
-      {
-        "id": 0,
-        "type": "reading",
-        "title": "YOUR READING TASK TITLE",
-        "content": ["Reading task text", "As an array", "divided by images to display", "[img]name-of-image.jpg", "followed by text or image", "in a custom order"]
-      },
-      {
-        "id": 1,
-        "type": "quiz",
-        "style": "multiple",
-        "title": "YOUR QUESTION TASK TITLE",
-        "question": "YOUR MULTIPLE CHOICE QUESTION",
-        "choices": ["Place", "as", "many", "choices", "as", "you", "want"],
-        "correctChoices": ["Place"]
-      },
-      {
-        "id": 2,
-        "type": "quiz",
-        "style": "single",
-        "title": "YOUR QUESTION TASK TITLE",
-        "question": "YOUR SINGLE CHOICE QUESTION",
-        "choices": ["Place", "as", "many", "choices", "as", "you", "want"]
-      },
-      {
-        "id": 3,
-        "title": "YOUR INTERACTIVE TASK TITLE",
-        "type": "interactive",
-        "slug": "@see InteractiveScreen.js",
-        "content": ["Erster erklärtext", "Zweiter Erklärtext", "Jeder Erklärtext wird für sich im Modal angezeigt"],
-        "help": [
-          "Erster Tipp",
-          "Zweiter Tipp..."
-        ]
-      }  
-    ]
-  }
-  
+  "comment": "This file holds templates and serves as a documentation file for the task's data structure",
+  ".comment": "You can copy & paste these and fill them with real data. Do not delete this file!",
+  "..comment": "Make sure to give each task a unique (ascending) id and place images in ./source/assets/osa_images",
+  "...comment": "Mark images with a leading [img] and then the image name. You also have to add the image to the ImageMapper (Screens/helper)",
+  "....comment": "You can just copy the whole thing for a new topic, delete these comment lines and customize your tasks.",
+  ".....comment": "Each .json file should have the following structure:",
+  "topic": "YOUR TOPIC (e.g. gd, av, cs)",
+  "tasks": [
+    {
+      "id": 0,
+      "type": "reading",
+      "summarySubSection": "Relevant for the summary task list. Will get displayed as a headline and tasks will get sorted accordingly. Could be something like: Teil 1 - Mathematik.",
+      "title": "YOUR READING TASK TITLE",
+      "content": [
+        "Reading task text",
+        "As an array",
+        "divided by images to display",
+        "[img]name-of-image.jpg",
+        "followed by text or image",
+        "in a custom order"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "quiz",
+      "summarySubSection": "Topic is relevant for the summary task list. Will get displayed as a headline and tasks will get sorted accordingly. Could be something like: Teil 1 - Mathematik.",
+      "style": "multiple",
+      "title": "YOUR QUESTION TASK TITLE",
+      "question": "YOUR MULTIPLE CHOICE QUESTION",
+      "choices": [
+        "Place",
+        "as",
+        "many",
+        "choices",
+        "as",
+        "you",
+        "want"
+      ],
+      "correctChoices": [
+        "many",
+        "as",
+        "you",
+        "want"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "quiz",
+      "summarySubSection": "Topic is relevant for the summary task list. Will get displayed as a headline and tasks will get sorted accordingly. Could be something like: Teil 1 - Mathematik.",
+      "style": "single",
+      "title": "YOUR QUESTION TASK TITLE",
+      "question": "YOUR SINGLE CHOICE QUESTION",
+      "choices": [
+        "Place",
+        "as",
+        "many",
+        "choices",
+        "as",
+        "you",
+        "want"
+      ],
+      "correctChoices": [
+        "many",
+        "as",
+        "you",
+        "want"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "interactive",
+      "summarySubSection": "Topic is relevant for the summary task list. Will get displayed as a headline and tasks will get sorted accordingly. Could be something like: Teil 1 - Mathematik.",
+      "title": "YOUR INTERACTIVE TASK TITLE",
+      "slug": "@see InteractiveScreen.js",
+      "content": [
+        "Erster erklärtext",
+        "Zweiter Erklärtext",
+        "Jeder Erklärtext wird für sich im Modal angezeigt"
+      ],
+      "help": [
+        "Erster Tipp",
+        "Zweiter Tipp..."
+      ]
+    }
+  ]
+}

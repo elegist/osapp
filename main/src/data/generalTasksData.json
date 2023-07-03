@@ -5,6 +5,7 @@
       "id": 0,
       "type": "reading",
       "title": "Willkommen!",
+      "summarySubSection": "",
       "content": [
         "Herzlich Willkommen zur OSApp Medieninformatik!",
         "[img]thm-gebaeude-b.jpg",
@@ -21,6 +22,7 @@
       "id": 1,
       "type": "reading",
       "title": "Allgemeine Information",
+      "summarySubSection": "",
       "content": [
         "Denn ebenso wichtig wie der Studiengang ist der Studienort.",
         "Medieninformatik studierst du am Campus Friedberg",
@@ -53,8 +55,15 @@
       "type": "quiz",
       "style": "single",
       "title": "Eigener Überblick",
+      "summarySubSection": "",
       "question": "Möglicherweise hast du dich schon etwas über die Medieninformatik informiert. Wie schätzt du deinen Überblick ein?",
       "choices": [
+        "Ich kenne mich gut aus",
+        "Ich weiß grob Bescheid",
+        "Ich lass es auf mich zukommen",
+        "Ich habe mich noch nicht informiert"
+      ],
+      "correctChoices": [
         "Ich kenne mich gut aus",
         "Ich weiß grob Bescheid",
         "Ich lass es auf mich zukommen",
@@ -65,6 +74,7 @@
       "id": 3,
       "type": "reading",
       "title": "Weiter so!",
+      "summarySubSection": "",
       "images": [""],
       "content": [
         "Sei am besten immer offen für Neues.",
@@ -76,6 +86,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Was ist Medieninformatik?",
+      "summarySubSection": "",
       "question": "Was schätzt du, könnten Themen sein, mit denen du dich im Studium der Medieninformatik beschäftigst?",
       "choices": [
         "Webseiten erstellen",
@@ -100,6 +111,7 @@
       "id": 5,
       "type": "reading",
       "title": "Vielseitigkeit MI",
+      "summarySubSection": "",
       "content": [
         "Tatsächlich beschäftigst du dich im Studium mit all diesen Themen!",
         "Denn die Medieninformatik ist vielseitig, und so auch der Studiengang.",

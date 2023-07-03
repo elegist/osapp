@@ -5,9 +5,30 @@
       "id": 0,
       "type": "reading",
       "title": "Modellierung, Shading und Animation",
+      "summarySubSection": "Teil 1 - GD",
       "content": [
         "Hier folgt toller GD content..."
       ]
+    },
+    {
+      "id": 1,
+      "type": "quiz",
+      "style": "single",
+      "title": "Modellierung",
+      "summarySubSection": "Teil 1 - GD",
+      "question": "Welche der folgenden Begriffe beschreibt den Prozess des Erstellens eines 3D-Modells mithilfe von Polygonnetzen?",
+      "choices": ["Texturierung", "Rigging", "Modellierung", "Rendering"],
+      "correctChoices": ["Modellierung"]
+    },
+    {
+      "id": 2,
+      "type": "quiz",
+      "style": "single",
+      "title": "Animation",
+      "summarySubSection": "Teil 1 - GD",
+      "question": "Welche der folgenden Begriffe beschreibt die Kombination von Bildern, um die Illusion von Bewegung zu erzeugen?",
+      "choices": ["Shading", "Rendering", "Texturierung", "Animation"],
+      "correctChoices": ["Animation"]
     }
   ]
 }

@@ -7,6 +7,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 export default class InteractiveTaskBase extends Component {
   constructor(props) {
     super(props);
+    this.task = props.task;
+    this.task.setMaxHints(this.props.help.length - 1);
 
     this.setDefaultState();
 
@@ -116,9 +118,10 @@ export default class InteractiveTaskBase extends Component {
                   ? globalStyles.smallButtonDisabled
                   : globalStyles.smallButton
               }
-              onPress={() =>
-                this.setState({helpIndex: this.state.helpIndex + 1})
-              }>
+              onPress={() => {
+                this.setState({helpIndex: this.state.helpIndex + 1});
+                this.task.increaseUsedHints();
+              }}>
               <Text style={globalStyles.textSmallButton}>nächster Tipp</Text>
             </TouchableOpacity>
           </View>

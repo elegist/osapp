@@ -174,6 +174,26 @@ export default StyleSheet.create({
     fontSize: getResponsiveSizing(16),
     color: '#8CBA45',
   },
+  textSummaryScreenTitle: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(24),
+    color: '#1C2327',
+  },
+  textSummarySection: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: getResponsiveSizing(22),
+    color: '#1C2327',
+  },
+  textSummarySubSection: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: getResponsiveSizing(19),
+    color: '#1C2327',
+  },
+  textSummaryItem: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: getResponsiveSizing(18),
+    color: '#1C2327',
+  },
   //images
   osaImage: {
     backgroundColor: 'white',

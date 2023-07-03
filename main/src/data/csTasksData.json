@@ -5,6 +5,7 @@
       "id": 0,
       "type": "reading",
       "title": "Übergang Thema 1",
+      "summarySubSection": "Teil 1 - Mathematik",
       "content": [
         "Jetzt weißt du ja schon einiges über den Studiengang!",
         "Aber du bist ja hier um herauszufinden, ob Medieninformatik auch etwas für dich ist.",
@@ -17,6 +18,7 @@
       "id": 1,
       "type": "reading",
       "title": "Einleitung Informatik",
+      "summarySubSection": "Teil 1 - Mathematik",
       "content": [
         "Erstes Thema: Informatik",
         "[img]informatik.jpg",
@@ -32,29 +34,36 @@
       "type": "quiz",
       "style": "single",
       "title": "Zahlenreihe Dezimal",
+      "summarySubSection": "Teil 1 - Mathematik",
       "question": "Zahlenreihen und -folgen sind Grundlagen, die du im Studium lernst. Versuche dich doch mal daran: Wie geht diese Folge weiter: 1, 1, 2, 3, 5, 8, ?",
-      "choices": ["10", "11", "13", "15", "22", "36"]
+      "choices": ["10", "11", "13", "15", "22", "36"],
+      "correctChoices": ["13"]
     },
     {
       "id": 3,
       "type": "quiz",
       "style": "single",
       "title": "Zahlenreihe Binär",
+      "summarySubSection": "Teil 1 - Mathematik",
       "question": "Wie geht diese binäre Zahlenfolge weiter: 1, 10, 11, 100, 101, 110, 111, 1000, ?",
-      "choices": ["1101", "1011", "1001", "1110", "1111"]
+      "choices": ["1101", "1011", "1001", "1110", "1111"],
+      "correctChoices": ["1001"]
     },
     {
       "id": 4,
       "type": "quiz",
       "style": "single",
       "title": "Binäre Darstellung",
+      "summarySubSection": "Teil 1 - Mathematik",
       "question": "1011 ist die binäre Darstellung welcher Dezimalzahl?",
-      "choices": ["1", "10", "11", "15", "19", "128", "1011"]
+      "choices": ["1", "10", "11", "15", "19", "128", "1011"],
+      "correctChoices": ["11"]
     },
     {
       "id": 5,
       "type": "reading",
       "title": "Einleitung Webentwicklung",
+      "summarySubSection": "Teil 2 - Web",
       "content": [
         "Nach dieser Übung kommen wir zum ersten praktischen Thema",
         "[img]internet.jpg",
@@ -69,6 +78,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Webseiten erstellen",
+      "summarySubSection": "Teil 2 - Web",
       "question": "Was solltest du können um eine herkömmliche Webseite zu erstellen?",
       "choices": ["HTML", "CSS", "JavaScript", "Java", "C++", "Wordpress"],
       "correctChoices": ["HTML", "CSS", "JavaScript"]
@@ -78,6 +88,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Betriebssysteme",
+      "summarySubSection": "Teil 2 - Web",
       "question": "2023 laufen 81.3% aller Webseiten auf einem Unix-System, wie zum Beispiel:",
       "choices": ["Windows Server", "MacOS", "Linux", "Windows 11"],
       "correctChoices": ["MacOS", "Linux"]
@@ -87,6 +98,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Quiz Webbrowser",
+      "summarySubSection": "Teil 2 - Web",
       "question": "Ein Webbrowser ist ein...",
       "choices": [
         "Programm um u.a. Webseiten darzustellen.",
@@ -100,18 +112,21 @@
       "type": "quiz",
       "style": "single",
       "title": "Quiz HTTP",
+      "summarySubSection": "Teil 2 - Web",
       "question": "Was bedeutet die Abkürzung 'HTTP'?",
       "choices": [
         "HyperText Markup Protocol",
         "HyperText Transfer Protocol",
         "HyperText Transmission Protocol",
         "HyperTransfer Text Protocol"
-      ]
+      ],
+      "correctChoices": ["HyperText Transfer Protocol"]
     },
     {
       "id": 10,
       "type": "reading",
       "title": "Einleitung Softwareentwicklung",
+      "summarySubSection": "Teil 3 - Software",
       "content": [
         "Gut gemacht! Auf zum nächsten Thema!",
         "Ein weiterer praktischer Teil der Medieninformatik ist die Softwareentwicklung",
@@ -126,19 +141,22 @@
       "type": "quiz",
       "style": "single",
       "title": "Algorithmus",
+      "summarySubSection": "Teil 3 - Software",
       "question": "Was ist ein Algorithmus?",
       "choices": [
         "Eine Art Hardware",
         "Eine Reihe von Anweisungen zur Lösung eines Problems",
         "Eine Social-Media Anwendung",
         "Ein Netzwerkprotokoll"
-      ]
+      ],
+      "correctChoices": ["Eine Reihe von Anweisungen zur Lösung eines Problems"]
     },
     {
       "id": 12,
       "type": "quiz",
       "style": "multiple",
       "title": "Programmiersprachen",
+      "summarySubSection": "Teil 3 - Software",
       "question": "Wobei handelt es sich um eine Programmiersprache?",
       "choices": ["Borneo", "Java", "C", "Visual Studio", "Windows"],
       "correctChoices": ["Java", "C"]
@@ -148,25 +166,29 @@
       "type": "quiz",
       "style": "single",
       "title": "Wertebereiche",
+      "summarySubSection": "Teil 3 - Software",
       "question": "Welcher der folgenden Datentypen hat den größten Wertebereich?",
-      "choices": ["byte", "boolean", "int", "long", "short"]
+      "choices": ["byte", "boolean", "int", "long", "short"],
+      "correctChoices": ["long"]
     },
     {
       "id": 14,
       "type": "reading",
       "title": "Einleitung interaktive Aufgaben",
+      "summarySubSection": "Interaktive Aufgaben",
       "content": [
         "Die nächsten Aufgaben sind keine reinen Quizfragen",
         "Du sollst im besten Fall selbst etwas ins Grübeln kommen.",
-        "In der ersten Aufgabe geht es darum, den angezeigten Code zu interprestieren",
+        "In der ersten Aufgabe geht es darum, den angezeigten Code zu interpretieren",
         "Versuche dabei so wenige Hilfen wie möglich in Anspruch zu nehmen.",
         "Viel Spaß!"
       ]
     },
     {
       "id": 15,
-      "title": "Color rectangle 1",
       "type": "interactive",
+      "title": "Color rectangle 1",
+      "summarySubSection": "Interaktive Aufgaben",
       "slug": "cs1",
       "help": [
         "Hier findest du immer eine Aufgabenstellung und weitere Tipps, besser ist es allerdings, wenn du die Aufgaben ohne Hilfen schaffst.",
@@ -180,8 +202,9 @@
     },
     {
       "id": 16,
-      "title": "Sort by color",
       "type": "interactive",
+      "title": "Sort by color",
+      "summarySubSection": "Interaktive Aufgaben",
       "slug": "cs2",
       "help": [
         "In unserem Beispiel von eben ist 'rectangle' ein Objekt mit verschiedenen Eigenschaften, wie zum Beispiel einer Farbe.",
@@ -195,8 +218,9 @@
     },
     {
       "id": 17,
-      "title": "Color rectangle 2",
       "type": "interactive",
+      "title": "Color rectangle 2",
+      "summarySubSection": "Interaktive Aufgaben",
       "slug": "cs3",
       "help": [
         "Hier lernst du den Operator 'Modulo', oder auch 'Restwert' kennen: '%'. Dieser bedeutet so viel wie 'Teile eine Zahl und liefere den Restwert als Ergebnis'.",

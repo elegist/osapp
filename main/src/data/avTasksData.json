@@ -5,6 +5,7 @@
       "id": 0,
       "type": "reading",
       "title": "Einleitung AV",
+      "summarySubSection": "Teil 1 - AV",
       "content": [
         "Hier folgt toller Content für AV…"
       ]
@@ -14,6 +15,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Dateiformate",
+      "summarySubSection": "Teil 1 - AV",
       "question": "Welche der folgenden Dateiformate unterstützen sowohl Audio- als auch Videodaten?",
       "choices": ["MP4", "WAV", "AVI", "JPEG", "GIF"],
       "correctChoices": ["MP4", "AVI"]
@@ -23,14 +25,17 @@
       "type": "quiz",
       "style": "single",
       "title": "Bildauflösungen",
+      "summarySubSection": "Teil 1 - AV",
       "question": "Welche der folgenden Bildauflösungen wird typischerweise für hochauflösendes (HD) Fernsehen verwendet?",
-      "choices": ["720p", "480p", "720i", "1080p", "240p"]
+      "choices": ["720p", "480p", "720i", "1080i", "240p"],
+      "correctChoices": ["1080i"]
     },
     {
       "id": 3,
       "type": "quiz",
       "style": "multiple",
       "title": "Dateigröße Videos",
+      "summarySubSection": "Teil 1 - AV",
       "question": "Welche der folgenden Faktoren beeinflussen die Dateigröße von Videos?",
       "choices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode", "Anzahl der Farben im Bild"],
       "correctChoices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode"]
@@ -40,14 +45,17 @@
       "type": "quiz",
       "style": "single",
       "title": "Lautstärkepegel",
+      "summarySubSection": "Teil 1 - AV",
       "question": "Welche der folgenden Begriffe beschreibt die Anpassung der Lautstärkepegel in einem Audiomix?",
-      "choices": ["Panning", "Mastering", "Equalizing", "Fading"]
+      "choices": ["Panning", "Mastering", "Equalizing", "Fading"],
+      "correctChoices": ["Fading"]
     },
     {
       "id": 5,
       "type": "quiz",
       "style": "multiple",
       "title": "Raumklang",
+      "summarySubSection": "Teil 1 - AV",
       "question": "Welche der folgenden Audioeffekte wird häufig verwendet, um den Klang eines Raums zu simulieren?",
       "choices": ["Reverb", "Echo", "Delay", "Distortion"],
       "correctChoices": ["Reverb", "Echo"]

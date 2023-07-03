@@ -1,11 +1,4 @@
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Modal,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskCs1 from '../interactive_tasks/TaskCs1';
@@ -24,7 +17,7 @@ export default class InteractiveScreen extends Component {
   }
 
   componentDidMount() {
-    if (this.props.slug === 'cs1') {
+    if (this.props.task.slug === 'cs1') {
       this.setState({buttonDisabled: true});
     }
   }
@@ -34,22 +27,31 @@ export default class InteractiveScreen extends Component {
   };
 
   renderTask = () => {
-    switch (this.props.slug) {
+    switch (this.props.task.slug) {
       case 'cs1':
         return (
           <TaskCs1
-            help={this.props.help}
+            help={this.props.task.help}
             submitted={this.state.submitted}
             activateButton={this.activateButton}
+            task={this.props.task}
           />
         );
       case 'cs2':
         return (
-          <TaskCs2 help={this.props.help} submitted={this.state.submitted} />
+          <TaskCs2
+            help={this.props.task.help}
+            submitted={this.state.submitted}
+            task={this.props.task}
+          />
         );
       case 'cs3':
         return (
-          <TaskCs3 help={this.props.help} submitted={this.state.submitted} />
+          <TaskCs3
+            help={this.props.task.help}
+            submitted={this.state.submitted}
+            task={this.props.task}
+          />
         );
       default:
         break;

@@ -5,8 +5,6 @@
  */
 import * as React from 'react';
 
-// Core components
-
 // Navigator
 import MainNavigator from './src/components/navigators/MainNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

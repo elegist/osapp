@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46698 135.46652"
+   version="1.1"
+   id="svg36"
+   sodipodi:docname="OSAPP_launcher_icon.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview38"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.8047942"
+     inkscape:cx="114.69452"
+     inkscape:cy="226.3416"
+     inkscape:window-width="2289"
+     inkscape:window-height="1262"
+     inkscape:window-x="86"
+     inkscape:window-y="71"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg36" />
+  <defs
+     id="defs14">
+    <filter
+       id="prefix__b"
+       x="-0.005636844"
+       y="-0.014293001"
+       width="1.0159711"
+       height="1.0404968"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="1"
+         flood-color="#4A5C66"
+         result="flood"
+         id="feFlood2" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite4" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1"
+         result="blur"
+         id="feGaussianBlur6" />
+      <feOffset
+         dx="2"
+         dy="2"
+         result="offset"
+         id="feOffset8" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         result="composite2"
+         id="feComposite10" />
+    </filter>
+    <path
+       id="prefix__a"
+       d="M 139.591,272.581 H 946.738 V 571.246 H 139.591 Z" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="iconbg">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.36499;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.3;stroke-dasharray:none;stroke-opacity:0.395213"
+       id="rect998"
+       width="135.46698"
+       height="135.467"
+       x="0"
+       y="-0.00023000001"
+       rx="10.583358"
+       ry="10.583358" />
+  </g>
+  <path
+     d="m 85.000999,53.301033 c 0.2,-1.89 30.312001,-17.743 32.846001,-16.547 3.6,1.699 20.358,36.534 20.527,39.29 0.12,1.94 -21.245,11.133 -23.567,9.989 -3.3,-1.625 -30.089001,-30.046 -29.806001,-32.732 z"
+     fill="#f1f285"
+     id="path16" />
+  <path
+     d="m 68.114999,80.226033 c -2.395,-0.57 -21.195,-20.496 -20.349,-23.133 0.625,-1.947 29.509,-11.294 31.277,-10.873 2.395,0.57 21.196001,20.496 20.35,23.133 -0.626,1.948 -29.51,11.294 -31.278,10.873 z"
+     fill="#a6eaff"
+     id="path18" />
+  <path
+     d="m 25.210999,66.755033 c -0.6,-1.763 6.16,-33.938 8.088,-35.156 1.142,-0.72 24.598,13.272 24.953,14.315 0.6,1.764 -6.16,33.939 -8.088,35.157 -1.141,0.72 -24.598,-13.272 -24.953,-14.316 z"
+     fill="#f1869b"
+     id="path20" />
+  <path
+     d="m 0,70.689033 c -1.583,-1.772 -5.116,-29.232 -3.182,-31.157 1.336,-1.33 28.196999,3.965 29.289999,5.188 1.582,1.772 5.115,29.232 3.18,31.158 -1.335,1.33 -28.195999,-3.965 -29.287999,-5.188 z"
+     fill="#bc85f2"
+     id="path22" />
+  <text
+     transform="matrix(0.26458,0,0,0.26458,-27.516651,-35.209986)"
+     font-size="181.333px"
+     font-family="'Arial Th'"
+     fill="#80ba27"
+     filter="url(#prefix__b)"
+     id="text26"><tspan
+       x="139.592"
+       y="436.13501"
+       id="tspan24">OSApp</tspan></text>
+</svg>

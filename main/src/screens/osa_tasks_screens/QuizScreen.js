@@ -12,11 +12,13 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 import RadioButton from '../../components/RadioButton';
 import {Easing} from 'react-native-reanimated';
 
+const SINGLE_CHOICE = 'single';
+const MUTLIPLE_CHOICE = 'multiple';
+
 export class QuizScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answerChecked: false,
       radioChoice: null,
       checkChoices: [],
     };
@@ -26,53 +28,49 @@ export class QuizScreen extends Component {
     this.fadeAnim2 = new Animated.Value(0);
   }
 
-  handleCheckAnswer = () => {
-    this.setState({answerChecked: true});
-  };
-
   renderChoices = () => {
-    const SINGLE_CHOICE = 'single';
-    const MUTLIPLE_CHOICE = 'multiple';
-
-    if (this.props.style == SINGLE_CHOICE) {
-      return (
-        <View style={styles.choicesView}>
-          <RadioButton
-            choices={this.props.choices}
-            onSelect={choice => this.setState({radioChoice: choice})}
-          />
-        </View>
-      );
-    } else if (this.props.style == MUTLIPLE_CHOICE) {
-      return (
-        <View style={styles.choicesView}>
-          <View>
-            {this.props.choices.map((choice, index) => {
-              return (
-                <Checkbox
-                  key={index}
-                  index={index}
-                  label={choice}
-                  onSelect={choice => {
-                    if (this.state.checkChoices.includes(choice)) {
-                      const array = this.state.checkChoices;
-                      const index = array.indexOf(choice);
-
-                      array.splice(index, 1);
-
-                      this.setState({checkChoices: array});
-                    } else {
-                      this.setState({
-                        checkChoices: [...this.state.checkChoices, choice],
-                      });
-                    }
-                  }}
-                />
-              );
-            })}
+    switch (this.props.task.style) {
+      case SINGLE_CHOICE:
+        return (
+          <View style={styles.choicesView}>
+            <RadioButton
+              choices={this.props.task.choices}
+              onSelect={choice => this.setState({radioChoice: choice})}
+            />
           </View>
-        </View>
-      );
+        );
+      case MUTLIPLE_CHOICE:
+        return (
+          <View style={styles.choicesView}>
+            <View>
+              {this.props.task.choices.map((choice, index) => {
+                return (
+                  <Checkbox
+                    key={index}
+                    index={index}
+                    label={choice}
+                    onSelect={choice => {
+                      if (this.state.checkChoices.includes(choice)) {
+                        const array = this.state.checkChoices;
+                        const index = array.indexOf(choice);
+  
+                        array.splice(index, 1);
+  
+                        this.setState({checkChoices: array});
+                      } else {
+                        this.setState({
+                          checkChoices: [...this.state.checkChoices, choice],
+                        });
+                      }
+                    }}
+                  />
+                );
+              })}
+            </View>
+          </View>
+        );
+      default:
+        break;
     }
   };
 
@@ -102,11 +100,24 @@ export class QuizScreen extends Component {
     ]).start();
   }
 
+  checkAnswers = () => {
+    switch (this.props.task.style) {
+      case SINGLE_CHOICE:
+        this.props.task.setSelectedAnswers([this.state.radioChoice])
+        break;
+    
+        case MUTLIPLE_CHOICE:
+          this.props.task.setSelectedAnswers(this.state.checkChoices)
+        break;
+    }
+    this.props.nextTask()
+  }
+
   render() {
     return (
       <Animated.View style={{...styles.viewContainer, opacity: this.fadeAnim}}>
         <Text style={globalStyles.textHeadingSecondary}>
-          {this.props.question}
+          {this.props.task.question}
         </Text>
 
         <Animated.ScrollView
@@ -131,7 +142,7 @@ export class QuizScreen extends Component {
               ? globalStyles.smallButtonDisabled
               : globalStyles.smallButton
           }
-          onPress={this.props.nextTask}>
+          onPress={this.checkAnswers}>
           <Text style={globalStyles.textSmallButton}>Abgeben</Text>
         </TouchableOpacity>
       </Animated.View>

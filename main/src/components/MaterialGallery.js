@@ -108,7 +108,7 @@ const MaterialGallery = ({materials, thumbnail}) => {
               alignSelf: 'center',
               marginVertical: 5,
             }}
-            source={MediaMapper.getMediaPath(material.source)}
+            source={MediaMapper.getExampleContentImage(material.source)}
             resizeMode="contain"
           />
         );
@@ -116,8 +116,8 @@ const MaterialGallery = ({materials, thumbnail}) => {
         return (
           <VideoPlayer
             key={currentIndex}
-            video={MediaMapper.getMediaPath(material.source)}
-            thumbnail={MediaMapper.getMediaPath(thumbnail)}
+            video={MediaMapper.getExampleContentVideo(material.source)}
+            thumbnail={MediaMapper.getExampleThumbnail(thumbnail)}
             onLoad={() => {
               setSwipeDirection(swipeDirection * -1);
               fadeIn().start();

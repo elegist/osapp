@@ -103,7 +103,7 @@ class ExamplesGrid extends Component {
                         onPress={() => this.openModalWithContent(example)}
                         style={styles.thumbnailContainer}>
                         <FastImage
-                          source={MediaMapper.getMediaPath(example.thumbnail)}
+                          source={MediaMapper.getExampleThumbnail(example.thumbnail)}
                           style={styles.thumbnail}
                         />
                       </TouchableOpacity>

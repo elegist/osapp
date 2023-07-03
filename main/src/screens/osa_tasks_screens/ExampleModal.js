@@ -170,7 +170,7 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
           }}>
           <TouchableOpacity onPress={() => setFullscreenImage(false)}>
             <FastImage
-              source={MediaMapper.getMediaPath(materialSource)}
+              source={MediaMapper.getExampleContentImage(materialSource)}
               style={{width: '100%', height: '100%', position: 'relative'}}
               resizeMode={FastImage.resizeMode.contain}
             />

@@ -8,11 +8,15 @@ import {
   UIManager,
   Platform,
   LayoutAnimation,
+  ImageBackground,
 } from 'react-native';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native-gesture-handler';
 import InteractiveTask from '../container/osa_tasks/InteractiveTask';
 import QuizTask from '../container/osa_tasks/QuizTask';
 import {Image, SvgUri} from 'react-native-svg';
@@ -27,6 +31,7 @@ export default function SummaryScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const taskArray = Array.from(TASK_MANAGER.getTasksMap().values()); // Convert map values to an array
   const [expandedSection, setExpandedSection] = useState(null);
+  const [csTaskHeaderColor, setCsTaskHeaderColor] = useState(null);
 
   /**
    * Populates summary screen with task data
@@ -72,75 +77,132 @@ export default function SummaryScreen({navigation, route}) {
 
   const listData = generateSummaryList();
 
+  const getTopicSuccess = () => {
+    const map = {};
+    listData.forEach(section => {
+      let entries = Object.entries(section);
+      let topic = '';
+      for ([key, value] of entries) {
+        let ratio = 0;
+        switch (key) {
+          case 'title':
+            topic = value;
+            break;
+          case 'data':
+            let successCount = 0;
+            value.forEach(task => {
+              if (task.taskSuccess) successCount++;
+            });
+            ratio = successCount / value.length;
+            map[topic] = ratio;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+    return map;
+  };
+
+  const topicSuccessData = getTopicSuccess();
+
+  const getHeaderStyle = title => {
+    if (topicSuccessData[title] > 0.6) {
+      return styles.greenHeader;
+    } else if (topicSuccessData[title] >= 0.4) {
+      return styles.yellowHeader;
+    } else {
+      return styles.redHeader;
+    }
+  };
+
+  const openTaskModal = task => {
+    console.log(task);
+  };
+
   const displaySectionItems = section => {
     let previousSummarySubSection = null;
 
     const renderSectionItems = () => {
       const items = [];
-  
+
       section.data.forEach(item => {
         if (item.summarySubSection !== previousSummarySubSection) {
           items.push(
-            <Text key={item.summarySubSection} style={styles.subSectionHeading}>
+            <Text
+              key={item.summarySubSection}
+              style={[
+                styles.subSectionHeading,
+                globalStyles.textSummarySubSection,
+              ]}>
               {item.summarySubSection}
-            </Text>
+            </Text>,
           );
         }
-  
+
         previousSummarySubSection = item.summarySubSection;
-  
+
         items.push(
-          <View key={item.id} style={styles.taskItem}>
-            <Text>{item.title}</Text>
-            {item.timeRelevant && (
-              <View style={styles.iconTextWrapper}>
+          <TouchableOpacity onPress={() => openTaskModal(item)}>
+            <View key={item.id} style={styles.taskItem}>
+              <Text style={globalStyles.textSummaryItem}>{item.title}</Text>
+              {item.timeRelevant && (
+                <View style={styles.iconTextWrapper}>
+                  <FeatherIcon
+                    style={[
+                      globalStyles.textSummaryItem,
+                      {opacity: 1, marginEnd: 5},
+                    ]}
+                    name="clock"
+                  />
+                  <Text style={globalStyles.textSummaryItem}>
+                    {item.timeElapsed}
+                  </Text>
+                </View>
+              )}
+              {item.hintsUsedRelevant && (
+                <View style={styles.iconTextWrapper}>
+                  <AntDesignIcon
+                    style={[
+                      globalStyles.textSummaryItem,
+                      {opacity: 1, marginEnd: 5},
+                    ]}
+                    name="questioncircleo"
+                  />
+                  <Text style={globalStyles.textSummaryItem}>3</Text>
+                </View>
+              )}
+              {item.taskSuccess === true ? (
                 <FeatherIcon
-                  style={{ opacity: 1, marginEnd: 5 }}
-                  name="clock"
-                  size={20}
+                  style={[
+                    globalStyles.textSummaryItem,
+                    {opacity: 1, color: 'green'},
+                  ]}
+                  name="check-circle"
                 />
-                <Text>{item.timeElapsed}</Text>
-              </View>
-            )}
-            {item.hintsUsedRelevant && (
-              <View style={styles.iconTextWrapper}>
-                <AntDesignIcon
-                  style={{ opacity: 1, marginEnd: 5 }}
-                  name="questioncircleo"
-                  size={20}
+              ) : (
+                <FeatherIcon
+                  style={[
+                    globalStyles.textSummaryItem,
+                    {opacity: 1, color: 'orange'},
+                  ]}
+                  name="alert-triangle"
                 />
-                <Text>3</Text>
-              </View>
-            )}
-            {item.taskSuccess === true ? (
-              <FeatherIcon
-                style={{ opacity: 1 }}
-                name="check-circle"
-                size={20}
-                color="green"
-              />
-            ) : (
-              <FeatherIcon
-                style={{ opacity: 1 }}
-                name="alert-triangle"
-                size={20}
-                color="orange"
-              />
-            )}
-          </View>
+              )}
+            </View>
+          </TouchableOpacity>,
         );
       });
-  
+
       return items;
     };
-  
+
     return (
       <ScrollView style={styles.scrollContainer}>
         {renderSectionItems()}
       </ScrollView>
     );
   };
-  
 
   function toggleItem(sectionTitle) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -158,19 +220,28 @@ export default function SummaryScreen({navigation, route}) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={globalStyles.textHeading}>Auswertung</Text>
-      {listData.map(section => (
-        <View key={section.title}>
-          <TouchableOpacity
-            onPress={() => toggleItem(section.title)}
-            style={[styles.sectionHeader, styles.greenHeader]}>
-            <Text style={styles.sectionTitle}>{section.title}</Text>
-          </TouchableOpacity>
-          {expandedSection === section.title && displaySectionItems(section)}
-        </View>
-      ))}
-    </View>
+    <ImageBackground
+      source={require('../assets/Background.png')}
+      style={globalStyles.mainBackground}>
+      <View style={styles.container}>
+        <Text style={[globalStyles.textSummaryScreenTitle, styles.screenTitle]}>
+          Auswertung
+        </Text>
+        {listData.map(section => (
+          <View key={section.title}>
+            <TouchableOpacity
+              onPress={() => toggleItem(section.title)}
+              style={[styles.sectionHeader, getHeaderStyle(section.title)]}>
+              <Text
+                style={[globalStyles.textSummarySection, styles.sectionTitle]}>
+                {section.title}
+              </Text>
+            </TouchableOpacity>
+            {expandedSection === section.title && displaySectionItems(section)}
+          </View>
+        ))}
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -178,6 +249,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  screenTitle: {
+    textAlign: 'center',
   },
   sectionHeader: {
     borderRadius: 4,
@@ -195,8 +269,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#C75944',
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
     marginStart: 20,
   },
   scrollContainer: {
@@ -208,8 +280,7 @@ const styles = StyleSheet.create({
     padding: 2,
     margin: 2,
     marginBottom: 10,
-    fontSize: 16,
-    borderBottomColor: 'rgba(0, 0, 0, 0.5)',
+    borderBottomColor: 'rgba(0, 0, 0, 0.6)',
   },
   taskItem: {
     flexDirection: 'row',

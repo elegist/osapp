@@ -2,10 +2,7 @@
 This is where the unique OSA - App for MIB40 - Digital Teaching and Learning is created.
 
 # Table of Contents
-1. [Info](#info)
-2. [Members](#members)
-3. [Installation](#installation)
-4. [Maintaining Content](#maintaining-content)
+[toc]
 
 # Info
 The application is intended to provide prospective students with an OSA (online self-assessment) for the study program
@@ -80,11 +77,11 @@ cd main/src/data/
 
 You will see different JSON Files here:
 
-- generalTasksData.json &rarr; Data for the introductory section, where the app is explained in general.
+- generalTasksData.json &rarr; Data for the introductory topic, where the app is explained in general.
 - examplesData.json &rarr; Data for all the student projects to show new users.
-- csTasksData.json &rarr; Data for the "Web und Mobile" section.
-- avTasksData.json &rarr; Data for the "Audovisuelle Medien" section.
-- gdTasksData.json &rarr; Data for the "Grafische Datenverarbeitung" section.
+- csTasksData.json &rarr; Data for the "Web und Mobile" topic.
+- avTasksData.json &rarr; Data for the "Audovisuelle Medien" topic.
+- gdTasksData.json &rarr; Data for the "Grafische Datenverarbeitung" topic.
 
 ## How to add new Tasks
 
@@ -252,7 +249,7 @@ The slug is used for Interactive Tasks. (&rarr; you specified: "type": "interact
 
 The slug must be a unique identifier for every interactive task. It may be a combination of letters and numbers. We recommend the following convention:
 
-If the task is for the section "Audiovisuelle Medien" and it is the second one, the task should be named like this: 
+If the task is for the topic "Audiovisuelle Medien" and it is the second one, the task should be named like this: 
 
 ```
 av2
@@ -318,9 +315,9 @@ The structure for the examples is as following:
 }
 ```
 
-## Adding a new section entirly
+## Adding a new topic
 
-If you need to add another section like "csTasksData.json", "avTasksData.json" and "gdTasksData.json" you can do so by creating a new file and naming it accordingly. You can use the "taskTemplates.json" for a starting point. Copy the content of that file into your newly created file and delete the comments at the top of the file. Define all your tasks in your file now following the rules from above. Once you are done editing your JSON file you need to edit the TaskManager, located at:
+If you need to add another topic like "csTasksData.json", "avTasksData.json" and "gdTasksData.json" you can do so by creating a new file and naming it accordingly. You can use the "taskTemplates.json" for a starting point. Copy the content of that file into your newly created file and delete the comments at the top of the file. Define all your tasks in your file now following the rules from above. Once you are done editing your JSON file you need to edit the TaskManager, located at:
 
 ```
 main/src/container/TaskManager.js
@@ -354,4 +351,4 @@ let tasksArray = [
     ];
 ```
 
-The OSA will now automatically be extended with the new section you created and populate the section with your specified tasks. Everything else will be adjusted accordingly automatically, assuming you used the correct syntax and rules in your JSON file.
+The OSA will now automatically be extended with the new topic you created and populate the topic with your specified tasks. Everything else will be adjusted accordingly automatically, assuming you used the correct syntax and rules in your JSON file.

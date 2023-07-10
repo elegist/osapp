@@ -524,5 +524,6 @@ const styles = StyleSheet.create({
   modalSingleCorrectChoiceText: {
     marginStart: 10,
     padding: 5,
+    color: '#000'
   },
 });

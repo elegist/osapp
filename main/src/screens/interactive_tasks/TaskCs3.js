@@ -1,6 +1,6 @@
 import {Text, View, TouchableOpacity, Animated} from 'react-native';
-import React, {Component, useState} from 'react';
-import InteractiveTaskBase from './InteractiveTaskBase';
+import React, {useState} from 'react';
+import InteractiveTaskBase from './InteractiveTaskBaseScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import { Easing } from 'react-native-reanimated';
@@ -84,6 +84,19 @@ export default class TaskCs3 extends InteractiveTaskBase {
   updateRectangles = newRectangles => {
     this.setState({rectangles: newRectangles});
   };
+
+  // check if user's answer is correct before unmounting
+  componentWillUnmount() {
+    let taskSuccess = true;
+    this.state.rectangles.forEach(rectangle => {
+      if (rectangle.index % 2 == 0 && rectangle.color != "#86B300") {
+        taskSuccess = false;
+      } else if (rectangle.index % 2 != 0 && rectangle.color != "#FD4F4F") {
+        taskSuccess = false;
+      }
+    });
+    this.props.task.setTaskSuccess(taskSuccess);
+  }
 
   render() {
     return (

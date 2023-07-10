@@ -6,10 +6,8 @@ import {
   ImageBackground,
 } from 'react-native';
 import React, {useState} from 'react';
-import {SvgXml} from 'react-native-svg';
 import globalStyles, { getResponsiveSizing } from '../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import TopBar from '../components/TopBar';
 
 /**
@@ -17,7 +15,6 @@ import TopBar from '../components/TopBar';
  */
 export default function HomeScreen({navigation}) {
   const [isPressed, setIsPressed] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handlePress = () => {
     setIsPressed(true);

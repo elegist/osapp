@@ -5,9 +5,15 @@
       "id": 0,
       "type": "reading",
       "title": "Einleitung AV",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 1 - Video",
       "content": [
-        "Hier folgt toller Content für AV…"
+        "Zweites Thema: Audiovisuelle Medien",
+        "[img]thm-studio.jpg",
+        "Ein weiterer wichtiger Teil des Studiums.",
+        "Hier lernst du vieles über analoge und digitale Medien und deren Produktion",
+        "Du wirst auch mit anderen Studierenden gemeinsam etwas entwickeln.",
+        "Denn Medieninformatiker*innen sind oft in Film- und Tonstudios, beim Fernsehen oder Radio zu finden.",
+        "Vielleicht bringst du ja schon etwas Wissen mit?"
       ]
     },
     {
@@ -15,7 +21,7 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Dateiformate",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 1 - Video",
       "question": "Welche der folgenden Dateiformate unterstützen sowohl Audio- als auch Videodaten?",
       "choices": ["MP4", "WAV", "AVI", "JPEG", "GIF"],
       "correctChoices": ["MP4", "AVI"]
@@ -25,7 +31,7 @@
       "type": "quiz",
       "style": "single",
       "title": "Bildauflösungen",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 1 - Video",
       "question": "Welche der folgenden Bildauflösungen wird typischerweise für hochauflösendes (HD) Fernsehen verwendet?",
       "choices": ["720p", "480p", "720i", "1080i", "240p"],
       "correctChoices": ["1080i"]
@@ -35,30 +41,56 @@
       "type": "quiz",
       "style": "multiple",
       "title": "Dateigröße Videos",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 1 - Video",
       "question": "Welche der folgenden Faktoren beeinflussen die Dateigröße von Videos?",
       "choices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode", "Anzahl der Farben im Bild"],
       "correctChoices": ["Auflösung des Videos", "Bildrate (Framerate)", "Komprimierungsmethode"]
     },
     {
       "id": 4,
+      "type": "reading",
+      "title": "Einleitung AV",
+      "summarySubSection": "Teil 2 - Audio",
+      "content": [
+        "Du siehst, dass du dich auch mit Dateiformaten und Videobearbeitung beschäftigst.",
+        "[img]thm-studio.jpg",
+        "Doch nicht nur die Produktion von Videos ist hier wichtig.",
+        "Das erstellen guter Audio-Artefakte ist ebenso Pflicht.",
+        "Dabei musst du nicht musikalisch begabt sein, nur interessiert und engagiert."
+      ]
+    },
+    {
+      "id": 5,
       "type": "quiz",
       "style": "single",
       "title": "Lautstärkepegel",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 2 - Audio",
       "question": "Welche der folgenden Begriffe beschreibt die Anpassung der Lautstärkepegel in einem Audiomix?",
       "choices": ["Panning", "Mastering", "Equalizing", "Fading"],
       "correctChoices": ["Fading"]
     },
     {
-      "id": 5,
+      "id": 6,
       "type": "quiz",
       "style": "multiple",
       "title": "Raumklang",
-      "summarySubSection": "Teil 1 - AV",
+      "summarySubSection": "Teil 2 - Audio",
       "question": "Welche der folgenden Audioeffekte wird häufig verwendet, um den Klang eines Raums zu simulieren?",
       "choices": ["Reverb", "Echo", "Delay", "Distortion"],
       "correctChoices": ["Reverb", "Echo"]
+    },
+    {
+      "id": 7,
+      "type": "reading",
+      "title": "Einleitung AV",
+      "summarySubSection": "Teil 3 - Produktion",
+      "content": [
+        "Wie schon erwähnt wirst du auch selbst etwas produzieren.",
+        "[img]thm-studio.jpg",
+        "Dabei schlüpfst du in eine der vielen Rollen einer Produktion.",
+        "Egal ob Regisseur, Toningenieur oder Cutter, du wirst dich unter Beweis stellen müssen.",
+        "… hier folgen Fragen zur Produktion …"
+      ]
     }
   ]
 }

@@ -1,4 +1,3 @@
-import {Component} from 'react';
 import ReadingTask from './osa_tasks/ReadingTask';
 import QuizTask from './osa_tasks/QuizTask';
 import InteractiveTask from './osa_tasks/InteractiveTask';
@@ -18,7 +17,6 @@ import ExamplesTask from './osa_tasks/ExamplesTask';
  * @function getTask(progress) - retreive one specific task
  */
 export default class TaskManager {
-  // fields
   #userProgress = 0; // user's overall progress
   #topics = null; // collection of all topics
   #topicsProgress = 0; // overall topic's progress starting at 0 until #topics.length

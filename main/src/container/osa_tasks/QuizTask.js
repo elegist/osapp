@@ -2,7 +2,7 @@ import AssessmentTask from './AssessmentTask';
 
 /**
  * Class QuizTask -
- * represents a task which contains something like a multiple choice or single choice quiz
+ * represents a task which contains a multiple choice or single choice quiz
  */
 class QuizTask extends AssessmentTask {
   #selectedAnswers = [];
@@ -14,6 +14,8 @@ class QuizTask extends AssessmentTask {
     this.correctChoices = props.correctChoices;
   }
 
+  getSelectedAnswers = () => this.#selectedAnswers;
+  
   setSelectedAnswers = value => {
     this.#selectedAnswers = value;
     this.validateAnswers();
@@ -28,20 +30,30 @@ class QuizTask extends AssessmentTask {
     const MUTLIPLE_CHOICE = 'multiple';
     switch (this.style) {
       case SINGLE_CHOICE:
-        this.correctChoices.includes(this.#selectedAnswers[0]) ? this.setTaskSuccess(true) : this.setTaskSuccess(false);
+        this.correctChoices.includes(this.#selectedAnswers[0])
+          ? this.setTaskSuccess(true)
+          : this.setTaskSuccess(false);
         break;
       case MUTLIPLE_CHOICE:
         let maxPoints = this.choices.length;
         let pointsEach = 1 / maxPoints;
         let pointsReached = 0;
         this.choices.forEach(choice => {
-          if(this.correctChoices.includes(choice)) { // choosing this answer is correct
-            this.#selectedAnswers.includes(choice) ? pointsReached += pointsEach : {};
-          } else { // not choosing this answer is correct
-            !this.#selectedAnswers.includes(choice) ? pointsReached += pointsEach : {};
+          if (this.correctChoices.includes(choice)) {
+            // choosing this answer is correct
+            this.#selectedAnswers.includes(choice)
+              ? (pointsReached += pointsEach)
+              : {};
+          } else {
+            // not choosing this answer is correct
+            !this.#selectedAnswers.includes(choice)
+              ? (pointsReached += pointsEach)
+              : {};
           }
         });
-        pointsReached >= .5 ? this.setTaskSuccess(true) : this.setTaskSuccess(false);
+        pointsReached >= 0.5
+          ? this.setTaskSuccess(true)
+          : this.setTaskSuccess(false);
         break;
     }
   };

@@ -59,11 +59,7 @@ export default class InteractiveScreen extends Component {
   };
 
   handlePress = () => {
-    if (!this.state.submitted) {
-      this.setState({submitted: true});
-    } else {
-      this.props.nextTask();
-    }
+    this.props.nextTask();
   };
 
   render() {
@@ -75,7 +71,7 @@ export default class InteractiveScreen extends Component {
           style={{...globalStyles.smallButton, zIndex: -1}}
           onPress={this.handlePress}>
           <Text style={globalStyles.textSmallButton}>
-            {this.state.submitted ? 'Fortfahren' : 'Abgeben'}
+            Abgeben
           </Text>
         </TouchableOpacity>
       </View>

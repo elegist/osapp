@@ -9,7 +9,7 @@ import {
 import React, {createRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../styles/GlobalStyleSheet';
-import InteractiveTaskBase from './InteractiveTaskBase';
+import InteractiveTaskBase from './InteractiveTaskBaseScreen';
 import {Easing} from 'react-native-reanimated';
 import FastImage from 'react-native-fast-image';
 import tapImage from '../../assets/misc/tap.webp';
@@ -38,22 +38,27 @@ export default class TaskCs1 extends InteractiveTaskBase {
       {
         index: 0,
         label: 'index: 0',
+        isRed: false,
       },
       {
         index: 1,
         label: 'index: 1',
+        isRed: false,
       },
       {
         index: 2,
         label: 'index: 2',
+        isRed: false,
       },
       {
         index: 3,
         label: 'index: 3',
+        isRed: false,
       },
       {
         index: 4,
         label: 'index: 4',
+        isRed: false,
       },
     ];
 
@@ -113,10 +118,17 @@ export default class TaskCs1 extends InteractiveTaskBase {
     ]).start();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.submitted !== this.props.submitted) {
-      //TODO: evaluate the users solution here
-    }
+  // check if user's answer is correct before unmounting
+  componentWillUnmount() {
+    let taskSuccess = true;
+    this.rectangles.forEach(rectangle => {
+      if (rectangle.index % 2 == 0 && rectangle.isRed == false) {
+        taskSuccess = false;
+      } else if (rectangle.index % 2 != 0 && rectangle.isRed == true) {
+        taskSuccess = false;
+      }
+    });
+    this.props.task.setTaskSuccess(taskSuccess);
   }
 
   handlePress = () => {
@@ -130,6 +142,16 @@ export default class TaskCs1 extends InteractiveTaskBase {
       this.setState({
         tutorialOverlayPosition: {top: y, left: x},
       });
+    });
+  };
+
+  /**
+   * Callback to process user input on rectangles
+   * @param {Number} index Index of the tapped rectangle
+   */
+  userTouchesRectangle = index => {
+    this.rectangles.forEach(rectangle => {
+      if (rectangle.index == index) rectangle.isRed = !rectangle.isRed;
     });
   };
 
@@ -220,9 +242,11 @@ export default class TaskCs1 extends InteractiveTaskBase {
           {this.rectangles.map(rectangle => (
             <Rectangle
               key={rectangle.index}
+              index={rectangle.index}
               label={rectangle.label}
               submitted={this.props.submitted}
               tutorialVisible={this.state.tutorialVisible}
+              callBack={this.userTouchesRectangle}
             />
           ))}
         </Animated.View>
@@ -244,10 +268,11 @@ export default class TaskCs1 extends InteractiveTaskBase {
   }
 }
 
-const Rectangle = ({label, submitted, tutorialVisible}) => {
+const Rectangle = ({index, label, submitted, tutorialVisible, callBack}) => {
   const [pressed, setPressed] = useState(false);
 
   const handlePress = () => {
+    callBack(index);
     setPressed(!pressed);
   };
 

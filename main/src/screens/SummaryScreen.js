@@ -3,26 +3,22 @@ import {
   StyleSheet,
   Text,
   View,
-  SectionList,
   TouchableOpacity,
   UIManager,
   Platform,
   LayoutAnimation,
   ImageBackground,
+  Modal,
 } from 'react-native';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
-import {
-  ScrollView,
-  TouchableWithoutFeedback,
-} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import InteractiveTask from '../container/osa_tasks/InteractiveTask';
 import QuizTask from '../container/osa_tasks/QuizTask';
-import {Image, SvgUri} from 'react-native-svg';
-import FastImage from 'react-native-fast-image';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 /**
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
@@ -31,7 +27,8 @@ export default function SummaryScreen({navigation, route}) {
   const TASK_MANAGER = TaskManager.getInstance();
   const taskArray = Array.from(TASK_MANAGER.getTasksMap().values()); // Convert map values to an array
   const [expandedSection, setExpandedSection] = useState(null);
-  const [csTaskHeaderColor, setCsTaskHeaderColor] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalTaskData, setModalTaskData] = useState(null);
 
   /**
    * Populates summary screen with task data
@@ -54,18 +51,42 @@ export default function SummaryScreen({navigation, route}) {
       topic.forEach(element => {
         let timeRelevant = false;
         let hintsUsedRelevant = false;
+        let hintsUsed = 0;
+        let hintRatio = 0;
+        let userFeedbackInteractive = "";
+        let question = null;
+        let selectedAnswers = null;
+        let correctChoices = null;
+        let type = null;
         if (element instanceof ReadingTask) return;
         else if (element instanceof InteractiveTask) {
-          (timeRelevant = true), (hintsUsedRelevant = true);
+          type = 'interactive';
+          timeRelevant = true;
+          hintsUsedRelevant = true;
+          hintsUsed = element.getUsedHints();
+          hintRatio = element.getHintRatio();
+          userFeedbackInteractive = element.getUserFeedback();
+        } else if (element instanceof QuizTask) {
+          type = 'quiz';
+          question = element.question;
+          selectedAnswers = element.getSelectedAnswers();
+          correctChoices = element.correctChoices;
         }
         data.push({
           id: id,
           title: element.title,
+          type: type,
           timeElapsed: element.getTimeElapsedFormatted(),
           taskSuccess: element.getTaskSuccess(),
           timeRelevant: timeRelevant,
           hintsUsedRelevant: hintsUsedRelevant,
+          hintsUsed: hintsUsed,
+          hintRatio: hintRatio,
+          userFeedbackInteractive: userFeedbackInteractive,
           summarySubSection: element.summarySubSection,
+          question: question,
+          selectedAnswers: selectedAnswers,
+          correctChoices: correctChoices,
         });
         id++;
       });
@@ -77,6 +98,10 @@ export default function SummaryScreen({navigation, route}) {
 
   const listData = generateSummaryList();
 
+  /**
+   * Generates a map that stores user's average success per topic
+   * @returns {Map} Map of [topic, ratio]
+   */
   const getTopicSuccess = () => {
     const map = {};
     listData.forEach(section => {
@@ -106,6 +131,11 @@ export default function SummaryScreen({navigation, route}) {
 
   const topicSuccessData = getTopicSuccess();
 
+  /**
+   * Gets header color and styling
+   * @param {String} title Section title to compare against
+   * @returns according styles
+   */
   const getHeaderStyle = title => {
     if (topicSuccessData[title] > 0.6) {
       return styles.greenHeader;
@@ -117,9 +147,15 @@ export default function SummaryScreen({navigation, route}) {
   };
 
   const openTaskModal = task => {
-    console.log(task);
+    setModalTaskData(task);
+    setModalVisible(!modalVisible);
   };
 
+  /**
+   * Renders all items of a section
+   * @param {String} section Sectionname
+   * @returns {ScrollView} List of already rendered items
+   */
   const displaySectionItems = section => {
     let previousSummarySubSection = null;
 
@@ -143,7 +179,9 @@ export default function SummaryScreen({navigation, route}) {
         previousSummarySubSection = item.summarySubSection;
 
         items.push(
-          <TouchableOpacity onPress={() => openTaskModal(item)}>
+          <TouchableOpacity
+            onPress={() => openTaskModal(item)}
+            key={getRandomKey()}>
             <View key={item.id} style={styles.taskItem}>
               <Text style={globalStyles.textSummaryItem}>{item.title}</Text>
               {item.timeRelevant && (
@@ -169,7 +207,9 @@ export default function SummaryScreen({navigation, route}) {
                     ]}
                     name="questioncircleo"
                   />
-                  <Text style={globalStyles.textSummaryItem}>3</Text>
+                  <Text style={globalStyles.textSummaryItem}>
+                    {item.hintsUsed}
+                  </Text>
                 </View>
               )}
               {item.taskSuccess === true ? (
@@ -194,6 +234,39 @@ export default function SummaryScreen({navigation, route}) {
         );
       });
 
+      let headerStyle = getHeaderStyle(section.title);
+      let text = '';
+
+      switch (headerStyle) {
+        case styles.greenHeader:
+          text =
+            'Sehr gut! Dieses Thema scheint dir zu liegen. Denk jedoch immer daran, dass dies nur ein Teil des Studiums ist und dein Interesse an den anderen Themen ebenso wichtig ist.';
+          break;
+        case styles.yellowHeader:
+          text =
+            'Gut gemacht, du hast in etwa die Hälfte richtig beantwortet. Reflektiere noch einmal, ob dich dieses Thema interessiert und du dir vorstellen kannst, dich im Studium eingehend damit zu beschäftigen.';
+          break;
+        case styles.redHeader:
+          text =
+            'Schade, du hast leider nur wenige Aufgaben lösen können. Das muss zwar nichts heißen, aber: im Studium wirst du dich noch viel intensiver mit diesem Thema beschäftigen! Reflektiere darüber, ob dies für dich ein Ausschlusskriterium sein könnte.';
+          break;
+        default:
+          text =
+            'Dieses Thema ist ein wichtiger Teil des Studiums. Kannst du dir vorstellen, dich noch intensiver mit der Thematik zu beschäftigen?';
+          break;
+      }
+
+      items.push(
+        <Text
+          key={getRandomKey()}
+          style={[
+            styles.subSectionHeading,
+            globalStyles.textSummarySubSection,
+            styles.taskItem,
+          ]}>
+          {text}
+        </Text>,
+      );
       return items;
     };
 
@@ -204,6 +277,20 @@ export default function SummaryScreen({navigation, route}) {
     );
   };
 
+  /**
+   * Generates a random key for view items
+   * @returns {String} A randomized String
+   */
+  const getRandomKey = () => {
+    let rString = (Math.random() + 1).toString(36).substring(2);
+    let key = Math.floor(Math.random() * 1000000 + 1) + rString;
+    return key;
+  };
+
+  /**
+   * Expands and collapses accordion sections
+   * @param {String} sectionTitle
+   */
   function toggleItem(sectionTitle) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (sectionTitle === expandedSection) {
@@ -213,11 +300,105 @@ export default function SummaryScreen({navigation, route}) {
     }
   }
 
+  // Needed to achieve accordion animation on android
   if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }
+
+  const includeModal = () => {
+    var answersHeading = 'Deine Lösung: ';
+    var correctAnswersHeading = 'Die korrekte Lösung lautet:';
+    if (modalTaskData.type == 'quiz') {
+      var questionText = (
+        <Text style={{margin: 5, marginBottom: 15}}>
+          {modalTaskData.question}
+        </Text>
+      );
+      var selectedAnswersMap = modalTaskData.selectedAnswers.map(
+        (answer, index) => {
+          let textColor = modalTaskData.correctChoices.includes(answer)
+            ? 'green'
+            : 'red';
+          return (
+            <Text
+              style={[styles.modalSingleAnswerText, {color: textColor}]}
+              key={index}>
+              {answer}
+            </Text>
+          );
+        },
+      );
+      var correctChoicesMap =
+        modalTaskData.correctChoices != null &&
+        modalTaskData.correctChoices.map((choice, index) => (
+          <Text style={styles.modalSingleCorrectChoiceText} key={index}>
+            {choice}
+          </Text>
+        ));
+    } else if (modalTaskData.type == 'interactive') {
+      answersHeading = '';
+      correctAnswersHeading = '';
+      var taskSummaryText = (<Text style={{ textAlign: 'left' }}>{modalTaskData.userFeedbackInteractive}</Text>);
+    }
+    return (
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <FontAwesomeIcon name="close" size={32} color="white" />
+            </TouchableOpacity>
+            <ScrollView>
+              <Text
+                style={[
+                  styles.modalSubSectionText,
+                  globalStyles.textSummarySubSection,
+                ]}>
+                {modalTaskData.summarySubSection}
+              </Text>
+              <Text
+                style={[
+                  styles.modalTaskTitleText,
+                  globalStyles.textSummaryItem,
+                ]}>
+                {modalTaskData.title}
+              </Text>
+
+              {modalTaskData.type == 'quiz' ? questionText : ''}
+
+              <Text
+                style={[
+                  styles.modalQuizAnswersText,
+                  globalStyles.textSecondary,
+                ]}>
+                {answersHeading}
+              </Text>
+
+              {modalTaskData.type == 'quiz' ? selectedAnswersMap : ''}
+
+              <Text
+                style={[
+                  styles.modalCorrectChoicesText,
+                  globalStyles.textSecondary,
+                ]}>
+                {correctAnswersHeading}
+              </Text>
+
+              {modalTaskData.type == 'quiz' ? correctChoicesMap : ''}
+              {modalTaskData.type == 'interactive' ? taskSummaryText : ''}
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
 
   return (
     <ImageBackground
@@ -230,6 +411,7 @@ export default function SummaryScreen({navigation, route}) {
         {listData.map((section, index) => (
           <View key={index}>
             <TouchableOpacity
+              key={getRandomKey()}
               onPress={() => toggleItem(section.title)}
               style={[styles.sectionHeader, getHeaderStyle(section.title)]}>
               <Text
@@ -240,6 +422,7 @@ export default function SummaryScreen({navigation, route}) {
             {expandedSection === section.title && displaySectionItems(section)}
           </View>
         ))}
+        {modalTaskData != null && includeModal()}
       </View>
     </ImageBackground>
   );
@@ -269,7 +452,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C75944',
   },
   sectionTitle: {
-    marginStart: 20,
+    marginStart: 10,
   },
   scrollContainer: {
     height: '60%',
@@ -292,5 +475,54 @@ const styles = StyleSheet.create({
   iconTextWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: -25,
+    right: -25,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    margin: 5,
+    elevation: 5,
+    backgroundColor: '#dd4040',
+    borderRadius: 50,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  modalContent: {
+    height: '90%',
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    gap: 20,
+  },
+  modalSubSectionText: {
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  modalTaskTitleText: {
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  modalQuizAnswersText: {
+    marginStart: 10,
+    marginTop: 10,
+  },
+  modalSingleAnswerText: {
+    marginStart: 10,
+    padding: 5,
+  },
+  modalCorrectChoicesText: {
+    marginStart: 10,
+    marginTop: 10,
+  },
+  modalSingleCorrectChoiceText: {
+    marginStart: 10,
+    padding: 5,
   },
 });

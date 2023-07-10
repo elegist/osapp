@@ -3,7 +3,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView,
   Animated,
 } from 'react-native';
 import React, {Component} from 'react';
@@ -172,6 +171,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 10,
     padding: 5,
+    width: '100%'
   },
   scrollViewContent: {
     flexGrow: 1,

@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
@@ -50,7 +49,6 @@ export default function OsaScreen({navigation, route}) {
   };
 
   const renderTask = () => {
-    //console.log(task);
     if (!task) return null;
     if (task instanceof ReadingTask) {
       return <ReadingScreen key={task.id} task={task} nextTask={nextTask} />;

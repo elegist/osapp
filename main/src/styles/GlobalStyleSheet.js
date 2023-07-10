@@ -55,8 +55,7 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: '30%'
+    justifyContent: 'center',
   },
   topBar: {
     maxHeight: '10%',
@@ -118,7 +117,7 @@ export default StyleSheet.create({
   },
   textReadingTask: {
     fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(36),
+    fontSize: getResponsiveSizing(32),
     lineHeight: getResponsiveSizing(52),
     color: '#1C2327',
     textShadowColor: 'rgba(0, 0, 0, .6)',

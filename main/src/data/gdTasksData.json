@@ -5,9 +5,15 @@
       "id": 0,
       "type": "reading",
       "title": "Modellierung, Shading und Animation",
-      "summarySubSection": "Teil 1 - GD",
+      "summarySubSection": "Teil 1 - Modellierung",
       "content": [
-        "Hier folgt toller GD content..."
+        "Drittes Thema: Grafische Datenverarbeitung",
+        "[img]thm-medienlabor.jpg",
+        "Grafische Datenverarbeitung (GDV) beschäftigt sich mit dem Erstellen und Verarbeiten von Grafiken.",
+        "Das können reale Aufnahmen aus einer Kamera sein, die digitalisiert werden,",
+        "als auch Grafiken, die am Computer erstellt werden.",
+        "Im Studium wirst du dich zunächst mit dem Erstellen von Computergrafiken beschäftigen.",
+        "Schauen wir mal, ob du schon etwas Wissen mitbringst."
       ]
     },
     {
@@ -15,7 +21,7 @@
       "type": "quiz",
       "style": "single",
       "title": "Modellierung",
-      "summarySubSection": "Teil 1 - GD",
+      "summarySubSection": "Teil 1 - Modellierung",
       "question": "Welche der folgenden Begriffe beschreibt den Prozess des Erstellens eines 3D-Modells mithilfe von Polygonnetzen?",
       "choices": ["Texturierung", "Rigging", "Modellierung", "Rendering"],
       "correctChoices": ["Modellierung"]
@@ -25,10 +31,21 @@
       "type": "quiz",
       "style": "single",
       "title": "Animation",
-      "summarySubSection": "Teil 1 - GD",
+      "summarySubSection": "Teil 1 - Modellierung",
       "question": "Welche der folgenden Begriffe beschreibt die Kombination von Bildern, um die Illusion von Bewegung zu erzeugen?",
       "choices": ["Shading", "Rendering", "Texturierung", "Animation"],
       "correctChoices": ["Animation"]
+    },
+    {
+      "id": 3,
+      "type": "reading",
+      "title": "Modellierung, Shading und Animation",
+      "summarySubSection": "Teil 2 - Mathematik",
+      "content": [
+        "Computergrafiken werden mit Hilfe von Prozessoren berechnet.",
+        "Das bedeutet, dass auch in diesem Bereich die Mathematik eine wichtige Rolle spielt.",
+        "Hier folgen Aufgaben zu Gleichungssystemen und Matritzen ???"
+      ]
     }
   ]
 }

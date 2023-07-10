@@ -4,8 +4,8 @@ import {
   TouchableOpacity,
   Animated as ReactAnimated,
 } from 'react-native';
-import React, {Component, useEffect, useState} from 'react';
-import InteractiveTaskBase from './InteractiveTaskBase';
+import React, {useState} from 'react';
+import InteractiveTaskBase from './InteractiveTaskBaseScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles, {getResponsiveSizing} from '../../styles/GlobalStyleSheet';
 import Animated, {
@@ -16,7 +16,6 @@ import Animated, {
   useSharedValue,
   withSpring,
   withTiming,
-  useAnimatedReaction,
 } from 'react-native-reanimated';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 
@@ -91,10 +90,17 @@ export default class TaskCs2 extends InteractiveTaskBase {
     ]).start();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.submitted !== this.props.submitted) {
-      //TODO: evaluate the users solution here
-    }
+  // check if user's answer is correct before unmounting
+  componentWillUnmount() {
+    let taskSuccess = true;
+    this.state.rectangles.forEach(rectangle => {
+      if (rectangle.order <= 2 && rectangle.color != '#FD4F4F') {
+        taskSuccess = false;
+      } else if (rectangle.order > 2 && rectangle.color != '#D9D9D9') {
+        taskSuccess = false;
+      }
+    });
+    this.props.task.setTaskSuccess(taskSuccess)
   }
 
   updateRectangles = newRectangles => {

@@ -2,7 +2,7 @@ import AssessmentTask from './AssessmentTask';
 
 /**
  * Class ExamplesTask -
- * represents a more complex task which needs specific user interaction
+ * this is just a helper class to include the ExamplesScreen into the OSA task sequence.
  */
 class ExamplesTask extends AssessmentTask {
   constructor(props) {

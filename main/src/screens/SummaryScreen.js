@@ -479,7 +479,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     height: 50,
     margin: 10,
-    justifyContent: 'center',
+    flexDirection: 'row',
   },
   greenHeader: {
     backgroundColor: '#8CBA45',
@@ -492,6 +492,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     marginStart: 10,
+    flex: 1,
+    alignSelf: 'center',
   },
   scrollContainer: {
     height: '60%',

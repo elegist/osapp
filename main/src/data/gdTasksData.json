@@ -4,48 +4,135 @@
     {
       "id": 0,
       "type": "reading",
-      "title": "Modellierung, Shading und Animation",
+      "title": "Einleitung GD",
       "summarySubSection": "Teil 1 - Modellierung",
       "content": [
         "Drittes Thema: Grafische Datenverarbeitung",
-        "[img]thm-medienlabor.jpg",
+        "[img]gd-lamp.jpg",
         "Grafische Datenverarbeitung (GDV) beschäftigt sich mit dem Erstellen und Verarbeiten von Grafiken.",
         "Das können reale Aufnahmen aus einer Kamera sein, die digitalisiert werden,",
-        "als auch Grafiken, die am Computer erstellt werden.",
-        "Im Studium wirst du dich zunächst mit dem Erstellen von Computergrafiken beschäftigen.",
+        "als auch Grafiken, die direkt am Computer erstellt werden.",
+        "Im Studium wirst du dich zu Beginn mit dem Erstellen von Computergrafiken beschäftigen.",
+        "Dies beinhaltet das Modellieren, das Anwenden von Shading- und Rendering-Techniken,",
+        "sowie mathematische Grundlagen, die für Computergrafiken von Bedeutung sind.",
         "Schauen wir mal, ob du schon etwas Wissen mitbringst."
       ]
     },
     {
       "id": 1,
       "type": "quiz",
-      "style": "single",
-      "title": "Modellierung",
+      "style": "multiple",
+      "title": "Modellierung - Software",
       "summarySubSection": "Teil 1 - Modellierung",
-      "question": "Welche der folgenden Begriffe beschreibt den Prozess des Erstellens eines 3D-Modells mithilfe von Polygonnetzen?",
-      "choices": ["Texturierung", "Rigging", "Modellierung", "Rendering"],
-      "correctChoices": ["Modellierung"]
+      "question": "Welche Software wird häufig für die Erstellung von 3D-Modellen verwendet?",
+      "choices": ["Blender", "Autodesk Maya", "Adobe Photoshop", "Notepad", "Microsoft Excel"],
+      "correctChoices": ["Blender", "Autodesk Maya"]
     },
     {
       "id": 2,
       "type": "quiz",
-      "style": "single",
-      "title": "Animation",
+      "style": "multiple",
+      "title": "Modellierung - Technik",
       "summarySubSection": "Teil 1 - Modellierung",
-      "question": "Welche der folgenden Begriffe beschreibt die Kombination von Bildern, um die Illusion von Bewegung zu erzeugen?",
-      "choices": ["Shading", "Rendering", "Texturierung", "Animation"],
-      "correctChoices": ["Animation"]
+      "question": "Welche Techniken werden bei der 3D-Modellierung eingesetzt?",
+      "choices": ["Polygonnetze", "Vektorgrafiken", "UV-Entfaltung", "Rigging"],
+      "correctChoices": ["Polygonnetze", "UV-Entfaltung"]
     },
     {
       "id": 3,
+      "type": "quiz",
+      "style": "single",
+      "title": "Verwendung 3D-Modelle",
+      "summarySubSection": "Teil 1 - Modellierung",
+      "question": "Wie können 3D-Modelle in der Grafischen Datenverarbeitung verwendet werden?",
+      "choices": ["Für die Erstellung von 2D-Animationen", "Zur Optimierung von Dateigrößen von Grafiken", "Zur Darstellung virtueller Welten", "Für die Audiobearbeitung"],
+      "correctChoices": ["Zur Darstellung virtueller Welten"]
+    },
+    {
+      "id": 4,
       "type": "reading",
-      "title": "Modellierung, Shading und Animation",
-      "summarySubSection": "Teil 2 - Mathematik",
+      "title": "Einleitung Shading und Rendering",
+      "summarySubSection": "Teil 2 - Shading, Rendering",
       "content": [
-        "Computergrafiken werden mit Hilfe von Prozessoren berechnet.",
-        "Das bedeutet, dass auch in diesem Bereich die Mathematik eine wichtige Rolle spielt.",
-        "Hier folgen Aufgaben zu Gleichungssystemen und Matritzen ???"
+        "Das Shading und Rendering sind entscheidende Schritte in der Grafischen Datenverarbeitung.", 
+        "Beim Shading werden Oberflächen von 3D-Objekten mit Materialien und Texturen versehen.", 
+        "Das Rendering bezeichnet die Berechnung von Bildern der virtuellen 3D-Szenen.", 
+        "Lass uns schauen, ob du dich schon ein wenig auskennst."
       ]
+    },
+    {
+      "id": 5,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Rendering - Technik",
+      "summarySubSection": "Teil 2 - Shading, Rendering",
+      "question": "Welche Techniken kommen beim Rendering zum Einsatz, um realistische Schatten in 3D-Szenen zu erzeugen?",
+      "choices": ["Raytracing", "Ambient Occlusion", "Phong Shading", "Motion Blur"],
+      "correctChoices": ["Raytracing", "Ambient Occlusion"]
+    },
+    {
+      "id": 6,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Rolle Shading",
+      "summarySubSection": "Teil 2 - Shading, Rendering",
+      "question": "Was ist der Zweck des Shadings bei der Grafischen Datenverarbeitung?",
+      "choices": ["Erstellung von 2D-Grafiken", "Animation von 3D-Modellen", "Erstellen und Anpassen der Oberflächenmaterialien", "Optimierung der Lichtsetzung"],
+      "correctChoices": ["Erstellen und Anpassen der Oberflächenmaterialien"]
+    },
+    {
+      "id": 7,
+      "type": "quiz",
+      "style": "single",
+      "title": "Rolle Rendering",
+      "summarySubSection": "Teil 2 - Shading, Rendering",
+      "question": "Welche Rolle spielt das Rendering in der Grafischen Datenverarbeitung?",
+      "choices": ["Erstellung von 3D-Modellen", "Berechnung von Bildern aus 3D-Szenen", "Bearbeitung von Texturen und Materialien", "Anwendung von Kameraeffekten"],
+      "correctChoices": ["Berechnung von Bildern aus 3D-Szenen"]
+    },
+    {
+      "id": 8,
+      "type": "reading",
+      "title": "Einleitung Mathematik",
+      "summarySubSection": "Teil 3 - Mathematik",
+      "content": [
+        "Die Mathematik spielt eine zentrale Rolle in der Grafischen Datenverarbeitung.", 
+        "[img]gd-math.jpg",
+        "Insbesondere Gleichungssysteme und Matrizen sind wichtige Werkzeuge.", 
+        "Diese werden zur Darstellung und Manipulation von 3D-Objekten verwendet.", 
+        "Durch sie können komplexe Transformationen auf Grafiken angewendet werden.",
+        "Daher gehört es dazu sich im Studium eingehend damit zu beschäftigen."
+      ]
+    },
+    {
+      "id": 9,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Grundlagen Mathematik",
+      "summarySubSection": "Teil 3 - Mathematik",
+      "question": "Welche mathematische Grundlage ist in der Grafischen Datenverarbeitung unerlässlich?",
+      "choices": ["Statistik und Wahrscheinlichkeitstheorie", "Geometrie und Trigonometrie", "Differentialgleichungen und Integralrechnung"],
+      "correctChoices": ["Geometrie und Trigonometrie"]
+    },
+    {
+      "id": 10,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Transformationen",
+      "summarySubSection": "Teil 3 - Mathematik",
+      "question": "Matrizen und Vektoren werden zum Anwenden von Transformationen auf Grafiken angewendet, wie zum Beispiel:",
+      "choices": ["Kantenglättung", "Rotation", "Verschiebung", "Skalierung", "Teilung"],
+      "correctChoices": ["Rotation", "Verschiebung", "Skalierung"]
+    },
+    {
+      "id": 11,
+      "type": "quiz",
+      "style": "single",
+      "title": "Was ist eine Matrix?",
+      "summarySubSection": "Teil 3 - Mathematik",
+      "question": "Was ist eine Matrix?",
+      "choices": ["Ein mathematisches Konzept, das zur Lösung von Gleichungssystemen verwendet wird.", "Eine geordnete Anordnung von Zahlen in Zeilen und Spalten.", "Ein mathematisches Verfahren zur Berechnung von Algorithmen.", "Eine geometrische Form mit vier Seiten."],
+      "correctChoices": ["Eine geordnete Anordnung von Zahlen in Zeilen und Spalten."]
     }
   ]
 }

@@ -79,7 +79,7 @@
       "style": "multiple",
       "title": "Webseiten erstellen",
       "summarySubSection": "Teil 2 - Web",
-      "question": "Was solltest du können um eine herkömmliche Webseite zu erstellen?",
+      "question": "Was solltest du können um eine moderne, interaktive Webseite zu erstellen?",
       "choices": ["HTML", "CSS", "JavaScript", "Java", "C++", "Wordpress"],
       "correctChoices": ["HTML", "CSS", "JavaScript"]
     },
@@ -89,23 +89,24 @@
       "style": "multiple",
       "title": "Betriebssysteme",
       "summarySubSection": "Teil 2 - Web",
-      "question": "2023 laufen 81.3% aller Webseiten auf einem Unix-System, wie zum Beispiel:",
+      "question": "2023 laufen 81.3% aller Webseiten auf einem Unix-System. Unix bezeichnet dabei eine Familie von Betriebssystemen wie zum Beispiel:",
       "choices": ["Windows Server", "MacOS", "Linux", "Windows 11"],
       "correctChoices": ["MacOS", "Linux"]
     },
     {
       "id": 8,
       "type": "quiz",
-      "style": "multiple",
+      "style": "single",
       "title": "Quiz Webbrowser",
       "summarySubSection": "Teil 2 - Web",
-      "question": "Ein Webbrowser ist ein...",
+      "question": "Ein Webbrowser hat folgenden primären Zweck:",
       "choices": [
-        "Programm um u.a. Webseiten darzustellen.",
+        "Webseiten darstellen.",
+        "Webseiten hosten",
         "Computerspiel",
         "Tool für Webdesigner"
       ],
-      "correctChoices": ["Programm um u.a. Webseiten darzustellen."]
+      "correctChoices": ["Webseiten darstellen."]
     },
     {
       "id": 9,

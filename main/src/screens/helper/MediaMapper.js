@@ -31,6 +31,16 @@ class MediaMapper {
         return require(path + 'internet.jpg');
       case 'programming.jpg':
         return require(path + 'programming.jpg');
+      case 'av-live.jpg':
+        return require(path + 'av-live.jpg');
+      case 'av-mixer.jpg':
+        return require(path + 'av-mixer.jpg');
+      case 'av-production.jpg':
+        return require(path + 'av-production.jpg');
+      case 'gd-lamp.jpg':
+        return require(path + 'gd-lamp.jpg');
+        case 'gd-math.jpg':
+          return require(path + 'gd-math.jpg');
       // Add more cases for other image names
       default:
         return null; // Handle unknown image names

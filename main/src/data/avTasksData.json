@@ -8,11 +8,10 @@
       "summarySubSection": "Teil 1 - Video",
       "content": [
         "Zweites Thema: Audiovisuelle Medien",
-        "[img]thm-studio.jpg",
-        "Ein weiterer wichtiger Teil des Studiums.",
-        "Hier lernst du vieles über analoge und digitale Medien und deren Produktion",
-        "Du wirst auch mit anderen Studierenden gemeinsam etwas entwickeln.",
-        "Denn Medieninformatiker*innen sind oft in Film- und Tonstudios, beim Fernsehen oder Radio zu finden.",
+        "[img]av-live.jpg",
+        "Hier lernst du vieles über analoge sowie digitale Medien und deren Produktion",
+        "Du wirst auch mit anderen Studierenden gemeinsam etwas produzieren.",
+        "Denn Absolventen sind oft in Film- und Tonstudios, beim Fernsehen oder Radio zu finden.",
         "Vielleicht bringst du ja schon etwas Wissen mit?"
       ]
     },
@@ -53,7 +52,7 @@
       "summarySubSection": "Teil 2 - Audio",
       "content": [
         "Du siehst, dass du dich auch mit Dateiformaten und Videobearbeitung beschäftigst.",
-        "[img]thm-studio.jpg",
+        "[img]av-mixer.jpg",
         "Doch nicht nur die Produktion von Videos ist hier wichtig.",
         "Das erstellen guter Audio-Artefakte ist ebenso Pflicht.",
         "Dabei musst du nicht musikalisch begabt sein, nur interessiert und engagiert."
@@ -76,7 +75,7 @@
       "title": "Raumklang",
       "summarySubSection": "Teil 2 - Audio",
       "question": "Welche der folgenden Audioeffekte wird häufig verwendet, um den Klang eines Raums zu simulieren?",
-      "choices": ["Reverb", "Echo", "Delay", "Distortion"],
+      "choices": ["Reverb", "Echo", "Kompression", "Distortion"],
       "correctChoices": ["Reverb", "Echo"]
     },
     {
@@ -85,12 +84,42 @@
       "title": "Einleitung AV",
       "summarySubSection": "Teil 3 - Produktion",
       "content": [
-        "Wie schon erwähnt wirst du auch selbst etwas produzieren.",
-        "[img]thm-studio.jpg",
-        "Dabei schlüpfst du in eine der vielen Rollen einer Produktion.",
+        "Wie schon erwähnt wirst du auch im Team etwas produzieren.",
+        "[img]av-production.jpg",
+        "Dabei lernst du alle Rollen kennen, die an einer Produktion beteiligt sind.",
         "Egal ob Regisseur, Toningenieur oder Cutter, du wirst dich unter Beweis stellen müssen.",
-        "… hier folgen Fragen zur Produktion …"
+        "Auch die Organisation eines Drehs liegt in der Verantwortung des Teams."
       ]
+    },
+    {
+      "id": 8,
+      "type": "quiz",
+      "style": "single",
+      "title": "Planung der Produktion",
+      "summarySubSection": "Teil 3 - Produktion",
+      "question": "Welche Rolle ist für die organisatorische Planung und Koordination eines Filmprojekts verantwortlich?",
+      "choices": ["Regisseur", "Kameramann", "Produzent", "Schauspieler"],
+      "correctChoices": ["Produzent"]
+    },
+    {
+      "id": 9,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Kameraeinstellungen",
+      "summarySubSection": "Teil 3 - Produktion",
+      "question": "Welche der folgenden Kameraeinstellungen wird üblicherweise verwendet, um eine Person oder ein Objekt vom Hintergrund hervorzuheben?",
+      "choices": ["Großaufnahme", "Totale", "Nahaufnahme", "Detailaufnahme"],
+      "correctChoices": ["Nahaufnahme", "Großaufnahme"]
+    },
+    {
+      "id": 10,
+      "type": "quiz",
+      "style": "multiple",
+      "title": "Drehbuch",
+      "summarySubSection": "Teil 3 - Produktion",
+      "question": "Welche Bedeutung hat das Drehbuch bei einer Filmproduktion?",
+      "choices": ["Es dient als Anleitung für die Schauspieler bei ihren Dialogen.", "Es gibt den genauen Ablauf des Drehtags vor.", "Es ist die Grundlage für die Planung und Umsetzung des Films.", "Es bestimmt die Auswahl der Drehorte."],
+      "correctChoices": ["Es ist die Grundlage für die Planung und Umsetzung des Films."]
     }
   ]
 }

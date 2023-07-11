@@ -340,7 +340,7 @@ export default function SummaryScreen({navigation, route}) {
     } else if (modalTaskData.type == 'interactive') {
       answersHeading = '';
       correctAnswersHeading = '';
-      var taskSummaryText = (<Text style={{ textAlign: 'left' }}>{modalTaskData.userFeedbackInteractive}</Text>);
+      var taskSummaryText = (<Text style={{ textAlign: 'left', color: '#1C2327'}}>{modalTaskData.userFeedbackInteractive}</Text>);
     }
     return (
       <Modal
@@ -504,26 +504,31 @@ const styles = StyleSheet.create({
   modalSubSectionText: {
     textAlign: 'center',
     marginTop: 5,
+    color: '#1C2327',
   },
   modalTaskTitleText: {
     textAlign: 'center',
     marginBottom: 10,
+    color: '#1C2327',
   },
   modalQuizAnswersText: {
     marginStart: 10,
     marginTop: 10,
+    color: '#1C2327',
   },
   modalSingleAnswerText: {
     marginStart: 10,
     padding: 5,
+    color: '#1C2327',
   },
   modalCorrectChoicesText: {
     marginStart: 10,
     marginTop: 10,
+    color: '#1C2327',
   },
   modalSingleCorrectChoiceText: {
     marginStart: 10,
     padding: 5,
-    color: '#000'
+    color: '#1C2327',
   },
 });

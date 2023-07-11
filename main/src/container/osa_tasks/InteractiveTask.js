@@ -28,61 +28,70 @@ class InteractiveTask extends AssessmentTask {
    * Generate user feedback for summary screen
    */
   getUserFeedback = () => {
-    let time = this.getTimeElapsed();
+    let timeInSeconds = this.getTimeElapsed() / 1000;
     let hintRatio = this.getHintRatio();
 
     let feedbackText = '';
 
     if (this.getTaskSuccess()) {
-      feedbackText += 'Du hast die Aufgabe gelöst!\n';
-      if (time < 10000)
-        feedbackText +=
-          'Und zwar sehr schnell. Das scheint genau dein Thema zu sein!';
-      else if (time < 60000)
-        feedbackText += 'In weniger als einer Minute. Sehr gut gemacht!';
-      else if (time < 120000)
-        feedbackText += 'In weniger als zwei Minuten. Gut gemacht!';
-      else if (time < 300000)
-        feedbackText +=
-          'Du scheinst dir auch etwas Zeit für die Bearbeitung genommen zu haben, das ist gut!';
-      else if (time > 300000)
-        feedbackText +=
-          'Du hast dich zwar etwas an dieser Aufgabe aufgehalten, jedoch gewissenhaft und in Ruhe arbeiten zu wollen ist eine gute Voraussetzung fürs Studium!';
-
-      feedbackText += ' Außerdem hast du ';
-      if (hintRatio >= 0.8)
-        feedbackText += 'einen Großteil oder alle Hilfen in Anspruch genommen.';
-      else if (hintRatio >= 0.5)
-        feedbackText += 'über die Hälfte der Hilfen in Anspruch genommen.';
-      else if (hintRatio <= 0.5)
-        feedbackText +=
-          'weniger als die Hälfte oder gar keine Hilfen in Anspruch genommen.';
-
+      feedbackText += this.#addSuccessText(timeInSeconds);
+      feedbackText += this.#addHintsText(hintRatio);
     } else {
-      feedbackText += 'Du hast die Aufgabe leider nicht gelöst!\n';
-      if (time < 10000)
-        feedbackText +=
-          'Du scheinst diese Aufgabe übersprungen zu haben. Bedenke: Dieses Thema ist ein fester Bestandteil des Studiums.';
-      else if (time < 120000)
-        feedbackText +=
-          'Du hast dich nur sehr kurz damit beschäftigt. Du solltest dir mehr Zeit lassen um Aufgaben zu verstehen und lösen zu können. Bedenke: Dieses Thema ist ein fester Bestandteil des Studiums.';
-      else if (time < 300000)
-        feedbackText += 'Beschäftigt hast du dich mit dieser Aufgabe für weniger als fünf Minuten. Das ist ok, doch vielleicht hättest du Sie mit ein wenig mehr Geduld lösen können.';
-      else if (time > 300000) feedbackText += 'Du hast dich sehr lange damit beschäftigt. Vielleicht liegt dir das Thema gar nicht. Bedenke, dass dieses Thema ein Pflichtthema im Studium ist!';
-
-      feedbackText += ' Außerdem hast du ';
-      if (hintRatio >= 0.8)
-        feedbackText += 'einen Großteil oder alle Hilfen in Anspruch genommen.';
-      else if (hintRatio >= 0.5)
-        feedbackText += 'über die Hälfte der Hilfen in Anspruch genommen.';
-      else if (hintRatio <= 0.5)
-        feedbackText +=
-          'weniger als die Hälfte oder gar keine Hilfen in Anspruch genommen.';
+      feedbackText += this.#addFailureText(timeInSeconds);
+      feedbackText += this.#addHintsText(hintRatio);
     }
 
     feedbackText +=
-      '\n\nReflektiere darüber, ob dir dieses Thema Spaß gemacht, oder zumindest dein Interesse geweckt hat. Kannst du dir Vorstellen im Studium tiefer in das Thema einzutauchen?';
+      '\n\nReflektiere darüber, ob dir dieses Thema Spaß gemacht, oder zumindest dein Interesse geweckt hat. Kannst du dir vorstellen, im Studium tiefer in das Thema einzutauchen?';
     return feedbackText;
+  };
+
+  #addSuccessText = timeInSeconds => {
+    let successText = 'Du hast die Aufgabe ';
+    if (timeInSeconds < 10)
+      successText +=
+        'sehr schnell gelöst. Das scheint genau dein Thema zu sein!';
+    else if (timeInSeconds < 60)
+      successText += 'in weniger als einer Minute gelöst. Sehr gut gemacht!';
+    else if (timeInSeconds < 120)
+      successText += 'in weniger als zwei Minuten gelöst. Gut gemacht!';
+    else if (timeInSeconds < 300)
+      successText +=
+        'nach einiger Zeit gelöst. Es ist gut, sich Zeit für eine Aufgabe zu nehmen, um sie gründlich zu verstehen!';
+    else if (timeInSeconds > 300)
+      successText +=
+        'gelöst, obwohl du etwas länger gebraucht hast, um sie zu verstehen. Es ist wichtig, sich Zeit zu nehmen, um eine Aufgabe vollständig zu erfassen. Überlege jedoch, ob das Thema wirklich deinen Interessen entspricht.';
+    return successText;
+  };
+
+  #addFailureText = timeInSeconds => {
+    let failText = 'Du hast ';
+    if (timeInSeconds < 10)
+      failText +=
+        'die Aufgabe anscheinend übersprungen. Bedenke: Dieses Thema ist ein fester Bestandteil des Studiums.';
+    else if (timeInSeconds < 60)
+      failText +=
+        'dich nur kurz mit dieser Aufgabe beschäftigt. Nimm dir ruhig mehr Zeit, um Aufgaben zu verstehen und zu lösen. Bedenke: Dieses Thema ist ein fester Bestandteil des Studiums.';
+    else if (timeInSeconds < 300)
+      failText +=
+        'dich zwar etwas mit dieser Aufgabe beschäftigt, aber vielleicht hättest du mit etwas mehr Geduld eine Lösung finden können. Bedenke: Dieses Thema ist ein fester Bestandteil des Studiums.';
+    else if (timeInSeconds > 300)
+      failText +=
+        'dich sehr lange mit dieser Aufgabe beschäftigt, ohne sie zu lösen. Vielleicht liegt dir das Thema gar nicht. Bedenke, dass dieses Thema ein fester Bestandteil des Studiums ist!';
+    return failText;
+  };
+
+  #addHintsText = hintRatio => {
+    let hintsText = '';
+    hintsText += ' Von den Hilfen hast du ';
+    if (hintRatio == 1) hintsText += 'alle in Anspruch genommen.';
+    else if (hintRatio >= 0.8)
+      hintsText += 'einen Großteil in Anspruch genommen.';
+    else if (hintRatio >= 0.5)
+      hintsText += 'über die Hälfte in Anspruch genommen.';
+    else if (hintRatio > 0) hintsText += 'nur sehr wenige Anspruch genommen.';
+    else if (hintRatio == 0) hintsText += 'gar keine in Anspruch genommen.';
+    return hintsText;
   };
 }
 

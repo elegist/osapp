@@ -4,7 +4,7 @@ import globalStyles from '../../styles/GlobalStyleSheet';
 import TaskManager from '../../container/TaskManager';
 import MediaMapper from '../helper/MediaMapper';
 import FastImage from 'react-native-fast-image';
-import swipeImage from '../../assets/misc/swipe_up.webp';
+import swipeImage from '../../assets/misc/swipe.webp';
 import tapImage from '../../assets/misc/tap.webp';
 
 /**
@@ -251,15 +251,15 @@ export class ReadingScreen extends Component {
   startSwipeHintAnim = () => {
     this.swipeHintAnimSequence = Animated.sequence([
       Animated.delay(2000),
-      Animated.timing(this.blendInSwipeHintAnim, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-        easing: Easing.ease,
-      }),
-      Animated.delay(50),
       Animated.loop(
         Animated.sequence([
+          Animated.timing(this.blendInSwipeHintAnim, {
+            toValue: 1,
+            duration: 800,
+            useNativeDriver: true,
+            easing: Easing.ease,
+          }),
+          Animated.delay(50),
           Animated.timing(this.swipeHintAnim, {
             toValue: -40,
             duration: 800,
@@ -267,11 +267,31 @@ export class ReadingScreen extends Component {
             easing: Easing.cubic,
           }),
           Animated.delay(1000),
+          Animated.timing(this.blendInSwipeHintAnim, {
+            toValue: 0,
+            duration: 800,
+            useNativeDriver: true,
+            easing: Easing.ease,
+          }),
+          Animated.timing(this.blendInSwipeHintAnim, {
+            toValue: 1,
+            duration: 800,
+            useNativeDriver: true,
+            easing: Easing.ease,
+          }),
           Animated.timing(this.swipeHintAnim, {
             toValue: 0,
-            duration: 1,
+            duration: 800,
             useNativeDriver: true,
           }),
+          Animated.delay(1000),
+          Animated.timing(this.blendInSwipeHintAnim, {
+            toValue: 0,
+            duration: 800,
+            useNativeDriver: true,
+            easing: Easing.ease,
+          }),
+          Animated.delay(1000),
         ]),
       ),
     ]);

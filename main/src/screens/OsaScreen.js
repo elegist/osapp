@@ -55,14 +55,12 @@ export default function OsaScreen({navigation, route}) {
     } else if (task instanceof QuizTask) {
       return <QuizScreen key={task.id} task={task} nextTask={nextTask} />;
     } else if (task instanceof InteractiveTask) {
-      return <InteractiveScreen key={task.id} task={task} nextTask={nextTask} />;
+      return (
+        <InteractiveScreen key={task.id} task={task} nextTask={nextTask} />
+      );
     } else if (task instanceof ExamplesTask) {
       return (
-        <ExamplesScreen
-          key={task.id}
-          nextTask={nextTask}
-          source="tasks"
-        />
+        <ExamplesScreen key={task.id} nextTask={nextTask} source="tasks" />
       );
     } else {
       return null;
@@ -71,7 +69,7 @@ export default function OsaScreen({navigation, route}) {
 
   useEffect(() => {
     if (task instanceof SummaryTask) {
-      navigation.replace('summaryScreen');
+      navigation.navigate('summaryScreen');
     }
   }, [task]);
 

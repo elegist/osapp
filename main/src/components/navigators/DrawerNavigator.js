@@ -13,7 +13,7 @@ const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
-      initialRouteName="home"
+      initialRouteName="homeScreen"
       screenOptions={{
         headerShown: false,
         drawerPosition: 'right',
@@ -23,7 +23,7 @@ const DrawerNavigator = () => {
         drawerActiveTintColor: 'white',
       }}>
       <Drawer.Screen
-        name="home"
+        name="homeScreen"
         component={HomeScreen}
         options={{
           title: 'Home',
@@ -31,7 +31,7 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="examplesDrawer"
+        name="examplesScreen"
         component={ExamplesScreen}
         options={{
           title: 'Studienprojekte',
@@ -42,7 +42,7 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="osaDrawer"
+        name="osaScreen"
         component={OsaScreen}
         options={{
           title: 'OSA beginnen',
@@ -50,7 +50,7 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="summaryDrawer"
+        name="summaryScreen"
         component={SummaryScreen}
         options={{ 
           title: 'Zusammenfassung',

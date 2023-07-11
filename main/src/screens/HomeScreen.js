@@ -6,7 +6,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import React, {useState} from 'react';
-import globalStyles, { getResponsiveSizing } from '../styles/GlobalStyleSheet';
+import globalStyles, {getResponsiveSizing} from '../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
 import TopBar from '../components/TopBar';
 
@@ -29,7 +29,10 @@ export default function HomeScreen({navigation}) {
       <TopBar navigation={navigation} />
       <View style={styles.mainContainer}>
         <FastImage
-          style={{width: getResponsiveSizing(250), height: getResponsiveSizing(125)}}
+          style={{
+            width: getResponsiveSizing(250),
+            height: getResponsiveSizing(125),
+          }}
           source={require('../assets/OSAPP.png')}
           resizeMode={FastImage.resizeMode.contain}
         />
@@ -88,4 +91,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-

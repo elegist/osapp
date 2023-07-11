@@ -1,15 +1,12 @@
 import {
   TouchableOpacity,
-  StyleSheet,
-  Text,
   View,
-  ImageBackground,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {SvgXml} from 'react-native-svg';
 import globalStyles from '../styles/GlobalStyleSheet';
-import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { DrawerActions } from '@react-navigation/native';
 
 const TopBar = ({navigation}) => {
   const thmSvg =
@@ -18,7 +15,7 @@ const TopBar = ({navigation}) => {
     <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
       {/* THM logo as svg to be placed here */}
       <SvgXml xml={thmSvg} height="60%" width="30%" />
-      <TouchableOpacity onPress={() => navigation.openDrawer()}>
+      <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
         <Icon name="bars" size={30} color="#000" />
       </TouchableOpacity>
     </View>

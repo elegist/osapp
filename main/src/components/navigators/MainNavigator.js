@@ -3,8 +3,8 @@ import DrawerNavigator from './DrawerNavigator'
 import OsaScreen from '../../screens/OsaScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SummaryScreen from '../../screens/SummaryScreen';
 import ExamplesScreen from '../../screens/osa_tasks_screens/ExamplesScreen';
+import { SummaryScreen } from '../../screens/SummaryScreen';
 
 export class MainNavigator extends Component {
 

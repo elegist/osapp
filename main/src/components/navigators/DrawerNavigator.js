@@ -5,6 +5,7 @@ import HomeScreen from '../../screens/HomeScreen';
 import OsaScreen from '../../screens/OsaScreen';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ExamplesScreen from '../../screens/osa_tasks_screens/ExamplesScreen';
+import { SummaryScreen } from '../../screens/SummaryScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -41,12 +42,21 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="testDrawer"
+        name="osaDrawer"
         component={OsaScreen}
         options={{
           title: 'OSA beginnen',
           drawerLabelStyle: globalStyles.textParagraph,
         }}
+      />
+      <Drawer.Screen
+        name="summaryDrawer"
+        component={SummaryScreen}
+        options={{ 
+          title: 'Zusammenfassung',
+          drawerLabelStyle: globalStyles.textParagraph,
+          drawerItemStyle: { height: 0 }
+         }}
       />
     </Drawer.Navigator>
   );

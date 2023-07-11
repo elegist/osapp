@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Component, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,25 +19,40 @@ import QuizTask from '../container/osa_tasks/QuizTask';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import TopBar from '../components/TopBar';
 
 /**
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
  */
-export default function SummaryScreen({navigation, route}) {
-  const TASK_MANAGER = TaskManager.getInstance();
-  const taskArray = Array.from(TASK_MANAGER.getTasksMap().values()); // Convert map values to an array
-  const [expandedSection, setExpandedSection] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalTaskData, setModalTaskData] = useState(null);
+export class SummaryScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.#initSummaryScreen();
+
+    console.log(this.navigation);
+    this.state = {
+      expandedSection: null,
+      modalVisible: false,
+      modalTaskData: null,
+    };
+  }
+
+  #initSummaryScreen = () => {
+    this.TASK_MANAGER = TaskManager.getInstance();
+    this.taskArray = Array.from(this.TASK_MANAGER.getTasksMap().values()); // Convert map values to an array
+    this.listData = this.generateSummaryList();
+    this.topicSuccessData = this.getTopicSuccess();
+    this.navigation = this.props.navigation;
+  };
 
   /**
    * Populates summary screen with task data
    * @returns Collection containing all relevant task information
    */
-  const generateSummaryList = () => {
+  generateSummaryList = () => {
     const tasksArray = [];
     let id = 0;
-    taskArray.forEach(topic => {
+    this.taskArray.forEach(topic => {
       if (
         topic[0].topic == 'Allgemein' ||
         topic[0].topic == 'Examples' ||
@@ -53,7 +68,7 @@ export default function SummaryScreen({navigation, route}) {
         let hintsUsedRelevant = false;
         let hintsUsed = 0;
         let hintRatio = 0;
-        let userFeedbackInteractive = "";
+        let userFeedbackInteractive = '';
         let question = null;
         let selectedAnswers = null;
         let correctChoices = null;
@@ -96,15 +111,13 @@ export default function SummaryScreen({navigation, route}) {
     return tasksArray;
   };
 
-  const listData = generateSummaryList();
-
   /**
    * Generates a map that stores user's average success per topic
    * @returns {Map} Map of [topic, ratio]
    */
-  const getTopicSuccess = () => {
+  getTopicSuccess = () => {
     const map = {};
-    listData.forEach(section => {
+    this.listData.forEach(section => {
       let entries = Object.entries(section);
       let topic = '';
       for ([key, value] of entries) {
@@ -129,26 +142,32 @@ export default function SummaryScreen({navigation, route}) {
     return map;
   };
 
-  const topicSuccessData = getTopicSuccess();
-
   /**
    * Gets header color and styling
    * @param {String} title Section title to compare against
    * @returns according styles
    */
-  const getHeaderStyle = title => {
-    if (topicSuccessData[title] > 0.6) {
+  getHeaderStyle = title => {
+    if (this.topicSuccessData[title] > 0.6) {
       return styles.greenHeader;
-    } else if (topicSuccessData[title] >= 0.4) {
+    } else if (this.topicSuccessData[title] >= 0.4) {
       return styles.yellowHeader;
     } else {
       return styles.redHeader;
     }
   };
 
-  const openTaskModal = task => {
-    setModalTaskData(task);
-    setModalVisible(!modalVisible);
+  toggleModal = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible,
+    });
+  };
+
+  openTaskModal = task => {
+    this.toggleModal();
+    this.setState({
+      modalTaskData: task,
+    });
   };
 
   /**
@@ -156,7 +175,7 @@ export default function SummaryScreen({navigation, route}) {
    * @param {String} section Sectionname
    * @returns {ScrollView} List of already rendered items
    */
-  const displaySectionItems = section => {
+  displaySectionItems = section => {
     let previousSummarySubSection = null;
 
     const renderSectionItems = () => {
@@ -180,8 +199,8 @@ export default function SummaryScreen({navigation, route}) {
 
         items.push(
           <TouchableOpacity
-            onPress={() => openTaskModal(item)}
-            key={getRandomKey()}>
+            onPress={() => this.openTaskModal(item)}
+            key={this.getRandomKey()}>
             <View key={item.id} style={styles.taskItem}>
               <Text style={globalStyles.textSummaryItem}>{item.title}</Text>
               {item.timeRelevant && (
@@ -234,7 +253,7 @@ export default function SummaryScreen({navigation, route}) {
         );
       });
 
-      let headerStyle = getHeaderStyle(section.title);
+      let headerStyle = this.getHeaderStyle(section.title);
       let text = '';
 
       switch (headerStyle) {
@@ -258,7 +277,7 @@ export default function SummaryScreen({navigation, route}) {
 
       items.push(
         <Text
-          key={getRandomKey()}
+          key={this.getRandomKey()}
           style={[
             styles.subSectionHeading,
             globalStyles.textSummarySubSection,
@@ -281,7 +300,7 @@ export default function SummaryScreen({navigation, route}) {
    * Generates a random key for view items
    * @returns {String} A randomized String
    */
-  const getRandomKey = () => {
+  getRandomKey = () => {
     let rString = (Math.random() + 1).toString(36).substring(2);
     let key = Math.floor(Math.random() * 1000000 + 1) + rString;
     return key;
@@ -291,34 +310,33 @@ export default function SummaryScreen({navigation, route}) {
    * Expands and collapses accordion sections
    * @param {String} sectionTitle
    */
-  function toggleItem(sectionTitle) {
+  toggleItem(sectionTitle) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    if (sectionTitle === expandedSection) {
-      setExpandedSection(null);
+    if (sectionTitle === this.state.expandedSection) {
+      this.setState({
+        expandedSection: null,
+      });
     } else {
-      setExpandedSection(sectionTitle);
+      this.setState({
+        expandedSection: sectionTitle,
+      });
     }
   }
 
-  // Needed to achieve accordion animation on android
-  if (Platform.OS === 'android') {
-    if (UIManager.setLayoutAnimationEnabledExperimental) {
-      UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
-  }
-
-  const includeModal = () => {
+  includeModal = () => {
     var answersHeading = 'Deine Lösung: ';
     var correctAnswersHeading = 'Die korrekte Lösung lautet:';
-    if (modalTaskData.type == 'quiz') {
+    if (this.state.modalTaskData.type == 'quiz') {
       var questionText = (
         <Text style={{margin: 5, marginBottom: 15}}>
-          {modalTaskData.question}
+          {this.state.modalTaskData.question}
         </Text>
       );
-      var selectedAnswersMap = modalTaskData.selectedAnswers.map(
+      var selectedAnswersMap = this.state.modalTaskData.selectedAnswers.map(
         (answer, index) => {
-          let textColor = modalTaskData.correctChoices.includes(answer)
+          let textColor = this.state.modalTaskData.correctChoices.includes(
+            answer,
+          )
             ? 'green'
             : 'red';
           return (
@@ -331,28 +349,32 @@ export default function SummaryScreen({navigation, route}) {
         },
       );
       var correctChoicesMap =
-        modalTaskData.correctChoices != null &&
-        modalTaskData.correctChoices.map((choice, index) => (
+        this.state.modalTaskData.correctChoices != null &&
+        this.state.modalTaskData.correctChoices.map((choice, index) => (
           <Text style={styles.modalSingleCorrectChoiceText} key={index}>
             {choice}
           </Text>
         ));
-    } else if (modalTaskData.type == 'interactive') {
+    } else if (this.state.modalTaskData.type == 'interactive') {
       answersHeading = '';
       correctAnswersHeading = '';
-      var taskSummaryText = (<Text style={{ textAlign: 'left', color: '#1C2327'}}>{modalTaskData.userFeedbackInteractive}</Text>);
+      var taskSummaryText = (
+        <Text style={{textAlign: 'left', color: '#1C2327'}}>
+          {this.state.modalTaskData.userFeedbackInteractive}
+        </Text>
+      );
     }
     return (
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(!modalVisible)}>
+        visible={this.state.modalVisible}
+        onRequestClose={() => this.toggleModal()}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <TouchableOpacity
               style={styles.closeButton}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => this.toggleModal()}>
               <FontAwesomeIcon name="close" size={32} color="white" />
             </TouchableOpacity>
             <ScrollView>
@@ -361,17 +383,17 @@ export default function SummaryScreen({navigation, route}) {
                   styles.modalSubSectionText,
                   globalStyles.textSummarySubSection,
                 ]}>
-                {modalTaskData.summarySubSection}
+                {this.state.modalTaskData.summarySubSection}
               </Text>
               <Text
                 style={[
                   styles.modalTaskTitleText,
                   globalStyles.textSummaryItem,
                 ]}>
-                {modalTaskData.title}
+                {this.state.modalTaskData.title}
               </Text>
 
-              {modalTaskData.type == 'quiz' ? questionText : ''}
+              {this.state.modalTaskData.type == 'quiz' ? questionText : ''}
 
               <Text
                 style={[
@@ -381,7 +403,7 @@ export default function SummaryScreen({navigation, route}) {
                 {answersHeading}
               </Text>
 
-              {modalTaskData.type == 'quiz' ? selectedAnswersMap : ''}
+              {this.state.modalTaskData.type == 'quiz' ? selectedAnswersMap : ''}
 
               <Text
                 style={[
@@ -391,8 +413,8 @@ export default function SummaryScreen({navigation, route}) {
                 {correctAnswersHeading}
               </Text>
 
-              {modalTaskData.type == 'quiz' ? correctChoicesMap : ''}
-              {modalTaskData.type == 'interactive' ? taskSummaryText : ''}
+              {this.state.modalTaskData.type == 'quiz' ? correctChoicesMap : ''}
+              {this.state.modalTaskData.type == 'interactive' ? taskSummaryText : ''}
             </ScrollView>
           </View>
         </View>
@@ -400,32 +422,49 @@ export default function SummaryScreen({navigation, route}) {
     );
   };
 
-  return (
-    <ImageBackground
-      source={require('../assets/Background.png')}
-      style={globalStyles.mainBackground}>
-      <View style={styles.container}>
-        <Text style={[globalStyles.textSummaryScreenTitle, styles.screenTitle]}>
-          Auswertung
-        </Text>
-        {listData.map((section, index) => (
-          <View key={index}>
-            <TouchableOpacity
-              key={getRandomKey()}
-              onPress={() => toggleItem(section.title)}
-              style={[styles.sectionHeader, getHeaderStyle(section.title)]}>
-              <Text
-                style={[globalStyles.textSummarySection, styles.sectionTitle]}>
-                {section.title}
-              </Text>
-            </TouchableOpacity>
-            {expandedSection === section.title && displaySectionItems(section)}
-          </View>
-        ))}
-        {modalTaskData != null && includeModal()}
-      </View>
-    </ImageBackground>
-  );
+  render() {
+    // Needed to achieve accordion animation on android
+    if (Platform.OS === 'android') {
+      if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+      }
+    }
+    return (
+      <ImageBackground
+        source={require('../assets/Background.png')}
+        style={globalStyles.mainBackground}>
+        <TopBar navigation={this.navigation} />
+        <View style={styles.container}>
+          <Text
+            style={[globalStyles.textSummaryScreenTitle, styles.screenTitle]}>
+            Auswertung
+          </Text>
+          {this.listData.map((section, index) => (
+            <View key={index}>
+              <TouchableOpacity
+                key={this.getRandomKey()}
+                onPress={() => this.toggleItem(section.title)}
+                style={[
+                  styles.sectionHeader,
+                  this.getHeaderStyle(section.title),
+                ]}>
+                <Text
+                  style={[
+                    globalStyles.textSummarySection,
+                    styles.sectionTitle,
+                  ]}>
+                  {section.title}
+                </Text>
+              </TouchableOpacity>
+              {this.state.expandedSection === section.title &&
+                this.displaySectionItems(section)}
+            </View>
+          ))}
+          {this.state.modalTaskData != null && this.includeModal()}
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

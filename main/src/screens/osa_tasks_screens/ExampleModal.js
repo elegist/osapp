@@ -184,10 +184,10 @@ export const ExampleModal = ({modalVisible, onRequestClose, content}) => {
 const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
-    top: -25,
-    right: -25,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    top: -20,
+    right: -20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     margin: 5,
     elevation: 5,
     backgroundColor: '#dd4040',

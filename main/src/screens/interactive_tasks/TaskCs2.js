@@ -92,15 +92,20 @@ export default class TaskCs2 extends InteractiveTaskBase {
 
   // check if user's answer is correct before unmounting
   componentWillUnmount() {
-    let taskSuccess = true;
+    let taskSuccess = false;
+    let correctOrderCounter = 0;
+    const correctRectangleColor = '#FD4F4F';
     this.state.rectangles.forEach(rectangle => {
-      if (rectangle.order <= 2 && rectangle.color != '#FD4F4F') {
-        taskSuccess = false;
-      } else if (rectangle.order > 2 && rectangle.color != '#D9D9D9') {
-        taskSuccess = false;
+      if (rectangle.color == correctRectangleColor) {
+        correctOrderCounter++;
+        if (correctOrderCounter == 3) {
+          taskSuccess = true;
+        }
+      } else {
+        if (correctOrderCounter > 0) correctOrderCounter--;
       }
     });
-    this.props.task.setTaskSuccess(taskSuccess)
+    this.props.task.setTaskSuccess(taskSuccess);
   }
 
   updateRectangles = newRectangles => {

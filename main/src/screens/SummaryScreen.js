@@ -26,7 +26,7 @@ import TopBar from '../components/TopBar';
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
  */
 export class SummaryScreen extends Component {
-  TASK_MANAGER = null
+  TASK_MANAGER = null;
   constructor(props) {
     super(props);
     this.#initSummaryScreen();
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     borderRadius: 4,
-    height: 50,
+    minHeight: 50,
     margin: 10,
     flexDirection: 'row',
   },

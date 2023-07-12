@@ -329,7 +329,7 @@ export class SummaryScreen extends Component {
     var correctAnswersHeading = 'Die korrekte Lösung lautet:';
     if (this.state.modalTaskData.type == 'quiz') {
       var questionText = (
-        <Text style={{margin: 5, marginBottom: 15}}>
+        <Text style={{margin: 5, marginBottom: 15, color: '#000'}}>
           {this.state.modalTaskData.question}
         </Text>
       );

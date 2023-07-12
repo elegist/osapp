@@ -9,6 +9,7 @@ import {
   LayoutAnimation,
   ImageBackground,
   Modal,
+  BackHandler,
 } from 'react-native';
 import globalStyles from '../styles/GlobalStyleSheet';
 import TaskManager from '../container/TaskManager';
@@ -25,11 +26,11 @@ import TopBar from '../components/TopBar';
  * SummaryScreen - presents an overall summary of the finished OSA for the user to review
  */
 export class SummaryScreen extends Component {
+  TASK_MANAGER = null
   constructor(props) {
     super(props);
     this.#initSummaryScreen();
 
-    console.log(this.navigation);
     this.state = {
       expandedSection: null,
       modalVisible: false,
@@ -403,7 +404,9 @@ export class SummaryScreen extends Component {
                 {answersHeading}
               </Text>
 
-              {this.state.modalTaskData.type == 'quiz' ? selectedAnswersMap : ''}
+              {this.state.modalTaskData.type == 'quiz'
+                ? selectedAnswersMap
+                : ''}
 
               <Text
                 style={[
@@ -414,7 +417,9 @@ export class SummaryScreen extends Component {
               </Text>
 
               {this.state.modalTaskData.type == 'quiz' ? correctChoicesMap : ''}
-              {this.state.modalTaskData.type == 'interactive' ? taskSummaryText : ''}
+              {this.state.modalTaskData.type == 'interactive'
+                ? taskSummaryText
+                : ''}
             </ScrollView>
           </View>
         </View>

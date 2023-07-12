@@ -5,7 +5,7 @@ import HomeScreen from '../../screens/HomeScreen';
 import OsaScreen from '../../screens/OsaScreen';
 import globalStyles from '../../styles/GlobalStyleSheet';
 import ExamplesScreen from '../../screens/osa_tasks_screens/ExamplesScreen';
-import { SummaryScreen } from '../../screens/SummaryScreen';
+import {SummaryScreen} from '../../screens/SummaryScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,12 +24,14 @@ const DrawerNavigator = () => {
       }}>
       <Drawer.Screen
         name="homeScreen"
-        component={HomeScreen}
         options={{
           title: 'Home',
           drawerLabelStyle: globalStyles.textParagraph,
-        }}
-      />
+        }}>
+        {({route, navigation}) => (
+          <HomeScreen key={route.params?.key} navigation={navigation} />
+        )}
+        </Drawer.Screen>
       <Drawer.Screen
         name="examplesScreen"
         component={ExamplesScreen}
@@ -44,20 +46,23 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name="osaScreen"
         component={OsaScreen}
-        options={{
+        options={({navigation}) => ({
           title: 'OSA beginnen',
           drawerLabelStyle: globalStyles.textParagraph,
-        }}
+          screenProps: {navigation},
+        })}
       />
       <Drawer.Screen
         name="summaryScreen"
-        component={SummaryScreen}
-        options={{ 
+        options={() => ({
           title: 'Zusammenfassung',
           drawerLabelStyle: globalStyles.textParagraph,
-          drawerItemStyle: { height: 0 }
-         }}
-      />
+          drawerItemStyle: {height: 0},
+        })}>
+        {({route, navigation}) => (
+          <SummaryScreen key={route.params?.key} navigation={navigation} />
+        )}
+      </Drawer.Screen>
     </Drawer.Navigator>
   );
 };

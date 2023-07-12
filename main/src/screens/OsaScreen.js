@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,7 +10,6 @@ import TaskManager from '../container/TaskManager';
 import ReadingTask from '../container/osa_tasks/ReadingTask';
 import QuizTask from '../container/osa_tasks/QuizTask';
 import InteractiveTask from '../container/osa_tasks/InteractiveTask';
-import SummaryTask from '../container/osa_tasks/SummaryTask';
 import ReadingScreen from './osa_tasks_screens/ReadingScreen';
 import QuizScreen from './osa_tasks_screens/QuizScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,94 +17,134 @@ import ProgressBar from 'react-native-progress/Bar';
 import InteractiveScreen from './osa_tasks_screens/InteractiveScreen';
 import ExamplesTask from '../container/osa_tasks/ExamplesTask';
 import ExamplesScreen from './osa_tasks_screens/ExamplesScreen';
+import SummaryTask from '../container/osa_tasks/SummaryTask';
 
-export default function OsaScreen({navigation, route}) {
-  const TASK_MANAGER = TaskManager.getInstance();
-  const [progress, setProgress] = useState(0);
-  const [task, setTask] = useState(null);
-  const [previousTask, setPreviousTask] = useState(null); // Added previousTask state
-  const numberOfTasks = TASK_MANAGER.numberOfTasks;
+class OsaScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.TASK_MANAGER = TaskManager.getInstance();
+    this.state = {
+      progress: 0,
+      task: null,
+      previousTask: null,
+    };
+  }
 
-  useEffect(() => {
-    const currentTask = TASK_MANAGER.getTask(progress);
-    setPreviousTask(task);
-    setTask(currentTask);
-    currentTask.startTimeMeasurement();
-  }, [progress]);
+  componentDidMount() {
+    this.updateTask();
+  }
 
-  useEffect(() => {
-    if (!(task instanceof SummaryTask)) {
-      task?.startTimeMeasurement();
+  componentDidUpdate(prevProps, prevState) {
+    this.checkSummaryTask();
+    if (prevProps.route.params?.resetOsa !== this.props.route.params?.resetOsa) {
+      if (this.props.route.params?.resetOsa) {
+        this.resetComponent();
+        this.TASK_MANAGER = TaskManager.getInstance();
+      }
+      this.updateTask();
     }
-    previousTask?.stopTimeMeasurement();
-  }, [task, previousTask]);
+    if (prevState.progress !== this.state.progress) {
+      this.updateTask();
+    }
+  }
 
-  const nextTask = () => {
-    setProgress(prevProgress => prevProgress + 1);
+  updateTask = () => {
+    const { progress } = this.state;
+    const currentTask = this.TASK_MANAGER.getTask(progress);
+    this.setState((prevState) => ({
+      previousTask: prevState.task,
+      task: currentTask,
+    }));
+    currentTask.startTimeMeasurement();
   };
 
-  const lastTask = () => {
-    setProgress(prevProgress => (prevProgress > 0 ? prevProgress - 1 : 0));
+  nextTask = () => {
+    this.setState((prevState) => ({
+      progress: prevState.progress + 1,
+    }));
   };
 
-  const renderTask = () => {
+  lastTask = () => {
+    this.setState((prevState) => ({
+      progress: prevState.progress > 0 ? prevState.progress - 1 : 0,
+    }));
+  };
+
+  renderTask = () => {
+    const { task } = this.state;
     if (!task) return null;
     if (task instanceof ReadingTask) {
-      return <ReadingScreen key={task.id} task={task} nextTask={nextTask} />;
+      return <ReadingScreen key={task.id} task={task} nextTask={this.nextTask} />;
     } else if (task instanceof QuizTask) {
-      return <QuizScreen key={task.id} task={task} nextTask={nextTask} />;
+      return <QuizScreen key={task.id} task={task} nextTask={this.nextTask} />;
     } else if (task instanceof InteractiveTask) {
       return (
-        <InteractiveScreen key={task.id} task={task} nextTask={nextTask} />
+        <InteractiveScreen key={task.id} task={task} nextTask={this.nextTask} />
       );
     } else if (task instanceof ExamplesTask) {
       return (
-        <ExamplesScreen key={task.id} nextTask={nextTask} source="tasks" />
+        <ExamplesScreen key={task.id} nextTask={this.nextTask} source="tasks" />
       );
     } else {
       return null;
     }
   };
 
-  useEffect(() => {
+  checkSummaryTask = () => {
+    const { task } = this.state;
     if (task instanceof SummaryTask) {
-      navigation.navigate('summaryScreen');
+      const timestamp = Date.now();
+      this.props.navigation.navigate('summaryScreen', { key: `SummaryScreen_${timestamp}` });
     }
-  }, [task]);
+  };  
 
-  return (
-    <ImageBackground
-      source={require('../assets/Background.png')}
-      style={globalStyles.mainBackground}>
-      <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
-        <TouchableOpacity disabled={progress === 0} onPress={lastTask}>
-          <Icon
-            name="step-backward"
-            size={36}
-            color="black"
-            style={progress === 0 ? {opacity: 0} : {opacity: 1}}
+  resetComponent = () => {
+    this.setState({
+      progress: 0,
+      task: null,
+      previousTask: null,
+    });
+  };
+
+  render() {
+    const { progress, task } = this.state;
+    const numberOfTasks = this.TASK_MANAGER.numberOfTasks;
+
+    return (
+      <ImageBackground
+        source={require('../assets/Background.png')}
+        style={globalStyles.mainBackground}
+      >
+        <View style={{ ...globalStyles.topBar, justifyContent: 'space-between' }}>
+          <TouchableOpacity disabled={progress === 0} onPress={this.lastTask}>
+            <Icon
+              name="step-backward"
+              size={36}
+              color="black"
+              style={progress === 0 ? { opacity: 0 } : { opacity: 1 }}
+            />
+          </TouchableOpacity>
+          <ProgressBar
+            style={styles.progressBar}
+            progress={progress / numberOfTasks}
+            color={'#8CBA45'}
+            height={16}
+            width={null}
           />
-        </TouchableOpacity>
-        <ProgressBar
-          style={styles.progressBar}
-          progress={progress / numberOfTasks}
-          color={'#8CBA45'}
-          height={16}
-          width={null}
-        />
-        {/* TODO: remove later, this is only for debug purposes! */}
-        <TouchableOpacity onPress={nextTask}>
-          <Icon
-            style={{opacity: 1}}
-            name="step-forward"
-            size={36}
-            color="red"
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.taskContainer}>{task && renderTask()}</View>
-    </ImageBackground>
-  );
+          {/* TODO: remove later, this is only for debug purposes! */}
+          <TouchableOpacity onPress={this.nextTask}>
+            <Icon
+              style={{ opacity: 1 }}
+              name="step-forward"
+              size={36}
+              color="red"
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.taskContainer}>{task && this.renderTask()}</View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -128,3 +167,5 @@ const styles = StyleSheet.create({
     flex: 0.85,
   },
 });
+
+export default OsaScreen;

@@ -1,66 +1,120 @@
+import React, {Component} from 'react';
 import {
   TouchableOpacity,
   StyleSheet,
   Text,
   View,
   ImageBackground,
+  BackHandler,
 } from 'react-native';
-import React, {useState} from 'react';
 import globalStyles, {getResponsiveSizing} from '../styles/GlobalStyleSheet';
 import FastImage from 'react-native-fast-image';
 import TopBar from '../components/TopBar';
+import TaskManager, {taskManagerIsInitialized} from '../container/TaskManager';
 
-/**
- * HomeScreen - the landing page or main screen of the application
- */
-export default function HomeScreen({navigation}) {
-  const [isPressed, setIsPressed] = useState(false);
+export default class HomeScreen extends Component {
+  showContinueButton = taskManagerIsInitialized;
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPressed: false,
+    };
+  }
 
-  const handlePress = () => {
-    setIsPressed(true);
-    navigation.navigate('osaScreen');
-    setIsPressed(false);
+  componentDidMount() {
+    console.log("home screen mounted");
+    BackHandler.removeEventListener('hardwareBackPress');
+  }
+
+  pressBegin = () => {
+    this.setState({isPressed: true});
+    this.props.navigation.navigate('osaScreen', {resetOsa: true});
+    this.showContinueButton = true;
+    this.setState({isPressed: false});
   };
 
-  return (
-    <ImageBackground
-      source={require('../assets/Background.png')}
-      style={globalStyles.mainBackground}>
-      <TopBar navigation={navigation} />
-      <View style={styles.mainContainer}>
-        <FastImage
-          style={{
-            width: getResponsiveSizing(250),
-            height: getResponsiveSizing(125),
-          }}
-          source={require('../assets/OSAPP.png')}
-          resizeMode={FastImage.resizeMode.contain}
-        />
-        <TouchableOpacity
-          style={[
-            globalStyles.bigButton,
-            isPressed && globalStyles.bigButtonPressed,
-          ]}
-          onPress={handlePress}>
-          <Text
-            style={[
-              globalStyles.textBigButton,
-              isPressed && globalStyles.textParagraph,
-            ]}>
-            Online Self Assessment beginnen!
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
-  );
+  pressContinue = () => {
+    this.setState({isPressed: true});
+    this.props.navigation.navigate('osaScreen', {resetOsa: false});
+    this.showContinueButton = true;
+    this.setState({isPressed: false});
+  };
+
+  pressBeginNew = () => {
+    let taskManager = TaskManager.getInstance();
+    taskManager.resetTaskManager();
+    this.setState({isPressed: true});
+    this.props.navigation.navigate('osaScreen', {resetOsa: true});
+    this.showContinueButton = false;
+    this.setState({isPressed: false});
+  };
+
+  render() {
+    const {isPressed} = this.state;
+    const {navigation} = this.props;
+
+    return (
+      <ImageBackground
+        source={require('../assets/Background.png')}
+        style={globalStyles.mainBackground}>
+        <TopBar navigation={navigation} />
+        <View style={styles.mainContainer}>
+          <FastImage
+            style={{
+              width: getResponsiveSizing(250),
+              height: getResponsiveSizing(125),
+            }}
+            source={require('../assets/OSAPP.png')}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+          {this.showContinueButton == false ? (
+            <TouchableOpacity
+              style={[styles.bigButton, isPressed && styles.bigButtonPressed]}
+              onPress={this.pressBegin}>
+              <Text
+                style={[
+                  styles.textBigButton,
+                  isPressed && globalStyles.textParagraph,
+                ]}>
+                Online Self Assessment beginnen!
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <View>
+              <TouchableOpacity
+                style={[styles.bigButton, isPressed && styles.bigButtonPressed]}
+                onPress={this.pressContinue}>
+                <Text
+                  style={[
+                    styles.textBigButton,
+                    isPressed && globalStyles.textParagraph,
+                  ]}>
+                  OSA Fortfahren
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.smallButton,
+                  isPressed && styles.bigButtonPressed,
+                ]}
+                onPress={this.pressBeginNew}>
+                <Text
+                  style={[
+                    styles.textSmallButton,
+                    isPressed && globalStyles.textParagraph,
+                  ]}>
+                  Neu starten
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 0,
-    width: '100%',
-    height: '100%',
-  },
   mainContainer: {
     flex: 1,
     flexDirection: 'column',
@@ -69,25 +123,48 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    alignContent: 'flex-end',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: 'black',
+  bigButton: {
+    backgroundColor: '#8CBA45',
+    borderRadius: 10,
+    padding: 16,
+    margin: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
   },
-  menu: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
+  bigButtonPressed: {
+    backgroundColor: '#FFFFFF',
+  },
+  textBigButton: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(24),
+    color: 'white',
+    textAlign: 'center',
+  },
+  smallButton: {
+    backgroundColor: '#8CBA45',
+    borderRadius: 10,
+    padding: 16,
+    margin: 10,
+    shadowColor: '#000',
+    alignSelf: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  textSmallButton: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: getResponsiveSizing(18),
+    color: 'white',
+    textAlign: 'center',
   },
 });

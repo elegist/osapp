@@ -65,22 +65,6 @@ export default StyleSheet.create({
     paddingTop: 16,
     paddingHorizontal: 32,
   },
-  bigButton: {
-    backgroundColor: '#8CBA45',
-    borderRadius: 10,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  bigButtonPressed: {
-    backgroundColor: '#FFFFFF',
-  },
   smallButton: {
     backgroundColor: '#8CBA45',
     borderRadius: 10,
@@ -135,12 +119,6 @@ export default StyleSheet.create({
     fontFamily: 'PTSans-Bold',
     fontSize: getResponsiveSizing(18),
     color: '#1C2327',
-  },
-  textBigButton: {
-    fontFamily: 'PTSans-Bold',
-    fontSize: getResponsiveSizing(24),
-    color: 'white',
-    textAlign: 'center',
   },
   textSmallButton: {
     fontFamily: 'PTSans-Bold',

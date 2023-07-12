@@ -56,7 +56,6 @@ class OsaScreen extends Component {
   }
 
   updateTask = () => {
-    console.log('updating!');
     const {progress} = this.state;
     const currentTask = this.TASK_MANAGER.getTask(progress);
     this.setState(

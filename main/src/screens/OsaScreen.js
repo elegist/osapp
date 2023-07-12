@@ -138,7 +138,7 @@ class OsaScreen extends Component {
               name="step-backward"
               size={36}
               color="black"
-              style={progress === 0 ? {opacity: 0} : {opacity: 1}}
+              style={{opacity: 0}}
             />
           </TouchableOpacity>
           <ProgressBar
@@ -151,7 +151,7 @@ class OsaScreen extends Component {
           {/* TODO: remove later, this is only for debug purposes! */}
           <TouchableOpacity onPress={this.nextTask}>
             <Icon
-              style={{opacity: 1}}
+              style={{opacity: 0}}
               name="step-forward"
               size={36}
               color="red"

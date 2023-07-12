@@ -31,8 +31,8 @@ class OsaScreen extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted');
     this.updateTask();
+    this.focusListener = this.props.navigation.addListener('focus', this.updateTask)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -51,8 +51,8 @@ class OsaScreen extends Component {
   }
 
   updateTask = () => {
+    console.log("updating!");
     const {progress} = this.state;
-    console.log('Progress at task update: ' + progress);
     const currentTask = this.TASK_MANAGER.getTask(progress);
     this.setState(
       prevState => ({

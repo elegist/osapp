@@ -180,7 +180,7 @@ class TaskManager {
    * @returns {Object} Task object (ReadingTask / QuizTask / InteractiveTask ... )
    */
   getTask = progress => {
-    console.log('getTask called with parameter: ' + progress);
+    //DEBUG: console.log('getTask called with parameter: ' + progress);
     if (progress == 0) {
       this.#userProgressInTopic = 0;
       this.#userProgress = 0;

@@ -21,12 +21,9 @@ export default class HomeScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("home screen mounted");
-    BackHandler.removeEventListener('hardwareBackPress');
-  }
-
   pressBegin = () => {
+    let taskManager = TaskManager.getInstance()
+    taskManager.resetTaskManager()
     this.setState({isPressed: true});
     this.props.navigation.navigate('osaScreen', {resetOsa: true});
     this.showContinueButton = true;
@@ -37,15 +34,6 @@ export default class HomeScreen extends Component {
     this.setState({isPressed: true});
     this.props.navigation.navigate('osaScreen', {resetOsa: false});
     this.showContinueButton = true;
-    this.setState({isPressed: false});
-  };
-
-  pressBeginNew = () => {
-    let taskManager = TaskManager.getInstance();
-    taskManager.resetTaskManager();
-    this.setState({isPressed: true});
-    this.props.navigation.navigate('osaScreen', {resetOsa: true});
-    this.showContinueButton = false;
     this.setState({isPressed: false});
   };
 
@@ -97,7 +85,7 @@ export default class HomeScreen extends Component {
                   styles.smallButton,
                   isPressed && styles.bigButtonPressed,
                 ]}
-                onPress={this.pressBeginNew}>
+                onPress={this.pressBegin}>
                 <Text
                   style={[
                     styles.textSmallButton,

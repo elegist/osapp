@@ -65,7 +65,7 @@ class TaskManager {
    * All data should be stored in database and retreived from here
    */
   #initTaskManager = () => {
-    console.log('init task manager');
+    //DEBUG: console.log('init task manager');
     this.#topics = [
       'Allgemein',
       'Examples',
@@ -182,36 +182,40 @@ class TaskManager {
   getTask = progress => {
     console.log('getTask called with parameter: ' + progress);
     if (progress == 0) {
+      this.#userProgressInTopic = 0;
+      this.#userProgress = 0;
+      this.#topicsProgress = 0;
+      this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
       return this.#currentTaskList[0];
     }
     if(progress == this.#userProgress) 
       return this.#currentTaskList[this.#userProgressInTopic];
     if (progress > this.#userProgress) {
-      console.log('User progresses...');
+      //DEBUG: console.log('User progresses...');
       // load next task
       if (this.#userProgressInTopic < this.#currentTaskList.length - 1) {
-        console.log('Same topic, user progresses on task...');
+        //DEBUG: console.log('Same topic, user progresses on task...');
         // increase user's progress on current topic and proceed with task
         this.#userProgressInTopic++;
         this.#userProgress++;
       } else {
-        console.log('Topic ended, user progresses to next topic');
-        console.log('Last topic: ' + this.#topicsProgress);
+        //DEBUG: console.log('Topic ended, user progresses to next topic');
+        //DEBUG: console.log('Last topic: ' + this.#topicsProgress);
         // reset user's progress, move to next topic and retreive new task list
         this.#userProgressInTopic = 0;
         this.#increaseTopicProgress();
-        console.log('Next topic: ' + this.#topicsProgress);
+        //DEBUG: console.log('Next topic: ' + this.#topicsProgress);
         // retreive new / updated task list
         this.#currentTaskList = this.#retreiveTaskList(this.#topicsProgress);
       }
     } else {
-      console.log('User navigates back');
+      //DEBUG: console.log('User navigates back');
       // load previous task
       if (this.#userProgressInTopic > 0) {
-        console.log('There are previous tasks in this topic, user navigates back one task',);
+        //DEBUG: console.log('There are previous tasks in this topic, user navigates back one task',);
         this.#userProgressInTopic--;
       } else {
-        console.log('No previous task left, switching to previous topic...');
+        //DEBUG: console.log('No previous task left, switching to previous topic...');
         // load last topic
         this.#decreaseTopicProgress();
         // retreive new / updated task list
@@ -223,7 +227,7 @@ class TaskManager {
     // update user progress (ensures correct comparison on next call)
     this.#userProgress = progress;
 
-    console.log('#userProgress: ' + this.#userProgress, '#userProgressInTopic: ' + this.#userProgressInTopic, 'topicsProgress: ' + this.#topicsProgress,);
+    //DEBUG: console.log('#userProgress: ' + this.#userProgress, '#userProgressInTopic: ' + this.#userProgressInTopic, 'topicsProgress: ' + this.#topicsProgress,);
     //return task object
     return this.#currentTaskList[this.#userProgressInTopic];
   };

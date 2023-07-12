@@ -31,13 +31,17 @@ class OsaScreen extends Component {
   }
 
   componentDidMount() {
+    console.log("mounted");
     this.updateTask();
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.checkSummaryTask();
     if (prevProps.route.params?.resetOsa !== this.props.route.params?.resetOsa) {
+      console.log("resetOsa != new resetOsa");
+      console.log(this.props.route.params?.resetOsa);
       if (this.props.route.params?.resetOsa) {
+        console.log("Resetting....");
         this.resetComponent();
         this.TASK_MANAGER = TaskManager.getInstance();
       }
@@ -50,6 +54,7 @@ class OsaScreen extends Component {
 
   updateTask = () => {
     const { progress } = this.state;
+    console.log("Progress at task update: " + progress);
     const currentTask = this.TASK_MANAGER.getTask(progress);
     this.setState((prevState) => ({
       previousTask: prevState.task,

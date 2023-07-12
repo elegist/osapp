@@ -19,7 +19,6 @@ import ExamplesTask from '../container/osa_tasks/ExamplesTask';
 import ExamplesScreen from './osa_tasks_screens/ExamplesScreen';
 import SummaryTask from '../container/osa_tasks/SummaryTask';
 
-
 class OsaScreen extends Component {
   constructor(props) {
     super(props);
@@ -131,15 +130,7 @@ class OsaScreen extends Component {
       <ImageBackground
         source={require('../assets/Background.png')}
         style={globalStyles.mainBackground}>
-        <View style={{...globalStyles.topBar, justifyContent: 'space-between'}}>
-          <TouchableOpacity disabled={progress === 0} onPress={this.lastTask}>
-            <Icon
-              name="step-backward"
-              size={36}
-              color="black"
-              style={{opacity: 0}}
-            />
-          </TouchableOpacity>
+        <View style={{...globalStyles.topBar, justifyContent: 'center'}}>
           <ProgressBar
             style={styles.progressBar}
             progress={progress / numberOfTasks}
@@ -147,15 +138,6 @@ class OsaScreen extends Component {
             height={16}
             width={null}
           />
-          {/* TODO: remove later, this is only for debug purposes! */}
-          <TouchableOpacity onPress={this.nextTask}>
-            <Icon
-              style={{opacity: 0}}
-              name="step-forward"
-              size={36}
-              color="red"
-            />
-          </TouchableOpacity>
         </View>
         <View style={styles.taskContainer}>{task && this.renderTask()}</View>
       </ImageBackground>
@@ -178,9 +160,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   progressBar: {
+    width: '80%',
     height: 16,
     alignSelf: 'center',
-    flex: 0.85,
   },
 });
 

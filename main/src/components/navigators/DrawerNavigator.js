@@ -15,6 +15,7 @@ const DrawerNavigator = () => {
       drawerContent={props => <CustomDrawer {...props} />}
       initialRouteName="homeScreen"
       screenOptions={{
+        unmountOnBlur: true,
         headerShown: false,
         drawerPosition: 'right',
         overlayColor: 'rgba(0, 0, 0, 0.85)',
@@ -31,7 +32,7 @@ const DrawerNavigator = () => {
         {({route, navigation}) => (
           <HomeScreen key={route.params?.key} navigation={navigation} />
         )}
-        </Drawer.Screen>
+      </Drawer.Screen>
       <Drawer.Screen
         name="examplesScreen"
         component={ExamplesScreen}

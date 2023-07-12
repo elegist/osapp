@@ -19,6 +19,7 @@ import ExamplesTask from '../container/osa_tasks/ExamplesTask';
 import ExamplesScreen from './osa_tasks_screens/ExamplesScreen';
 import SummaryTask from '../container/osa_tasks/SummaryTask';
 
+
 class OsaScreen extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,7 @@ class OsaScreen extends Component {
 
   componentDidMount() {
     this.updateTask();
-    this.focusListener = this.props.navigation.addListener('focus', this.updateTask)
+    this.props.navigation.addListener('focus', this.updateTask);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,8 +51,12 @@ class OsaScreen extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.navigation.removeListener('focus');
+  }
+
   updateTask = () => {
-    console.log("updating!");
+    console.log('updating!');
     const {progress} = this.state;
     const currentTask = this.TASK_MANAGER.getTask(progress);
     this.setState(

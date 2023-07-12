@@ -22,8 +22,8 @@ export default class HomeScreen extends Component {
   }
 
   pressBegin = () => {
-    let taskManager = TaskManager.getInstance()
-    taskManager.resetTaskManager()
+    let taskManager = TaskManager.getInstance();
+    taskManager.resetTaskManager();
     this.setState({isPressed: true});
     this.props.navigation.navigate('osaScreen', {resetOsa: true});
     this.showContinueButton = true;
@@ -55,47 +55,17 @@ export default class HomeScreen extends Component {
             source={require('../assets/OSAPP.png')}
             resizeMode={FastImage.resizeMode.contain}
           />
-          {this.showContinueButton == false ? (
-            <TouchableOpacity
-              style={[styles.bigButton, isPressed && styles.bigButtonPressed]}
-              onPress={this.pressBegin}>
-              <Text
-                style={[
-                  styles.textBigButton,
-                  isPressed && globalStyles.textParagraph,
-                ]}>
-                Online Self Assessment beginnen!
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <View>
-              <TouchableOpacity
-                style={[styles.bigButton, isPressed && styles.bigButtonPressed]}
-                onPress={this.pressContinue}>
-                <Text
-                  style={[
-                    styles.textBigButton,
-                    isPressed && globalStyles.textParagraph,
-                  ]}>
-                  OSA Fortfahren
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.smallButton,
-                  isPressed && styles.bigButtonPressed,
-                ]}
-                onPress={this.pressBegin}>
-                <Text
-                  style={[
-                    styles.textSmallButton,
-                    isPressed && globalStyles.textParagraph,
-                  ]}>
-                  Neu starten
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
+          <TouchableOpacity
+            style={[styles.bigButton, isPressed && styles.bigButtonPressed]}
+            onPress={this.pressBegin}>
+            <Text
+              style={[
+                styles.textBigButton,
+                isPressed && globalStyles.textParagraph,
+              ]}>
+              Online Self Assessment beginnen!
+            </Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     );

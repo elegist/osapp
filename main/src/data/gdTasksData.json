@@ -8,7 +8,7 @@
       "summarySubSection": "Teil 1 - Modellierung",
       "content": [
         "Drittes Thema: Grafische Datenverarbeitung",
-        "[img]gd-lamp.jpg",
+        "[img]gd_lamp.jpg",
         "Grafische Datenverarbeitung (GDV) beschäftigt sich mit dem Erstellen und Verarbeiten von Grafiken.",
         "Das können reale Aufnahmen aus einer Kamera sein, die digitalisiert werden,",
         "als auch Grafiken, die direkt am Computer erstellt werden.",
@@ -97,7 +97,7 @@
       "summarySubSection": "Teil 3 - Mathematik",
       "content": [
         "Die Mathematik spielt eine zentrale Rolle in der Grafischen Datenverarbeitung.", 
-        "[img]gd-math.jpg",
+        "[img]gd_math.jpg",
         "Insbesondere Gleichungssysteme und Matrizen sind wichtige Werkzeuge.", 
         "Diese werden zur Darstellung und Manipulation von 3D-Objekten verwendet.", 
         "Durch sie können komplexe Transformationen auf Grafiken angewendet werden.",

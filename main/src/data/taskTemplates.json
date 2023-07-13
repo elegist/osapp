@@ -2,7 +2,7 @@
   "comment": "This file holds templates and serves as a documentation file for the task's data structure",
   ".comment": "You can copy & paste these and fill them with real data. Do not delete this file!",
   "..comment": "Make sure to give each task a unique (ascending) id and place images in ./source/assets/osa_images",
-  "...comment": "Mark images with a leading [img] and then the image name. You also have to add the image to the ImageMapper (Screens/helper)",
+  "...comment": "Mark images with a leading [img] and then the image name (must not contain any '-', use '_' instead). Remember: You also have to add the image to the ImageMapper (Screens/helper)",
   "....comment": "You can just copy the whole thing for a new topic, delete these comment lines and customize your tasks.",
   ".....comment": "Each .json file should have the following structure:",
   "topic": "YOUR TOPIC (e.g. gd, av, cs)",
@@ -16,7 +16,7 @@
         "Reading task text",
         "As an array",
         "divided by images to display",
-        "[img]name-of-image.jpg",
+        "[img]name_of_image.jpg",
         "followed by text or image",
         "in a custom order"
       ]

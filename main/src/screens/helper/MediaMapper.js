@@ -51,28 +51,28 @@ class MediaMapper {
     const path = '../../assets/project_examples/thumbnails/';
 
     switch (mediaName) {
-      case 'av2_angels_thumbnail.png':
-        return require(path + 'av2_angels_thumbnail.png');
-      case 'av2_lazarus_thumbnail.png':
-        return require(path + 'av2_lazarus_thumbnail.png');
+      case 'av2_angels_thumbnail.jpg':
+        return require(path + 'av2_angels_thumbnail.jpg');
+      case 'av2_lazarus_thumbnail.jpg':
+        return require(path + 'av2_lazarus_thumbnail.jpg');
       case 'fd_dijkstra_thumbnail.png':
         return require(path + 'fd_dijkstra_thumbnail.png');
-      case 'fub_regeneration_thumbnail.png':
-        return require(path + 'fub_regeneration_thumbnail.png');
-      case 'gd1_car_thumbnail.png':
-        return require(path + 'gd1_car_thumbnail.png');
-      case 'gd2_lamp_thumbnail.png':
-        return require(path + 'gd2_lamp_thumbnail.png');
-      case 'gd2_ring_thumbnail.png':
-        return require(path + 'gd2_ring_thumbnail.png');
-      case 'gd3_mimic_thumbnail.png':
-        return require(path + 'gd3_mimic_thumbnail.png');
-      case 'gd3_rack_thumbnail.png':
-        return require(path + 'gd3_rack_thumbnail.png');
-      case 'md_iphone_thumbnail.png':
-        return require(path + 'md_iphone_thumbnail.png');
-      case 'md_squirrel_thumbnail.png':
-        return require(path + 'md_squirrel_thumbnail.png');
+      case 'fub_regeneration_thumbnail.jpg':
+        return require(path + 'fub_regeneration_thumbnail.jpg');
+      case 'gd1_car_thumbnail.jpg':
+        return require(path + 'gd1_car_thumbnail.jpg');
+      case 'gd2_lamp_thumbnail.jpg':
+        return require(path + 'gd2_lamp_thumbnail.jpg');
+      case 'gd2_ring_thumbnail.jpg':
+        return require(path + 'gd2_ring_thumbnail.jpg');
+      case 'gd3_mimic_thumbnail.jpg':
+        return require(path + 'gd3_mimic_thumbnail.jpg');
+      case 'gd3_rack_thumbnail.jpg':
+        return require(path + 'gd3_rack_thumbnail.jpg');
+      case 'md_iphone_thumbnail.jpg':
+        return require(path + 'md_iphone_thumbnail.jpg');
+      case 'md_squirrel_thumbnail.jpg':
+        return require(path + 'md_squirrel_thumbnail.jpg');
       case 'mow2_bug_thumbnail.png':
         return require(path + 'mow2_bug_thumbnail.png');
       case 'mpm_reise_thumbnail.png':
@@ -89,48 +89,48 @@ class MediaMapper {
     const path = '../../assets/project_examples/content/imgs/';
 
     switch (mediaName) {
-      case 'fd_dijkstra.png':
-        return require(path + 'fd_dijkstra.png');
-      case 'fub_regeneration.png':
-        return require(path + 'fub_regeneration.png');
-      case 'gd1_detail_1.png':
-        return require(path + 'gd1_detail_1.png');
-      case 'gd1_detail_2.png':
-        return require(path + 'gd1_detail_2.png');
-      case 'gd1_full.png':
-        return require(path + 'gd1_full.png');
-      case 'gd1_uv.png':
-        return require(path + 'gd1_uv.png');
-      case 'gd1_wireframe.png':
-        return require(path + 'gd1_wireframe.png');
-      case 'gd2_lamp.png':
-        return require(path + 'gd2_lamp.png');
-      case 'gd2_ring.png':
-        return require(path + 'gd2_ring.png');
-      case 'mow2_game.png':
-        return require(path + 'mow2_game.png');
-      case 'mow2_gameover.png':
-        return require(path + 'mow2_gameover.png');
-      case 'mow2_mainmenu.png':
-        return require(path + 'mow2_mainmenu.png');
-      case 'mow2_settings.png':
-        return require(path + 'mow2_settings.png');
-      case 'mpm_reise_1.png':
-        return require(path + 'mpm_reise_1.png');
-      case 'mpm_reise_2.png':
-        return require(path + 'mpm_reise_2.png');
-      case 'mpm_reise_3.png':
-        return require(path + 'mpm_reise_3.png');
-      case 'wfr_1.png':
-        return require(path + 'wfr_1.png');
-      case 'wfr_2.png':
-        return require(path + 'wfr_2.png');
-      case 'wfr_3.png':
-        return require(path + 'wfr_3.png');
-      case 'wfr_4.png':
-        return require(path + 'wfr_4.png');
-      case 'wfr_5.png':
-        return require(path + 'wfr_5.png');
+      case 'fd_dijkstra.jpg':
+        return require(path + 'fd_dijkstra.jpg');
+      case 'fub_regeneration.jpg':
+        return require(path + 'fub_regeneration.jpg');
+      case 'gd1_detail_1.jpg':
+        return require(path + 'gd1_detail_1.jpg');
+      case 'gd1_detail_2.jpg':
+        return require(path + 'gd1_detail_2.jpg');
+      case 'gd1_full.jpg':
+        return require(path + 'gd1_full.jpg');
+      case 'gd1_uv.jpg':
+        return require(path + 'gd1_uv.jpg');
+      case 'gd1_wireframe.jpg':
+        return require(path + 'gd1_wireframe.jpg');
+      case 'gd2_lamp.jpg':
+        return require(path + 'gd2_lamp.jpg');
+      case 'gd2_ring.jpg':
+        return require(path + 'gd2_ring.jpg');
+      case 'mow2_game.jpg':
+        return require(path + 'mow2_game.jpg');
+      case 'mow2_gameover.jpg':
+        return require(path + 'mow2_gameover.jpg');
+      case 'mow2_mainmenu.jpg':
+        return require(path + 'mow2_mainmenu.jpg');
+      case 'mow2_settings.jpg':
+        return require(path + 'mow2_settings.jpg');
+      case 'mpm_reise_1.jpg':
+        return require(path + 'mpm_reise_1.jpg');
+      case 'mpm_reise_2.jpg':
+        return require(path + 'mpm_reise_2.jpg');
+      case 'mpm_reise_3.jpg':
+        return require(path + 'mpm_reise_3.jpg');
+      case 'wfr_1.jpg':
+        return require(path + 'wfr_1.jpg');
+      case 'wfr_2.jpg':
+        return require(path + 'wfr_2.jpg');
+      case 'wfr_3.jpg':
+        return require(path + 'wfr_3.jpg');
+      case 'wfr_4.jpg':
+        return require(path + 'wfr_4.jpg');
+      case 'wfr_5.jpg':
+        return require(path + 'wfr_5.jpg');
 
       default:
         return null;

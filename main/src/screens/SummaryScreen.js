@@ -209,7 +209,7 @@ export class SummaryScreen extends Component {
                   <FeatherIcon
                     style={[
                       globalStyles.textSummaryItem,
-                      {opacity: 1, marginEnd: 5},
+                      {opacity: 1, marginEnd: 5, color: "#1C2327"},
                     ]}
                     name="clock"
                   />
@@ -329,7 +329,7 @@ export class SummaryScreen extends Component {
     var correctAnswersHeading = 'Die korrekte Lösung lautet:';
     if (this.state.modalTaskData.type == 'quiz') {
       var questionText = (
-        <Text style={{margin: 5, marginBottom: 15, color: '#000'}}>
+        <Text style={{margin: 5, marginBottom: 15, color: '#1C2327'}}>
           {this.state.modalTaskData.question}
         </Text>
       );

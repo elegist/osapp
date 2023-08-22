@@ -2,7 +2,16 @@
 This is where the unique OSA - App for MIB40 - Digital Teaching and Learning is created.
 
 # Table of Contents
-[toc]
+- [OSApp - Medieninformatik](#osapp---medieninformatik)
+- [Info](#info)
+- [Members](#members)
+- [Installation](#installation)
+- [Maintaining Content](#maintaining-content)
+  - [Location of the data](#location-of-the-data)
+  - [How to add new Tasks](#how-to-add-new-tasks)
+    - [Task properties](#task-properties)
+  - [How to add new examples](#how-to-add-new-examples)
+  - [Adding a new topic](#adding-a-new-topic)
 
 # Info
 The application is intended to provide prospective students with an OSA (online self-assessment) for the study program
